@@ -1,0 +1,314 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState, useMemo } from 'react';
+import { SearchFilters, Product } from '../../types';
+import SearchAndFilters from '../SearchAndFilters';
+import { LayoutGrid, AlertCircle, ShoppingCart } from 'lucide-react';
+import SEOHead from '../SEOHead';
+
+interface ShopViewProps {
+  products: Product[];
+  onNavigate: (view: string, params?: Record<string, string>) => void;
+  onAddToCompare: (product: Product) => void;
+  compareList: Product[];
+  onAddToBasket: (product: Product, shaft: string) => void;
+}
+
+export default function ShopView({
+  products,
+  onNavigate,
+  onAddToCompare,
+  compareList,
+  onAddToBasket
+}: ShopViewProps) {
+  // Max ranges in database
+  const maxPriceDb = useMemo(() => Math.max(...products.map(p => p.priceGbp)), [products]);
+  const maxHpDb = useMemo(() => Math.max(...products.map(p => p.powerHp)), [products]);
+
+  // Filters State
+  const [filters, setFilters] = useState<SearchFilters>({
+    searchQuery: '',
+    brands: [],
+    categories: [],
+    engineTypes: [],
+    minPrice: 0,
+    maxPrice: maxPriceDb,
+    minPowerHp: 0,
+    maxPowerHp: maxHpDb,
+    shaftLengths: [],
+    stockOnly: false
+  });
+
+  const [sortBy, setSortBy] = useState<string>('featured');
+
+  // Filter & Sort Logic
+  const filteredProducts = useMemo(() => {
+    let result = [...products];
+
+    // Search Query
+    if (filters.searchQuery.trim() !== '') {
+      const q = filters.searchQuery.toLowerCase();
+      result = result.filter(
+        p =>
+          p.name.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q)
+      );
+    }
+
+    // Brands
+    if (filters.brands.length > 0) {
+      result = result.filter(p => filters.brands.includes(p.brand));
+    }
+
+    // Categories
+    if (filters.categories.length > 0) {
+      result = result.filter(p =>
+        p.category.some(c => filters.categories.includes(c))
+      );
+    }
+
+    // Engine Types
+    if (filters.engineTypes.length > 0) {
+      result = result.filter(p => filters.engineTypes.includes(p.engineType));
+    }
+
+    // Stock Only
+    if (filters.stockOnly) {
+      result = result.filter(p => p.stockStatus === 'In Stock');
+    }
+
+    // Shaft Lengths
+    if (filters.shaftLengths.length > 0) {
+      result = result.filter(p =>
+        p.shaftLengths.some(shaft =>
+          filters.shaftLengths.some(fShaft =>
+            shaft.toLowerCase().includes(fShaft.toLowerCase().split(' ')[0])
+          )
+        )
+      );
+    }
+
+    // Price Range
+    result = result.filter(p => p.priceGbp <= filters.maxPrice);
+
+    // Power Range
+    result = result.filter(p => p.powerHp <= filters.maxPowerHp);
+
+    // Sort By
+    if (sortBy === 'price-asc') {
+      result.sort((a, b) => a.priceGbp - b.priceGbp);
+    } else if (sortBy === 'price-desc') {
+      result.sort((a, b) => b.priceGbp - a.priceGbp);
+    } else if (sortBy === 'weight-asc') {
+      result.sort((a, b) => a.weightKg - b.weightKg);
+    } else if (sortBy === 'hp-desc') {
+      result.sort((a, b) => b.powerHp - a.powerHp);
+    }
+
+    return result;
+  }, [products, filters, sortBy]);
+
+  return (
+    <div id="shop-view-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
+      <SEOHead 
+        title="Shop Outboard Motors | Comprehensive UK Stock Directory" 
+        description="Filter and search physical stock of Suzuki, Yamaha, Tohatsu, Mercury, and Torqeedo outboards. Buy portable 4-stroke or electric propulsion packages today."
+        ogType="website"
+      />
+
+      {/* Hero Banner */}
+      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
+        <div className="relative z-10 max-w-2xl space-y-2">
+          <h1 className="text-3xl font-extrabold tracking-tight leading-none">UK Marine Engine Stock Inventory</h1>
+          <p className="text-slate-350 text-sm">
+            Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.
+          </p>
+        </div>
+        <div className="absolute top-0 right-0 h-full w-1/3 opacity-10 pointer-events-none hidden md:block">
+          <LayoutGrid className="w-full h-full text-white" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Filters (collapsible on mobile, fixed on lg) */}
+        <div className="lg:col-span-4 lg:sticky lg:top-6">
+          <SearchAndFilters
+            filters={filters}
+            onFilterChange={setFilters}
+            maxProductPrice={maxPriceDb}
+            maxHp={maxHpDb}
+          />
+        </div>
+
+        {/* Right Inventory Grid */}
+        <div className="lg:col-span-8 space-y-6">
+          {/* Controls toolbar */}
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <p className="text-slate-600 font-medium">
+              Showing <span className="font-bold text-slate-900">{filteredProducts.length}</span> engines matching selection
+            </p>
+            <div className="flex items-center gap-2">
+              <label htmlFor="sort-selection" className="font-semibold text-slate-500 uppercase tracking-widest text-[10px]">Sort By:</label>
+              <select
+                id="sort-selection"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="bg-white border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 font-semibold text-slate-800"
+              >
+                <option value="featured">Featured Engine Listing</option>
+                <option value="price-asc">Price: Petrol (Low to High)</option>
+                <option value="price-desc">Price: Petrol (High to Low)</option>
+                <option value="weight-asc">Dry Weight: Lightest First</option>
+                <option value="hp-desc">Horsepower: Strongest First</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Listing Grid */}
+          {filteredProducts.length === 0 ? (
+            <div className="py-20 text-center border-2 border-dashed border-slate-200 rounded-2xl space-y-4 max-w-md mx-auto">
+              <AlertCircle className="w-12 h-12 text-slate-400 mx-auto" />
+              <div className="space-y-1">
+                <h3 className="font-sans font-bold text-slate-900 text-base">No Outboard Motors Found</h3>
+                <p className="text-xs text-slate-550 px-6">We could not locate any models matching these current filtration parameters. Please try relaxed selections or click "Reset All".</p>
+              </div>
+              <button
+                type="button"
+                id="reset-empty-filters-btn"
+                onClick={() => setFilters({
+                  searchQuery: '',
+                  brands: [],
+                  categories: [],
+                  engineTypes: [],
+                  minPrice: 0,
+                  maxPrice: maxPriceDb,
+                  minPowerHp: 0,
+                  maxPowerHp: maxHpDb,
+                  shaftLengths: [],
+                  stockOnly: false
+                })}
+                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold"
+              >
+                Clear all filters
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {filteredProducts.map((prod) => {
+                const isTwoStroke = prod.category.includes('two-stroke');
+                const defaultShaft = prod.shaftLengths[0] || 'Short Shaft (S)';
+                
+                return (
+                  <div
+                    key={prod.id}
+                    className="bg-white border border-slate-205 rounded-xl p-4 shadow-sm group flex flex-col justify-between hover:shadow-md transition"
+                  >
+                    <div>
+                      {/* Product Image */}
+                      <div className="relative overflow-hidden rounded-lg mb-3">
+                        <img
+                          src={prod.imageUrl}
+                          alt={prod.name}
+                          className="w-full h-44 object-cover group-hover:scale-105 transition duration-300 border border-slate-100"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-sm px-2 py-0.5 rounded text-[9px] font-bold tracking-wider text-sky-400">
+                          {prod.brand.toUpperCase()}
+                        </div>
+                        {prod.powerKw && (
+                          <div className="absolute bottom-2 left-2 bg-sky-900 text-white px-2.5 py-0.5 rounded text-[10px] font-bold">
+                            {prod.powerKw} kW Electric Drive
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Header Specs */}
+                      <div className="flex justify-between items-center text-[10px] font-bold tracking-wider uppercase text-slate-450 mb-1">
+                        <span>{prod.engineType}</span>
+                        <span className="text-emerald-700 bg-emerald-50 px-2 rounded-full font-mono">{prod.stockStatus}</span>
+                      </div>
+
+                      {/* Title */}
+                      <h4
+                        onClick={() => onNavigate('product-details', { slug: prod.slug })}
+                        className="font-sans font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 transition cursor-pointer"
+                      >
+                        {prod.name}
+                      </h4>
+                      <p className="text-xs text-slate-500 mt-1 line-clamp-2 mb-3">{prod.description}</p>
+
+                      {/* Technical Quick Badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-4 max-h-12 overflow-hidden select-none">
+                        <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
+                          {prod.powerHp} HP
+                        </span>
+                        <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
+                          {prod.weightKg} kg weight
+                        </span>
+                        <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
+                          {prod.specs.warrantyYears} Yr Warranty
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Pricing & Trigger Area */}
+                    <div className="pt-3 border-t border-slate-100">
+                      <div className="flex justify-between items-baseline mb-3">
+                        <span className="text-[10px] text-slate-400 font-semibold">UK Retail Price</span>
+                        <div className="text-right">
+                          <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB')}</span>
+                          <span className="block text-[9px] text-slate-400 leading-none">VAT Included (20%)</span>
+                        </div>
+                      </div>
+
+                      {isTwoStroke && (
+                        <div className="p-1 px-2 border border-amber-200 bg-amber-50 rounded text-[9px] text-amber-800 leading-tight mb-3">
+                          * Commercial or racing registration required for dispatch.
+                        </div>
+                      )}
+
+                      {/* Control buttons */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={() => onNavigate('product-details', { slug: prod.slug })}
+                          className="bg-slate-900 hover:bg-slate-800 text-white rounded-lg py-2.5 text-xs font-semibold transition text-center"
+                        >
+                          Specification details
+                        </button>
+                        <button
+                          type="button"
+                          id={`add-to-compare-${prod.id}`}
+                          onClick={() => onAddToCompare(prod)}
+                          disabled={compareList.some(c => c.id === prod.id)}
+                          className="bg-slate-100 hover:bg-slate-200 text-slate-800 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-200 rounded-lg py-2.5 text-xs font-semibold transition"
+                        >
+                          {compareList.some(c => c.id === prod.id) ? 'Selected to compare' : 'Compare specifications'}
+                        </button>
+                      </div>
+
+                      {/* Direct Basket button */}
+                      <button
+                        type="button"
+                        id={`add-to-basket-${prod.id}`}
+                        onClick={() => onAddToBasket(prod, defaultShaft)}
+                        className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 rounded-lg py-2 text-xs font-semibold transition mt-2 border border-emerald-200 flex items-center justify-center gap-1.5"
+                      >
+                        <ShoppingCart className="w-3.5 h-3.5" />
+                        <span>Add default configuration to Basket</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

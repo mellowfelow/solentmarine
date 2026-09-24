@@ -1,0 +1,12 @@
+{
+  "linkset": [
+    { "anchor": "https://outboardmotors.co.uk/", "https://www.iana.org/assignments/link-relations/service-doc": [{ "href": "https://outboardmotors.co.uk/faq/" }], "title": "Solent Marine Outboards UK — Marine Engines & Rigging" },
+    { "anchor": "https://outboardmotors.co.uk/shop/", "type": "text/html", "title": "Solent Marine Outboard Motors Catalog" },
+    { "anchor": "https://outboardmotors.co.uk/shipping/", "type": "text/html", "title": "UK Outboard Shipping & PDI" },
+    { "anchor": "https://outboardmotors.co.uk/contact/", "type": "text/html", "title": "Contact Cowes Rigging Desk" },
+    { "anchor": "https://outboardmotors.co.uk/api/products", "type": "application/json", "title": "Solent Marine Outboards Products API" },
+    { "anchor": "https://outboardmotors.co.uk/api/categories", "type": "application/json", "title": "Outboard Categories API" },
+    { "anchor": "https://outboardmotors.co.uk/api/search", "type": "application/json", "title": "Engine Search API" },
+    { "anchor": "https://outboardmotors.co.uk/api/mcp", "type": "application/json", "https://www.iana.org/assignments/link-relations/service-desc": [{ "href": "https://outboardmotors.co.uk/.well-known/mcp/server-card.json" }], "title": "Solent Marine MCP Server" }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Outboard Motors UK",
+  "description": "UK's premier outboard motors catalog and dealer directory. Featuring Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo engines with detailed specs, comparisons, finance calculations, and UK-wide delivery guides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

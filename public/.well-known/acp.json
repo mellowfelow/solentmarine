@@ -1,0 +1,27 @@
+{
+  "protocol": { "name": "acp", "version": "0.1.0" },
+  "name": "Solent Marine Outboards UK",
+  "description": "UK's Premier Outboard Motors & Marine Engines Specialist",
+  "api_base_url": "https://outboardmotors.co.uk",
+  "homepage": "https://outboardmotors.co.uk",
+  "transports": ["https"],
+  "capabilities": {
+    "services": ["product-catalog", "engine-specs-compare", "finance-calculator", "faq", "mcp-server"],
+    "ordering": "human-assisted",
+    "payment_methods": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
+    "currency": "GBP",
+    "minimum_order_gbp": "50.00",
+    "free_shipping_threshold_gbp": "500.00"
+  },
+  "contact": {
+    "whatsapp": "https://wa.me/447700900888",
+    "email": "sales@outboardmotors.co.uk"
+  },
+  "legal": {
+    "age_restriction": "none",
+    "region": "United Kingdom",
+    "ships_to": "United Kingdom, Channel Islands, Isle of Man",
+    "product_type": "marine-outboard-motors",
+    "compliance": "UK Recreational Craft Regulations 2017 (RCD II)"
+  }
+}

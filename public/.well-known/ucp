@@ -1,0 +1,33 @@
+{
+  "ucp": "1.0",
+  "protocol_version": "1.0",
+  "spec": "https://ucp.dev/specification/overview/",
+  "schema": "https://ucp.dev/schema/v1.json",
+  "site": "https://outboardmotors.co.uk",
+  "name": "Solent Marine Outboards UK",
+  "description": "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
+  "services": [
+    { "id": "product-catalog", "type": "catalog", "url": "https://outboardmotors.co.uk/shop/", "description": "Full outboard motors catalog with detailed specifications" },
+    { "id": "mcp-server", "type": "mcp", "url": "https://outboardmotors.co.uk/api/mcp", "description": "MCP Streamable HTTP server for engine search and spec lookups" },
+    { "id": "order", "type": "commerce", "url": "https://wa.me/447700900888", "description": "Direct human-assisted WhatsApp ordering and rigging consultation" },
+    { "id": "specs-compare", "type": "tool", "url": "https://outboardmotors.co.uk/compare/", "description": "Side-by-side outboard technical specifications matrix" }
+  ],
+  "capabilities": ["browse", "search", "inquiry", "compare", "finance", "mcp"],
+  "endpoints": {
+    "mcp": "https://outboardmotors.co.uk/api/mcp",
+    "catalog": "https://outboardmotors.co.uk/shop/",
+    "contact": "https://outboardmotors.co.uk/contact/",
+    "agent_skills": "https://outboardmotors.co.uk/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://outboardmotors.co.uk/.well-known/mcp/server-card.json",
+    "api_catalog": "https://outboardmotors.co.uk/.well-known/api-catalog",
+    "llms_txt": "https://outboardmotors.co.uk/llms.txt"
+  },
+  "currency": "GBP",
+  "minimum_order_gbp": "50.00",
+  "payment_methods": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
+  "legal": {
+    "age_restriction": "none",
+    "product_type": "marine-outboard-motors",
+    "compliance": "UK Recreational Craft Regulations 2017 (RCD II)"
+  }
+}

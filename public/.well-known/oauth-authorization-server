@@ -1,0 +1,26 @@
+{
+  "issuer": "https://outboardmotors.co.uk",
+  "authorization_endpoint": null,
+  "token_endpoint": null,
+  "jwks_uri": null,
+  "grant_types_supported": [],
+  "response_types_supported": [],
+  "scopes_supported": [],
+  "note": "Solent Marine Outboards UK has no protected APIs. All marine catalog data and specs are publicly accessible.",
+  "public_resources": [
+    "https://outboardmotors.co.uk/shop/",
+    "https://outboardmotors.co.uk/compare/",
+    "https://outboardmotors.co.uk/faq/",
+    "https://outboardmotors.co.uk/shipping/",
+    "https://outboardmotors.co.uk/llms.txt",
+    "https://outboardmotors.co.uk/.well-known/api-catalog",
+    "https://outboardmotors.co.uk/.well-known/agent-skills/index.json",
+    "https://outboardmotors.co.uk/.well-known/mcp/server-card.json"
+  ],
+  "agent_auth": {
+    "register_uri": null,
+    "identity_types_supported": ["none"],
+    "credential_types_supported": ["none"],
+    "notes": "No registration required. All content is publicly accessible to autonomous and assistive agents."
+  }
+}

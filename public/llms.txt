@@ -1,0 +1,33 @@
+# Solent Marine Outboards UK
+
+> UK's premier outboard motors dealership and marine rigging specialists supplying Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo engines with certified Pre-Delivery Inspection (PDI) and nationwide delivery.
+
+## Overview
+- **Brand:** Solent Marine Outboards UK
+- **Headquarters:** Cowes Yacht Haven, High Street, Cowes, Isle of Wight, PO31 7BD, United Kingdom
+- **Contact:** sales@outboardmotors.co.uk | +44 1983 294400 | WhatsApp: +44 7700 900888
+- **Minimum Order:** £50.00
+- **Free UK Delivery:** On all orders over £500.00 (Includes pallet tail-lift for outboard motors)
+- **Warranty:** Full official UK manufacturer warranty (up to 5-6 years)
+- **Payment Methods:** UK Bank Transfer (BACS/Faster Payments), Visa, Mastercard, Marine Proforma Invoice, Marine Hire Purchase Finance (12-60 months)
+
+## Product Categories
+- [Portable Outboards (2.5HP - 6HP)](https://outboardmotors.co.uk/shop/?category=portable): Ultra-lightweight auxiliary and tender engines starting at £849.
+- [Mid-Range EFI Outboards (9.9HP - 30HP)](https://outboardmotors.co.uk/shop/?category=mid-range): Twin-cylinder electronic fuel injected motors for RIBs and dayboats from £2,795.
+- [High Horsepower Marine Engines (40HP - 300HP)](https://outboardmotors.co.uk/shop/?category=high-horsepower): High-performance 16-valve multi-cylinder marine engines from £9,945.
+- [Electric Outboards & E-Propulsion](https://outboardmotors.co.uk/shop/?category=electric): Ultra-quiet lithium direct-drive clean power from Torqeedo and ePropulsion from £1,949.
+- [Commercial 2-Stroke Fleet Engines](https://outboardmotors.co.uk/shop/?category=two-stroke): High-torque workboat motors restricted for professional fishing & rescue fleets under UK RCD II.
+- [Marine Oils, Rigging & Genuine Spares](https://outboardmotors.co.uk/shop/?category=parts): Official Yamlube 10W-30 oils, fuel tanks, and service kits from £49.
+
+## Customer Services & Tools
+- [Interactive Outboard Comparison Tool](https://outboardmotors.co.uk/compare/): Side-by-side technical specification comparison of up to 3 marine engines.
+- [Marine Finance Calculator](https://outboardmotors.co.uk/finance/): Live monthly installment estimates across 12, 24, 36, 48, and 60 months.
+- [Technical FAQ & Shaft Guide](https://outboardmotors.co.uk/faq/): Transom height measurements and PDI inspection information.
+- [UK Shipping & Pallet Dispatch Policy](https://outboardmotors.co.uk/shipping/): Details on courier and tail-lift freight delivery across the UK mainland and islands.
+- [Contact Rigging Engineers](https://outboardmotors.co.uk/contact/): Get in touch with our certified engineers in Cowes.
+
+## Optional Machine-Readable Resources
+- [API Catalog](https://outboardmotors.co.uk/.well-known/api-catalog): RFC 9727 linkset of discovery endpoints.
+- [Agent Skills Index](https://outboardmotors.co.uk/.well-known/agent-skills/index.json): Machine skills manifest for commerce and catalog browsing.
+- [MCP Server Card](https://outboardmotors.co.uk/.well-known/mcp/server-card.json): Model Context Protocol metadata.
+- [Auth Documentation](https://outboardmotors.co.uk/auth.md): Agent authentication and human-in-the-loop ordering policies.
