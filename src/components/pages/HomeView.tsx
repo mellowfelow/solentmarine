@@ -53,8 +53,9 @@ export default function HomeView({
     {
       webp: '/images/hero/hero-mercury-7-5-vintage.webp',
       jpg: '/images/hero/hero-mercury-7-5-vintage.jpg',
-      alt: 'Classic Mercury 7.5hp outboard motor mounted on a wooden boat',
-      caption: 'Decades of outboard expertise'
+      alt: 'Classic Mercury 7.5hp outboard motor cowling and shaft',
+      caption: 'Decades of outboard expertise',
+      focalPoint: 'center bottom'
     },
     {
       webp: '/images/hero/hero-yamaha-200-rib.webp',

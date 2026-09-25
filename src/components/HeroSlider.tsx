@@ -11,6 +11,9 @@ export interface HeroSlide {
   jpg: string;
   alt: string;
   caption: string;
+  /** CSS object-position, e.g. "center bottom" — lets a tall/awkwardly-framed source photo
+   *  stay anchored on its subject when the hero box crops it tighter than the pre-baked image. */
+  focalPoint?: string;
 }
 
 interface HeroSliderProps {
@@ -82,6 +85,7 @@ export default function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProp
               src={slide.jpg}
               alt={slide.alt}
               className="w-full h-full object-cover"
+              style={slide.focalPoint ? { objectPosition: slide.focalPoint } : undefined}
               loading={i === 0 ? 'eager' : 'lazy'}
               fetchPriority={i === 0 ? 'high' : 'auto'}
               referrerPolicy="no-referrer"
