@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ShieldCheck, Ship, ArrowRight, Anchor, Star, Compass, MapPin } from 'lucide-react';
+import { Ship, ArrowRight, Compass } from 'lucide-react';
 import { Product } from '../../types';
 import SEOHead from '../SEOHead';
 import { ReviewsShowcase } from '../ReviewsShowcase';
@@ -147,8 +147,8 @@ export default function HomeView({
       <section className="relative bg-slate-950 text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
         <HeroSlider slides={heroSlides} />
 
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="max-w-2xl space-y-6">
             <div className="inline-flex items-center gap-1.5 bg-sky-900/50 border border-sky-500/30 px-3 py-1 rounded-full text-xs font-semibold text-sky-305">
               <Compass className="w-3.5 h-3.5 animate-spin-slow text-sky-400" />
               <span>Cowes-Based Rigging Center • 100% Client Rated</span>
@@ -181,39 +181,6 @@ export default function HomeView({
               >
                 Launch Engine Sizer Tool
               </button>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 bg-white text-slate-800 rounded-2xl p-6 shadow-2xl space-y-4 border border-slate-200">
-            <h2 className="font-bold text-slate-900 text-lg">Why Buy From Us?</h2>
-            <div className="space-y-4 text-xs sm:text-sm">
-              <div className="flex items-start gap-3">
-                <div className="bg-sky-50 p-2 rounded-lg text-sky-850 shrink-0">
-                  <Star className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">Official Brand Guarantees</h4>
-                  <p className="text-slate-500 text-xs">Certified 5-Year Yamaha and 6-Year Suzuki/Honda UK retail warranties.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="bg-sky-50 p-2 rounded-lg text-sky-850 shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">Factory-Trained Riggers</h4>
-                  <p className="text-slate-500 text-xs">Diagnostic, gear alignment, timing setups, and dry shipping preparations handled in-house.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="bg-sky-50 p-2 rounded-lg text-sky-850 shrink-0">
-                  <Anchor className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">Custom Freight Sinks</h4>
-                  <p className="text-slate-500 text-xs">Drained, vacuum sealed, and shipped upright in heavy steel cratings.</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
