@@ -6,7 +6,7 @@
   "homepage": "https://outboardmotors.co.uk",
   "transports": ["https"],
   "capabilities": {
-    "services": ["product-catalog", "engine-specs-compare", "finance-calculator", "faq", "mcp-server"],
+    "services": ["product-catalog", "faq"],
     "ordering": "human-assisted",
     "payment_methods": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
     "currency": "GBP",

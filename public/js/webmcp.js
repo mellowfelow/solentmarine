@@ -3,45 +3,29 @@
   navigator.modelContext.provideContext({
     tools: [
       {
-        name: "search_outboards",
-        description: "Search Solent Marine UK outboards by power, brand, shaft length, or price",
-        inputSchema: {
-          type: "object",
-          properties: {
-            query: { type: "string" },
-            brand: { type: "string" },
-            category: { type: "string" },
-            max_price: { type: "number" }
-          }
-        },
-        execute: async ({ query, brand, category, max_price }) => {
-          const params = new URLSearchParams();
-          if (query) params.set('q', query);
-          if (brand) params.set('brand', brand);
-          if (category) params.set('category', category);
-          if (max_price) params.set('max_price', String(max_price));
-          const res = await fetch(`https://outboardmotors.co.uk/api/search?${params}`);
-          return res.json();
-        }
-      },
-      {
         name: "browse_category",
-        description: "Browse marine outboards by category (portable, mid-range, electric, high-horsepower)",
+        description: "Browse Solent Marine UK outboards by category: portable, mid-range, high-horsepower, electric, or parts",
         inputSchema: {
           type: "object",
           properties: {
-            category: { type: "string" }
+            category: {
+              type: "string",
+              enum: ["portable", "mid-range", "high-horsepower", "electric", "parts"]
+            }
           }
         },
         execute: async ({ category }) => {
-          const url = category ? `https://outboardmotors.co.uk/shop/?category=${encodeURIComponent(category)}` : `https://outboardmotors.co.uk/shop/`;
+          const valid = ["portable", "mid-range", "high-horsepower", "electric", "parts"];
+          const url = category && valid.includes(category)
+            ? `https://outboardmotors.co.uk/shop/${category}/`
+            : `https://outboardmotors.co.uk/shop/`;
           window.location.href = url;
           return { url };
         }
       },
       {
         name: "order_via_whatsapp",
-        description: "Initiate direct marine rigging and engine consultation via WhatsApp. Minimum order £50. Human completes.",
+        description: "Initiate direct marine rigging and engine consultation via WhatsApp. Minimum order £50. Human completes the order.",
         inputSchema: {
           type: "object",
           properties: {
@@ -49,7 +33,8 @@
           }
         },
         execute: async ({ message }) => {
-          const url = message ? `https://wa.me/447700900888?text=${encodeURIComponent(message)}` : `https://wa.me/447700900888`;
+          const greeting = "Hi Solent Marine Outboards UK, ";
+          const url = `https://wa.me/447700900888?text=${encodeURIComponent(message || greeting)}`;
           window.open(url, '_blank');
           return { url };
         }

@@ -12,64 +12,11 @@
     }
   },
   "transport": {
-    "type": "streamable-http",
-    "endpoint": "https://outboardmotors.co.uk/api/mcp"
+    "type": "none",
+    "note": "Static site on Vercel with no server API routes deployed. No live MCP endpoint exists yet — this card describes the catalog for human-in-the-loop browsing only."
   },
   "capabilities": {
-    "tools": [
-      {
-        "name": "search_products",
-        "description": "Search outboard motors by keyword, brand, category, powerHp, shaft length, or max_price",
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "query": { "type": "string" },
-            "brand": { "type": "string" },
-            "category": { "type": "string" },
-            "max_price": { "type": "number" }
-          }
-        }
-      },
-      {
-        "name": "get_product",
-        "description": "Get complete technical specifications of an outboard motor by its slug",
-        "inputSchema": {
-          "type": "object",
-          "required": ["slug"],
-          "properties": {
-            "slug": { "type": "string" }
-          }
-        }
-      },
-      {
-        "name": "list_categories",
-        "description": "List all engine categories (portable, mid-range, high-hp, electric, 2-stroke commercial, parts)",
-        "inputSchema": {
-          "type": "object",
-          "properties": {}
-        }
-      },
-      {
-        "name": "get_policies",
-        "description": "Get shipping policies, PDI inspection procedures, UK warranty terms, and payment methods",
-        "inputSchema": {
-          "type": "object",
-          "properties": {}
-        }
-      },
-      {
-        "name": "create_order_draft",
-        "description": "Create prefilled outboard order draft. Human completes order via WhatsApp or dealership checkout.",
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "items": { "type": "array" },
-            "shaftLength": { "type": "string" },
-            "notes": { "type": "string" }
-          }
-        }
-      }
-    ],
+    "tools": [],
     "resources": [
       {
         "name": "product-catalog",
@@ -77,9 +24,29 @@
         "uri": "https://outboardmotors.co.uk/shop/"
       },
       {
-        "name": "engine-specs-compare",
-        "description": "Technical comparison matrix",
-        "uri": "https://outboardmotors.co.uk/compare/"
+        "name": "portable-outboards",
+        "description": "Portable outboards, 2.5HP-6HP",
+        "uri": "https://outboardmotors.co.uk/shop/portable/"
+      },
+      {
+        "name": "mid-range-outboards",
+        "description": "Mid-range outboards, 8HP-40HP",
+        "uri": "https://outboardmotors.co.uk/shop/mid-range/"
+      },
+      {
+        "name": "high-power-outboards",
+        "description": "High-power outboards, 50HP-400HP+",
+        "uri": "https://outboardmotors.co.uk/shop/high-horsepower/"
+      },
+      {
+        "name": "electric-outboards",
+        "description": "Electric & eco outboards and trolling motors",
+        "uri": "https://outboardmotors.co.uk/shop/electric/"
+      },
+      {
+        "name": "parts-and-accessories",
+        "description": "Genuine oils, rigging and spares",
+        "uri": "https://outboardmotors.co.uk/shop/parts/"
       },
       {
         "name": "technical-faq",

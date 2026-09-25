@@ -6,8 +6,9 @@
 import React, { useState, useMemo } from 'react';
 import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
-import { LayoutGrid, AlertCircle, ShoppingCart } from 'lucide-react';
+import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight } from 'lucide-react';
 import SEOHead from '../SEOHead';
+import { CATEGORIES, SITE } from '../../config/site';
 
 interface ShopViewProps {
   products: Product[];
@@ -15,6 +16,7 @@ interface ShopViewProps {
   onAddToCompare: (product: Product) => void;
   compareList: Product[];
   onAddToBasket: (product: Product, shaft: string) => void;
+  categorySlug?: string;
 }
 
 export default function ShopView({
@@ -22,11 +24,20 @@ export default function ShopView({
   onNavigate,
   onAddToCompare,
   compareList,
-  onAddToBasket
+  onAddToBasket,
+  categorySlug
 }: ShopViewProps) {
+  const activeCategory = categorySlug ? CATEGORIES.find(c => c.slug === categorySlug) : undefined;
+  // Scope the catalog to the category route (if any) before facet filtering — this is what makes
+  // /shop/[category]/ a real, distinct, crawlable page rather than a client-side-only filter.
+  const scopedProducts = useMemo(
+    () => (activeCategory ? products.filter(p => p.category.includes(activeCategory.slug as any)) : products),
+    [products, activeCategory]
+  );
+
   // Max ranges in database
-  const maxPriceDb = useMemo(() => Math.max(...products.map(p => p.priceGbp)), [products]);
-  const maxHpDb = useMemo(() => Math.max(...products.map(p => p.powerHp)), [products]);
+  const maxPriceDb = useMemo(() => Math.max(...scopedProducts.map(p => p.priceGbp)), [scopedProducts]);
+  const maxHpDb = useMemo(() => Math.max(...scopedProducts.map(p => p.powerHp)), [scopedProducts]);
 
   // Filters State
   const [filters, setFilters] = useState<SearchFilters>({
@@ -46,7 +57,7 @@ export default function ShopView({
 
   // Filter & Sort Logic
   const filteredProducts = useMemo(() => {
-    let result = [...products];
+    let result = [...scopedProducts];
 
     // Search Query
     if (filters.searchQuery.trim() !== '') {
@@ -110,27 +121,81 @@ export default function ShopView({
     }
 
     return result;
-  }, [products, filters, sortBy]);
+  }, [scopedProducts, filters, sortBy]);
 
   return (
     <div id="shop-view-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
-      <SEOHead 
-        title="Shop Outboard Motors | Comprehensive UK Stock Directory" 
-        description="Filter and search physical stock of Suzuki, Yamaha, Tohatsu, Mercury, and Torqeedo outboards. Buy portable 4-stroke or electric propulsion packages today."
+      <SEOHead
+        title={activeCategory ? `${activeCategory.name} | Shop UK Stock` : 'Shop Outboard Motors | Comprehensive UK Stock Directory'}
+        description={activeCategory ? `${activeCategory.description} Browse ${scopedProducts.length} in-stock ${activeCategory.name.toLowerCase()} with UK-wide delivery and PDI inspection.` : 'Filter and search physical stock of Suzuki, Yamaha, Tohatsu, Mercury, Torqeedo, ePropulsion and more. Buy portable 4-stroke or electric propulsion packages today.'}
+        path={activeCategory ? `/shop/${activeCategory.slug}/` : '/shop/'}
         ogType="website"
+        schemaMarkup={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `https://${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'Shop', item: `https://${SITE.domain}/shop/` },
+              ...(activeCategory ? [{ '@type': 'ListItem', position: 3, name: activeCategory.name, item: `https://${SITE.domain}/shop/${activeCategory.slug}/` }] : [])
+            ]
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: activeCategory ? activeCategory.name : 'Outboard Motor Shop',
+            description: activeCategory ? activeCategory.description : 'Full UK outboard motor stock directory.',
+            url: activeCategory ? `https://${SITE.domain}/shop/${activeCategory.slug}/` : `https://${SITE.domain}/shop/`,
+            numberOfItems: scopedProducts.length
+          }
+        ]}
       />
+
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
+        <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
+        <ChevronRight className="w-3 h-3" />
+        <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-700 cursor-pointer">Shop</button>
+        {activeCategory && (
+          <>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-slate-800 font-semibold">{activeCategory.name}</span>
+          </>
+        )}
+      </nav>
 
       {/* Hero Banner */}
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight leading-none">UK Marine Engine Stock Inventory</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight leading-none">{activeCategory ? activeCategory.name : 'UK Marine Engine Stock Inventory'}</h1>
           <p className="text-slate-350 text-sm">
-            Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.
+            {activeCategory ? activeCategory.description : 'Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.'}
           </p>
         </div>
         <div className="absolute top-0 right-0 h-full w-1/3 opacity-10 pointer-events-none hidden md:block">
           <LayoutGrid className="w-full h-full text-white" />
         </div>
+      </div>
+
+      {/* Category quick-links — real crawlable /shop/[category]/ pages, internal linking hub */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        <button
+          type="button"
+          onClick={() => onNavigate('shop')}
+          className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${!activeCategory ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
+        >
+          All Stock
+        </button>
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat.slug}
+            type="button"
+            onClick={() => onNavigate('shop-category', { slug: cat.slug })}
+            className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${activeCategory?.slug === cat.slug ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
+          >
+            {cat.name}
+          </button>
+        ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -212,8 +277,9 @@ export default function ShopView({
                       <div className="relative overflow-hidden rounded-lg mb-3">
                         <img
                           src={prod.imageUrl}
-                          alt={prod.name}
-                          className="w-full h-44 object-cover group-hover:scale-105 transition duration-300 border border-slate-100"
+                          alt={`Placeholder image — ${prod.name} — real product photo coming soon`}
+                          loading="lazy"
+                          className="w-full h-44 object-contain bg-slate-50 group-hover:scale-105 transition duration-300 border border-slate-100"
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-sm px-2 py-0.5 rounded text-[9px] font-bold tracking-wider text-sky-400">

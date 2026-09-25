@@ -108,7 +108,7 @@ export const CHAT = {
 export const BRAND = {
   foundingYear: '2011',
   foundingLocation: 'Cowes, Isle of Wight, United Kingdom',
-  description: 'Solent Marine Outboards UK is a trusted British marine engine dealer and service center, supplying brand-new Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo outboard motors with nationwide UK delivery and certified PDI inspection.',
+  description: 'Solent Marine Outboards UK is a trusted British marine engine dealer and service center, supplying brand-new Yamaha, Suzuki, Honda, Mercury and Tohatsu petrol outboards alongside ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric electric propulsion, with nationwide UK delivery and certified PDI inspection.',
   milestones: [
     { year: '2011', event: 'Established at Cowes Yacht Haven servicing Solent yacht tenders and safety craft.' },
     { year: '2016', event: 'Appointed authorized main dealer for Yamaha Marine and Suzuki Outboards UK.' },
@@ -117,9 +117,10 @@ export const BRAND = {
   ],
   differentiation: [
     'Every engine undergoes full Pre-Delivery Inspection (PDI) with test tank run before dispatch',
-    'Authorized official UK dealer warranties (up to 5-6 years manufacturer backed coverage)',
+    'Authorized official UK dealer warranties (up to 5 years manufacturer backed coverage on Yamaha, Suzuki, Honda, Mercury and Tohatsu)',
+    'Dedicated electric propulsion range from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric',
     'Specialist technical advice from certified RYA marine engineers and rigging technicians',
-    'Free UK Mainland pallet delivery on all outboards 2.5HP to 150HP+'
+    'Free UK Mainland pallet delivery on all outboards 2.5HP to 400HP+'
   ],
   sameAs: [
     'https://www.facebook.com/solentmarineuk',
@@ -136,38 +137,32 @@ export const CATEGORIES = [
   {
     slug: 'portable',
     name: 'Portable Outboards (2.5HP - 6HP)',
-    description: 'Lightweight, single-cylinder 4-stroke & electric auxiliary engines ideal for dinghies, inflatables, and yacht tenders.',
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800'
+    description: 'Lightweight, single-cylinder 4-stroke petrol engines ideal for dinghies, inflatables, and yacht tenders.',
+    image: '/images/placeholders/portable.svg'
   },
   {
     slug: 'mid-range',
-    name: 'Mid-Range Outboards (9.9HP - 30HP)',
-    description: 'Twin-cylinder EFI engines offering the perfect balance of torque, fuel economy, and power for RIBs, fishing vessels, and dayboats.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'
+    name: 'Mid-Range Outboards (8HP - 40HP)',
+    description: 'Twin-cylinder and EFI engines offering the balance of torque, fuel economy, and power for RIBs, fishing vessels, and dayboats.',
+    image: '/images/placeholders/mid-range.svg'
   },
   {
     slug: 'high-horsepower',
-    name: 'High Horsepower (40HP - 300HP)',
-    description: 'Advanced 4-stroke multi-valve engines with digital electronic fuel injection, drive-by-wire, and high-thrust gearcases for offshore craft.',
-    image: 'https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&fit=crop&q=80&w=800'
+    name: 'High-Power Outboards (50HP - 400HP+)',
+    description: 'Advanced multi-valve engines with electronic fuel injection, drive-by-wire, and high-thrust gearcases for offshore and commercial craft.',
+    image: '/images/placeholders/high-horsepower.svg'
   },
   {
     slug: 'electric',
-    name: 'Electric Marine Outboards',
-    description: 'Zero-emission, ultra-quiet lithium-powered electric propulsion systems designed for inland waterways, sailing yachts, and tenders.',
-    image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    slug: 'two-stroke',
-    name: 'Commercial Direct 2-Stroke',
-    description: 'Rugged commercial and rescue fleet engines with superior power-to-weight ratios (Strictly restricted for commercial/rescue use under UK RCD II).',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800'
+    name: 'Electric & Eco Outboards',
+    description: 'Zero-emission electric outboards, pod drives, and trolling motors from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric.',
+    image: '/images/placeholders/electric.svg'
   },
   {
     slug: 'parts',
     name: 'Genuine Oils, Rigging & Spares',
-    description: 'Manufacturer-approved Yamlube oils, fuel tanks, kill switches, and genuine service spares to maintain UK manufacturer warranties.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800'
+    description: 'Manufacturer-approved engine oils, batteries, chargers, service kits, propellers and rigging hardware to maintain your warranty.',
+    image: '/images/placeholders/parts.svg'
   }
 ];
 

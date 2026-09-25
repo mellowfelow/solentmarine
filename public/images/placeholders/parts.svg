@@ -1,0 +1,16 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parts, oils and accessories category placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b0f"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g transform="translate(400,250)" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="60"/>
+    <path d="M0,-80 v20 M0,60 v20 M-80,0 h20 M60,0 h20 M-56,-56 l14,14 M42,42 l14,14 M-56,56 l14,-14 M42,-42 l14,-14"/>
+    <circle cx="0" cy="0" r="18" fill="#fbbf24" stroke="none"/>
+  </g>
+  <text x="400" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff">Parts, Oils &amp; Accessories</text>
+  <text x="400" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#fde68a">Genuine spares &amp; rigging · Product photo available on request</text>
+</svg>

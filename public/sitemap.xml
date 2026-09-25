@@ -3,171 +3,1106 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://outboardmotors.co.uk/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://outboardmotors.co.uk/shop/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/about/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/shop/portable/</loc>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/faq/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/shop/mid-range/</loc>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/shipping/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/shop/high-horsepower/</loc>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/contact/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/shop/electric/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/shop/parts/</loc>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://outboardmotors.co.uk/about/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/faq/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/shipping/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/contact/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://outboardmotors.co.uk/privacy/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://outboardmotors.co.uk/terms/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
-  <!-- Product Pages -->
   <url>
-    <loc>https://outboardmotors.co.uk/product/yamaha-f2-5-bmhs/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f2-5bmhs/</loc>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Yamaha F2.5 BMHS Outboard Motor</image:title>
-      <image:caption>Yamaha F2.5 4-stroke portable auxiliary marine outboard motor</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Yamaha F2.5BMHS</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/suzuki-df6as/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df2-5s/</loc>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Suzuki DF6AS 4-Stroke Outboard</image:title>
-      <image:caption>Suzuki DF6AS single cylinder lightweight 6hp portable engine</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Suzuki DF2.5S</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/honda-bf5-lhu/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://outboardmotors.co.uk/product/mercury-3-5hp-fourstroke/</loc>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1594498653385-d5272500f1ce?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Honda BF5 LHU Outboard Motor</image:title>
-      <image:caption>Honda BF5 5hp 4-stroke marine outboard with 12V 6A battery charging coil</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Mercury 3.5HP FourStroke</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf2-3-schu/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Honda BF2.3 SCHU</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs6sp/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Tohatsu MFS6SP</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df6a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Suzuki DF6A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f6cmhs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Yamaha F6CMHS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-1-0-plus/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion Spirit 1.0 Plus</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-xp-s/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Travel XP S</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://outboardmotors.co.uk/product/suzuki-df20as/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Suzuki DF20AS EFI Outboard Motor</image:title>
-      <image:caption>Suzuki DF20AS battery-less electronic fuel injection 20hp motor</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Suzuki DF20AS</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/yamaha-f15-fmhl/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f20gwhl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Yamaha F15 FMHL Outboard Motor</image:title>
-      <image:caption>Yamaha F15 long-shaft twin cylinder 15hp marine outboard</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha F20GWHL</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/yamaha-f100-fetl/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs50a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Yamaha F100 FETL EFI Outboard</image:title>
-      <image:caption>Yamaha F100 16-valve DOHC 100hp high performance offshore motor</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Tohatsu MFS50A</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/suzuki-df140b/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <loc>https://outboardmotors.co.uk/product/mercury-60hp-command-thrust/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Suzuki DF140B Drive-By-Wire Outboard</image:title>
-      <image:caption>Suzuki DF140B electronic precision control 140hp outboard engine</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury 60HP Command Thrust</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-1103c/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df140bg/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Torqeedo Travel 1103 C Electric Motor</image:title>
-      <image:caption>Torqeedo Travel 1103 C direct-drive 1100W electric outboard motor with GPS computer</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Suzuki DF140BG</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-1-plus/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.85</priority>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f300ncb/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>ePropulsion Spirit 1.0 Plus Electric</image:title>
-      <image:caption>ePropulsion Spirit 1.0 Plus 1kW electric outboard with floating 1276Wh battery</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Yamaha F300NCB</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/tohatsu-m50D2-commercial/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.80</priority>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-elite-500w/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Tohatsu M50D2 2-Stroke Outboard (Commercial)</image:title>
-      <image:caption>Tohatsu 50hp 2-stroke commercial workboat and rescue engine</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion eLite 500W</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-1-0-evo/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion Spirit 1.0 EVO</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-2/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion Spirit 2</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-navy-3-0-evo/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion Navy 3.0 EVO</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-navy-6-0-evo/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion Navy 6.0 EVO</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-x12-pod-drive/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion X12 Pod Drive</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-x20-pod-drive/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>ePropulsion X20 Pod Drive</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-ultralight-1103-ac/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Ultralight 1103 AC</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-903/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Travel 903</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-1103-c/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Travel 1103 C</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-cruise-3-0-t/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Cruise 3.0 T</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-cruise-6-0-r/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Cruise 6.0 R</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-cruise-12-0-r/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Cruise 12.0 R</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-deep-blue-25i/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Torqeedo Deep Blue 25i</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/temo-france-temo-450-longtail/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>TEMO France TEMO 450 Longtail</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/temo-france-temo-1000-outboard/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>TEMO France TEMO 1000 Outboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-w20-kayak-pro/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing W20 Kayak Pro</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-osapian-30lbs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing Osapian 30lbs</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-protruar-1-0-hp/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing Protruar 1.0 HP</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-protruar-2-0-hp/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing Protruar 2.0 HP</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-protruar-3-0-hp/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing Protruar 3.0 HP</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-armada-10-0/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Haswing Armada 10.0</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-endura-c2-30/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Minn Kota Endura C2 30</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-endura-c2-40/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Minn Kota Endura C2 40</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://outboardmotors.co.uk/product/minn-kota-endura-max-55/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Minn Kota Endura Max 55 Trolling Motor</image:title>
-      <image:caption>Minn Kota 12V 55lb thrust electric trolling engine with digital maximizer</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Minn Kota Endura Max 55</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://outboardmotors.co.uk/product/yamlube-4-stroke-oil-4l/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.75</priority>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-riptide-transom-55/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Yamlube 4-Stroke Outboard Motor Oil 4L</image:title>
-      <image:caption>Genuine Yamlube 10W-30 4M FC-W certified marine outboard motor oil</image:caption>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Minn Kota Riptide Transom 55</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-traxxis-70/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Minn Kota Traxxis 70</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/blade-electric-halo-3-0/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Blade Electric Halo 3.0</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/blade-electric-halo-6-0/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/electric.svg</image:loc>
+      <image:title>Blade Electric Halo 6.0</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f4bmhs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Yamaha F4BMHS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f5amhs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Yamaha F5AMHS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-ft8fmhx/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha FT8FMHX</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f9-9jmhs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha F9.9JMHS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f15cehs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha F15CEHS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f25gets/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha F25GETS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f40fets/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha F40FETS</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-ft50jetl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Yamaha FT50JETL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f70aetl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Yamaha F70AETL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-f115betl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Yamaha F115BETL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df4a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Suzuki DF4A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df5a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Suzuki DF5A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df9-9b/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Suzuki DF9.9B</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df15a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Suzuki DF15A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df30atl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Suzuki DF30ATL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df50atl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Suzuki DF50ATL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df80atl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Suzuki DF80ATL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df115bg/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Suzuki DF115BG</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df200ap/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Suzuki DF200AP</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-df350a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Suzuki DF350A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-5hp-fourstroke/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Mercury 5HP FourStroke</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-8hp-fourstroke/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Mercury 8HP FourStroke</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-15hp-efi/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Mercury 15HP EFI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-25hp-efi/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Mercury 25HP EFI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-40hp-fourstroke/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Mercury 40HP FourStroke</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-pro-xs-115/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury Pro XS 115</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-pro-xs-175/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury Pro XS 175</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-verado-250/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury Verado 250</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-verado-300/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury Verado 300</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-verado-400/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Mercury Verado 400</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf5ak3/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Honda BF5AK3</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf10-shu/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Honda BF10 SHU</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf20-lhu/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Honda BF20 LHU</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf50-lrtu/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Honda BF50 LRTU</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/honda-bf100-xru/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Honda BF100 XRU</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs3-5c/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/portable.svg</image:loc>
+      <image:title>Tohatsu MFS3.5C</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs9-9e/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Tohatsu MFS9.9E</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs20e/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Tohatsu MFS20E</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs30c/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/mid-range.svg</image:loc>
+      <image:title>Tohatsu MFS30C</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/tohatsu-mfs115a/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/high-horsepower.svg</image:loc>
+      <image:title>Tohatsu MFS115A</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-e-series-48v-100ah-lifepo4-battery/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>E-Series 48V 100Ah LiFePO4 Battery</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-spare-battery-1276wh/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Spirit Spare Battery 1276Wh</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-solar-charge-controller/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Spirit Solar Charge Controller</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-spirit-carrying-bag-set/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Spirit Carrying Bag Set</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/epropulsion-evo-remote-control-throttle/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>EVO Remote Control Throttle</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-battery-915wh/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Travel Battery 915Wh</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-115w-fast-charger-travel-series/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>115W Fast Charger (Travel Series)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-travel-2-piece-bag-set/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Travel 2-Piece Bag Set</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-spare-propeller-v9p1000/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Spare Propeller v9/p1000</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/torqeedo-torqtrac-smartphone-bluetooth-adapter/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>TorqTrac Smartphone Bluetooth Adapter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/temo-france-temo-450-oarlock-fitting-guard/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>TEMO 450 Oarlock Fitting Guard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/temo-france-temo-450-carrying-bag/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>TEMO 450 Carrying Bag</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/haswing-quick-release-kayakboat-bracket/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Quick Release Kayak/Boat Bracket</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-60a-marine-circuit-breaker/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>60A Marine Circuit Breaker</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/minn-kota-weedless-wedge-2-propeller/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Weedless Wedge 2 Propeller</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-yamalube-4m-10w-30-fc-w-1-litre/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Yamalube 4M 10W-30 FC-W (1 Litre)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-suzuki-ecstar-4-stroke-10w-40-5-litres/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Suzuki ECSTAR 4-Stroke 10W-40 (5 Litres)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-quicksilver-25w-40-synthetic-blend-4l/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Quicksilver 25W-40 Synthetic Blend (4L)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-quicksilver-high-performance-gear-lube-1l/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Quicksilver High Performance Gear Lube (1L)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-rock-oil-marine-universal-grease-500g/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Rock Oil Marine Universal Grease 500g</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/suzuki-suzuki-df2-5-service-maintenance-kit/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Suzuki DF2.5 Service Maintenance Kit</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/yamaha-yamaha-f6-f8-f9-9-service-kit/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Yamaha F6 / F8 / F9.9 Service Kit</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/mercury-mercury-mariner-water-pump-impeller/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Mercury Mariner Water Pump Impeller</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-ngk-dpr6ea-9-marine-spark-plug/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>NGK DPR6EA-9 Marine Spark Plug</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-zinc-trim-tab-anode-saltwater-use/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Zinc Trim Tab Anode (Saltwater Use)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-12-litre-portable-fuel-tank-gauge/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>12 Litre Portable Fuel Tank + Gauge</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-fuel-line-assembly-with-primer-bulb/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Fuel Line Assembly with Primer Bulb</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/solas-solas-amita-3-aluminium-propeller/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Solas Amita 3 Aluminium Propeller</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-oceansouth-vented-outboard-storage-cover/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Oceansouth Vented Outboard Storage Cover</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://outboardmotors.co.uk/product/universal-marine-grade-stainless-steel-outboard-lock/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://outboardmotors.co.uk/images/placeholders/parts.svg</image:loc>
+      <image:title>Marine Grade Stainless Steel Outboard Lock</image:title>
     </image:image>
   </url>
 </urlset>

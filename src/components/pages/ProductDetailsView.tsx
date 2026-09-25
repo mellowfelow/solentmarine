@@ -8,6 +8,7 @@ import { Product, Review } from '../../types';
 import FinanceCalculator from '../FinanceCalculator';
 import { Star, ShieldAlert, BadgeInfo, Scale, ChevronLeft, MapPin, CheckCircle, Ship, AlertCircle } from 'lucide-react';
 import SEOHead from '../SEOHead';
+import { SITE } from '../../config/site';
 
 interface ProductDetailsViewProps {
   slug: string;
@@ -87,15 +88,56 @@ export default function ProductDetailsView({
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
-    : '5.0';
+    : null; // No fabricated default rating — a product with zero reviews shows "No reviews yet", not a fake 5.0.
+
+  const productUrl = `https://${SITE.domain}/product/${product.slug}/`;
+  const productSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: product.name,
+      sku: product.sku,
+      brand: { '@type': 'Brand', name: product.brand },
+      description: product.description,
+      image: `https://${SITE.domain}${product.imageUrl}`,
+      url: productUrl,
+      category: product.subcategories?.[0] || product.category[0],
+      ...(reviews.length > 0 ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: avgRating,
+          reviewCount: reviews.length
+        }
+      } : {}),
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: SITE.currency,
+        price: product.priceGbp,
+        availability: product.stockStatus === 'In Stock' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+        url: productUrl,
+        seller: { '@type': 'Organization', name: SITE.name }
+      }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `https://${SITE.domain}/` },
+        { '@type': 'ListItem', position: 2, name: 'Shop', item: `https://${SITE.domain}/shop/` },
+        { '@type': 'ListItem', position: 3, name: product.name, item: productUrl }
+      ]
+    }
+  ];
 
   return (
     <div id="pdp-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-10">
-      <SEOHead 
-        title={`${product.name} Specs & Finance`} 
-        description={`Full specifications for ${product.name}. Fuel systems: ${product.fuelSystem}, dry weight: ${product.weightKg}kg. Fully PDI checked at Solent Marine Isle of Wight.`}
+      <SEOHead
+        title={`${product.name} — Specs, Price & Finance`}
+        description={`${product.brand} ${product.name}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. Fully PDI checked at Solent Marine, Isle of Wight.`}
+        path={`/product/${product.slug}/`}
         ogType="product"
-        ogImage={product.imageUrl}
+        ogImage={`https://${SITE.domain}${product.imageUrl}`}
+        schemaMarkup={productSchema}
       />
 
       {/* Back to inventory */}
@@ -118,8 +160,9 @@ export default function ProductDetailsView({
           <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm relative">
             <img
               src={product.imageUrl}
-              alt={product.name}
-              className="w-full h-[350px] sm:h-[450px] object-cover rounded-xl border border-slate-100"
+              alt={`Placeholder image — ${product.name} — real product photo coming soon`}
+              loading="eager"
+              className="w-full h-[350px] sm:h-[450px] object-contain bg-slate-50 rounded-xl border border-slate-100"
               referrerPolicy="no-referrer"
             />
             {product.isFeatured && (
@@ -202,14 +245,19 @@ export default function ProductDetailsView({
                 <span>Buyer Reviews & Ratings</span>
                 <span className="text-sm font-normal text-slate-500">({reviews.length} total)</span>
               </h3>
-              <div className="flex items-center gap-1 bg-yellow-50 text-yellow-800 font-bold text-sm px-2.5 py-1 rounded-md border border-yellow-100">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
-                <span>{avgRating} / 5.0</span>
-              </div>
+              {avgRating && (
+                <div className="flex items-center gap-1 bg-yellow-50 text-yellow-800 font-bold text-sm px-2.5 py-1 rounded-md border border-yellow-100">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
+                  <span>{avgRating} / 5.0</span>
+                </div>
+              )}
             </div>
 
             {/* Individual Reviews */}
             <div className="space-y-4">
+              {reviews.length === 0 && (
+                <p className="text-sm text-slate-500 italic">No reviews yet for this engine — check back soon, or be the first to leave one below.</p>
+              )}
               {reviews.map((r) => (
                 <div key={r.id} className="p-4 bg-slate-50 rounded-xl border border-slate-200/50 space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between items-start">
@@ -312,19 +360,35 @@ export default function ProductDetailsView({
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
           <div className="bg-white border border-slate-205 rounded-2xl p-6 shadow-sm space-y-6">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2.5 py-1 rounded">
-                Official {product.brand} Catalog
-              </span>
-              <h2 className="font-sans font-extrabold text-slate-900 text-xl sm:text-2xl tracking-tight mt-2.5">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2.5 py-1 rounded">
+                  Official {product.brand} Catalog
+                </span>
+                {product.badge && (
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-900 bg-amber-400 px-2.5 py-1 rounded">
+                    {product.badge}
+                  </span>
+                )}
+                {product.sku && (
+                  <span className="text-[10px] font-mono text-slate-400">SKU: {product.sku}</span>
+                )}
+              </div>
+              <h1 className="font-sans font-extrabold text-slate-900 text-xl sm:text-2xl tracking-tight mt-2.5">
                 {product.name}
-              </h2>
+              </h1>
               <div className="flex gap-2.5 items-center mt-2.5 text-xs text-slate-500">
-                <div className="flex">
-                  {Array.from({ length: Math.round(parseFloat(avgRating)) }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                  ))}
-                </div>
-                <span>({reviews.length} reviews verified)</span>
+                {avgRating ? (
+                  <>
+                    <div className="flex">
+                      {Array.from({ length: Math.round(parseFloat(avgRating)) }).map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                      ))}
+                    </div>
+                    <span>({reviews.length} reviews verified)</span>
+                  </>
+                ) : (
+                  <span>No reviews yet — be the first to review this engine</span>
+                )}
               </div>
             </div>
 

@@ -4,27 +4,34 @@
  */
 
 import { useEffect } from 'react';
+import { SITE } from '../config/site';
 
 interface SEOHeadProps {
   title: string;
   description: string;
-  canonicalUrl?: string;
+  /** Path only, e.g. "/shop/portable/" — absolute canonical is built from SITE.domain so it never drifts. */
+  path?: string;
   ogType?: 'website' | 'product';
   ogImage?: string;
-  schemaMarkup?: object;
+  schemaMarkup?: object | object[];
 }
+
+const SITE_ORIGIN = `https://${SITE.domain}`;
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/placeholders/portable.svg`;
 
 export default function SEOHead({
   title,
   description,
-  canonicalUrl = 'https://outboardmotors-uk.pages.dev',
+  path = '/',
   ogType = 'website',
-  ogImage = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=1200',
+  ogImage = DEFAULT_OG_IMAGE,
   schemaMarkup
 }: SEOHeadProps) {
+  const canonicalUrl = `${SITE_ORIGIN}${path}`;
+
   useEffect(() => {
     // 1. Update Title tag
-    const fullTitle = `${title} | Outboard Motors UK`;
+    const fullTitle = `${title} | ${SITE.shortName}`;
     document.title = fullTitle;
 
     // 2. Update Meta Description
@@ -52,7 +59,7 @@ export default function SEOHead({
       'og:type': ogType,
       'og:url': canonicalUrl,
       'og:image': ogImage,
-      'og:site_name': 'Outboard Motors UK'
+      'og:site_name': SITE.name
     };
 
     Object.entries(ogTags).forEach(([property, content]) => {

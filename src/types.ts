@@ -3,16 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type BrandType = 'Yamaha' | 'Suzuki' | 'Honda' | 'Mercury' | 'Tohatsu' | 'Torqeedo' | 'ePropulsion' | 'Minn Kota';
+export type BrandType =
+  | 'Yamaha' | 'Suzuki' | 'Honda' | 'Mercury' | 'Tohatsu'
+  | 'Torqeedo' | 'ePropulsion' | 'Minn Kota' | 'TEMO France'
+  | 'Haswing' | 'Blade Electric' | 'Solas' | 'Universal';
 
-export type CategoryType = 
-  | 'portable' 
-  | 'mid-range' 
-  | 'high-horsepower' 
-  | 'two-stroke' 
-  | 'four-stroke' 
-  | 'electric' 
-  | 'trolling' 
+export type CategoryType =
+  | 'portable'
+  | 'mid-range'
+  | 'high-horsepower'
+  | 'two-stroke'
+  | 'four-stroke'
+  | 'electric'
+  | 'trolling'
   | 'parts';
 
 export interface Product {
@@ -20,6 +23,8 @@ export interface Product {
   name: string;
   brand: BrandType;
   slug: string;
+  sku?: string;
+  badge?: string;
   category: CategoryType[];
   subcategories?: string[];
   powerHp: number; // Horsepower equivalent

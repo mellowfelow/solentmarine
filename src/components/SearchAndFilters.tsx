@@ -14,19 +14,18 @@ interface SearchAndFiltersProps {
   maxHp: number;
 }
 
-const BRANDS: BrandType[] = ['Yamaha', 'Suzuki', 'Honda', 'Mercury', 'Tohatsu', 'Torqeedo', 'ePropulsion', 'Minn Kota'];
+const BRANDS: BrandType[] = ['Yamaha', 'Suzuki', 'Honda', 'Mercury', 'Tohatsu', 'Torqeedo', 'ePropulsion', 'TEMO France', 'Haswing', 'Minn Kota', 'Blade Electric', 'Solas', 'Universal'];
 const ENGINE_TYPES: ('4-Stroke' | '2-Stroke' | 'Electric')[] = ['4-Stroke', '2-Stroke', 'Electric'];
 const SHAFT_LENGTHS = ['Short (S)', 'Long (L)', 'Extra Long', 'Adjustable'];
 
 const CATEGORIES: { label: string; value: CategoryType }[] = [
-  { label: 'Portable outboards (<10hp)', value: 'portable' },
-  { label: 'Mid-range (10hp - 40hp)', value: 'mid-range' },
+  { label: 'Portable outboards (2.5hp - 6hp)', value: 'portable' },
+  { label: 'Mid-range (8hp - 40hp)', value: 'mid-range' },
   { label: 'High Horsepower (50hp+)', value: 'high-horsepower' },
-  { label: '2-Stroke Motors', value: 'two-stroke' },
-  { label: '4-Stroke Motors', value: 'four-stroke' },
-  { label: 'Electric Outboards', value: 'electric' },
+  { label: '4-Stroke Petrol Motors', value: 'four-stroke' },
+  { label: 'Electric & Eco Motors', value: 'electric' },
   { label: 'Trolling Motors', value: 'trolling' },
-  { label: 'Parts & Accessories', value: 'parts' }
+  { label: 'Parts, Oils & Accessories', value: 'parts' }
 ];
 
 export default function SearchAndFilters({

@@ -9,6 +9,8 @@ import { Product } from '../../types';
 import SEOHead from '../SEOHead';
 import { ReviewsShowcase } from '../ReviewsShowcase';
 import heroBg from '../../assets/images/home_hero_yamaha_1779928535026.png';
+import { SITE, CONTACT, BRAND } from '../../config/site';
+import { TRUSTPILOT_STATS } from '../../data/reviewsData';
 
 interface HomeViewProps {
   products: Product[];
@@ -33,7 +35,7 @@ export default function HomeView({
     advice: string;
   } | null>(null);
 
-  const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
+  const featuredProducts = products.filter(p => p.isFeatured).slice(0, 8);
 
   const handleSizingRecommendation = (type: string, usage: string) => {
     let hpClass = '';
@@ -74,30 +76,36 @@ export default function HomeView({
   return (
     <div id="home-view-container" className="space-y-16 pb-16 font-sans">
       <SEOHead 
-        title="Outboard Motors UK | Premium Boat Engines Shop & Rigging" 
-        description="UK's premier marine outboard engines provider. Explore Yamaha, Suzuki, Honda, Mercury, and Torqeedo outboards. In-house PDI diagnostics, competitive finance rates, and UK-wide secure pallet delivery."
+        title="Premium Boat Engines Shop & Rigging"
+        description="UK's premier marine outboard engines provider. Explore Yamaha, Suzuki, Honda, Mercury, Tohatsu petrol outboards and ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota electric propulsion. In-house PDI diagnostics, competitive finance rates, and UK-wide secure pallet delivery."
+        path="/"
         ogType="website"
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "Store",
-          "name": "Outboard Motors UK",
-          "description": "UK premier supplier of outboard boat motors and marine propulsion equipment.",
-          "url": "https://outboardmotors-uk.pages.dev",
-          "telephone": "+44 1983 293 841",
-          "priceRange": "£849 - £18,500",
+          "@type": ["Store", "Organization"],
+          "name": SITE.name,
+          "description": BRAND.description,
+          "url": `https://${SITE.domain}/`,
+          "telephone": CONTACT.phoneInternational,
+          "email": CONTACT.email,
+          "foundingDate": BRAND.foundingYear,
+          "areaServed": "GB",
+          "priceRange": `£${Math.min(...products.map(p => p.priceGbp)).toLocaleString('en-GB')} - £${Math.max(...products.map(p => p.priceGbp)).toLocaleString('en-GB')}`,
+          "numberOfItems": products.length,
+          "sameAs": BRAND.sameAs,
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Medina Road, Cowes Harbour",
+            "streetAddress": "Cowes Yacht Haven, High Street",
             "addressLocality": "Cowes, Isle of Wight",
-            "postalCode": "PO31 7DA",
+            "postalCode": "PO31 7BD",
             "addressCountry": "GB"
           },
           "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.7",
+            "ratingValue": String(TRUSTPILOT_STATS.averageRating),
             "bestRating": "5",
             "worstRating": "1",
-            "ratingCount": "3642"
+            "ratingCount": String(TRUSTPILOT_STATS.totalReviews)
           }
         }}
       />
@@ -192,8 +200,8 @@ export default function HomeView({
           <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">UK Market-Leading Ship Builders</p>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Top Outboard Brands We Support</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
-          {['Yamaha', 'Suzuki', 'Honda', 'Mercury', 'Tohatsu', 'Torqeedo', 'ePropulsion'].map((brand) => (
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+          {['Yamaha', 'Suzuki', 'Honda', 'Mercury', 'Tohatsu', 'Torqeedo', 'ePropulsion', 'TEMO', 'Haswing', 'Minn Kota', 'Blade Electric'].map((brand) => (
             <button
               key={brand}
               onClick={() => onNavigate('shop')}
@@ -306,8 +314,8 @@ export default function HomeView({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-slate-100 pb-4">
           <div>
-            <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">Staff Recommendations</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Featured Outboard Motors</h2>
+            <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">UK's Top Selling Outboards</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Best Sellers</h2>
           </div>
           <button
             type="button"
@@ -327,12 +335,20 @@ export default function HomeView({
               className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col justify-between hover:shadow-md transition"
             >
               <div>
-                <img
-                  src={prod.imageUrl}
-                  alt={prod.name}
-                  className="w-full h-44 object-cover rounded-xl border border-slate-100 mb-3"
-                  referrerPolicy="no-referrer"
-                />
+                <div className="relative">
+                  <img
+                    src={prod.imageUrl}
+                    alt={`Placeholder image — ${prod.name} — real product photo coming soon`}
+                    className="w-full h-44 object-contain bg-slate-50 rounded-xl border border-slate-100 mb-3"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                  {prod.badge && (
+                    <span className="absolute top-2 left-2 bg-amber-400 text-slate-900 text-[10px] font-extrabold uppercase tracking-wider px-2 py-1 rounded-md shadow">
+                      {prod.badge}
+                    </span>
+                  )}
+                </div>
                 <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 tracking-wider uppercase mb-1">
                   <span>{prod.brand}</span>
                   <span className="bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded">

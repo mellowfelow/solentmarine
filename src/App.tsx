@@ -19,10 +19,26 @@ import { OUTBOARD_PRODUCTS } from './data/products';
 import { Product, CartItem } from './types';
 import { Scale, Check, X } from 'lucide-react';
 
+// Shared by the initial page load AND browser back/forward — without this, a hard refresh or a
+// direct link to any route other than "/" rendered the homepage while the address bar showed the
+// real path (state always initialised to 'home' regardless of window.location).
+function parsePath(path: string): { view: string; params: Record<string, string> } {
+  if (path === '/' || path === '') return { view: 'home', params: {} };
+  if (path.startsWith('/product/')) {
+    return { view: 'product-details', params: { slug: path.replace('/product/', '').replace(/\/$/, '') } };
+  }
+  if (path.startsWith('/shop/') && path.length > 6) {
+    return { view: 'shop-category', params: { slug: path.replace('/shop/', '').replace(/\/$/, '') } };
+  }
+  const view = path.replace(/^\//, '').replace(/\/$/, '');
+  return { view: view || 'home', params: {} };
+}
+
 export default function App() {
+  const initialRoute = parsePath(typeof window !== 'undefined' ? window.location.pathname : '/');
   // Navigation / Routing State
-  const [currentView, setCurrentView] = useState<string>('home');
-  const [viewParams, setViewParams] = useState<Record<string, string>>({});
+  const [currentView, setCurrentView] = useState<string>(initialRoute.view);
+  const [viewParams, setViewParams] = useState<Record<string, string>>(initialRoute.params);
 
   // E-commerce state
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -48,6 +64,8 @@ export default function App() {
       window.history.pushState({}, '', '/');
     } else if (view === 'product-details' && params.slug) {
       window.history.pushState({}, '', `/product/${params.slug}`);
+    } else if (view === 'shop-category' && params.slug) {
+      window.history.pushState({}, '', `/shop/${params.slug}`);
     } else {
       window.history.pushState({}, '', `/${view}`);
     }
@@ -56,17 +74,9 @@ export default function App() {
   // Sync back/forward browser arrows
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname;
-      if (path === '/' || path === '') {
-        setCurrentView('home');
-      } else if (path.startsWith('/product/')) {
-        const slug = path.replace('/product/', '').replace(/\/$/, '');
-        setCurrentView('product-details');
-        setViewParams({ slug });
-      } else {
-        const view = path.replace(/^\//, '').replace(/\/$/, '');
-        setCurrentView(view || 'home');
-      }
+      const { view, params } = parsePath(window.location.pathname);
+      setCurrentView(view);
+      setViewParams(params);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -170,6 +180,17 @@ export default function App() {
             onAddToCompare={handleAddToCompare}
             compareList={compareList}
             onAddToBasket={handleAddToBasket}
+          />
+        );
+      case 'shop-category':
+        return (
+          <ShopView
+            products={OUTBOARD_PRODUCTS}
+            onNavigate={handleNavigate}
+            onAddToCompare={handleAddToCompare}
+            compareList={compareList}
+            onAddToBasket={handleAddToBasket}
+            categorySlug={viewParams.slug}
           />
         );
       case 'product-details':
