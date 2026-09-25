@@ -8,7 +8,7 @@ import { ShieldCheck, Ship, ArrowRight, Anchor, Star, Compass, MapPin } from 'lu
 import { Product } from '../../types';
 import SEOHead from '../SEOHead';
 import { ReviewsShowcase } from '../ReviewsShowcase';
-import heroBg from '../../assets/images/home_hero_yamaha_1779928535026.png';
+import HeroSlider, { HeroSlide } from '../HeroSlider';
 import { SITE, CONTACT, BRAND } from '../../config/site';
 import { TRUSTPILOT_STATS } from '../../data/reviewsData';
 
@@ -36,6 +36,39 @@ export default function HomeView({
   } | null>(null);
 
   const featuredProducts = products.filter(p => p.isFeatured).slice(0, 8);
+
+  const heroSlides: HeroSlide[] = [
+    {
+      webp: '/images/hero/hero-yamaha-dry-dock.webp',
+      jpg: '/images/hero/hero-yamaha-dry-dock.jpg',
+      alt: 'Yamaha outboard motor mounted on a boat in dry dock at sunset',
+      caption: 'Yamaha 4-stroke, dry-dock ready'
+    },
+    {
+      webp: '/images/hero/hero-yamaha-f15-transom.webp',
+      jpg: '/images/hero/hero-yamaha-f15-transom.jpg',
+      alt: 'Yamaha F15 outboard motor mounted on a small tender transom',
+      caption: 'Yamaha F15 on a Solent tender'
+    },
+    {
+      webp: '/images/hero/hero-mercury-7-5-vintage.webp',
+      jpg: '/images/hero/hero-mercury-7-5-vintage.jpg',
+      alt: 'Classic Mercury 7.5hp outboard motor mounted on a wooden boat',
+      caption: 'Decades of outboard expertise'
+    },
+    {
+      webp: '/images/hero/hero-yamaha-200-rib.webp',
+      jpg: '/images/hero/hero-yamaha-200-rib.jpg',
+      alt: 'Yamaha 200hp outboard motor on a RIB moored at the coast',
+      caption: 'Yamaha 200hp, offshore-ready'
+    },
+    {
+      webp: '/images/hero/hero-tohatsu-beach-launch.webp',
+      jpg: '/images/hero/hero-tohatsu-beach-launch.jpg',
+      alt: 'Tohatsu outboard motor on a fishing boat launching from the beach',
+      caption: 'Tohatsu, beach-launch ready'
+    }
+  ];
 
   const handleSizingRecommendation = (type: string, usage: string) => {
     let hpClass = '';
@@ -110,17 +143,9 @@ export default function HomeView({
         }}
       />
 
-      {/* Hero Banner Section */}
+      {/* Hero Banner Section — auto-rotating slider revolution of real customer/product photography */}
       <section className="relative bg-slate-950 text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 z-0 opacity-50">
-          <img
-            src={heroBg}
-            alt="Yamaha outboard motor mounted on a boat resting at the seaside slipway"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-955 via-slate-950/80 to-transparent" />
-        </div>
+        <HeroSlider slides={heroSlides} />
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
