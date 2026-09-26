@@ -1,5 +1,10 @@
 import { redisGet, redisSet, redisDel, redisKeys } from './redis';
-import { REPLY } from '../config/site';
+import { REPLY, SITE } from '../config/site';
+
+// The Redis database backing this store may be shared with other unrelated projects/businesses
+// (a single Upstash instance connected to multiple Vercel projects) — every key is namespaced by
+// site domain so orders here can never collide with, or leak into, another site's admin dashboard.
+const REDIS_KEY_PREFIX = `${SITE.domain}:order:`;
 
 export type OrderChannel = 'whatsapp' | 'email';
 export type OrderStatus = 'pending' | 'payment-sent' | 'paid' | 'dispatched' | 'cancelled';
@@ -127,7 +132,7 @@ function setLocalOrders(orders: StoredOrder[]): void {
  * Fetch all stored orders
  */
 export async function getStoredOrders(): Promise<StoredOrder[]> {
-  const keys = await redisKeys('order:*');
+  const keys = await redisKeys(`${REDIS_KEY_PREFIX}*`);
   if (keys.length > 0) {
     const orders: StoredOrder[] = [];
     for (const key of keys) {
@@ -144,7 +149,7 @@ export async function getStoredOrders(): Promise<StoredOrder[]> {
  * Fetch single order by ID
  */
 export async function getStoredOrderById(id: string): Promise<StoredOrder | null> {
-  const fromRedis = await redisGet<StoredOrder>(`order:${id}`);
+  const fromRedis = await redisGet<StoredOrder>(`${REDIS_KEY_PREFIX}${id}`);
   if (fromRedis) return fromRedis;
   const local = getLocalOrders();
   return local.find((o) => o.id === id) || null;
@@ -154,7 +159,7 @@ export async function getStoredOrderById(id: string): Promise<StoredOrder | null
  * Save / Update order
  */
 export async function saveStoredOrder(order: StoredOrder): Promise<void> {
-  await redisSet(`order:${order.id}`, order);
+  await redisSet(`${REDIS_KEY_PREFIX}${order.id}`, order);
   const local = getLocalOrders();
   const index = local.findIndex((o) => o.id === order.id);
   if (index >= 0) {
@@ -169,7 +174,7 @@ export async function saveStoredOrder(order: StoredOrder): Promise<void> {
  * Delete order
  */
 export async function deleteStoredOrder(id: string): Promise<void> {
-  await redisDel(`order:${id}`);
+  await redisDel(`${REDIS_KEY_PREFIX}${id}`);
   const local = getLocalOrders();
   const filtered = local.filter((o) => o.id !== id);
   setLocalOrders(filtered);

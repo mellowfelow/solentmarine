@@ -1,4 +1,9 @@
 import { redisGet, redisSet, redisDel, redisKeys } from './redis';
+import { SITE } from '../config/site';
+
+// See orderStore.ts — this Redis database may be shared with unrelated projects, so every key is
+// namespaced by site domain to prevent collisions with another site's enquiries.
+const REDIS_KEY_PREFIX = `${SITE.domain}:enquiry:`;
 
 export type EnquiryType = 'contact' | 'wholesale' | 'technical';
 export type EnquiryStatus = 'new' | 'replied' | 'archived';
@@ -100,7 +105,7 @@ function setLocalEnquiries(enquiries: StoredEnquiry[]): void {
 }
 
 export async function getStoredEnquiries(): Promise<StoredEnquiry[]> {
-  const keys = await redisKeys('enquiry:*');
+  const keys = await redisKeys(`${REDIS_KEY_PREFIX}*`);
   if (keys.length > 0) {
     const enquiries: StoredEnquiry[] = [];
     for (const key of keys) {
@@ -114,14 +119,14 @@ export async function getStoredEnquiries(): Promise<StoredEnquiry[]> {
 }
 
 export async function getStoredEnquiryById(id: string): Promise<StoredEnquiry | null> {
-  const fromRedis = await redisGet<StoredEnquiry>(`enquiry:${id}`);
+  const fromRedis = await redisGet<StoredEnquiry>(`${REDIS_KEY_PREFIX}${id}`);
   if (fromRedis) return fromRedis;
   const local = getLocalEnquiries();
   return local.find((e) => e.id === id) || null;
 }
 
 export async function saveStoredEnquiry(enquiry: StoredEnquiry): Promise<void> {
-  await redisSet(`enquiry:${enquiry.id}`, enquiry);
+  await redisSet(`${REDIS_KEY_PREFIX}${enquiry.id}`, enquiry);
   const local = getLocalEnquiries();
   const index = local.findIndex((e) => e.id === enquiry.id);
   if (index >= 0) {
@@ -133,7 +138,7 @@ export async function saveStoredEnquiry(enquiry: StoredEnquiry): Promise<void> {
 }
 
 export async function deleteStoredEnquiry(id: string): Promise<void> {
-  await redisDel(`enquiry:${id}`);
+  await redisDel(`${REDIS_KEY_PREFIX}${id}`);
   const local = getLocalEnquiries();
   const filtered = local.filter((e) => e.id !== id);
   setLocalEnquiries(filtered);
