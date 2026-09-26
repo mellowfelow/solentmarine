@@ -122,14 +122,14 @@ export default function ProductDetailsView({
             )}
           </div>
 
-          {/* Sump Filling & Shaft Safe Warnings */}
+          {/* Oil-Fill Safety Warning */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 text-xs text-amber-900 space-y-2 leading-relaxed shadow-sm">
             <div className="flex items-center gap-1.5 font-bold uppercase tracking-wide">
               <ShieldAlert className="w-5 h-5 text-amber-600" />
-              <span>Rigging & Sump Lubricating Notice</span>
+              <span>Important: Add Oil Before First Use</span>
             </div>
             <p>
-              This engine is a high-precision marine block. To comply with carriage rules, it is packaged without crankcase lubricating oil. <strong>Do NOT crank or run the engine dry!</strong> You must inject the appropriate volume of Yamlube 4M oil into the filler port prior to initial hot tests.
+              For safe delivery, this engine ships <strong>without engine oil</strong>. <strong>Do not start or run the engine until you've added oil</strong> — fill it with the correct amount of Yamalube 4M oil before you start it for the first time.
             </p>
           </div>
 

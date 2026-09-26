@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Ship, ArrowRight, Compass } from 'lucide-react';
 import { Product } from '../../types';
+import { BRANDS } from '../../config/site';
 import { ReviewsShowcase } from '../ReviewsShowcase';
 import HeroSlider, { HeroSlide } from '../HeroSlider';
 
@@ -107,21 +108,21 @@ export default function HomeView({
   return (
     <div id="home-view-container" className="space-y-16 pb-16 font-sans">
       {/* Hero Banner Section — auto-rotating slider revolution of real customer/product photography */}
-      <section className="relative bg-slate-950 text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-slate-950 text-white overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center px-4 sm:px-6 lg:px-8 py-16">
         <HeroSlider slides={heroSlides} />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="max-w-2xl space-y-6">
             <div className="inline-flex items-center gap-1.5 bg-sky-900/50 border border-sky-500/30 px-3 py-1 rounded-full text-xs font-semibold text-sky-305">
               <Compass className="w-3.5 h-3.5 animate-spin-slow text-sky-400" />
-              <span>Cowes-Based Rigging Center • 100% Client Rated</span>
+              <span>Based in Cowes, Isle of Wight • Rated by Our Customers</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
               UK’s Premier <br />
               <span className="text-sky-400">Outboard Engine</span> Specialists
             </h1>
             <p className="text-base sm:text-lg text-slate-200 max-w-xl leading-relaxed">
-              Experience Marine Excellence. Every engine passes a 4-stage Pre-Delivery Inspection (PDI) in our Isle of Wight workshop before secure palletized delivery. Authorized dealer warranties included.
+              Every engine is checked and tested in our Isle of Wight workshop before it's carefully packed and delivered to you. Backed by an official dealer warranty.
             </p>
             <div className="flex flex-wrap gap-4">
               <button
@@ -152,21 +153,21 @@ export default function HomeView({
       {/* Brand Grid Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div id="brands-section-header" className="text-center space-y-1.5">
-          <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">UK Market-Leading Ship Builders</p>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Top Outboard Brands We Support</h2>
+          <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">Authorized UK Dealer</p>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Brands We Sell</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-          {['Yamaha', 'Suzuki', 'Honda', 'Mercury', 'Tohatsu', 'Torqeedo', 'ePropulsion', 'TEMO', 'Haswing', 'Minn Kota', 'Blade Electric'].map((brand) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {BRANDS.map((brand) => (
             <button
-              key={brand}
-              onClick={() => onNavigate('shop')}
+              key={brand.slug}
+              onClick={() => onNavigate('shop-category', { slug: brand.slug })}
               type="button"
               className="bg-slate-50 hover:bg-sky-50 border border-slate-205 rounded-xl p-5 text-center flex flex-col items-center justify-center transition hover:border-sky-300 group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-800 font-bold text-base group-hover:bg-sky-900 group-hover:text-white transition">
-                {brand[0]}
+                {brand.name[0]}
               </div>
-              <span className="font-semibold text-slate-900 text-sm mt-2">{brand}</span>
+              <span className="font-semibold text-slate-900 text-sm mt-2">{brand.name}</span>
               <span className="text-[10px] text-slate-400 font-mono mt-0.5">Approved Seller</span>
             </button>
           ))}
@@ -179,22 +180,22 @@ export default function HomeView({
           <div className="lg:col-span-5 space-y-4">
             <div className="bg-sky-950 text-sky-400 border border-sky-900 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider max-w-max flex items-center gap-1">
               <Ship className="w-3.5 h-3.5 shrink-0" />
-              <span>Interactive Sizing Utility</span>
+              <span>Engine Size Finder</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Don’t Know Which Engine Fits?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Not Sure Which Engine You Need?</h2>
             <p className="text-slate-350 text-sm leading-relaxed">
-              Input your boathouse hull dimensions. Our specialized vetting engine maps out appropriate dry tonnage load limits, horsepower bands, and shaft dimensions for UK waters.
+              Tell us what type of boat you have and we'll recommend the right horsepower and shaft length for you.
             </p>
           </div>
 
           <div className="lg:col-span-7 mt-8 lg:mt-0 bg-slate-950 border border-slate-850 rounded-2xl p-6 space-y-6">
-            <h3 className="font-sans font-bold text-white text-base">Select Boat Profile</h3>
+            <h3 className="font-sans font-bold text-white text-base">Choose Your Boat Type</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { name: 'Dinghy / Tender', id: 'dinghy' },
                 { name: 'RIB / Sport Boat', id: 'rib' },
-                { name: 'Fishing Angler', id: 'fishing' },
-                { name: 'Sailing Auxiliary', id: 'sail' }
+                { name: 'Fishing Boat', id: 'fishing' },
+                { name: 'Sailing Boat', id: 'sail' }
               ].map((boat) => (
                 <button
                   key={boat.id}
@@ -354,25 +355,28 @@ export default function HomeView({
         onNavigateProduct={(slug) => onNavigate('product-details', { slug })}
       />
 
-      {/* SEO rich-text summary block */}
+      {/* Outboards for every boat + safe delivery */}
       <section className="bg-slate-50 border-y border-slate-200 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-slate-650 leading-relaxed font-sans">
-          <div className="space-y-3">
-            <h3 className="font-bold text-slate-900 text-base">SEO-Ready UK Outboard Engine Catalog</h3>
-            <p>
-              Whether you require a small auxiliary outboard motor for a sail dinghy in Portsmouth harborship, a high-torque rib propulsion package in Cornwall currents, or an advanced silent electric Torqeedo Travel motor for Lake Windermere, Solent Marine UK represents your primary authorized digital directory.
-            </p>
-            <p>
-              We compile exact, verifiable market measurements across Yamaha, Suzuki, Tohatsu, and Honda manufacturers with a deep focus on emissions compliance under the Recreational Craft Directive (RCD II).
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-700">
+              <Ship className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-900 text-base">Outboards for Every Boat</h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Whether you need a small engine for a dinghy, a powerful engine for a RIB, or a quiet electric motor for a lake or river boat, we stock trusted brands like Yamaha, Suzuki, Tohatsu and Honda — all approved for UK waters.
             </p>
           </div>
-          <div className="space-y-3">
-            <h3 className="font-bold text-slate-900 text-base">Pallet-Crated Freight Shipments</h3>
-            <p>
-              Transporting high-valuable mechanical engines to endpoints like the Scottish Highlands, Solent estuaries, or Belfast marinas requires premium freight setups. We construct tailored timber skeletal crates around each bracket prior to loading.
-            </p>
-            <p>
-              Note that all mechanical engine oil must be drained to comply with dangerous hazardous goods carriage protocols; please consult our <button type="button" onClick={() => onNavigate('shipping')} className="text-sky-700 underline font-semibold">UK Sump Fill Guides</button> prior to starting.
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700">
+              <Compass className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-900 text-base">Safe UK-Wide Delivery</h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              We build a custom wooden crate around every engine before it ships, including to the Scottish Highlands, the Solent and Belfast. Engine oil is drained before shipping, as required by delivery rules —{' '}
+              <button type="button" onClick={() => onNavigate('shipping')} className="text-sky-700 underline font-semibold">
+                see our delivery guide
+              </button>.
             </p>
           </div>
         </div>

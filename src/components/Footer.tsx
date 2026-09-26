@@ -4,6 +4,7 @@
  */
 
 import { ShieldCheck, Truck, LifeBuoy, FileCode, CheckCircle2 } from 'lucide-react';
+import { CATEGORIES } from '../config/site';
 
 interface FooterProps {
   onNavigate: (view: string, params?: Record<string, string>) => void;
@@ -60,40 +61,21 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
-        {/* Col 2: Brand/Category Hubs */}
+        {/* Col 2: Category Hubs */}
         <div className="space-y-4">
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Engine Classifications</h4>
+          <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Shop by Category</h4>
           <ul className="space-y-2 text-xs">
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                Portable Engines (&lt;10hp)
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                Mid-Range EFI (10-40hp)
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                High Horsepower (50hp+)
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                Silent Eco-Electric Models
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                Trolling Auxiliary Motors
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-400 transition cursor-pointer">
-                Propellers and Oil Kits
-              </button>
-            </li>
+            {CATEGORIES.map((cat) => (
+              <li key={cat.slug}>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('shop-category', { slug: cat.slug })}
+                  className="hover:text-sky-400 transition cursor-pointer"
+                >
+                  {cat.name}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
 

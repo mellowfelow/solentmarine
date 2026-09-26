@@ -169,7 +169,7 @@ export default function ShopView({
             {activeCategory ? activeCategory.name : activeBrand ? `${activeBrand.name} Outboards` : 'Marine Motors For Sale — UK Outboard Stock Inventory'}
           </h1>
           <p className="text-slate-350 text-sm">
-            {activeCategory ? activeCategory.description : activeBrand ? activeBrand.description : 'Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.'}
+            {activeCategory ? activeCategory.description : activeBrand ? activeBrand.description : 'Use the filters below to find the right engine for your boat. Every outboard is checked before it ships, and monthly finance options are available.'}
           </p>
           {activeCategory?.slug === 'parts' && (
             <p className="text-sky-300 text-xs pt-1">
