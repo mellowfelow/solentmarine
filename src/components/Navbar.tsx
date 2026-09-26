@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Menu, X, ShoppingCart, Scale, Phone, Mail, MapPin, Compass } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Menu, X, ShoppingCart, Scale, Phone, Mail, MapPin, Compass, ChevronDown } from 'lucide-react';
 import { Product, CartItem } from '../types';
-import { CONTACT } from '../config/site';
+import { CONTACT, CATEGORIES, BRANDS } from '../config/site';
 
 interface NavbarProps {
   currentView: string;
@@ -30,15 +31,35 @@ export default function Navbar({
 }: NavbarProps) {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const navItems = [
-    { label: 'Home', view: 'home' },
-    { label: 'Shop Motors', view: 'shop' },
+  const navItems = [{ label: 'Home', view: 'home' }];
+  const navItemsAfterShop = [
     { label: 'Guides', view: 'blog' },
     { label: 'About Us', view: 'about' },
     { label: 'Technical FAQ', view: 'faq' },
     { label: 'Shipping & Delivery', view: 'shipping' },
     { label: 'Contact Us', view: 'contact' }
   ];
+
+  const [isShopOpen, setIsShopOpen] = useState(false);
+  const [isMobileShopOpen, setIsMobileShopOpen] = useState(false);
+  const shopMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (shopMenuRef.current && !shopMenuRef.current.contains(event.target as Node)) {
+        setIsShopOpen(false);
+      }
+    }
+    if (isShopOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isShopOpen]);
+
+  function goToShop(slug?: string) {
+    setIsShopOpen(false);
+    setIsMobileShopOpen(false);
+    if (slug) onNavigate('shop-category', { slug });
+    else onNavigate('shop');
+  }
 
   return (
     <header className="w-full bg-slate-900 text-white shadow-md z-40 relative">
@@ -89,6 +110,96 @@ export default function Navbar({
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
           {navItems.map((item) => {
+            const isActive = currentView === item.view;
+            return (
+              <button
+                key={item.view}
+                type="button"
+                id={`nav-${item.view}`}
+                onClick={() => onNavigate(item.view)}
+                className={`transition-colors py-2 border-b-2 hover:text-white cursor-pointer ${
+                  isActive
+                    ? 'text-sky-400 border-sky-400 font-semibold'
+                    : 'text-slate-300 border-transparent hover:border-slate-400'
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+
+          {/* Shop Motors dropdown */}
+          <div ref={shopMenuRef} className="relative">
+            <button
+              type="button"
+              id="nav-shop"
+              onClick={() => setIsShopOpen((v) => !v)}
+              aria-expanded={isShopOpen}
+              aria-haspopup="true"
+              className={`flex items-center gap-1 transition-colors py-2 border-b-2 hover:text-white cursor-pointer ${
+                currentView === 'shop' || currentView === 'shop-category'
+                  ? 'text-sky-400 border-sky-400 font-semibold'
+                  : 'text-slate-300 border-transparent hover:border-slate-400'
+              }`}
+            >
+              Shop Motors
+              <ChevronDown className={`w-4 h-4 transition-transform ${isShopOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {isShopOpen && (
+              <div
+                id="nav-shop-menu"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] max-w-[90vw] bg-white text-slate-900 rounded-xl shadow-2xl border border-slate-200 p-5 grid grid-cols-2 gap-6 z-50"
+              >
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2">
+                    Shop by Category
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => goToShop()}
+                    className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm font-semibold text-sky-600 hover:bg-sky-50 transition mb-1"
+                  >
+                    All Stock →
+                  </button>
+                  <ul className="space-y-0.5">
+                    {CATEGORIES.map((cat) => (
+                      <li key={cat.slug}>
+                        <button
+                          type="button"
+                          onClick={() => goToShop(cat.slug)}
+                          className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition"
+                        >
+                          {cat.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2">
+                    Shop by Brand
+                  </p>
+                  <ul className="space-y-0.5">
+                    {BRANDS.map((brand) => (
+                      <li key={brand.slug}>
+                        <button
+                          type="button"
+                          onClick={() => goToShop(brand.slug)}
+                          className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition"
+                        >
+                          {brand.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {navItemsAfterShop.map((item) => {
             const isActive = currentView === item.view;
             return (
               <button
@@ -160,6 +271,85 @@ export default function Navbar({
         <div id="nav-mobile-menu" className="lg:hidden bg-slate-950 border-t border-slate-800 py-4 px-4 space-y-2 absolute top-full left-0 w-full shadow-xl">
           <div className="space-y-1 pb-3 mb-3 border-b border-slate-800">
             {navItems.map((item) => {
+              const isActive = currentView === item.view;
+              return (
+                <button
+                  key={item.view}
+                  type="button"
+                  id={`nav-mob-${item.view}`}
+                  onClick={() => onNavigate(item.view)}
+                  className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold transition ${
+                    isActive
+                      ? 'bg-sky-900 text-white'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+
+            {/* Shop Motors accordion */}
+            <div>
+              <button
+                type="button"
+                id="nav-mob-shop"
+                onClick={() => setIsMobileShopOpen((v) => !v)}
+                aria-expanded={isMobileShopOpen}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-semibold transition ${
+                  currentView === 'shop' || currentView === 'shop-category'
+                    ? 'bg-sky-900 text-white'
+                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                }`}
+              >
+                Shop Motors
+                <ChevronDown className={`w-4 h-4 transition-transform ${isMobileShopOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isMobileShopOpen && (
+                <div id="nav-mob-shop-menu" className="mt-1 pl-3 border-l-2 border-slate-800 space-y-3 py-2">
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => goToShop()}
+                      className="block w-full text-left px-3 py-1.5 rounded-md text-sm font-semibold text-sky-400 hover:bg-slate-800 transition"
+                    >
+                      All Stock →
+                    </button>
+                    <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                      Categories
+                    </p>
+                    {CATEGORIES.map((cat) => (
+                      <button
+                        key={cat.slug}
+                        type="button"
+                        onClick={() => goToShop(cat.slug)}
+                        className="block w-full text-left px-3 py-1.5 rounded-md text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                      >
+                        {cat.name}
+                      </button>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                      Brands
+                    </p>
+                    {BRANDS.map((brand) => (
+                      <button
+                        key={brand.slug}
+                        type="button"
+                        onClick={() => goToShop(brand.slug)}
+                        className="block w-full text-left px-3 py-1.5 rounded-md text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                      >
+                        {brand.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {navItemsAfterShop.map((item) => {
               const isActive = currentView === item.view;
               return (
                 <button
