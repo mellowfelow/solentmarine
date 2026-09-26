@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { checkAdminPasscode } from '../../../../lib/adminAuth';
 import { sendMail } from '../../../../lib/mailer';
 import { getStoredOrderById, updateStoredOrderStatus } from '../../../../lib/orderStore';
+import { paymentMethodParts, instructionsParts, parsePaymentDetail } from '../../../../lib/order';
+import { paymentDetailsEmail, escapeHtml } from '../../../../lib/emailTemplates';
 import { REPLY } from '../../../../config/site';
 
 export const runtime = 'nodejs';
@@ -13,13 +15,11 @@ export async function POST(request: Request) {
 
   const body = await request.json();
   const orderId = String(body.orderId || '');
-  const emailHtml = String(body.emailHtml || '');
-  const paymentDetails = body.paymentDetails as
-    | { methodId: string; fields: { label: string; value: string }[]; opening: string; closing: string }
-    | undefined;
+  const methodId = String(body.methodId || REPLY.paymentMethods[0]?.id || '');
+  const detail = String(body.detail || '');
 
-  if (!orderId || !emailHtml) {
-    return NextResponse.json({ ok: false, error: 'orderId and emailHtml are required.' }, { status: 400 });
+  if (!orderId || !methodId) {
+    return NextResponse.json({ ok: false, error: 'orderId and methodId are required.' }, { status: 400 });
   }
 
   const order = await getStoredOrderById(orderId);
@@ -27,19 +27,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: 'Order not found.' }, { status: 404 });
   }
 
+  const parts = paymentMethodParts(methodId, order.total, order.id);
+  const instructions = instructionsParts(parts.opening, detail, parts.closing);
+  const instructionsHtml = escapeHtml(instructions).replace(/\n/g, '<br>');
+
+  const mail = paymentDetailsEmail({
+    orderNumber: order.id,
+    amountDue: order.total,
+    customerName: order.customerName,
+    instructionsHtml
+  });
+
   const result = await sendMail({
     to: order.customerEmail,
-    subject: `Payment Instructions for Solent Marine Order ${orderId}`,
-    html: emailHtml,
+    subject: mail.subject,
+    html: mail.html,
+    text: mail.text,
     replyTo: REPLY.channels.email
   });
 
   const updated = await updateStoredOrderStatus(orderId, 'payment-sent', {
     paymentSentAt: new Date().toISOString(),
-    paymentMethodId: paymentDetails?.methodId || order.paymentMethodId,
-    paymentDetails: paymentDetails
-      ? { ...paymentDetails, sentAt: new Date().toISOString() }
-      : order.paymentDetails
+    paymentMethodId: methodId,
+    paymentDetails: {
+      methodId,
+      fields: detail ? parsePaymentDetail(detail) : [],
+      opening: parts.opening,
+      closing: parts.closing,
+      sentAt: new Date().toISOString()
+    }
   });
 
   return NextResponse.json({ ok: true, order: updated, emailSent: result.sent });

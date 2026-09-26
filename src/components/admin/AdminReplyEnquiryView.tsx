@@ -11,13 +11,12 @@ import {
   Building
 } from 'lucide-react';
 import type { StoredEnquiry } from '../../lib/enquiryStore';
-import { REPLY, SITE } from '../../config/site';
-import { buildEmailHtml } from '../../lib/emailTemplate';
+import { enquiryReplyEmail, escapeHtml } from '../../lib/emailTemplates';
 
 interface AdminReplyEnquiryViewProps {
   enquiry: StoredEnquiry;
   onBack: () => void;
-  onSendReply: (enquiryId: string, replyData: { subject: string; message: string; emailHtml: string }) => Promise<void>;
+  onSendReply: (enquiryId: string, replyData: { subject: string; message: string }) => Promise<void>;
 }
 
 export function AdminReplyEnquiryView({
@@ -49,30 +48,13 @@ export function AdminReplyEnquiryView({
     },
   ];
 
-  // Composed Light Shell Email HTML
-  const generatedEmailHtml = buildEmailHtml({
-    title: 'Response from Solent Marine Outboards UK',
-    preheader: `Reply regarding your inquiry (${enquiry.id})`,
-    intro: `Hello ${enquiry.name},<br>Here is the official update from our technical and customer support desk at Cowes Yacht Haven.`,
-    refBadge: enquiry.id,
-    rows: [
-      { label: 'Enquiry Reference', value: enquiry.id, mono: true },
-      { label: 'Customer / Vessel', value: `${enquiry.name}${enquiry.vesselModel ? ` · ${enquiry.vesselModel}` : ''}` },
-      { label: 'Support Officer Response', heading: true },
-      { label: 'Message', value: replyMessage, block: true },
-      { label: 'Original Customer Inquiry', heading: true },
-      { label: 'Original Message', value: enquiry.message, block: true },
-    ],
-    cta: {
-      label: 'View Outboard Catalog Online',
-      url: `https://${SITE.domain}/shop/`,
-    },
-    secondaryCta: {
-      label: 'Call Cowes Yard Office',
-      url: `tel:${REPLY.channels.whatsapp}`,
-    },
-    footer: 'Solent Marine Outboards UK Ltd · Cowes Yacht Haven, Isle of Wight, PO31 7BD · Official UK Main Dealer',
-  });
+  // Composed Light Shell Email HTML — mirrors exactly what the server will send,
+  // so this preview never drifts from the real email.
+  const generatedEmailHtml = enquiryReplyEmail({
+    customerName: enquiry.name,
+    originalSubject: enquiry.subject || 'Enquiry to Solent Marine UK',
+    replyHtml: escapeHtml(replyMessage).replace(/\n/g, '<br>')
+  }).html;
 
   const handleSend = async () => {
     if (!replyMessage.trim()) {
@@ -84,7 +66,6 @@ export function AdminReplyEnquiryView({
       await onSendReply(enquiry.id, {
         subject,
         message: replyMessage,
-        emailHtml: generatedEmailHtml,
       });
       setSendSuccess(true);
       setTimeout(() => {

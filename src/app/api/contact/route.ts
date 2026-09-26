@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendMail } from '../../../lib/mailer';
 import { saveStoredEnquiry } from '../../../lib/enquiryStore';
-import { buildEmailHtml } from '../../../lib/emailTemplate';
-import { CONTACT, SITE } from '../../../config/site';
+import { contactEmail } from '../../../lib/emailTemplates';
+import { CONTACT } from '../../../config/site';
 
 export const runtime = 'nodejs';
 
@@ -26,6 +26,7 @@ export async function POST(request: Request) {
   }
 
   const id = `ENQ-${Math.floor(1000 + Math.random() * 9000)}`;
+  const subjectLine = 'Website contact form enquiry';
 
   await saveStoredEnquiry({
     id,
@@ -35,50 +36,29 @@ export async function POST(request: Request) {
     name,
     email,
     phone: phone || undefined,
-    subject: 'Website contact form enquiry',
+    subject: subjectLine,
     vesselModel: hull || undefined,
     engineInterest: shaft || undefined,
     message
   });
 
-  const notifyHtml = buildEmailHtml({
-    title: 'New Website Enquiry',
-    preheader: `New enquiry from ${name} — ${id}`,
-    refBadge: id,
-    intro: `A new contact form enquiry was submitted on ${SITE.name}.`,
-    rows: [
-      { label: 'Name', value: name },
-      { label: 'Email', value: email },
-      { label: 'Phone', value: phone || '—' },
-      { label: 'Vessel / Hull', value: hull || '—' },
-      { label: 'Interested Shaft', value: shaft || '—' },
-      { label: 'Message', html: message.replace(/\n/g, '<br/>'), block: true }
-    ],
-    cta: { label: 'Reply via Admin Portal', url: `https://${SITE.domain}/admin/` },
-    secondaryCta: { label: 'Reply by Email', url: `mailto:${email}` }
-  });
+  const fullMessage = [
+    message,
+    hull ? `Vessel / Hull: ${hull}` : '',
+    shaft ? `Interested Shaft: ${shaft}` : ''
+  ]
+    .filter(Boolean)
+    .join('\n\n');
 
-  const notifyResult = await sendMail({
+  const mail = contactEmail({ name, email, phone: phone || undefined, subject: subjectLine, message: fullMessage, enquiryId: id });
+
+  const result = await sendMail({
     to: CONTACT.email,
-    subject: `New Contact Enquiry — ${name} (${id})`,
-    html: notifyHtml,
+    subject: mail.subject,
+    html: mail.html,
+    text: mail.text,
     replyTo: email
   });
 
-  const ackHtml = buildEmailHtml({
-    title: 'We’ve received your enquiry',
-    preheader: `Thanks for contacting ${SITE.name} — ref ${id}`,
-    refBadge: id,
-    intro: `Hi ${name},<br/><br/>Thank you for contacting ${SITE.name}. A factory-certified advisor will get back to you within 2-4 working hours.`,
-    rows: [{ label: 'Your Message', html: message.replace(/\n/g, '<br/>'), block: true }],
-    cta: { label: 'Browse Our Stock', url: `https://${SITE.domain}/shop/` }
-  });
-
-  await sendMail({
-    to: email,
-    subject: `We've received your enquiry — ${id}`,
-    html: ackHtml
-  });
-
-  return NextResponse.json({ ok: true, id, emailSent: notifyResult.sent });
+  return NextResponse.json({ ok: true, id, emailSent: result.sent });
 }

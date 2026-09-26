@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendMail } from '../../../lib/mailer';
 import { saveStoredOrder, StoredOrderItem, OrderChannel } from '../../../lib/orderStore';
-import { buildEmailHtml } from '../../../lib/emailTemplate';
-import { CONTACT, SITE, REPLY } from '../../../config/site';
+import { orderEmail, orderConfirmationEmail, OrderEmailItem } from '../../../lib/emailTemplates';
+import { CONTACT } from '../../../config/site';
 
 export const runtime = 'nodejs';
 
@@ -50,52 +50,49 @@ export async function POST(request: Request) {
     notes: notes || undefined
   });
 
-  const currency = REPLY.currency.symbol;
-  const lineItems = items.map((i) => ({ name: i.name, qty: i.quantity, price: i.price, shaft: i.shaft, currency }));
+  const emailItems: OrderEmailItem[] = items.map((i) => ({
+    name: i.name,
+    quantity: i.quantity,
+    shaft: i.shaft,
+    lineTotal: i.price * i.quantity
+  }));
 
-  const notifyHtml = buildEmailHtml({
-    title: 'New Order Reservation',
-    preheader: `New order from ${customerName} — ${orderRef}`,
-    refBadge: orderRef,
-    intro: `A new order reservation was submitted via ${channel === 'whatsapp' ? 'WhatsApp' : 'the website'} checkout.`,
-    rows: [
-      { label: 'Customer', value: customerName },
-      { label: 'Email', value: customerEmail },
-      { label: 'Phone', value: customerPhone || '—' },
-      { label: 'Delivery Address', value: deliveryAddress || '—' },
-      { label: 'Delivery Method', value: deliveryMethod || '—' },
-      { label: 'Items Reserved', items: lineItems },
-      { label: 'Subtotal', value: `${currency}${subtotal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
-      { label: 'Shipping', value: `${currency}${shipping.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
-      { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true },
-      { label: 'Notes', value: notes || 'None' }
-    ],
-    cta: { label: 'Open Admin Portal', url: `https://${SITE.domain}/admin/` }
-  });
+  const orderInput = {
+    orderNumber: orderRef,
+    items: emailItems,
+    subtotal,
+    shipping,
+    total,
+    paymentMethod: 'UK Bank Transfer (BACS / Faster Payments)',
+    channel,
+    customer: {
+      name: customerName,
+      email: customerEmail,
+      phone: customerPhone || undefined,
+      address: deliveryAddress || undefined,
+      notes: notes || undefined
+    }
+  };
+
+  const notify = orderEmail(orderInput);
+  const confirmation = orderConfirmationEmail(orderInput);
 
   const notifyResult = await sendMail({
     to: CONTACT.email,
-    subject: `New Order Reservation — ${orderRef}`,
-    html: notifyHtml,
+    subject: notify.subject,
+    html: notify.html,
+    text: notify.text,
     replyTo: customerEmail
   });
 
-  const ackHtml = buildEmailHtml({
-    title: 'Order Reservation Received',
-    preheader: `Thanks for your order, ${customerName} — ref ${orderRef}`,
-    refBadge: orderRef,
-    intro: `Hi ${customerName},<br/><br/>Thank you for your order reservation. Our rigging desk will confirm stock, PDI timetable and send secure payment details within ${REPLY.deadlineHours} hours.`,
-    rows: [
-      { label: 'Items Reserved', items: lineItems },
-      { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true }
-    ],
-    cta: { label: 'Contact Rigging Desk', url: `mailto:${REPLY.channels.email}` }
-  });
-
+  // Customer confirmation always fires on either checkout channel — the paper trail
+  // exists regardless of which button the customer pressed (WebForge reply-portal §7a).
   await sendMail({
     to: customerEmail,
-    subject: `Order Reservation Received — ${orderRef}`,
-    html: ackHtml
+    subject: confirmation.subject,
+    html: confirmation.html,
+    text: confirmation.text,
+    replyTo: CONTACT.email
   });
 
   return NextResponse.json({ ok: true, orderRef, emailSent: notifyResult.sent });

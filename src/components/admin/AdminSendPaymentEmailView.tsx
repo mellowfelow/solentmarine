@@ -14,23 +14,16 @@ import {
   AlertCircle
 } from 'lucide-react';
 import type { StoredOrder } from '../../lib/orderStore';
-import { REPLY, SITE } from '../../config/site';
-import { paymentMethodParts, instructionsParts, paymentTermsHtml, parsePaymentDetail, ParsedPaymentField } from '../../lib/order';
-import { buildEmailHtml } from '../../lib/emailTemplate';
+import { REPLY } from '../../config/site';
+import { paymentMethodParts, instructionsParts, parsePaymentDetail, ParsedPaymentField } from '../../lib/order';
+import { paymentDetailsEmail, escapeHtml } from '../../lib/emailTemplates';
 import { WhatsAppSendPanel } from './WhatsAppSendPanel';
 import { waPaymentDetailsMessage } from '../../lib/whatsapp';
-
-export interface SentPaymentDetails {
-  methodId: string;
-  fields: ParsedPaymentField[];
-  opening: string;
-  closing: string;
-}
 
 interface AdminSendPaymentEmailViewProps {
   order: StoredOrder;
   onBack: () => void;
-  onPaymentSent: (orderId: string, emailHtml: string, paymentDetails: SentPaymentDetails) => Promise<void>;
+  onPaymentSent: (orderId: string, methodId: string, detail: string) => Promise<void>;
 }
 
 export function AdminSendPaymentEmailView({
@@ -43,60 +36,29 @@ export function AdminSendPaymentEmailView({
   const [customPasteDetails, setCustomPasteDetails] = useState<string>(
     `Account Name: Solent Marine Outboards UK Ltd\nBank: Barclays UK Commercial\nSort Code: 20-45-45\nAccount Number: 83920194\nReference: ${order.id}`
   );
-  const [customSubject, setCustomSubject] = useState<string>(
-    `Payment Instructions: Order ${order.id} (${REPLY.currency.symbol}${order.total.toLocaleString()} ${order.currency}) - ${SITE.name}`
-  );
   const [isSending, setIsSending] = useState<boolean>(false);
   const [sendSuccess, setSendSuccess] = useState<boolean>(false);
-  const [previewTab, setPreviewTab] = useState<'email' | 'whatsapp'>('email');
 
   const selectedMethod = REPLY.paymentMethods.find((m) => m.id === selectedMethodId) || REPLY.paymentMethods[0];
   const parts = paymentMethodParts(selectedMethodId, order.total, order.id);
 
-  // Parsed, individually-copyable fields from the admin's pasted blob — empty in template
-  // mode, since there's no real account/wallet detail to parse there yet.
+  // The raw detail the server will receive — empty in template mode (no real account info yet).
+  const detail = mode === 'paste' ? customPasteDetails : '';
+
+  // Parsed, individually-copyable fields from the admin's pasted blob — shown as a live
+  // preview here; the same parser runs server-side when the email actually sends.
   const parsedFields: ParsedPaymentField[] = mode === 'paste' ? parsePaymentDetail(customPasteDetails) : [];
 
-  // Composed payment instructions body (used for the email's plain "Transfer Instructions" block)
-  const instructionsBody = mode === 'template'
-    ? `${parts.opening}\n\n${parts.closing}`
-    : instructionsParts(parts.opening, customPasteDetails, parts.closing);
-
-  // Generate Light Shell Email HTML
-  const generatedEmailHtml = buildEmailHtml({
-    title: 'Payment Details & Order Confirmation',
-    preheader: `Payment instructions for Order ${order.id}. Total: ${REPLY.currency.symbol}${order.total.toLocaleString()}`,
-    intro: `Hello ${order.customerName},<br>Thank you for choosing Solent Marine UK. Your outboard motor order has been provisionally reserved in our Cowes workshop. Please review payment details below to initiate PDI inspection and dispatch.`,
-    refBadge: order.id,
-    rows: [
-      { label: 'Order Reference', value: order.id, mono: true },
-      { label: 'Customer Name', value: order.customerName },
-      { label: 'Delivery Address', value: order.deliveryAddress || 'UK Mainland Pallet Transport' },
-      { label: 'Selected Payment Rail', value: selectedMethod.label },
-      {
-        label: 'Items Reserved',
-        items: order.items.map((i) => ({ name: i.name, qty: i.quantity, price: i.price, shaft: i.shaft, currency: REPLY.currency.symbol }))
-      },
-      { label: 'Total Amount Due', value: `${REPLY.currency.symbol}${order.total.toLocaleString()} ${order.currency}`, highlight: true },
-      { label: 'How to Transfer Payment', heading: true },
-      { label: 'Transfer Instructions', value: instructionsBody, block: true },
-    ],
-    afterRows: `
-      <div style="margin-top: 20px; padding: 16px; background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;">
-        <h4 style="margin: 0 0 8px 0; font-size: 12px; font-weight: 700; color: #166534; text-transform: uppercase;">Next Steps for Workshop PDI Schedule:</h4>
-        ${paymentTermsHtml(order.id, selectedMethodId)}
-      </div>
-    `,
-    cta: {
-      label: 'View & Copy Payment Details',
-      url: `https://${SITE.domain}/order/payment-details/?id=${encodeURIComponent(order.id)}`,
-    },
-    secondaryCta: {
-      label: 'Contact Workshop Desk',
-      url: `mailto:${REPLY.channels.email}`,
-    },
-    footer: 'Solent Marine Outboards UK Ltd · Cowes Yacht Haven, Isle of Wight, PO31 7BD',
-  });
+  // Exactly what the server will build and send — this preview can never drift from the
+  // real email, since both call the same instructionsParts()/paymentDetailsEmail() pair.
+  const instructions = instructionsParts(parts.opening, detail, parts.closing);
+  const instructionsHtml = escapeHtml(instructions).replace(/\n/g, '<br>');
+  const generatedEmailHtml = paymentDetailsEmail({
+    orderNumber: order.id,
+    amountDue: order.total,
+    customerName: order.customerName,
+    instructionsHtml
+  }).html;
 
   // WhatsApp message body — mirrors the email using the same parsed fields (content parity rule)
   const waBodyLines = waPaymentDetailsMessage({
@@ -110,12 +72,7 @@ export function AdminSendPaymentEmailView({
   const handleSendEmail = async () => {
     setIsSending(true);
     try {
-      await onPaymentSent(order.id, generatedEmailHtml, {
-        methodId: selectedMethodId,
-        fields: parsedFields,
-        opening: parts.opening,
-        closing: parts.closing
-      });
+      await onPaymentSent(order.id, selectedMethodId, detail);
       setSendSuccess(true);
       setTimeout(() => {
         onBack();
@@ -258,19 +215,6 @@ export function AdminSendPaymentEmailView({
               )}
             </div>
 
-            {/* Subject Line */}
-            <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1">
-                Email Subject Line
-              </label>
-              <input
-                type="text"
-                value={customSubject}
-                onChange={(e) => setCustomSubject(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-500"
-              />
-            </div>
-
             {/* Recipient Details Confirmation */}
             <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs space-y-1">
               <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider block">Recipient</span>
@@ -296,14 +240,7 @@ export function AdminSendPaymentEmailView({
                 recipientName={order.customerName}
                 recipientPhone={order.customerPhone || REPLY.channels.whatsapp}
                 bodyLines={waBodyLines}
-                onSent={() =>
-                  onPaymentSent(order.id, generatedEmailHtml, {
-                    methodId: selectedMethodId,
-                    fields: parsedFields,
-                    opening: parts.opening,
-                    closing: parts.closing
-                  })
-                }
+                onSent={() => onPaymentSent(order.id, selectedMethodId, detail)}
               />
             </div>
 
