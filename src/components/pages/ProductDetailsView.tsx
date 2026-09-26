@@ -14,7 +14,7 @@ interface ProductDetailsViewProps {
   onNavigate: (view: string, params?: Record<string, string>) => void;
   onAddToCompare: (product: Product) => void;
   compareList: Product[];
-  onAddToBasket: (product: Product, shaft: string) => void;
+  onAddToBasket: (product: Product, shaft: string, quantity?: number) => void;
 }
 
 export default function ProductDetailsView({
@@ -79,7 +79,7 @@ export default function ProductDetailsView({
   };
 
   const handleBasketSub = () => {
-    onAddToBasket(product, selectedShaft);
+    onAddToBasket(product, selectedShaft, quantity);
     setAddedNote(true);
     setTimeout(() => setAddedNote(false), 3000);
   };

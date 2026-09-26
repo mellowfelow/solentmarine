@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Ship, ArrowRight, Compass } from 'lucide-react';
+import { Ship, ArrowRight, Compass, Minus, Plus, ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
 import { BRANDS } from '../../config/site';
 import { ReviewsShowcase } from '../ReviewsShowcase';
@@ -14,6 +14,7 @@ interface HomeViewProps {
   products: Product[];
   onNavigate: (view: string, params?: Record<string, string>) => void;
   onAddToCompare: (product: Product) => void;
+  onAddToBasket: (product: Product, shaft: string, quantity?: number) => void;
   compareList: Product[];
 }
 
@@ -21,8 +22,12 @@ export default function HomeView({
   products,
   onNavigate,
   onAddToCompare,
+  onAddToBasket,
   compareList
 }: HomeViewProps) {
+  const [cardQuantities, setCardQuantities] = useState<Record<string, number>>({});
+  const getCardQty = (id: string) => cardQuantities[id] ?? 1;
+  const setCardQty = (id: string, qty: number) => setCardQuantities((prev) => ({ ...prev, [id]: Math.max(1, qty) }));
   // Sizing assistant state
   const [boatType, setBoatType] = useState<string>('');
   const [boatUsage, setBoatUsage] = useState<string>('');
@@ -341,6 +346,40 @@ export default function HomeView({
                     className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg py-2 text-xs font-semibold transition border border-slate-200"
                   >
                     {compareList.some(c => c.id === prod.id) ? 'Selected' : 'Compare'}
+                  </button>
+                </div>
+
+                {/* Quantity stepper + Add to Cart */}
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden shrink-0">
+                    <button
+                      type="button"
+                      aria-label={`Decrease quantity of ${prod.name}`}
+                      onClick={() => setCardQty(prod.id, getCardQty(prod.id) - 1)}
+                      className="w-8 h-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"
+                    >
+                      <Minus className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="w-8 text-center text-sm font-bold text-slate-900 select-none">{getCardQty(prod.id)}</span>
+                    <button
+                      type="button"
+                      aria-label={`Increase quantity of ${prod.name}`}
+                      onClick={() => setCardQty(prod.id, getCardQty(prod.id) + 1)}
+                      className="w-8 h-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAddToBasket(prod, prod.shaftLengths[0] || 'Short Shaft (S)', getCardQty(prod.id));
+                      setCardQty(prod.id, 1);
+                    }}
+                    className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 rounded-lg py-2 text-xs font-semibold transition border border-emerald-200 flex items-center justify-center gap-1.5"
+                  >
+                    <ShoppingCart className="w-3.5 h-3.5" />
+                    <span>Add to Cart</span>
                   </button>
                 </div>
               </div>

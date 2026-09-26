@@ -8,13 +8,14 @@ import { pathForView } from '../../lib/navigate';
 
 export default function HomeClient() {
   const router = useRouter();
-  const { addToCompare, compareList } = useStore();
+  const { addToCompare, addToBasket, compareList } = useStore();
 
   return (
     <HomeView
       products={OUTBOARD_PRODUCTS}
       onNavigate={(view, params) => router.push(pathForView(view, params))}
       onAddToCompare={addToCompare}
+      onAddToBasket={addToBasket}
       compareList={compareList}
     />
   );

@@ -19,7 +19,7 @@ interface StoreContextValue {
   isCartOpen: boolean;
   isMobileMenuOpen: boolean;
   toastMessage: string | null;
-  addToBasket: (product: Product, shaft: string) => void;
+  addToBasket: (product: Product, shaft: string, quantity?: number) => void;
   updateCartQuantity: (productId: string, shaft: string, quantity: number) => void;
   removeFromCart: (productId: string, shaft: string) => void;
   clearCart: () => void;
@@ -45,19 +45,19 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setTimeout(() => setToastMessage(null), 4000);
   }, []);
 
-  const addToBasket = useCallback((product: Product, shaft: string) => {
+  const addToBasket = useCallback((product: Product, shaft: string, quantity: number = 1) => {
     setCart((prev) => {
       const match = prev.find((item) => item.product.id === product.id && item.selectedShaft === shaft);
       if (match) {
         triggerToast(`Updated quantity of ${product.name} inside basket.`);
         return prev.map((item) =>
           item.product.id === product.id && item.selectedShaft === shaft
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      triggerToast(`Added ${product.name} to shopping basket.`);
-      return [...prev, { product, quantity: 1, selectedShaft: shaft }];
+      triggerToast(`Added ${quantity > 1 ? `${quantity}x ` : ''}${product.name} to shopping basket.`);
+      return [...prev, { product, quantity, selectedShaft: shaft }];
     });
   }, [triggerToast]);
 

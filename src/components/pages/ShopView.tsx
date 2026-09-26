@@ -6,7 +6,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
-import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft } from 'lucide-react';
+import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft, Minus, Plus } from 'lucide-react';
 import { CATEGORIES, BRANDS } from '../../config/site';
 
 const PAGE_SIZE = 12;
@@ -16,7 +16,7 @@ interface ShopViewProps {
   onNavigate: (view: string, params?: Record<string, string>) => void;
   onAddToCompare: (product: Product) => void;
   compareList: Product[];
-  onAddToBasket: (product: Product, shaft: string) => void;
+  onAddToBasket: (product: Product, shaft: string, quantity?: number) => void;
   categorySlug?: string;
   brandSlug?: string;
 }
@@ -127,6 +127,12 @@ export default function ShopView({
 
     return result;
   }, [scopedProducts, filters, sortBy]);
+
+  // Per-card quantity stepper (keyed by product id) — lets a shopper pick how many to add
+  // before hitting "Add to Cart", instead of only ever adding one unit at a time.
+  const [cardQuantities, setCardQuantities] = useState<Record<string, number>>({});
+  const getCardQty = (id: string) => cardQuantities[id] ?? 1;
+  const setCardQty = (id: string, qty: number) => setCardQuantities((prev) => ({ ...prev, [id]: Math.max(1, qty) }));
 
   // Pagination
   const [page, setPage] = useState(1);
@@ -405,7 +411,7 @@ export default function ShopView({
                           onClick={() => onNavigate('product-details', { slug: prod.slug })}
                           className="bg-slate-900 hover:bg-slate-800 text-white rounded-lg py-2.5 text-xs font-semibold transition text-center"
                         >
-                          Specification details
+                          View Details
                         </button>
                         <button
                           type="button"
@@ -418,16 +424,42 @@ export default function ShopView({
                         </button>
                       </div>
 
-                      {/* Direct Basket button */}
-                      <button
-                        type="button"
-                        id={`add-to-basket-${prod.id}`}
-                        onClick={() => onAddToBasket(prod, defaultShaft)}
-                        className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 rounded-lg py-2 text-xs font-semibold transition mt-2 border border-emerald-200 flex items-center justify-center gap-1.5"
-                      >
-                        <ShoppingCart className="w-3.5 h-3.5" />
-                        <span>Add default configuration to Basket</span>
-                      </button>
+                      {/* Quantity stepper + Add to Cart */}
+                      <div className="flex items-center gap-2 mt-2">
+                        <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden shrink-0">
+                          <button
+                            type="button"
+                            id={`qty-decrease-${prod.id}`}
+                            aria-label={`Decrease quantity of ${prod.name}`}
+                            onClick={() => setCardQty(prod.id, getCardQty(prod.id) - 1)}
+                            className="w-8 h-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"
+                          >
+                            <Minus className="w-3.5 h-3.5" />
+                          </button>
+                          <span className="w-8 text-center text-sm font-bold text-slate-900 select-none">{getCardQty(prod.id)}</span>
+                          <button
+                            type="button"
+                            id={`qty-increase-${prod.id}`}
+                            aria-label={`Increase quantity of ${prod.name}`}
+                            onClick={() => setCardQty(prod.id, getCardQty(prod.id) + 1)}
+                            className="w-8 h-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          id={`add-to-basket-${prod.id}`}
+                          onClick={() => {
+                            onAddToBasket(prod, defaultShaft, getCardQty(prod.id));
+                            setCardQty(prod.id, 1);
+                          }}
+                          className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 rounded-lg py-2 text-xs font-semibold transition border border-emerald-200 flex items-center justify-center gap-1.5"
+                        >
+                          <ShoppingCart className="w-3.5 h-3.5" />
+                          <span>Add to Cart</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
