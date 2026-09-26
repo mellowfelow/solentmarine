@@ -39,11 +39,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   } = useStore();
 
   const currentView = viewForPath(pathname || '/');
+  const isAdminRoute = (pathname || '').startsWith('/admin');
 
   const onNavigate = (view: string, params: Record<string, string> = {}) => {
     setIsMobileMenuOpen(false);
     router.push(pathForView(view, params));
   };
+
+  // The admin dashboard is its own self-contained app (AdminLayout) — it never
+  // needs the storefront chrome (announcement bar, cart, chat bubble, footer),
+  // which otherwise overlaps and clutters it, especially on mobile.
+  if (isAdminRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white text-slate-800 antialiased font-sans">

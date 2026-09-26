@@ -173,19 +173,19 @@ export function AdminDashboardOverview({
             {orders.slice(0, 4).map((ord) => (
               <div
                 key={ord.id}
-                className="p-3.5 bg-slate-950 rounded-2xl border border-slate-800/80 flex items-center justify-between hover:border-slate-700 transition"
+                className="p-3.5 bg-slate-950 rounded-2xl border border-slate-800/80 flex items-center justify-between gap-3 hover:border-slate-700 transition"
               >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-xs text-sky-400">{ord.id}</span>
-                    <span className="text-[11px] text-slate-400 font-semibold">{ord.customerName}</span>
+                <div className="space-y-1 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="font-mono font-bold text-xs text-sky-400 shrink-0">{ord.id}</span>
+                    <span className="text-[11px] text-slate-400 font-semibold truncate">{ord.customerName}</span>
                   </div>
-                  <p className="text-[11px] text-slate-500">
+                  <p className="text-[11px] text-slate-500 truncate">
                     {ord.items.map((i) => `${i.quantity}x ${i.name}`).join(', ')}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                   <span className="font-mono font-bold text-xs text-white">
                     {REPLY.currency.symbol}{ord.total.toLocaleString()}
                   </span>

@@ -208,9 +208,9 @@ export function AdminReplyEnquiryView({
               <span className="text-[11px] text-slate-400 font-mono">Light Theme Table Layout</span>
             </div>
 
-            <div className="bg-slate-100 rounded-2xl p-4 max-h-[700px] overflow-y-auto border border-slate-300 shadow-inner">
+            <div className="bg-slate-100 rounded-2xl p-4 max-h-[700px] overflow-auto border border-slate-300 shadow-inner">
               <div
-                className="bg-white rounded-xl shadow-md overflow-hidden text-slate-800 font-sans"
+                className="bg-white rounded-xl shadow-md overflow-hidden text-slate-800 font-sans w-[600px] max-w-none"
                 dangerouslySetInnerHTML={{ __html: generatedEmailHtml }}
               />
             </div>

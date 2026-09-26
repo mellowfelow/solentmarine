@@ -257,10 +257,12 @@ export function AdminSendPaymentEmailView({
               <span className="text-[11px] text-slate-400 font-mono">100% Inverted-Theme Safe</span>
             </div>
 
-            {/* Sandboxed HTML Email Container */}
-            <div className="bg-slate-100 rounded-2xl p-4 max-h-[700px] overflow-y-auto border border-slate-300 shadow-inner">
+            {/* Sandboxed HTML Email Container — email markup is a fixed-width table (real
+                email clients don't reflow), so this scrolls both axes rather than
+                letting it blow out the mobile layout. */}
+            <div className="bg-slate-100 rounded-2xl p-4 max-h-[700px] overflow-auto border border-slate-300 shadow-inner">
               <div
-                className="bg-white rounded-xl shadow-md overflow-hidden text-slate-800 font-sans"
+                className="bg-white rounded-xl shadow-md overflow-hidden text-slate-800 font-sans w-[600px] max-w-none"
                 dangerouslySetInnerHTML={{ __html: generatedEmailHtml }}
               />
             </div>

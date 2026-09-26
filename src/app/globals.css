@@ -18,6 +18,14 @@ img, video, iframe {
   height: auto;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 600px) {
   [style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
