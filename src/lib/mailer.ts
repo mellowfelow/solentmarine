@@ -1,7 +1,13 @@
 /**
  * Lazy singleton SMTP mailer.
  * Never throws. Returns { sent: false, reason: 'not-configured' } when env vars are absent.
+ *
+ * Only ever imported by server-only API route handlers (never a client component), so nodemailer
+ * is imported statically here — a dynamic require(variableName) previously hid this module from
+ * both webpack's client bundle AND Vercel's serverless function file-tracer, so nodemailer never
+ * actually shipped with the deployed function even though it was a real dependency.
  */
+import nodemailer from 'nodemailer';
 
 export interface MailOptions {
   to: string;
@@ -38,13 +44,8 @@ export async function sendMail(opts: MailOptions): Promise<MailResult> {
   }
 
   try {
-    // In Node.js / Vercel Serverless environment, nodemailer can be loaded dynamically if present
-    if (typeof window === 'undefined' && typeof require !== 'undefined') {
-      // Dynamic module name keeps this out of the client bundle and out of webpack's static
-      // dependency graph — nodemailer isn't installed yet (no live SMTP wiring), so a literal
-      // require('nodemailer') would surface as a build-time "module not found" warning.
-      const moduleName = 'nodemailer';
-      const nodemailer = require(moduleName);
+    // In Node.js / Vercel Serverless environment, nodemailer is available
+    if (typeof window === 'undefined') {
       const secure = port === '465' || process.env.EMAIL_SERVER_SECURE === 'true';
 
       const transporter = nodemailer.createTransport({
