@@ -126,3 +126,46 @@ Each product's own name/brand/model stays the primary on-page focus (title, H1, 
 | Used / second-hand | 45 | New-stock-only business model |
 | Local "near me" / servicing | 24 | No walk-in service bay |
 | Competitor brand names | 29 | Mariner, Parsun, Selva, Evinrude, Yanmar, Nissan Marine, Highfield, Mercruiser, Hangkai — comparison content only, never product pages |
+
+---
+
+## Phase 9 — AI/GEO/AEO Visibility Layer
+
+Applied across every page/post in this plan, per the skill's five required signals.
+
+**1. FAQ Schema** — every page with 2+ question-intent keywords gets a planned FAQPage block:
+- `/faq/` — full 14-theme bank (`faq-bank.md`)
+- `/shop/electric/`, `/shop/portable/`, `/shop/mid-range/` — inherit relevant FAQ themes (reliability, how-it-works) as on-page mini-FAQs
+- Blog posts #16–20 (maintenance/winterize/flush/start/serial-number) each carry their own FAQPage block per `blog-plan.md`
+
+**2. Speakable Schema** — flagged single-best-answer candidates:
+- Homepage: the PDI-delay answer (`faq-bank.md` Theme 9)
+- `/faq/`: the serial-number-location answer (Theme 1) — most concrete, no hedging
+- `/shop/parts/`: the Solent-delivery-areas answer (genuine local fact)
+
+**3. Entity Coverage check** — does each page name product/brand/location entities clearly?
+| Page | Product entity | Brand entity | Location entity | Gap? |
+|---|---|---|---|---|
+| Homepage | ✅ "outboard motor" | ✅ Solent Marine | ✅ Cowes, Isle of Wight | None |
+| Category pages | ✅ HP-tier named | ⚠️ Brands mentioned but not individually entity-rich | ❌ No location entity | Category pages should name the Solent/Cowes location at least once — currently generic |
+| Brand hubs (once built) | ✅ by definition | ✅ | ❌ | Should also carry the location entity for local relevance |
+| `/shop/parts/` | ✅ | ✅ | ✅ (once local paragraph added) | Fixed by Gap 3 in `product-gaps.md` |
+| Blog posts | Varies | Varies | ❌ mostly | Add a one-line "Solent Marine, Cowes" mention in each post's author/about blurb, not forced into body copy |
+
+**4. Featured Snippet Hooks** — every informational/question cluster needs a 1–2 sentence plain-language answer in the first 150 words:
+- Pillar 1 (HP guide): open with "Outboard horsepower ranges from 2.5HP for tenders to 300HP+ for offshore boats — the right size depends on your hull weight and use case, not just boat length."
+- Pillar 3 (dinghy/kayak): open with "A 2.5HP–6HP outboard suits most dinghies, tenders and inflatables; kayaks and canoes are better matched to an electric trolling motor."
+- Electric explainer: open with "Electric outboards replace a fuel tank and engine with a battery and electric motor, rated in HP-equivalent rather than true horsepower."
+- Serial-number guide: open with "An outboard's serial number is stamped on the transom or swivel bracket, and its format encodes the model year."
+- Every blog post in Tier 1 needs this same treatment before publishing — noted here as a build requirement, not written into every brief individually to avoid duplicating `blog-plan.md`.
+
+**5. llms.txt Priority Map** — ranked by topical authority + AI answer relevance, for when `/llms.txt` is next regenerated:
+1. `/shop/electric/` — largest keyword authority (17,830/mo), most likely to be cited for "electric outboard" queries
+2. `/shop/` — the stock directory hub, canonical "what do you sell" answer
+3. `/blog/outboard-horsepower-guide/` — pillar, high AI-answer utility (concrete HP recommendations)
+4. `/blog/outboard-serial-number-year-guide/` — near-zero competition, genuinely useful factual lookup content AI assistants favour
+5. `/shop/yamaha/`, `/shop/mercury/`, `/shop/honda/`, `/shop/suzuki/` (once built) — brand authority pages
+6. `/faq/` — the single highest-density factual-answer page on the site
+7. Remaining category pages (`/shop/portable/`, `/shop/mid-range/`, `/shop/high-horsepower/`)
+8. `/about/` — entity/founding facts
+9. Individual product pages — lowest priority for `llms.txt` (long tail, better discovered via category/brand page links than listed individually)
