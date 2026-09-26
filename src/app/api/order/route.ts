@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendMail } from '../../../lib/mailer';
 import { saveStoredOrder, StoredOrderItem, OrderChannel } from '../../../lib/orderStore';
-import { CONTACT, SITE } from '../../../config/site';
+import { buildEmailHtml } from '../../../lib/emailTemplate';
+import { CONTACT, SITE, REPLY } from '../../../config/site';
 
 export const runtime = 'nodejs';
 
@@ -49,27 +50,30 @@ export async function POST(request: Request) {
     notes: notes || undefined
   });
 
+  const currency = REPLY.currency.symbol;
   const itemsHtml = items
-    .map((i) => `<li>${i.quantity}x ${i.name}${i.shaft ? ` (${i.shaft})` : ''} — £${i.price.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</li>`)
-    .join('');
+    .map((i) => `${i.quantity}x <strong>${i.name}</strong>${i.shaft ? ` (${i.shaft})` : ''} — ${currency}${i.price.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`)
+    .join('<br/>');
 
-  const notifyHtml = `
-    <div style="font-family:sans-serif;font-size:14px;color:#0f172a;">
-      <h2 style="color:#0284c7;">New Order Reservation — ${orderRef}</h2>
-      <p><strong>Channel:</strong> ${channel.toUpperCase()}</p>
-      <p><strong>Customer:</strong> ${customerName}</p>
-      <p><strong>Email:</strong> ${customerEmail}</p>
-      <p><strong>Phone:</strong> ${customerPhone || '—'}</p>
-      <p><strong>Delivery Address:</strong> ${deliveryAddress || '—'}</p>
-      <p><strong>Delivery Method:</strong> ${deliveryMethod || '—'}</p>
-      <p><strong>Items:</strong></p>
-      <ul>${itemsHtml}</ul>
-      <p><strong>Subtotal:</strong> £${subtotal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-      <p><strong>Shipping:</strong> £${shipping.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-      <p><strong>Total:</strong> £${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-      <p><strong>Notes:</strong> ${notes || 'None'}</p>
-    </div>
-  `;
+  const notifyHtml = buildEmailHtml({
+    title: 'New Order Reservation',
+    preheader: `New order from ${customerName} — ${orderRef}`,
+    refBadge: orderRef,
+    intro: `A new order reservation was submitted via ${channel === 'whatsapp' ? 'WhatsApp' : 'the website'} checkout.`,
+    rows: [
+      { label: 'Customer', value: customerName },
+      { label: 'Email', value: customerEmail },
+      { label: 'Phone', value: customerPhone || '—' },
+      { label: 'Delivery Address', value: deliveryAddress || '—' },
+      { label: 'Delivery Method', value: deliveryMethod || '—' },
+      { label: 'Items Reserved', html: itemsHtml, block: true },
+      { label: 'Subtotal', value: `${currency}${subtotal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
+      { label: 'Shipping', value: `${currency}${shipping.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
+      { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true },
+      { label: 'Notes', value: notes || 'None' }
+    ],
+    cta: { label: 'Open Admin Portal', url: `https://${SITE.domain}/admin/` }
+  });
 
   const notifyResult = await sendMail({
     to: CONTACT.email,
@@ -78,17 +82,17 @@ export async function POST(request: Request) {
     replyTo: customerEmail
   });
 
-  const ackHtml = `
-    <div style="font-family:sans-serif;font-size:14px;color:#0f172a;">
-      <h2 style="color:#0284c7;">Order Reservation Received — ${orderRef}</h2>
-      <p>Hi ${customerName},</p>
-      <p>Thank you for your order reservation. Our rigging desk will confirm stock, PDI timetable and send secure payment details within ${SITE.name ? '48 hours' : ''}.</p>
-      <p><strong>Items:</strong></p>
-      <ul>${itemsHtml}</ul>
-      <p><strong>Total:</strong> £${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-      <p>— The ${SITE.shortName} Team</p>
-    </div>
-  `;
+  const ackHtml = buildEmailHtml({
+    title: 'Order Reservation Received',
+    preheader: `Thanks for your order, ${customerName} — ref ${orderRef}`,
+    refBadge: orderRef,
+    intro: `Hi ${customerName},<br/><br/>Thank you for your order reservation. Our rigging desk will confirm stock, PDI timetable and send secure payment details within ${REPLY.deadlineHours} hours.`,
+    rows: [
+      { label: 'Items Reserved', html: itemsHtml, block: true },
+      { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true }
+    ],
+    cta: { label: 'Contact Rigging Desk', url: `mailto:${REPLY.channels.email}` }
+  });
 
   await sendMail({
     to: customerEmail,

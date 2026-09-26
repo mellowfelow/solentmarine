@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendMail } from '../../../lib/mailer';
 import { saveStoredEnquiry } from '../../../lib/enquiryStore';
+import { buildEmailHtml } from '../../../lib/emailTemplate';
 import { CONTACT, SITE } from '../../../config/site';
 
 export const runtime = 'nodejs';
@@ -40,17 +41,22 @@ export async function POST(request: Request) {
     message
   });
 
-  const notifyHtml = `
-    <div style="font-family:sans-serif;font-size:14px;color:#0f172a;">
-      <h2 style="color:#0284c7;">New Website Enquiry — ${id}</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone || '—'}</p>
-      <p><strong>Vessel / Hull:</strong> ${hull || '—'}</p>
-      <p><strong>Interested Shaft:</strong> ${shaft || '—'}</p>
-      <p><strong>Message:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
-    </div>
-  `;
+  const notifyHtml = buildEmailHtml({
+    title: 'New Website Enquiry',
+    preheader: `New enquiry from ${name} — ${id}`,
+    refBadge: id,
+    intro: `A new contact form enquiry was submitted on ${SITE.name}.`,
+    rows: [
+      { label: 'Name', value: name },
+      { label: 'Email', value: email },
+      { label: 'Phone', value: phone || '—' },
+      { label: 'Vessel / Hull', value: hull || '—' },
+      { label: 'Interested Shaft', value: shaft || '—' },
+      { label: 'Message', html: message.replace(/\n/g, '<br/>'), block: true }
+    ],
+    cta: { label: 'Reply via Admin Portal', url: `https://${SITE.domain}/admin/` },
+    secondaryCta: { label: 'Reply by Email', url: `mailto:${email}` }
+  });
 
   const notifyResult = await sendMail({
     to: CONTACT.email,
@@ -59,16 +65,14 @@ export async function POST(request: Request) {
     replyTo: email
   });
 
-  const ackHtml = `
-    <div style="font-family:sans-serif;font-size:14px;color:#0f172a;">
-      <h2 style="color:#0284c7;">Thanks for contacting ${SITE.name}</h2>
-      <p>Hi ${name},</p>
-      <p>We've received your enquiry (ref <strong>${id}</strong>) and a factory-certified advisor will get back to you within 2-4 working hours.</p>
-      <p>Your message:</p>
-      <blockquote style="border-left:3px solid #0284c7;padding-left:12px;color:#475569;">${message.replace(/\n/g, '<br/>')}</blockquote>
-      <p>— The ${SITE.shortName} Team</p>
-    </div>
-  `;
+  const ackHtml = buildEmailHtml({
+    title: 'We’ve received your enquiry',
+    preheader: `Thanks for contacting ${SITE.name} — ref ${id}`,
+    refBadge: id,
+    intro: `Hi ${name},<br/><br/>Thank you for contacting ${SITE.name}. A factory-certified advisor will get back to you within 2-4 working hours.`,
+    rows: [{ label: 'Your Message', html: message.replace(/\n/g, '<br/>'), block: true }],
+    cta: { label: 'Browse Our Stock', url: `https://${SITE.domain}/shop/` }
+  });
 
   await sendMail({
     to: email,
