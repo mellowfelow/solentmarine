@@ -12,12 +12,15 @@ import type { StoredEnquiry } from '../../lib/enquiryStore';
 
 interface AdminViewProps {
   onNavigateHome?: () => void;
+  initialOrderId?: string;
 }
 
-export function AdminView({ onNavigateHome }: AdminViewProps) {
+export function AdminView({ onNavigateHome, initialOrderId }: AdminViewProps) {
   const { isUnlocked, unlock, lock, error, getAuthHeaders } = useAdminPasscode();
 
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'orders' | 'enquiries' | 'send-payment-email' | 'reply-enquiry'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'orders' | 'enquiries' | 'send-payment-email' | 'reply-enquiry'>(
+    initialOrderId ? 'orders' : 'dashboard'
+  );
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [enquiries, setEnquiries] = useState<StoredEnquiry[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<StoredOrder | null>(null);
@@ -142,6 +145,7 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
           onSelectOrderForPayment={handleSelectOrderForPayment}
           onUpdateStatus={handleUpdateOrderStatus}
           onDeleteOrder={handleDeleteOrder}
+          highlightOrderId={initialOrderId}
         />
       )}
 

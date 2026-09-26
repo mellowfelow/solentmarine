@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   ShoppingBag, 
   Search, 
@@ -24,6 +24,7 @@ interface AdminOrdersViewProps {
   onSelectOrderForPayment: (order: StoredOrder) => void;
   onUpdateStatus: (orderId: string, status: OrderStatus) => void;
   onDeleteOrder: (orderId: string) => void;
+  highlightOrderId?: string;
 }
 
 export function AdminOrdersView({
@@ -31,11 +32,27 @@ export function AdminOrdersView({
   onSelectOrderForPayment,
   onUpdateStatus,
   onDeleteOrder,
+  highlightOrderId,
 }: AdminOrdersViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [channelFilter, setChannelFilter] = useState<string>('all');
-  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
+  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(highlightOrderId || null);
+  const highlightedRef = useRef<HTMLDivElement | null>(null);
+  const hasScrolledToHighlight = useRef(false);
+
+  useEffect(() => {
+    if (highlightOrderId && orders.some((o) => o.id === highlightOrderId)) {
+      setExpandedOrderId(highlightOrderId);
+    }
+  }, [highlightOrderId, orders]);
+
+  useEffect(() => {
+    if (highlightOrderId && !hasScrolledToHighlight.current && highlightedRef.current) {
+      highlightedRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      hasScrolledToHighlight.current = true;
+    }
+  }, [highlightOrderId, orders]);
 
   const filteredOrders = orders.filter((ord) => {
     const matchesSearch =
@@ -165,11 +182,17 @@ export function AdminOrdersView({
         <div className="space-y-4">
           {filteredOrders.map((order) => {
             const isExpanded = expandedOrderId === order.id;
+            const isHighlighted = highlightOrderId === order.id;
 
             return (
               <div
                 key={order.id}
-                className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition"
+                ref={isHighlighted ? highlightedRef : undefined}
+                className={`bg-slate-900 border rounded-2xl overflow-hidden transition ${
+                  isHighlighted
+                    ? 'border-sky-500 ring-2 ring-sky-500/40 shadow-lg shadow-sky-950/40'
+                    : 'border-slate-800 hover:border-slate-700'
+                }`}
               >
                 {/* Main Row summary */}
                 <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">

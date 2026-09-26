@@ -170,7 +170,7 @@ export function orderEmail(o: OrderEmailInput): { subject: string; text: string;
   const body = `
   ${callout(
     `<strong style="font-family:${SANS};">Payment not yet collected.</strong> This order was submitted via ${o.channel === 'whatsapp' ? 'WhatsApp' : 'the website'} checkout — reply to the customer to confirm stock and send payment details for <strong>${esc(o.paymentMethod)}</strong>.
-     <div style="margin-top:13px;">${button(`https://${SITE.domain}/admin/orders/`, 'View Order in Dashboard')}</div>`
+     <div style="margin-top:13px;">${button(`https://${SITE.domain}/admin/orders/?order=${encodeURIComponent(o.orderNumber)}`, 'View Order in Dashboard')}</div>`
   )}
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -399,7 +399,7 @@ export function paymentConfirmationNotifyEmail(i: PaymentConfirmationNotifyInput
   const body = `
   ${callout(
     `<strong style="font-family:${SANS};">${esc(i.customerName)}</strong> says they've paid order <strong>${esc(i.orderNumber)}</strong>. ${i.hasScreenshot ? 'A screenshot is attached.' : 'No screenshot was attached.'}
-     <div style="margin-top:13px;">${button(`https://${SITE.domain}/admin/orders/`, 'Open Admin Portal')}</div>`
+     <div style="margin-top:13px;">${button(`https://${SITE.domain}/admin/orders/?order=${encodeURIComponent(i.orderNumber)}`, 'Open Admin Portal')}</div>`
   )}
   ${field('Order', `<strong>${esc(i.orderNumber)}</strong>`, 14)}
   ${field('Customer', `${esc(i.customerName)}<br>${mailLink(i.customerEmail)}`, 14)}

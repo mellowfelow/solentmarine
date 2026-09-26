@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import AdminClient from '../../components/routes/AdminClient';
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AdminClient />;
+  return (
+    <Suspense fallback={null}>
+      <AdminClient />
+    </Suspense>
+  );
 }
