@@ -1,5 +1,5 @@
 {
-  "issuer": "https://outboardmotors.co.uk",
+  "issuer": "https://solentmarineoutboards.co.uk",
   "note": "Solent Marine Outboards UK does not operate an OpenID Connect provider. All resources publicly accessible.",
   "public_site": true,
   "authorization_endpoint": null,

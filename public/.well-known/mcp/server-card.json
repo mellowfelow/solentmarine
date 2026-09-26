@@ -4,9 +4,9 @@
     "name": "Solent Marine Outboards UK",
     "version": "1.0.0",
     "description": "UK's Premier Outboard Motors & Marine Engines Specialist",
-    "homepage": "https://outboardmotors.co.uk",
+    "homepage": "https://solentmarineoutboards.co.uk",
     "contact": {
-      "email": "sales@outboardmotors.co.uk",
+      "email": "sales@solentmarineoutboards.co.uk",
       "whatsapp": "+447700900888",
       "phone": "+441983294400"
     }
@@ -21,37 +21,37 @@
       {
         "name": "product-catalog",
         "description": "Full outboard motors catalog",
-        "uri": "https://outboardmotors.co.uk/shop/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/"
       },
       {
         "name": "portable-outboards",
         "description": "Portable outboards, 2.5HP-6HP",
-        "uri": "https://outboardmotors.co.uk/shop/portable/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/portable/"
       },
       {
         "name": "mid-range-outboards",
         "description": "Mid-range outboards, 8HP-40HP",
-        "uri": "https://outboardmotors.co.uk/shop/mid-range/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/mid-range/"
       },
       {
         "name": "high-power-outboards",
         "description": "High-power outboards, 50HP-400HP+",
-        "uri": "https://outboardmotors.co.uk/shop/high-horsepower/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/high-horsepower/"
       },
       {
         "name": "electric-outboards",
         "description": "Electric & eco outboards and trolling motors",
-        "uri": "https://outboardmotors.co.uk/shop/electric/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/electric/"
       },
       {
         "name": "parts-and-accessories",
         "description": "Genuine oils, rigging and spares",
-        "uri": "https://outboardmotors.co.uk/shop/parts/"
+        "uri": "https://solentmarineoutboards.co.uk/shop/parts/"
       },
       {
         "name": "technical-faq",
         "description": "Shaft measurement and PDI guide",
-        "uri": "https://outboardmotors.co.uk/faq/"
+        "uri": "https://solentmarineoutboards.co.uk/faq/"
       }
     ],
     "commerce": {

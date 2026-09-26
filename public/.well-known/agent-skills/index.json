@@ -1,13 +1,13 @@
 {
   "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
   "name": "Solent Marine Outboards UK",
-  "url": "https://outboardmotors.co.uk",
+  "url": "https://solentmarineoutboards.co.uk",
   "description": "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
   "skills": [
-    { "name": "browse-catalog", "type": "navigation", "description": "Browse the complete marine engine catalog across portable, mid-range, high-power, electric and parts categories", "url": "https://outboardmotors.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "compare-specs-on-page", "type": "commerce", "description": "On the shop page, add up to 3 outboards to the built-in side-by-side specification comparison tray (client-side feature, not a separate API)", "url": "https://outboardmotors.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "finance-estimate-on-page", "type": "commerce", "description": "Each product page includes an inline monthly marine hire purchase estimate across 12-60 month terms", "url": "https://outboardmotors.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "contact-rigging", "type": "support", "description": "Contact certified marine engineers in Cowes for transom installation advice or to place an order", "url": "https://outboardmotors.co.uk/contact/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "shaft-and-pdi-guide", "type": "content", "description": "Transom height / shaft length measurement guide and Pre-Delivery Inspection explanation", "url": "https://outboardmotors.co.uk/faq/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+    { "name": "browse-catalog", "type": "navigation", "description": "Browse the complete marine engine catalog across portable, mid-range, high-power, electric and parts categories", "url": "https://solentmarineoutboards.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
+    { "name": "compare-specs-on-page", "type": "commerce", "description": "On the shop page, add up to 3 outboards to the built-in side-by-side specification comparison tray (client-side feature, not a separate API)", "url": "https://solentmarineoutboards.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
+    { "name": "finance-estimate-on-page", "type": "commerce", "description": "Each product page includes an inline monthly marine hire purchase estimate across 12-60 month terms", "url": "https://solentmarineoutboards.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
+    { "name": "contact-rigging", "type": "support", "description": "Contact certified marine engineers in Cowes for transom installation advice or to place an order", "url": "https://solentmarineoutboards.co.uk/contact/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
+    { "name": "shaft-and-pdi-guide", "type": "content", "description": "Transom height / shaft length measurement guide and Pre-Delivery Inspection explanation", "url": "https://solentmarineoutboards.co.uk/faq/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
   ]
 }

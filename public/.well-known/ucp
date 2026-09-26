@@ -3,21 +3,21 @@
   "protocol_version": "1.0",
   "spec": "https://ucp.dev/specification/overview/",
   "schema": "https://ucp.dev/schema/v1.json",
-  "site": "https://outboardmotors.co.uk",
+  "site": "https://solentmarineoutboards.co.uk",
   "name": "Solent Marine Outboards UK",
   "description": "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
   "services": [
-    { "id": "product-catalog", "type": "catalog", "url": "https://outboardmotors.co.uk/shop/", "description": "Full outboard motors catalog with detailed specifications" },
+    { "id": "product-catalog", "type": "catalog", "url": "https://solentmarineoutboards.co.uk/shop/", "description": "Full outboard motors catalog with detailed specifications" },
     { "id": "order", "type": "commerce", "url": "https://wa.me/447700900888", "description": "Direct human-assisted WhatsApp ordering and rigging consultation" }
   ],
   "capabilities": ["browse", "inquiry"],
   "endpoints": {
-    "catalog": "https://outboardmotors.co.uk/shop/",
-    "contact": "https://outboardmotors.co.uk/contact/",
-    "agent_skills": "https://outboardmotors.co.uk/.well-known/agent-skills/index.json",
-    "mcp_server_card": "https://outboardmotors.co.uk/.well-known/mcp/server-card.json",
-    "api_catalog": "https://outboardmotors.co.uk/.well-known/api-catalog",
-    "llms_txt": "https://outboardmotors.co.uk/llms.txt"
+    "catalog": "https://solentmarineoutboards.co.uk/shop/",
+    "contact": "https://solentmarineoutboards.co.uk/contact/",
+    "agent_skills": "https://solentmarineoutboards.co.uk/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://solentmarineoutboards.co.uk/.well-known/mcp/server-card.json",
+    "api_catalog": "https://solentmarineoutboards.co.uk/.well-known/api-catalog",
+    "llms_txt": "https://solentmarineoutboards.co.uk/llms.txt"
   },
   "currency": "GBP",
   "minimum_order_gbp": "50.00",

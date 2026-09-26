@@ -1,5 +1,5 @@
 {
-  "issuer": "https://outboardmotors.co.uk",
+  "issuer": "https://solentmarineoutboards.co.uk",
   "authorization_endpoint": null,
   "token_endpoint": null,
   "jwks_uri": null,
@@ -8,14 +8,14 @@
   "scopes_supported": [],
   "note": "Solent Marine Outboards UK has no protected APIs. All marine catalog data and specs are publicly accessible.",
   "public_resources": [
-    "https://outboardmotors.co.uk/shop/",
-    "https://outboardmotors.co.uk/compare/",
-    "https://outboardmotors.co.uk/faq/",
-    "https://outboardmotors.co.uk/shipping/",
-    "https://outboardmotors.co.uk/llms.txt",
-    "https://outboardmotors.co.uk/.well-known/api-catalog",
-    "https://outboardmotors.co.uk/.well-known/agent-skills/index.json",
-    "https://outboardmotors.co.uk/.well-known/mcp/server-card.json"
+    "https://solentmarineoutboards.co.uk/shop/",
+    "https://solentmarineoutboards.co.uk/compare/",
+    "https://solentmarineoutboards.co.uk/faq/",
+    "https://solentmarineoutboards.co.uk/shipping/",
+    "https://solentmarineoutboards.co.uk/llms.txt",
+    "https://solentmarineoutboards.co.uk/.well-known/api-catalog",
+    "https://solentmarineoutboards.co.uk/.well-known/agent-skills/index.json",
+    "https://solentmarineoutboards.co.uk/.well-known/mcp/server-card.json"
   ],
   "agent_auth": {
     "register_uri": null,

@@ -1,13 +1,13 @@
 {
   "linkset": [
-    { "anchor": "https://outboardmotors.co.uk/", "https://www.iana.org/assignments/link-relations/service-doc": [{ "href": "https://outboardmotors.co.uk/faq/" }], "title": "Solent Marine Outboards UK — Marine Engines & Rigging" },
-    { "anchor": "https://outboardmotors.co.uk/shop/", "type": "text/html", "title": "Solent Marine Outboard Motors Catalog" },
-    { "anchor": "https://outboardmotors.co.uk/shop/portable/", "type": "text/html", "title": "Portable Outboards (2.5HP-6HP)" },
-    { "anchor": "https://outboardmotors.co.uk/shop/mid-range/", "type": "text/html", "title": "Mid-Range Outboards (8HP-40HP)" },
-    { "anchor": "https://outboardmotors.co.uk/shop/high-horsepower/", "type": "text/html", "title": "High-Power Outboards (50HP-400HP+)" },
-    { "anchor": "https://outboardmotors.co.uk/shop/electric/", "type": "text/html", "title": "Electric & Eco Outboards" },
-    { "anchor": "https://outboardmotors.co.uk/shop/parts/", "type": "text/html", "title": "Genuine Oils, Rigging & Spares" },
-    { "anchor": "https://outboardmotors.co.uk/shipping/", "type": "text/html", "title": "UK Outboard Shipping & PDI" },
-    { "anchor": "https://outboardmotors.co.uk/contact/", "type": "text/html", "title": "Contact Cowes Rigging Desk" }
+    { "anchor": "https://solentmarineoutboards.co.uk/", "https://www.iana.org/assignments/link-relations/service-doc": [{ "href": "https://solentmarineoutboards.co.uk/faq/" }], "title": "Solent Marine Outboards UK — Marine Engines & Rigging" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/", "type": "text/html", "title": "Solent Marine Outboard Motors Catalog" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/portable/", "type": "text/html", "title": "Portable Outboards (2.5HP-6HP)" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/mid-range/", "type": "text/html", "title": "Mid-Range Outboards (8HP-40HP)" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/high-horsepower/", "type": "text/html", "title": "High-Power Outboards (50HP-400HP+)" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/electric/", "type": "text/html", "title": "Electric & Eco Outboards" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shop/parts/", "type": "text/html", "title": "Genuine Oils, Rigging & Spares" },
+    { "anchor": "https://solentmarineoutboards.co.uk/shipping/", "type": "text/html", "title": "UK Outboard Shipping & PDI" },
+    { "anchor": "https://solentmarineoutboards.co.uk/contact/", "type": "text/html", "title": "Contact Cowes Rigging Desk" }
   ]
 }

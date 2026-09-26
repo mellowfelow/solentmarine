@@ -82,8 +82,8 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'www.outboardmotors.co.uk' }],
-        destination: 'https://outboardmotors.co.uk/:path*',
+        has: [{ type: 'host', value: 'www.solentmarineoutboards.co.uk' }],
+        destination: 'https://solentmarineoutboards.co.uk/:path*',
         permanent: true
       }
     ];

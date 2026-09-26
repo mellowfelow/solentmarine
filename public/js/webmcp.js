@@ -17,8 +17,8 @@
         execute: async ({ category }) => {
           const valid = ["portable", "mid-range", "high-horsepower", "electric", "parts"];
           const url = category && valid.includes(category)
-            ? `https://outboardmotors.co.uk/shop/${category}/`
-            : `https://outboardmotors.co.uk/shop/`;
+            ? `https://solentmarineoutboards.co.uk/shop/${category}/`
+            : `https://solentmarineoutboards.co.uk/shop/`;
           window.location.href = url;
           return { url };
         }
@@ -47,8 +47,8 @@
           properties: {}
         },
         execute: async () => {
-          window.location.href = `https://outboardmotors.co.uk/contact/`;
-          return { url: `https://outboardmotors.co.uk/contact/` };
+          window.location.href = `https://solentmarineoutboards.co.uk/contact/`;
+          return { url: `https://solentmarineoutboards.co.uk/contact/` };
         }
       }
     ]

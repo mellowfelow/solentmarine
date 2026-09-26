@@ -8,7 +8,7 @@ export const SITE = {
   name: 'Solent Marine Outboards UK',
   shortName: 'Solent Marine UK',
   tagline: "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
-  domain: 'outboardmotors.co.uk',
+  domain: 'solentmarineoutboards.co.uk',
   locale: 'en-GB',
   currency: 'GBP',
   currencySymbol: '£',
@@ -21,7 +21,7 @@ export const SITE = {
 };
 
 export const CONTACT = {
-  email: 'sales@outboardmotors.co.uk',
+  email: 'sales@solentmarineoutboards.co.uk',
   phone: '01983 294400',
   phoneInternational: '+441983294400',
   whatsapp: '+447700900888',
@@ -46,9 +46,9 @@ export const SHOP = {
 
 export const FORMS = {
   provider: 'smtp', // 'smtp' | 'web3forms' | 'resend'
-  smtpFrom: 'sales@outboardmotors.co.uk',
+  smtpFrom: 'sales@solentmarineoutboards.co.uk',
   web3formsKey: '',
-  resendFrom: 'sales@outboardmotors.co.uk',
+  resendFrom: 'sales@solentmarineoutboards.co.uk',
   turnstileSiteKey: '',
 };
 
@@ -69,7 +69,7 @@ export const REPLY = {
     value: '09842114',
   },
   channels: {
-    email: 'sales@outboardmotors.co.uk',
+    email: 'sales@solentmarineoutboards.co.uk',
     whatsapp: '+447700900888',
     whatsappCountryCode: '44',
   },
@@ -101,7 +101,7 @@ export const CHAT = {
   channels: [
     { type: 'whatsapp', value: '+447700900888', label: 'WhatsApp Marine Helpline' },
     { type: 'phone', value: '01983 294400', label: 'Cowes Yard Desk' },
-    { type: 'email', value: 'sales@outboardmotors.co.uk', label: 'Sales & Rigging Desk' }
+    { type: 'email', value: 'sales@solentmarineoutboards.co.uk', label: 'Sales & Rigging Desk' }
   ],
 };
 

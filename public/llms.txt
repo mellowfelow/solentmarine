@@ -5,29 +5,29 @@
 ## Overview
 - **Brand:** Solent Marine Outboards UK
 - **Headquarters:** Cowes Yacht Haven, High Street, Cowes, Isle of Wight, PO31 7BD, United Kingdom
-- **Contact:** sales@outboardmotors.co.uk | +44 1983 294400 | WhatsApp: +44 7700 900888
+- **Contact:** sales@solentmarineoutboards.co.uk | +44 1983 294400 | WhatsApp: +44 7700 900888
 - **Minimum Order:** £50.00
 - **Free UK Delivery:** On all orders over £500.00 (includes pallet tail-lift for outboard motors)
 - **Warranty:** Official UK manufacturer warranty (up to 5 years on Yamaha, Suzuki, Honda, Mercury and Tohatsu)
 - **Payment Methods:** UK Bank Transfer (BACS/Faster Payments), Visa, Mastercard, Marine Proforma Invoice, Marine Hire Purchase Finance (12-60 months)
 
 ## Product Categories
-- [Portable Outboards (2.5HP - 6HP)](https://outboardmotors.co.uk/shop/portable/): Lightweight petrol auxiliary and tender engines from £711.
-- [Mid-Range Outboards (8HP - 40HP)](https://outboardmotors.co.uk/shop/mid-range/): Twin-cylinder and EFI motors for RIBs and dayboats from £1,036.
-- [High-Power Outboards (50HP - 400HP+)](https://outboardmotors.co.uk/shop/high-horsepower/): High-performance multi-cylinder marine engines from £5,200.
-- [Electric & Eco Outboards](https://outboardmotors.co.uk/shop/electric/): Zero-emission propulsion and trolling motors from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric from £107.
-- [Genuine Oils, Rigging & Spares](https://outboardmotors.co.uk/shop/parts/): Engine oils, batteries, chargers, service kits and rigging hardware from £4.50.
+- [Portable Outboards (2.5HP - 6HP)](https://solentmarineoutboards.co.uk/shop/portable/): Lightweight petrol auxiliary and tender engines from £711.
+- [Mid-Range Outboards (8HP - 40HP)](https://solentmarineoutboards.co.uk/shop/mid-range/): Twin-cylinder and EFI motors for RIBs and dayboats from £1,036.
+- [High-Power Outboards (50HP - 400HP+)](https://solentmarineoutboards.co.uk/shop/high-horsepower/): High-performance multi-cylinder marine engines from £5,200.
+- [Electric & Eco Outboards](https://solentmarineoutboards.co.uk/shop/electric/): Zero-emission propulsion and trolling motors from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric from £107.
+- [Genuine Oils, Rigging & Spares](https://solentmarineoutboards.co.uk/shop/parts/): Engine oils, batteries, chargers, service kits and rigging hardware from £4.50.
 
 ## Customer Services & Tools
-- [Full Outboard Stock Directory](https://outboardmotors.co.uk/shop/): Search and filter the full catalog by brand, category, engine type and price; includes an on-page side-by-side specification comparison tray for up to 3 engines.
-- [Technical FAQ & Shaft Guide](https://outboardmotors.co.uk/faq/): Transom height measurements and PDI inspection information.
-- [UK Shipping & Pallet Dispatch Policy](https://outboardmotors.co.uk/shipping/): Details on courier and tail-lift freight delivery across the UK mainland and islands.
-- [Contact Rigging Engineers](https://outboardmotors.co.uk/contact/): Get in touch with our certified engineers in Cowes.
+- [Full Outboard Stock Directory](https://solentmarineoutboards.co.uk/shop/): Search and filter the full catalog by brand, category, engine type and price; includes an on-page side-by-side specification comparison tray for up to 3 engines.
+- [Technical FAQ & Shaft Guide](https://solentmarineoutboards.co.uk/faq/): Transom height measurements and PDI inspection information.
+- [UK Shipping & Pallet Dispatch Policy](https://solentmarineoutboards.co.uk/shipping/): Details on courier and tail-lift freight delivery across the UK mainland and islands.
+- [Contact Rigging Engineers](https://solentmarineoutboards.co.uk/contact/): Get in touch with our certified engineers in Cowes.
 
 Each product page includes a monthly marine finance estimate tool inline — there is no separate finance page.
 
 ## Optional Machine-Readable Resources
-- [API Catalog](https://outboardmotors.co.uk/.well-known/api-catalog): RFC 9727 linkset of discovery endpoints.
-- [Agent Skills Index](https://outboardmotors.co.uk/.well-known/agent-skills/index.json): Machine skills manifest for commerce and catalog browsing.
-- [MCP Server Card](https://outboardmotors.co.uk/.well-known/mcp/server-card.json): Model Context Protocol metadata.
-- [Auth Documentation](https://outboardmotors.co.uk/auth.md): Agent authentication and human-in-the-loop ordering policies.
+- [API Catalog](https://solentmarineoutboards.co.uk/.well-known/api-catalog): RFC 9727 linkset of discovery endpoints.
+- [Agent Skills Index](https://solentmarineoutboards.co.uk/.well-known/agent-skills/index.json): Machine skills manifest for commerce and catalog browsing.
+- [MCP Server Card](https://solentmarineoutboards.co.uk/.well-known/mcp/server-card.json): Model Context Protocol metadata.
+- [Auth Documentation](https://solentmarineoutboards.co.uk/auth.md): Agent authentication and human-in-the-loop ordering policies.

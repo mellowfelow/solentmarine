@@ -2,8 +2,8 @@
   "protocol": { "name": "acp", "version": "0.1.0" },
   "name": "Solent Marine Outboards UK",
   "description": "UK's Premier Outboard Motors & Marine Engines Specialist",
-  "api_base_url": "https://outboardmotors.co.uk",
-  "homepage": "https://outboardmotors.co.uk",
+  "api_base_url": "https://solentmarineoutboards.co.uk",
+  "homepage": "https://solentmarineoutboards.co.uk",
   "transports": ["https"],
   "capabilities": {
     "services": ["product-catalog", "faq"],
@@ -15,7 +15,7 @@
   },
   "contact": {
     "whatsapp": "https://wa.me/447700900888",
-    "email": "sales@outboardmotors.co.uk"
+    "email": "sales@solentmarineoutboards.co.uk"
   },
   "legal": {
     "age_restriction": "none",
