@@ -61,8 +61,10 @@ export default function BasketDrawer({
 
   const grandTotal = itemsSubtotal + shippingCost;
   const vatAmount = parseFloat((grandTotal * (20 / 120)).toFixed(2)); // UK 20% VAT breakdown
+  const belowMinOrder = itemsSubtotal > 0 && itemsSubtotal < SHOP.minOrder;
 
   const handleStartCheckout = (channel: 'whatsapp' | 'email') => {
+    if (belowMinOrder) return;
     setCheckoutChannel(channel);
     setOrderRef(generateOrderNumber());
     setCheckoutStep('details');
@@ -311,13 +313,22 @@ export default function BasketDrawer({
                   </div>
                 </div>
 
+                {/* Minimum Order Guard */}
+                {belowMinOrder && (
+                  <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-xs flex items-center gap-2">
+                    <Truck className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>Add <strong>£{(SHOP.minOrder - itemsSubtotal).toLocaleString()}</strong> more to reach our <strong>£{SHOP.minOrder} minimum order</strong>.</span>
+                  </div>
+                )}
+
                 {/* Dual Direct Checkout Channels */}
                 <div className="space-y-2 pt-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center">Choose how to reserve your order</p>
                   <button
                     type="button"
                     onClick={() => handleStartCheckout('whatsapp')}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow-md transition cursor-pointer"
+                    disabled={belowMinOrder}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow-md transition cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>Checkout via WhatsApp</span>
@@ -327,7 +338,8 @@ export default function BasketDrawer({
                   <button
                     type="button"
                     onClick={() => handleStartCheckout('email')}
-                    className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow transition cursor-pointer"
+                    disabled={belowMinOrder}
+                    className="w-full bg-slate-900 hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow transition cursor-pointer"
                   >
                     <Mail className="w-4 h-4" />
                     <span>Checkout via Email</span>

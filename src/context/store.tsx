@@ -59,6 +59,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       triggerToast(`Added ${quantity > 1 ? `${quantity}x ` : ''}${product.name} to shopping basket.`);
       return [...prev, { product, quantity, selectedShaft: shaft }];
     });
+    // Every add-to-cart pops the basket drawer open so the customer immediately
+    // sees what they added and can proceed straight to checkout.
+    setIsCartOpen(true);
   }, [triggerToast]);
 
   const updateCartQuantity = useCallback((productId: string, shaft: string, quantity: number) => {

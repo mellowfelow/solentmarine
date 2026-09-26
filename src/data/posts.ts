@@ -343,7 +343,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'affordable-outboard-motors-uk',
     title: 'Affordable Outboard Motors UK: Best Value Picks by Budget',
-    metaDescription: 'Looking for a budget-friendly outboard? See our best value picks across portable, mid-range and electric, plus finance options from £50 deposit.',
+    metaDescription: 'Looking for a budget-friendly outboard? See our best value picks across portable, mid-range and electric, all backed by full UK manufacturer warranty.',
     primaryKeyword: 'affordable outboard motors',
     secondaryKeywords: ['cheap outboard motors', 'budget outboard motors', 'cheapest outboard boat motors'],
     funnelPosition: 'Bottom',
@@ -356,14 +356,12 @@ export const BLOG_POSTS: BlogPost[] = [
       <p>HP, fuel injection technology, starter type (manual vs electric) and brand all affect price. The biggest lever for keeping cost down is buying the HP you actually need rather than a larger engine "for headroom."</p>
       <h2>Best budget picks</h2>
       <p>The Yamaha F2.5BMHS (£711) and Suzuki DF2.5S (£755) are our most affordable full-warranty options, ideal for tenders and small dinghies. Stepping up slightly, the Mercury 3.5HP FourStroke (£745.20) and Honda BF2.3 SCHU (£720) round out the sub-£800 bracket. All carry official UK manufacturer warranty and our Pre-Delivery Inspection.</p>
-      <h2>Finance options</h2>
-      <p>We offer marine finance from a 10% deposit across 12–60 month terms — a practical route to a larger engine if your budget doesn't stretch to the full price upfront. See our contact page for finance enquiries.</p>
       <h2>Don't cut corners on PDI/warranty</h2>
       <p>A cheaper unbranded or grey-import engine may look like a saving, but without official UK warranty or PDI checks, you carry all the risk if something's wrong on arrival — every engine we sell is checked and warrantied regardless of price point.</p>
     `,
     faq: [
       { question: "What's the cheapest reliable outboard?", answer: 'Our most affordable full-warranty options start around £700-£755 for 2.5HP portable engines from Yamaha and Suzuki.' },
-      { question: 'Can I finance an outboard motor?', answer: 'Yes — we offer marine finance from a 10% deposit across 12 to 60 month terms.' }
+      { question: 'How do I pay for my order?', answer: 'We accept payment by UK bank transfer (BACS / Faster Payments) only, settled directly to our official dealership account.' }
     ]
   },
   {

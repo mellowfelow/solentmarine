@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { sendMail } from '../../../lib/mailer';
 import { saveStoredOrder, StoredOrderItem, OrderChannel } from '../../../lib/orderStore';
 import { orderEmail, orderConfirmationEmail, OrderEmailItem } from '../../../lib/emailTemplates';
-import { CONTACT } from '../../../config/site';
+import { CONTACT, SHOP } from '../../../config/site';
 
 export const runtime = 'nodejs';
 
@@ -29,6 +29,13 @@ export async function POST(request: Request) {
 
   if (!orderRef || !customerName || !customerEmail || items.length === 0) {
     return NextResponse.json({ ok: false, error: 'Missing required order fields.' }, { status: 400 });
+  }
+
+  if (subtotal < SHOP.minOrder) {
+    return NextResponse.json(
+      { ok: false, error: `Minimum order value is £${SHOP.minOrder}.` },
+      { status: 400 }
+    );
   }
 
   await saveStoredOrder({

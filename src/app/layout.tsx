@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: 'Outboard Motors UK | Solent Marine Boat Engines Specialist',
   description:
-    "UK's premier outboard motors catalog and dealer directory. Featuring Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo engines with detailed specs, comparisons, finance calculations, and UK-wide delivery guides.",
+    "UK's premier outboard motors catalog and dealer directory. Featuring Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo engines with detailed specs, comparisons, and UK-wide delivery guides.",
   verification: {
     google: 'google-site-verification-solent-marine-uk-2026'
   },

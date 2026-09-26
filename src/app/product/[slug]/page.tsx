@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = OUTBOARD_PRODUCTS.find((p) => p.slug === slug);
   if (!product) return {};
   return {
-    title: `${product.name} — Specs, Price & Finance | Solent Marine UK`,
+    title: `${product.name} — Specs & Price | Solent Marine UK`,
     description: `${product.brand} ${product.name}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. Fully PDI checked at Solent Marine, Isle of Wight.`,
     alternates: { canonical: `/product/${product.slug}/` },
     openGraph: { type: 'website', images: [product.imageUrl] }

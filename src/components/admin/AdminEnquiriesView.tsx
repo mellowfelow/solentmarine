@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   MessageSquareText, 
   Search, 
@@ -20,17 +20,34 @@ interface AdminEnquiriesViewProps {
   enquiries: StoredEnquiry[];
   onSelectEnquiryForReply: (enquiry: StoredEnquiry) => void;
   onDeleteEnquiry: (enquiryId: string) => void;
+  highlightEnquiryId?: string;
 }
 
 export function AdminEnquiriesView({
   enquiries,
   onSelectEnquiryForReply,
   onDeleteEnquiry,
+  highlightEnquiryId,
 }: AdminEnquiriesViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(highlightEnquiryId || null);
+  const highlightedRef = useRef<HTMLDivElement | null>(null);
+  const hasScrolledToHighlight = useRef(false);
+
+  useEffect(() => {
+    if (highlightEnquiryId && enquiries.some((e) => e.id === highlightEnquiryId)) {
+      setExpandedId(highlightEnquiryId);
+    }
+  }, [highlightEnquiryId, enquiries]);
+
+  useEffect(() => {
+    if (highlightEnquiryId && !hasScrolledToHighlight.current && highlightedRef.current) {
+      highlightedRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      hasScrolledToHighlight.current = true;
+    }
+  }, [highlightEnquiryId, enquiries]);
 
   const filtered = enquiries.filter((enq) => {
     const matchesSearch =
@@ -145,11 +162,17 @@ export function AdminEnquiriesView({
         <div className="space-y-4">
           {filtered.map((enquiry) => {
             const isExpanded = expandedId === enquiry.id;
+            const isHighlighted = highlightEnquiryId === enquiry.id;
 
             return (
               <div
                 key={enquiry.id}
-                className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition"
+                ref={isHighlighted ? highlightedRef : undefined}
+                className={`bg-slate-900 border rounded-2xl overflow-hidden transition ${
+                  isHighlighted
+                    ? 'border-emerald-500 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-950/40'
+                    : 'border-slate-800 hover:border-slate-700'
+                }`}
               >
                 <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   

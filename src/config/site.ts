@@ -32,15 +32,12 @@ export const CONTACT = {
 };
 
 export const SHOP = {
-  minOrder: 50,
+  minOrder: 150,
   freeShippingThreshold: 500,
   shippingFee: 25,
   cryptoDiscount: 5, // 5% discount for verified bank/crypto
   paymentMethods: [
     'Direct Bank Transfer (BACS / Faster Payments)',
-    'Debit / Credit Card (Visa, Mastercard)',
-    'Official Marine Proforma Invoice',
-    'Marine Commercial Finance / Hire Purchase'
   ],
 };
 
@@ -82,18 +79,6 @@ export const REPLY = {
       closing: 'Account details: Solent Marine Outboards UK Ltd, Sort Code: 20-45-45, Account: 83920194.',
       instantRailNote: 'Faster Payments usually arrive within 10 minutes.',
     },
-    {
-      id: 'card',
-      label: 'Debit / Credit Card Online Payment',
-      opening: 'Secure card payment link for {amount} (Ref: {ref}):',
-      closing: 'Click the link sent via your invoice email to complete payment via our 3D-Secure portal.',
-    },
-    {
-      id: 'finance',
-      label: 'Marine Finance / Monthly Installments',
-      opening: 'Your provisional application for {amount} against reference {ref} is logged.',
-      closing: 'Our marine finance desk will contact you within 2 hours to finalize 12-60 month paperwork.',
-    }
   ],
 };
 
@@ -215,10 +200,6 @@ export const FAQ = [
   {
     question: 'How are outboard motors delivered across the UK?',
     answer: 'Portable engines (2.5HP - 6HP) arrive via tracked express courier in reinforced packaging. Mid-range and high-power engines (9.9HP+) are strapped to custom timber pallets and delivered via tail-lift transport with booked delivery slots across England, Wales, Scotland, and offshore islands.'
-  },
-  {
-    question: 'Can I purchase an engine using monthly marine finance?',
-    answer: 'Yes, we partner with leading UK marine lenders offering flexible finance packages spanning 12 to 60 months with competitive APR rates. Use our interactive finance calculator on any product page or contact our finance team.'
   },
   {
     question: 'What are the rules regarding 2-stroke outboard motors in the UK?',

@@ -414,10 +414,6 @@ export function PrivacyView() {
           We employ cookies exclusively to keep track of engine shopping basket quantities, comparison tray selections, and analytical metrics to optimize our mobile design ratios across Google and Bing index engines.
         </p>
 
-        <h3 className="font-bold text-slate-900 text-md mt-6">3. Outboard Finance Parameters</h3>
-        <p>
-          When deploying our in-app interactive finance calculator, any inputs are evaluated serverless-ly on active React state and are never transferred to external marketers.
-        </p>
       </div>
     </div>
   );

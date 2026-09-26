@@ -28,8 +28,8 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-xl border border-slate-900/40 bg-slate-900/20">
             <ShieldCheck className="w-10 h-10 text-emerald-400 shrink-0" />
             <div>
-              <h4 className="font-semibold text-white text-sm">FCA Compliant Finance Partners</h4>
-              <p className="text-xs text-slate-400 mt-0.5">FCA regulated 9.9% APR Hire Purchase lines to finance motor setups over 12-60 months.</p>
+              <h4 className="font-semibold text-white text-sm">Secure UK Bank Transfer</h4>
+              <p className="text-xs text-slate-400 mt-0.5">Every order settled by direct BACS / Faster Payments transfer to our official UK dealership account.</p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-xl border border-slate-900/40 bg-slate-900/20">

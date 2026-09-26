@@ -7,5 +7,12 @@ export default function AdminClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const highlightOrderId = searchParams.get('order') || undefined;
-  return <AdminView onNavigateHome={() => router.push('/')} initialOrderId={highlightOrderId} />;
+  const highlightEnquiryId = searchParams.get('enquiry') || undefined;
+  return (
+    <AdminView
+      onNavigateHome={() => router.push('/')}
+      initialOrderId={highlightOrderId}
+      initialEnquiryId={highlightEnquiryId}
+    />
+  );
 }

@@ -5,7 +5,6 @@
 
 import React, { useState } from 'react';
 import { Product, Review } from '../../types';
-import FinanceCalculator from '../FinanceCalculator';
 import { Star, ShieldAlert, BadgeInfo, Scale, ChevronLeft, MapPin, CheckCircle, Ship, AlertCircle } from 'lucide-react';
 
 interface ProductDetailsViewProps {
@@ -306,7 +305,7 @@ export default function ProductDetailsView({
           </div>
         </div>
 
-        {/* Right Side: Buying Controls, Shaft Chooser, Compare Tray Integration & Finance Engine */}
+        {/* Right Side: Buying Controls, Shaft Chooser, Compare Tray Integration */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
           <div className="bg-white border border-slate-205 rounded-2xl p-6 shadow-sm space-y-6">
             <div>
@@ -433,11 +432,6 @@ export default function ProductDetailsView({
               </button>
             </div>
           </div>
-
-          {/* Embedded Finance Calculator */}
-          {product.priceGbp >= 350 && (
-            <FinanceCalculator productPrice={product.priceGbp * quantity} />
-          )}
         </div>
       </div>
     </div>

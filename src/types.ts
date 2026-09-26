@@ -113,12 +113,3 @@ export interface CompareList {
   products: Product[];
 }
 
-export interface FinancePlan {
-  productPrice: number;
-  depositGbp: number;
-  termMonths: 12 | 24 | 36 | 48 | 60;
-  aprPercent: number; // e.g., 9.9
-  monthlyPaymentGbp: number;
-  totalPayableGbp: number;
-  totalInterestGbp: number;
-}
