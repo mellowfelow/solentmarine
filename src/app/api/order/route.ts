@@ -51,9 +51,7 @@ export async function POST(request: Request) {
   });
 
   const currency = REPLY.currency.symbol;
-  const itemsHtml = items
-    .map((i) => `${i.quantity}x <strong>${i.name}</strong>${i.shaft ? ` (${i.shaft})` : ''} — ${currency}${i.price.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`)
-    .join('<br/>');
+  const lineItems = items.map((i) => ({ name: i.name, qty: i.quantity, price: i.price, shaft: i.shaft, currency }));
 
   const notifyHtml = buildEmailHtml({
     title: 'New Order Reservation',
@@ -66,7 +64,7 @@ export async function POST(request: Request) {
       { label: 'Phone', value: customerPhone || '—' },
       { label: 'Delivery Address', value: deliveryAddress || '—' },
       { label: 'Delivery Method', value: deliveryMethod || '—' },
-      { label: 'Items Reserved', html: itemsHtml, block: true },
+      { label: 'Items Reserved', items: lineItems },
       { label: 'Subtotal', value: `${currency}${subtotal.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
       { label: 'Shipping', value: `${currency}${shipping.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
       { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true },
@@ -88,7 +86,7 @@ export async function POST(request: Request) {
     refBadge: orderRef,
     intro: `Hi ${customerName},<br/><br/>Thank you for your order reservation. Our rigging desk will confirm stock, PDI timetable and send secure payment details within ${REPLY.deadlineHours} hours.`,
     rows: [
-      { label: 'Items Reserved', html: itemsHtml, block: true },
+      { label: 'Items Reserved', items: lineItems },
       { label: 'Total Amount Due', value: `${currency}${total.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, highlight: true }
     ],
     cta: { label: 'Contact Rigging Desk', url: `mailto:${REPLY.channels.email}` }

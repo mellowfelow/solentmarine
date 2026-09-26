@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { X, Trash2, ShoppingBag, Truck, CheckCircle, MessageCircle, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, Trash2, ShoppingBag, Truck, CheckCircle, MessageCircle, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { CartItem } from '../types';
 import { CONTACT, SHOP, REPLY } from '../config/site';
 import CopyField from './CopyField';
@@ -39,6 +39,8 @@ export default function BasketDrawer({
   const [city, setCity] = useState('');
   const [postcode, setPostcode] = useState('');
   const [notes, setNotes] = useState('');
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
@@ -69,9 +71,6 @@ export default function BasketDrawer({
     setOrderRef(newRef);
     setCheckoutStep('details');
   };
-
-  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
-  const [orderError, setOrderError] = useState<string | null>(null);
 
   const handleCheckoutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -311,13 +310,14 @@ export default function BasketDrawer({
 
                 {/* Dual Direct Checkout Channels */}
                 <div className="space-y-2 pt-2">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center">Choose how to reserve your order</p>
                   <button
                     type="button"
                     onClick={() => handleStartCheckout('whatsapp')}
                     className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow-md transition cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span>Instant WhatsApp Order & Quote</span>
+                    <span>Checkout via WhatsApp</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
@@ -326,8 +326,9 @@ export default function BasketDrawer({
                     onClick={() => handleStartCheckout('email')}
                     className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-xl py-3 px-4 font-bold flex items-center justify-center gap-2 shadow transition cursor-pointer"
                   >
-                    <FileText className="w-4 h-4" />
-                    <span>Bank Invoice / BACS Reservation</span>
+                    <Mail className="w-4 h-4" />
+                    <span>Checkout via Email</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -470,9 +471,14 @@ export default function BasketDrawer({
             <div className="space-y-2 pt-4 border-t border-slate-100">
               <button
                 type="submit"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 text-sm font-bold shadow-md transition cursor-pointer"
+                disabled={isPlacingOrder}
+                className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl py-3 text-sm font-bold shadow-md transition cursor-pointer"
               >
-                {checkoutChannel === 'whatsapp' ? 'Confirm & Send to WhatsApp Rigging Desk' : 'Confirm BACS Invoice Order'}
+                {isPlacingOrder
+                  ? 'Placing your order...'
+                  : checkoutChannel === 'whatsapp'
+                    ? 'Confirm & Send to WhatsApp Rigging Desk'
+                    : 'Confirm & Email Order Reservation'}
               </button>
               <button
                 type="button"

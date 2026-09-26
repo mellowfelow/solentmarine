@@ -64,9 +64,7 @@ export function AdminSendPaymentEmailView({
       { label: 'Selected Payment Rail', value: selectedMethod.label },
       {
         label: 'Items Reserved',
-        html: order.items
-          .map((i) => `<strong>${i.quantity}x ${i.name}</strong>${i.shaft ? ` (${i.shaft})` : ''} - ${REPLY.currency.symbol}${(i.price * i.quantity).toLocaleString()}`)
-          .join('<br>'),
+        items: order.items.map((i) => ({ name: i.name, qty: i.quantity, price: i.price, shaft: i.shaft, currency: REPLY.currency.symbol }))
       },
       { label: 'Total Amount Due', value: `${REPLY.currency.symbol}${order.total.toLocaleString()} ${order.currency}`, highlight: true },
       { label: 'How to Transfer Payment', heading: true },

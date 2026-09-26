@@ -1,5 +1,13 @@
 import { SITE, REPLY } from '../config/site';
 
+export interface EmailLineItem {
+  name: string;
+  qty: number;
+  price: number;
+  shaft?: string;
+  currency?: string;
+}
+
 export interface EmailRow {
   label: string;
   value?: string;
@@ -8,6 +16,8 @@ export interface EmailRow {
   heading?: boolean;
   highlight?: boolean;
   block?: boolean;
+  /** Renders a properly column-aligned Item / Qty / Line Total table instead of a plain value. */
+  items?: EmailLineItem[];
 }
 
 export interface BuildEmailOptions {
@@ -43,6 +53,42 @@ export function buildEmailHtml(opts: BuildEmailOptions): string {
   // Render table rows
   const renderedRows = opts.rows
     .map((row) => {
+      if (row.items) {
+        const currency = row.items[0]?.currency || REPLY.currency.symbol;
+        const itemRows = row.items
+          .map(
+            (it) => `
+          <tr>
+            <td style="padding: 8px 4px 8px 0; font-size: 13px; color: #0f172a; border-bottom: 1px solid #f1f5f9; vertical-align: top;">
+              ${escapeHtml(it.name)}${it.shaft ? `<br/><span style="font-size: 11px; color: #94a3b8;">${escapeHtml(it.shaft)}</span>` : ''}
+            </td>
+            <td style="padding: 8px 4px; font-size: 13px; color: #334155; text-align: center; border-bottom: 1px solid #f1f5f9; vertical-align: top; white-space: nowrap;">
+              ${it.qty}
+            </td>
+            <td style="padding: 8px 0 8px 4px; font-size: 13px; font-weight: 700; color: #0f172a; text-align: right; border-bottom: 1px solid #f1f5f9; vertical-align: top; white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+              ${currency}${(it.price * it.qty).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </td>
+          </tr>
+        `
+          )
+          .join('');
+
+        return `
+          <tr>
+            <td colspan="2" style="padding: 4px 0 12px 0;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td style="padding: 0 4px 6px 0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; border-bottom: 1px solid #e2e8f0;">Item</td>
+                  <td style="padding: 0 4px 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; text-align: center; border-bottom: 1px solid #e2e8f0; width: 44px;">Qty</td>
+                  <td style="padding: 0 0 6px 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; text-align: right; border-bottom: 1px solid #e2e8f0; width: 100px;">Line Total</td>
+                </tr>
+                ${itemRows}
+              </table>
+            </td>
+          </tr>
+        `;
+      }
+
       if (row.heading) {
         return `
           <tr>
