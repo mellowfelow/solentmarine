@@ -10,7 +10,7 @@ import {
   Anchor,
   Building
 } from 'lucide-react';
-import { StoredEnquiry } from '../../lib/enquiryStore';
+import type { StoredEnquiry } from '../../lib/enquiryStore';
 import { REPLY, SITE } from '../../config/site';
 import { buildEmailHtml } from '../../lib/emailTemplate';
 

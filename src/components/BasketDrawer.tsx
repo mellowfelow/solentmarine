@@ -70,16 +70,55 @@ export default function BasketDrawer({
     setCheckoutStep('details');
   };
 
-  const handleCheckoutSubmit = (e: React.FormEvent) => {
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
+
+  const handleCheckoutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setOrderError(null);
 
     if (checkoutChannel === 'whatsapp') {
       const itemsList = cart.map(item => `• ${item.quantity}x ${item.product.name} (${item.selectedShaft}) - £${(item.product.priceGbp * item.quantity).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`).join('\n');
       const text = `*SOLENT MARINE OUTBOARDS ORDER RESERVATION*\n\n*Order Ref:* ${orderRef}\n*Customer:* ${fullname}\n*Phone:* ${phone}\n*Email:* ${email}\n*Delivery Address:* ${address}, ${city}, ${postcode}\n*Logistics Method:* ${shippingOption.toUpperCase()}\n\n*Selected Engines & Accessories:*\n${itemsList}\n\n*Subtotal:* £${itemsSubtotal.toLocaleString()}\n*Shipping:* £${shippingCost.toLocaleString()}\n*Grand Total (inc. 20% UK VAT):* £${grandTotal.toLocaleString()}\n\n*Notes:* ${notes || 'None'}\n\nPlease confirm stock reservation, PDI timetable, and send BACS/Bank payment details.`;
-      
+
       const waUrl = `https://wa.me/${CONTACT.whatsapp.replace('+', '')}?text=${encodeURIComponent(text)}`;
-      // Window open synchronously
+      // Window open synchronously (must happen before the await below, or popup blockers kill it)
       window.open(waUrl, '_blank');
+    }
+
+    setIsPlacingOrder(true);
+    try {
+      const res = await fetch('/api/order/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderRef,
+          channel: checkoutChannel,
+          customerName: fullname,
+          customerEmail: email,
+          customerPhone: phone,
+          deliveryAddress: `${address}, ${city}, ${postcode}`,
+          deliveryMethod: shippingOption,
+          notes,
+          items: cart.map((item) => ({
+            name: item.product.name,
+            quantity: item.quantity,
+            shaft: item.selectedShaft,
+            price: item.product.priceGbp
+          })),
+          subtotal: itemsSubtotal,
+          shipping: shippingCost,
+          total: grandTotal
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to save order.');
+      }
+    } catch (err: any) {
+      setOrderError(err?.message || 'Order could not be saved, but your reservation message was sent. Our team will still follow up — please also call us to confirm.');
+    } finally {
+      setIsPlacingOrder(false);
     }
 
     setCheckoutStep('success');
@@ -458,6 +497,9 @@ export default function BasketDrawer({
                 <p className="text-slate-500 text-xs">
                   Reference: <span className="font-mono font-bold text-slate-900">{orderRef}</span>
                 </p>
+                {orderError && (
+                  <p className="text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-3 py-2 text-[11px] mt-2">{orderError}</p>
+                )}
               </div>
 
               {/* BACS / Bank Transfer Details with Click-To-Copy Fields */}

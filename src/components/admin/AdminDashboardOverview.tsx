@@ -14,8 +14,8 @@ import {
   Zap,
   PackageCheck
 } from 'lucide-react';
-import { StoredOrder } from '../../lib/orderStore';
-import { StoredEnquiry } from '../../lib/enquiryStore';
+import type { StoredOrder } from '../../lib/orderStore';
+import type { StoredEnquiry } from '../../lib/enquiryStore';
 import { REPLY, SITE } from '../../config/site';
 
 interface AdminDashboardOverviewProps {

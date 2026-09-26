@@ -39,6 +39,7 @@ export default function Navbar({
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isMobileShopOpen, setIsMobileShopOpen] = useState(false);
   const shopMenuRef = useRef<HTMLDivElement>(null);
+  const shopCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -49,6 +50,23 @@ export default function Navbar({
     if (isShopOpen) document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isShopOpen]);
+
+  function clearShopCloseTimer() {
+    if (shopCloseTimer.current) {
+      clearTimeout(shopCloseTimer.current);
+      shopCloseTimer.current = null;
+    }
+  }
+
+  function openShopMenu() {
+    clearShopCloseTimer();
+    setIsShopOpen(true);
+  }
+
+  function scheduleCloseShopMenu() {
+    clearShopCloseTimer();
+    shopCloseTimer.current = setTimeout(() => setIsShopOpen(false), 150);
+  }
 
   function goToShop(slug?: string) {
     setIsShopOpen(false);
@@ -124,12 +142,18 @@ export default function Navbar({
             );
           })}
 
-          {/* Shop Motors dropdown */}
-          <div ref={shopMenuRef} className="relative">
+          {/* Shop Motors dropdown — hover opens the panel, click navigates straight to the shop */}
+          <div
+            ref={shopMenuRef}
+            className="relative"
+            onMouseEnter={openShopMenu}
+            onMouseLeave={scheduleCloseShopMenu}
+          >
             <button
               type="button"
               id="nav-shop"
-              onClick={() => setIsShopOpen((v) => !v)}
+              onClick={() => goToShop()}
+              onFocus={openShopMenu}
               aria-expanded={isShopOpen}
               aria-haspopup="true"
               className={`flex items-center gap-1 transition-colors py-2 border-b-2 hover:text-white cursor-pointer ${

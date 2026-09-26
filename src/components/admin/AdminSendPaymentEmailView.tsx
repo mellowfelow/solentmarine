@@ -13,7 +13,7 @@ import {
   ShieldCheck,
   AlertCircle
 } from 'lucide-react';
-import { StoredOrder } from '../../lib/orderStore';
+import type { StoredOrder } from '../../lib/orderStore';
 import { REPLY, SITE } from '../../config/site';
 import { paymentMethodParts, instructionsParts, paymentTermsLines, paymentTermsHtml } from '../../lib/order';
 import { buildEmailHtml } from '../../lib/emailTemplate';

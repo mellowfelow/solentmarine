@@ -16,7 +16,7 @@ import {
   MapPin,
   FileText
 } from 'lucide-react';
-import { StoredOrder, OrderStatus, OrderChannel } from '../../lib/orderStore';
+import type { StoredOrder, OrderStatus, OrderChannel } from '../../lib/orderStore';
 import { REPLY } from '../../config/site';
 
 interface AdminOrdersViewProps {

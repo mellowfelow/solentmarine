@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAdminPasscode } from '../../lib/useAdminPasscode';
 import { PasscodeGate } from '../admin/PasscodeGate';
 import { AdminLayout } from '../admin/AdminLayout';
@@ -7,29 +7,16 @@ import { AdminOrdersView } from '../admin/AdminOrdersView';
 import { AdminEnquiriesView } from '../admin/AdminEnquiriesView';
 import { AdminSendPaymentEmailView } from '../admin/AdminSendPaymentEmailView';
 import { AdminReplyEnquiryView } from '../admin/AdminReplyEnquiryView';
-import { 
-  getStoredOrders, 
-  deleteStoredOrder, 
-  updateStoredOrderStatus, 
-  StoredOrder, 
-  OrderStatus 
-} from '../../lib/orderStore';
-import { 
-  getStoredEnquiries, 
-  deleteStoredEnquiry, 
-  updateStoredEnquiryStatus, 
-  StoredEnquiry 
-} from '../../lib/enquiryStore';
-import { sendMail } from '../../lib/mailer';
-import { REPLY, SITE } from '../../config/site';
+import type { StoredOrder, OrderStatus } from '../../lib/orderStore';
+import type { StoredEnquiry } from '../../lib/enquiryStore';
 
 interface AdminViewProps {
   onNavigateHome?: () => void;
 }
 
 export function AdminView({ onNavigateHome }: AdminViewProps) {
-  const { isUnlocked, unlock, lock, error } = useAdminPasscode();
-  
+  const { isUnlocked, unlock, lock, error, getAuthHeaders } = useAdminPasscode();
+
   const [activeTab, setActiveTab] = useState<'dashboard' | 'orders' | 'enquiries' | 'send-payment-email' | 'reply-enquiry'>('dashboard');
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [enquiries, setEnquiries] = useState<StoredEnquiry[]>([]);
@@ -37,27 +24,31 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
   const [selectedEnquiry, setSelectedEnquiry] = useState<StoredEnquiry | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const refreshData = async () => {
+  const refreshData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const [ordList, enqList] = await Promise.all([
-        getStoredOrders(),
-        getStoredEnquiries(),
+      const headers = getAuthHeaders();
+      const [ordRes, enqRes] = await Promise.all([
+        fetch('/api/admin/orders/', { headers }),
+        fetch('/api/admin/enquiries/', { headers })
       ]);
-      setOrders(ordList);
-      setEnquiries(enqList);
+      const ordData = await ordRes.json();
+      const enqData = await enqRes.json();
+      setOrders(ordData.orders || []);
+      setEnquiries(enqData.enquiries || []);
     } catch (err) {
       console.error('Error fetching admin store data:', err);
     } finally {
       setIsLoading(false);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isUnlocked) {
       refreshData();
     }
-  }, [isUnlocked]);
+  }, [isUnlocked, refreshData]);
 
   // Order Handlers
   const handleSelectOrderForPayment = (order: StoredOrder) => {
@@ -66,32 +57,29 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
   };
 
   const handleUpdateOrderStatus = async (orderId: string, status: OrderStatus) => {
-    await updateStoredOrderStatus(orderId, status);
+    await fetch('/api/admin/orders/', {
+      method: 'PATCH',
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: orderId, status })
+    });
     await refreshData();
   };
 
   const handleDeleteOrder = async (orderId: string) => {
-    await deleteStoredOrder(orderId);
+    await fetch(`/api/admin/orders/?id=${encodeURIComponent(orderId)}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders()
+    });
     await refreshData();
   };
 
   const handleSendPaymentEmail = async (orderId: string, emailHtml: string) => {
-    const targetOrder = orders.find((o) => o.id === orderId);
-    if (targetOrder) {
-      // Send mail via lazy mailer singleton
-      await sendMail({
-        to: targetOrder.customerEmail,
-        subject: `Payment Instructions for Solent Marine Order ${orderId}`,
-        html: emailHtml,
-        replyTo: REPLY.channels.email,
-      });
-
-      // Update status in store
-      await updateStoredOrderStatus(orderId, 'payment-sent', {
-        paymentSentAt: new Date().toISOString(),
-      });
-      await refreshData();
-    }
+    await fetch('/api/admin/send-payment-email/', {
+      method: 'POST',
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId, emailHtml })
+    });
+    await refreshData();
   };
 
   // Enquiry Handlers
@@ -101,7 +89,10 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
   };
 
   const handleDeleteEnquiry = async (enquiryId: string) => {
-    await deleteStoredEnquiry(enquiryId);
+    await fetch(`/api/admin/enquiries/?id=${encodeURIComponent(enquiryId)}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders()
+    });
     await refreshData();
   };
 
@@ -109,25 +100,12 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
     enquiryId: string,
     replyData: { subject: string; message: string; emailHtml: string }
   ) => {
-    const target = enquiries.find((e) => e.id === enquiryId);
-    if (target) {
-      // Send mail via lazy mailer
-      await sendMail({
-        to: target.email,
-        subject: replyData.subject,
-        html: replyData.emailHtml,
-        replyTo: REPLY.channels.email,
-      });
-
-      // Update in store
-      await updateStoredEnquiryStatus(enquiryId, 'replied', {
-        date: new Date().toISOString(),
-        subject: replyData.subject,
-        message: replyData.message,
-        sender: 'Solent Marine Technical Desk',
-      });
-      await refreshData();
-    }
+    await fetch('/api/admin/reply-enquiry/', {
+      method: 'POST',
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enquiryId, ...replyData })
+    });
+    await refreshData();
   };
 
   // If locked, render the secure PasscodeGate

@@ -14,7 +14,7 @@ import {
   Compass,
   CornerDownRight
 } from 'lucide-react';
-import { StoredEnquiry, EnquiryType, EnquiryStatus } from '../../lib/enquiryStore';
+import type { StoredEnquiry, EnquiryType, EnquiryStatus } from '../../lib/enquiryStore';
 
 interface AdminEnquiriesViewProps {
   enquiries: StoredEnquiry[];

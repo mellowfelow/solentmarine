@@ -59,9 +59,41 @@ export function FAQView({ onNavigate }: NavProp) {
 // =============== CONTACT VIEW ===============
 export function ContactView({ onNavigate }: NavProp) {
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    hull: '',
+    shaft: 'Short Shaft (S) - 15"',
+    message: ''
+  });
+
+  const updateField = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to send enquiry.');
+      }
+      setSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(err?.message || 'Something went wrong sending your enquiry. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -145,6 +177,8 @@ export function ContactView({ onNavigate }: NavProp) {
                     type="text"
                     id="contact-name"
                     required
+                    value={form.name}
+                    onChange={updateField('name')}
                     className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                     placeholder="e.g. Admiral John Smith"
                   />
@@ -155,6 +189,8 @@ export function ContactView({ onNavigate }: NavProp) {
                     type="tel"
                     id="contact-phone"
                     required
+                    value={form.phone}
+                    onChange={updateField('phone')}
                     className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                     placeholder="e.g. +44 7123 456789"
                   />
@@ -167,6 +203,8 @@ export function ContactView({ onNavigate }: NavProp) {
                   type="email"
                   id="contact-email"
                   required
+                  value={form.email}
+                  onChange={updateField('email')}
                   className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                   placeholder="e.g. john.smith@boatmail.co.uk"
                 />
@@ -178,6 +216,8 @@ export function ContactView({ onNavigate }: NavProp) {
                   <input
                     type="text"
                     id="contact-hull"
+                    value={form.hull}
+                    onChange={updateField('hull')}
                     className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                     placeholder="e.g. Brig Falcon RIB / Yacht Aux"
                   />
@@ -186,6 +226,8 @@ export function ContactView({ onNavigate }: NavProp) {
                   <label htmlFor="contact-shaft" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Interested Shaft</label>
                   <select
                     id="contact-shaft"
+                    value={form.shaft}
+                    onChange={updateField('shaft')}
                     className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                   >
                     <option>Short Shaft (S) - 15"</option>
@@ -202,17 +244,24 @@ export function ContactView({ onNavigate }: NavProp) {
                   id="contact-msg"
                   rows={4}
                   required
+                  value={form.message}
+                  onChange={updateField('message')}
                   className="block w-full border border-slate-300 rounded-md p-2 text-sm bg-white text-slate-900 focus:ring-sky-500"
                   placeholder="Describe your vessel, safety requirements, budget, or model requests..."
                 ></textarea>
               </div>
 
+              {submitError && (
+                <div className="p-3 rounded-md bg-red-50 border border-red-200 text-red-700 text-xs">{submitError}</div>
+              )}
+
               <button
                 type="submit"
                 id="contact-submit-btn"
-                className="w-full bg-slate-900 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-slate-800 transition shadow-sm cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full bg-slate-900 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-slate-800 disabled:opacity-60 disabled:cursor-not-allowed transition shadow-sm cursor-pointer"
               >
-                Dispatch Commission Request
+                {isSubmitting ? 'Sending...' : 'Dispatch Commission Request'}
               </button>
             </form>
           )}

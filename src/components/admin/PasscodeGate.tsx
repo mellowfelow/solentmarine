@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Lock, KeyRound, ShieldAlert, CheckCircle2, ArrowRight, Eye, EyeOff } from 'lucide-react';
-import { SITE } from '../../config/site';
+import { Lock, ShieldAlert, ArrowRight, Eye, EyeOff, Loader2 } from 'lucide-react';
 
 interface PasscodeGateProps {
-  onUnlock: (passcode: string) => boolean;
+  onUnlock: (passcode: string) => Promise<boolean> | boolean;
   error?: string | null;
 }
 
@@ -11,23 +10,21 @@ export function PasscodeGate({ onUnlock, error }: PasscodeGateProps) {
   const [passcode, setPasscode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLocalError(null);
     if (!passcode.trim()) {
       setLocalError('Please enter the administrative passcode.');
       return;
     }
-    const success = onUnlock(passcode);
+    setIsSubmitting(true);
+    const success = await onUnlock(passcode);
+    setIsSubmitting(false);
     if (!success) {
       setLocalError('Invalid passcode. Access denied.');
     }
-  };
-
-  const handleQuickDemoFill = () => {
-    setPasscode('solent-admin-2026');
-    setLocalError(null);
   };
 
   return (
@@ -88,24 +85,19 @@ export function PasscodeGate({ onUnlock, error }: PasscodeGateProps) {
 
           <button
             type="submit"
-            className="w-full py-3 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-sky-950/50 flex items-center justify-center gap-2 cursor-pointer"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition shadow-lg shadow-sky-950/50 flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Unlock Admin Dashboard</span>
-            <ArrowRight className="w-4 h-4" />
+            {isSubmitting ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <>
+                <span>Unlock Admin Dashboard</span>
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
           </button>
         </form>
-
-        {/* Development / Demo Quick Passcode Helper */}
-        <div className="pt-4 border-t border-slate-800/80 text-center">
-          <button
-            type="button"
-            onClick={handleQuickDemoFill}
-            className="text-[11px] text-slate-400 hover:text-sky-300 underline transition cursor-pointer flex items-center justify-center gap-1 mx-auto"
-          >
-            <KeyRound className="w-3.5 h-3.5" />
-            <span>Use demo passcode: <code className="font-mono text-sky-400">solent-admin-2026</code></span>
-          </button>
-        </div>
 
       </div>
     </div>

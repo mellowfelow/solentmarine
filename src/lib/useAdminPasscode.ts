@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { validatePasscode, DEFAULT_DEV_PASSCODE } from './adminAuth';
 
 const SESSION_KEY = 'solent_marine_admin_passcode';
 
@@ -10,23 +9,45 @@ export function useAdminPasscode() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem(SESSION_KEY);
-      if (stored && validatePasscode(stored)) {
-        setPasscode(stored);
-        setIsUnlocked(true);
+    (async () => {
+      try {
+        const stored = sessionStorage.getItem(SESSION_KEY);
+        if (stored) {
+          const ok = await verifyPasscode(stored);
+          if (ok) {
+            setPasscode(stored);
+            setIsUnlocked(true);
+          } else {
+            sessionStorage.removeItem(SESSION_KEY);
+          }
+        }
+      } catch {
+        // Ignore sessionStorage access errors
+      } finally {
+        setIsLoading(false);
       }
-    } catch {
-      // Ignore sessionStorage access errors
-    } finally {
-      setIsLoading(false);
-    }
+    })();
   }, []);
 
-  const unlock = (inputPasscode: string): boolean => {
+  async function verifyPasscode(candidate: string): Promise<boolean> {
+    try {
+      const res = await fetch('/api/admin/login/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ passcode: candidate })
+      });
+      const data = await res.json();
+      return Boolean(data.ok);
+    } catch {
+      return false;
+    }
+  }
+
+  const unlock = async (inputPasscode: string): Promise<boolean> => {
     setError(null);
     const clean = inputPasscode.trim();
-    if (validatePasscode(clean)) {
+    const ok = await verifyPasscode(clean);
+    if (ok) {
       setPasscode(clean);
       setIsUnlocked(true);
       try {
@@ -35,10 +56,9 @@ export function useAdminPasscode() {
         // Ignore
       }
       return true;
-    } else {
-      setError('Invalid admin passcode. Please check your credentials.');
-      return false;
     }
+    setError('Invalid admin passcode. Please check your credentials.');
+    return false;
   };
 
   const lock = () => {
@@ -53,7 +73,7 @@ export function useAdminPasscode() {
 
   const getAuthHeaders = (): Record<string, string> => {
     return {
-      'X-Admin-Passcode': passcode || DEFAULT_DEV_PASSCODE,
+      'X-Admin-Passcode': passcode
     };
   };
 
@@ -64,6 +84,6 @@ export function useAdminPasscode() {
     error,
     unlock,
     lock,
-    getAuthHeaders,
+    getAuthHeaders
   };
 }
