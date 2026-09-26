@@ -21,13 +21,18 @@ v1 picked category-page primary keywords by raw volume, which let **Informationa
 ---
 
 ## Homepage (`/`)
+
+**Corrected — v1/early-v2 wrongly gave the homepage a pass to use Informational primary keywords ("outboard motor," "outboard motors") on the reasoning that they're "brand-identity terms." That contradicts the same T/C-priority rule enforced on every other page. The homepage is the highest-value sales page on the site — it doesn't get an exception.** Real Transactional/Commercial candidates exist and are used instead:
+
 | Keyword | Volume | KD | Intent |
 |---|---|---|---|
-| outboard motor | 1,300 | 21 | Informational |
-| outboard motors | 1,000 | 28 | Informational |
 | outboard | 720 | 31 | Commercial |
+| outboard boat | 720 | 29 | Commercial |
+| buy outboard motor | 170 | 9 | Transactional |
 
-These stay on the homepage as brand-identity terms (max 3, per the skill's homepage cap) — they're the site's core self-description, not a sales-conversion primary, so Informational is acceptable here specifically.
+(Max 3 primary-tier keywords on homepage, per the skill's homepage cap — no separate secondary tier here.)
+
+"Outboard motor(s)" as phrases still appear naturally in the H1/title/body since they're literally the business's name and category — that's unavoidable and fine as incidental on-page language — but they are not the *targeted* ranking keywords driving homepage optimisation decisions. "Outboard dealer" (170, KD 42, Commercial) is a strong 4th-choice alternate if the site wants to lean harder on authorized-dealer positioning instead of the generic "buy" CTA term.
 
 ---
 
