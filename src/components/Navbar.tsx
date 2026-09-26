@@ -14,7 +14,6 @@ interface NavbarProps {
   cart: CartItem[];
   compareList: Product[];
   onToggleCart: () => void;
-  onOpenCompare: () => void;
   onOpenMobileMenu: () => void;
   isMobileMenuOpen: boolean;
 }
@@ -25,7 +24,6 @@ export default function Navbar({
   cart,
   compareList,
   onToggleCart,
-  onOpenCompare,
   onOpenMobileMenu,
   isMobileMenuOpen
 }: NavbarProps) {
@@ -35,8 +33,6 @@ export default function Navbar({
   const navItemsAfterShop = [
     { label: 'Guides', view: 'blog' },
     { label: 'About Us', view: 'about' },
-    { label: 'Technical FAQ', view: 'faq' },
-    { label: 'Shipping & Delivery', view: 'shipping' },
     { label: 'Contact Us', view: 'contact' }
   ];
 
@@ -194,6 +190,16 @@ export default function Navbar({
                       </li>
                     ))}
                   </ul>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsShopOpen(false);
+                      onNavigate('brands');
+                    }}
+                    className="block w-full text-left px-2.5 py-1.5 mt-1 rounded-md text-sm font-semibold text-sky-600 hover:bg-sky-50 transition"
+                  >
+                    All Brands →
+                  </button>
                 </div>
               </div>
             )}
@@ -225,17 +231,19 @@ export default function Navbar({
           <button
             type="button"
             id="nav-compare-btn"
-            onClick={onOpenCompare}
-            title="Open Outboard Specifications Comparison Table"
-            className="relative p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-1"
+            onClick={() => onNavigate('compare')}
+            title="Open Product Comparison Page"
+            className={`relative p-2 rounded-lg transition flex items-center gap-1 ${
+              currentView === 'compare' ? 'text-white bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
           >
             <Scale className="w-5 h-5" />
             {compareList.length > 0 && (
-              <span className="bg-sky-505 bg-sky-600 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center border border-slate-900 animate-pulse">
+              <span className="bg-sky-600 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center border border-slate-900">
                 {compareList.length}
               </span>
             )}
-            <span className="hidden xl:inline text-xs font-semibold">Compare specs</span>
+            <span className="hidden xl:inline text-xs font-semibold">Compare</span>
           </button>
 
           {/* Cart Trigger button */}
@@ -344,6 +352,16 @@ export default function Navbar({
                         {brand.name}
                       </button>
                     ))}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsMobileShopOpen(false);
+                        onNavigate('brands');
+                      }}
+                      className="block w-full text-left px-3 py-1.5 rounded-md text-sm font-semibold text-sky-400 hover:bg-slate-800 transition"
+                    >
+                      All Brands →
+                    </button>
                   </div>
                 </div>
               )}

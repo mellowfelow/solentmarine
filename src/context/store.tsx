@@ -17,7 +17,6 @@ interface StoreContextValue {
   cart: CartItem[];
   compareList: Product[];
   isCartOpen: boolean;
-  isCompareOpen: boolean;
   isMobileMenuOpen: boolean;
   toastMessage: string | null;
   addToBasket: (product: Product, shaft: string) => void;
@@ -28,7 +27,6 @@ interface StoreContextValue {
   removeFromCompare: (product: Product) => void;
   clearCompare: () => void;
   setIsCartOpen: (open: boolean) => void;
-  setIsCompareOpen: (open: boolean) => void;
   setIsMobileMenuOpen: (open: boolean) => void;
   triggerToast: (message: string) => void;
 }
@@ -39,7 +37,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [compareList, setCompareList] = useState<Product[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -88,8 +85,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         triggerToast('Engine is already in specifications comparison list.');
         return prev;
       }
-      if (prev.length >= 3) {
-        triggerToast('Maximum specifications limit reached (Max 3 outboards side-by-side).');
+      if (prev.length >= 4) {
+        triggerToast('Maximum comparison limit reached (max 4 items side-by-side).');
         return prev;
       }
       triggerToast(`Added ${product.name} to side-by-side technical table.`);
@@ -113,7 +110,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         cart,
         compareList,
         isCartOpen,
-        isCompareOpen,
         isMobileMenuOpen,
         toastMessage,
         addToBasket,
@@ -124,7 +120,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         removeFromCompare,
         clearCompare,
         setIsCartOpen,
-        setIsCompareOpen,
         setIsMobileMenuOpen,
         triggerToast
       }}

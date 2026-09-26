@@ -17,7 +17,6 @@ import AnnouncementBar from './AnnouncementBar';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ChatHub from './ChatHub';
-import CompareDrawer from './CompareDrawer';
 import BasketDrawer from './BasketDrawer';
 import { useStore } from '../context/store';
 import { pathForView, viewForPath } from '../lib/navigate';
@@ -29,16 +28,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     cart,
     compareList,
     isCartOpen,
-    isCompareOpen,
     isMobileMenuOpen,
     toastMessage,
     updateCartQuantity,
     removeFromCart,
     clearCart,
-    removeFromCompare,
     clearCompare,
     setIsCartOpen,
-    setIsCompareOpen,
     setIsMobileMenuOpen
   } = useStore();
 
@@ -59,24 +55,23 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         cart={cart}
         compareList={compareList}
         onToggleCart={() => setIsCartOpen(!isCartOpen)}
-        onOpenCompare={() => setIsCompareOpen(true)}
         onOpenMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         isMobileMenuOpen={isMobileMenuOpen}
       />
 
-      {compareList.length > 0 && (
+      {compareList.length > 0 && currentView !== 'compare' && (
         <div id="floating-compare-trigger" className="fixed bottom-20 left-6 z-40 bg-slate-900 border border-slate-700 text-white p-3 rounded-full shadow-2xl flex items-center gap-3 animate-slide-up select-none">
           <div className="bg-sky-600 p-2 rounded-full">
             <Scale className="w-4 h-4 text-white" />
           </div>
           <div className="text-xs font-sans pr-2">
-            <p className="font-bold text-white">Compare {compareList.length}/3 Outboards</p>
+            <p className="font-bold text-white">Compare {compareList.length}/4 items</p>
             <button
               type="button"
-              onClick={() => setIsCompareOpen(true)}
+              onClick={() => router.push('/compare/')}
               className="text-[10px] text-sky-400 font-semibold hover:underline block leading-tight text-left cursor-pointer"
             >
-              Open specs table &rarr;
+              Open comparison page &rarr;
             </button>
           </div>
           <button
@@ -106,14 +101,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         onUpdateQuantity={updateCartQuantity}
         onRemoveItem={removeFromCart}
         onClearCart={clearCart}
-      />
-
-      <CompareDrawer
-        isOpen={isCompareOpen}
-        compareList={compareList}
-        onRemove={removeFromCompare}
-        onClear={clearCompare}
-        onClose={() => setIsCompareOpen(false)}
       />
 
       {toastMessage && (

@@ -3,11 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
-import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight } from 'lucide-react';
+import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft } from 'lucide-react';
 import { CATEGORIES, BRANDS } from '../../config/site';
+
+const PAGE_SIZE = 12;
 
 interface ShopViewProps {
   products: Product[];
@@ -126,6 +128,25 @@ export default function ShopView({
     return result;
   }, [scopedProducts, filters, sortBy]);
 
+  // Pagination
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
+
+  useEffect(() => {
+    setPage(1);
+  }, [filters, sortBy, categorySlug, brandSlug]);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const paginatedProducts = useMemo(
+    () => filteredProducts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    [filteredProducts, page]
+  );
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   return (
     <div id="shop-view-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
       {/* Breadcrumb */}
@@ -197,42 +218,83 @@ export default function ShopView({
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Filters (collapsible on mobile, fixed on lg) */}
-        <div className="lg:col-span-4 lg:sticky lg:top-6">
-          <SearchAndFilters
-            filters={filters}
-            onFilterChange={setFilters}
-            maxProductPrice={maxPriceDb}
-            maxHp={maxHpDb}
-          />
+      <div className="space-y-6">
+        {/* Controls toolbar */}
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <button
+              type="button"
+              id="open-filters-btn"
+              onClick={() => setIsFilterOpen(true)}
+              className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-4 py-2.5 text-xs font-bold transition shrink-0"
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+              Filters
+              {(filters.brands.length + filters.categories.length + filters.engineTypes.length + filters.shaftLengths.length + (filters.stockOnly ? 1 : 0)) > 0 && (
+                <span className="bg-sky-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                  {filters.brands.length + filters.categories.length + filters.engineTypes.length + filters.shaftLengths.length + (filters.stockOnly ? 1 : 0)}
+                </span>
+              )}
+            </button>
+            <p className="text-slate-600 font-medium">
+              <span className="font-bold text-slate-900">{filteredProducts.length}</span> products found
+            </p>
+          </div>
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+            <label htmlFor="sort-selection" className="font-semibold text-slate-500 uppercase tracking-widest text-[10px] shrink-0">Sort By:</label>
+            <select
+              id="sort-selection"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="bg-white border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 font-semibold text-slate-800"
+            >
+              <option value="featured">Featured Engine Listing</option>
+              <option value="price-asc">Price: Petrol (Low to High)</option>
+              <option value="price-desc">Price: Petrol (High to Low)</option>
+              <option value="weight-asc">Dry Weight: Lightest First</option>
+              <option value="hp-desc">Horsepower: Strongest First</option>
+            </select>
+          </div>
         </div>
 
-        {/* Right Inventory Grid */}
-        <div className="lg:col-span-8 space-y-6">
-          {/* Controls toolbar */}
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-            <p className="text-slate-600 font-medium">
-              Showing <span className="font-bold text-slate-900">{filteredProducts.length}</span> engines matching selection
-            </p>
-            <div className="flex items-center gap-2">
-              <label htmlFor="sort-selection" className="font-semibold text-slate-500 uppercase tracking-widest text-[10px]">Sort By:</label>
-              <select
-                id="sort-selection"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 font-semibold text-slate-800"
+        {/* Filter Drawer */}
+        {isFilterOpen && (
+          <div id="filter-drawer-backdrop" className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex justify-end">
+            <div
+              id="filter-drawer-panel"
+              className="bg-white w-full max-w-sm h-full shadow-2xl overflow-y-auto p-6 animate-slide-left"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-bold text-slate-900 text-base">Filters</h2>
+                <button
+                  type="button"
+                  id="close-filters-btn"
+                  onClick={() => setIsFilterOpen(false)}
+                  className="p-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+                  aria-label="Close filters"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <SearchAndFilters
+                filters={filters}
+                onFilterChange={setFilters}
+                maxProductPrice={maxPriceDb}
+                maxHp={maxHpDb}
+              />
+              <button
+                type="button"
+                onClick={() => setIsFilterOpen(false)}
+                className="mt-6 w-full bg-sky-600 hover:bg-sky-700 text-white rounded-lg py-3 text-sm font-bold transition sticky bottom-0"
               >
-                <option value="featured">Featured Engine Listing</option>
-                <option value="price-asc">Price: Petrol (Low to High)</option>
-                <option value="price-desc">Price: Petrol (High to Low)</option>
-                <option value="weight-asc">Dry Weight: Lightest First</option>
-                <option value="hp-desc">Horsepower: Strongest First</option>
-              </select>
+                Show {filteredProducts.length} results
+              </button>
             </div>
           </div>
+        )}
 
-          {/* Listing Grid */}
+        {/* Listing Grid */}
+        <div>
           {filteredProducts.length === 0 ? (
             <div className="py-20 text-center border-2 border-dashed border-slate-200 rounded-2xl space-y-4 max-w-md mx-auto">
               <AlertCircle className="w-12 h-12 text-slate-400 mx-auto" />
@@ -261,8 +323,8 @@ export default function ShopView({
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {filteredProducts.map((prod) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {paginatedProducts.map((prod) => {
                 const isTwoStroke = prod.category.includes('two-stroke');
                 const defaultShaft = prod.shaftLengths[0] || 'Short Shaft (S)';
                 
@@ -352,7 +414,7 @@ export default function ShopView({
                           disabled={compareList.some(c => c.id === prod.id)}
                           className="bg-slate-100 hover:bg-slate-200 text-slate-800 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-200 rounded-lg py-2.5 text-xs font-semibold transition"
                         >
-                          {compareList.some(c => c.id === prod.id) ? 'Selected to compare' : 'Compare specifications'}
+                          {compareList.some(c => c.id === prod.id) ? 'Added ✓' : 'Compare'}
                         </button>
                       </div>
 
@@ -370,6 +432,58 @@ export default function ShopView({
                   </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {filteredProducts.length > PAGE_SIZE && (
+            <div className="flex items-center justify-center gap-2 pt-8">
+              <button
+                type="button"
+                id="pagination-prev"
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-1.5">
+                {Array.from({ length: totalPages }).map((_, i) => {
+                  const pageNum = i + 1;
+                  const isActive = pageNum === page;
+                  if (totalPages > 7 && Math.abs(pageNum - page) > 2 && pageNum !== 1 && pageNum !== totalPages) {
+                    if (pageNum === 2 || pageNum === totalPages - 1) {
+                      return <span key={pageNum} className="text-slate-300 px-1">…</span>;
+                    }
+                    return null;
+                  }
+                  return (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      onClick={() => setPage(pageNum)}
+                      className={`min-w-[2.25rem] h-9 px-2 rounded-lg text-xs font-bold transition ${
+                        isActive
+                          ? 'bg-slate-900 text-white'
+                          : 'text-slate-600 hover:bg-slate-100 border border-slate-200'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                id="pagination-next"
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Next page"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           )}
         </div>
