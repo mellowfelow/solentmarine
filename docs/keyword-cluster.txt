@@ -1,36 +1,73 @@
 /* keyword-cluster.txt — flat cluster data, source of truth for "next unused blog cluster"
- * Generated 2026-09-26 from 15 Semrush UK keyword exports (docs/keyword-map.md has full detail + volumes)
+ * Generated 2026-09-26, revised same day (v2 — intent-priority rule corrected, full FAQ mining added,
+ * blog clusters split to one-cluster-one-URL instead of merged).
  * Format: [TYPE] target-url-or-"NEW" | primary keyword | secondary keywords (;-separated)
  * Mark a blog cluster USED once its post is published, by changing [BLOG] to [BLOG-USED].
+ * Primary/secondary on all [SHOP]/[CATEGORY]/[GAP-BRAND] lines are Transactional or Commercial ONLY —
+ * never Informational/Navigational, per the skill's page-mapping intent-priority rule.
  */
 
 [HOME] / | outboard motor | outboard motors; outboard
 [SHOP] /shop/ | outboard motors for sale | marine motors for sale; outboard engines for sale; boat motors for sale; outboard engine for sale
-[CATEGORY] /shop/portable/ | 6hp outboard engine | boat motor 6 hp; outboard motor 6 hp; 4hp outboard motor; 6hp outboard motor; 4hp outboard engine
-[CATEGORY] /shop/mid-range/ | 10 hp outboard | 10hp outboard; boat motor 10hp; 10hp outboard engine; 10 hp outboard boat motor; 15 hp outboard boat motor
-[CATEGORY] /shop/high-horsepower/ | yamaha outboard motor 60hp | yamaha 50 hp outboard engine; 200 hp outboard boat motor; 150 hp outboard for sale; 60 hp outboard for sale; 60hp outboard engine
-[CATEGORY] /shop/electric/ | electric outboard motor | boat motors electric; electric outboard engine; motor for electric; electric outboard; electric boat motor
-[CATEGORY] /shop/parts/ | outboard engine fuel tank | outboard motor fuel tank; two stroke oil for outboard motor; yamaha spare parts catalogue; mercury outboard spare parts
+[CATEGORY] /shop/portable/ | 5hp outboard engine | 6hp outboard for sale; 2.5 hp outboard motor; outboard engine 5hp; outboard engine 6hp; honda outboard motor 5 hp
+[CATEGORY] /shop/mid-range/ | boat motor 10hp | 15hp outboard motor; honda 8hp outboard engine; 25 hp outboard for sale; 15 hp outboard for sale; 30 hp outboard for sale
+[CATEGORY] /shop/high-horsepower/ | yamaha outboard motor 60hp | 150 hp outboard for sale; 60 hp outboard for sale; 60hp outboard for sale; 50 hp outboard; 50hp outboard
+[CATEGORY] /shop/electric/ | electric outboard motor | boat motors electric; electric outboard engine; electric boat motor; electric outboard boat motor; outboard electric
+[CATEGORY] /shop/parts/ | yamaha outboard motor spare parts | mercury outboard spare parts lymington; mercury outboard spare parts portsmouth; outboard motor propeller
 
-[GAP-BRAND] NEW:/shop/yamaha/ | yamaha outboards | yamaha outboard engine; yamaha parts uk; yamaha boat outboard; yamaha outboard boat motors; genuine yamaha parts uk
-[GAP-BRAND] NEW:/shop/mercury/ | mercury motors | mercury outboard; mercury outboards; engine mercury; mercury outboard motor
-[GAP-BRAND] NEW:/shop/honda/ | honda outboards | honda outboard engines; honda outboard motors; honda engines; honda outboard engine
-[GAP-BRAND] NEW:/shop/suzuki/ | suzuki outboards | suzuki outboard engine; suzuki outboard dealer
+[GAP-BRAND] NEW:/shop/yamaha/ | yamaha outboards | yamaha outboards for sale; yamaha boat motors; buy yamaha outboard; yamaha outboard boat motors for sale; yamaha outboard motors for sale
+[GAP-BRAND] NEW:/shop/mercury/ | mercury outboards | mercury outboard; mercury marine; mercury outboard boat motors; mercury outboard motors
+[GAP-BRAND] NEW:/shop/honda/ | honda outboards | honda outboard engines; honda outboard motors; honda engines; honda boat engine; honda boat motors
+[GAP-BRAND] NEW:/shop/suzuki/ | suzuki outboard engine | suzuki outboards for sale; suzuki outboard motors for sale; suzuki boat motors; suzuki outboard engines for sale
+[GAP-BRAND] NEW:/shop/tohatsu/ | (no qualifying T/C keyword found — build for catalog completeness only)
+[GAP-BRAND] NEW:/shop/epropulsion/ | e propulsion | (Navigational only, thin cluster)
 
-[BLOG] NEW:/blog/best-outboard-for-dinghy-tender-kayak/ | motor for inflatable boat | inflatable dinghy motor; motor for rubber boat; dinghy motor; motor for dinghy; kayak outboard motor; canoe outboard motor; paddleboard motor; inflatable raft motor
-[BLOG] NEW:/blog/outboard-horsepower-guide/ | outboard motor horsepower guide | 10 horsepower outboard motor; 15 horsepower outboard motor; 20 horsepower outboard motor; 6 horsepower outboard motor; 8 horsepower outboard; 25 horsepower outboard engine; 60 horsepower outboard motor; 100 horsepower outboard motor
-[BLOG] NEW:/blog/2-stroke-vs-4-stroke-outboards/ | 2 stroke vs 4 stroke outboard | 2 stroke outboard engine; 4 stroke outboard engine; two stroke outboard motors; 4 cycle outboard motor; outboard motors 2 stroke
-[BLOG] NEW:/blog/inboard-vs-outboard-motors/ | inboard vs outboard motor | inboard motor vs outboard; outboard vs inboard boat motors; outboard vs inboard motors
-[BLOG] NEW:/blog/affordable-outboard-motors-uk/ | affordable outboard motors | cheap outboard motors; budget outboard motors; inexpensive outboard motors; low cost outboard motors; cheapest outboard boat motors
-[BLOG] NEW:/blog/outboard-motor-accessories-guide/ | outboard motor accessories | outboard engine stand; outboard motor cover; outboard motor trolley; outboard motor lock; outboard motor bracket; outboard engine gas tank
-[BLOG] NEW:/blog/electric-outboard-motors-explained/ | how electric outboard motors work | battery outboard motor; battery powered outboard motor; electronic motor boat; electric outboard motor uk
-[BLOG] NEW:/blog/outboard-motor-maintenance-guide/ | outboard motor maintenance | maintenance on outboard motor; outboard motor servicing; outboard motor service
+[BLOG] NEW:/blog/electric-outboard-motors-explained/ | how electric outboard motors work | battery outboard motor; battery powered outboard motor; electric outboard motor uk
+[BLOG] NEW:/blog/outboard-horsepower-guide/ | outboard motor horsepower guide | 10/15/20/25/60/100 horsepower outboard motor variants (~2,750/mo combined)
+[BLOG] NEW:/blog/best-outboard-for-dinghy-tender-kayak/ | motor for inflatable boat | inflatable dinghy motor; motor for rubber boat; kayak outboard motor; dinghy motor; inflatable raft motor
+[BLOG] NEW:/blog/small-outboard-motor-buying-guide/ | small outboard motor | small boat engine; small outboard engines; small marine motors; small outboard boat motors
+[BLOG] NEW:/blog/outboard-motor-stand-guide/ | outboard engine stand | outboard boat motor stand; motor stand outboard; motor stand for outboard; outboard motor stand
+[BLOG] NEW:/blog/diesel-outboard-motors-explained/ | diesel outboard motor | diesel outboard engine; diesel outboard boat motor; marine diesel motor; marine engines
+[BLOG] NEW:/blog/2-stroke-vs-4-stroke-outboards/ | 2 stroke vs 4 stroke outboard | 2 stroke outboard engine; 4 stroke outboard engine; two stroke outboard motors; 4 cycle outboard motor
 [BLOG] NEW:/blog/british-seagull-outboards-legacy/ | british seagull outboard | seagull outboard engine; seagull outboard motor; seagull outboard motors
-[BLOG] NEW:/blog/small-boat-engine-buying-guide/ | small outboard motor | small boat engine; small outboard engines; small marine motors; small outboard boat motors
+[BLOG] NEW:/blog/outboard-fuel-tanks-gas-lines/ | outboard engine gas tank | outboard motor gas line; gas tank for outboard boat motor; outboard motor petrol tank; fuel hose outboard motor
+[BLOG] NEW:/blog/outboard-motor-security-locks/ | outboard motor lock | outboard engine lock; outboard boat motor lock; lock outboard motor
+[BLOG] NEW:/blog/outboard-motor-covers-guide/ | outboard motor covers | boat engine covers outboard; outboard boat motor covers; outboard engine cover; outboard motor cover
+[BLOG] NEW:/blog/outboard-mounting-brackets/ | outboard engine bracket | boat motor bracket outboard; aux outboard motor bracket; auxiliary outboard motor bracket
+[BLOG] NEW:/blog/outboard-motor-trolleys/ | outboard engine trolley | trolley for outboard motor; outboard boat motor trolley; outboard motor trolley
+[BLOG] NEW:/blog/inboard-vs-outboard-motors/ | inboard vs outboard motor | inboard motor vs outboard; outboard vs inboard boat motors; outboard vs inboard motors
+[BLOG] NEW:/blog/affordable-outboard-motors-uk/ | affordable outboard motors | cheap outboard motors; budget outboard motors; cheapest outboard boat motors
+[BLOG] NEW:/blog/outboard-motor-maintenance-guide/ | outboard motor maintenance | outboard motor servicing; maintenance on outboard motor (from FAQ-mined "Oil & servicing" theme, 500/mo)
+[BLOG] NEW:/blog/winterize-outboard-motor/ | how to winterize an outboard motor | (FAQ-mined "Winterizing" theme, 220/mo, 11 kws)
+[BLOG] NEW:/blog/flush-outboard-motor/ | how to flush an outboard motor | (FAQ-mined "Flushing" theme, 180/mo, 9 kws)
+[BLOG] NEW:/blog/how-to-start-an-outboard-motor/ | how to start an outboard motor | (FAQ-mined "Starting procedure" theme, 220/mo, 11 kws)
+[BLOG] NEW:/blog/outboard-serial-number-year-guide/ | how to tell year of outboard by serial number | (FAQ-mined "Serial number/age ID" theme, 520/mo, 26 kws — biggest FAQ theme, near-zero KD)
 
-[LOCAL] NEW:/shop/parts/#solent-delivery | mercury outboard spare parts uk | mercury outboard spare parts hamble; mercury outboard spare parts hythe; mercury outboard spare parts lymington; mercury outboard spare parts portsmouth; mercury outboard spare parts swanwick
+[BLOG-BACKLOG] NEW:/blog/short-vs-long-shaft-outboards/ | short shaft boat motors | long shaft outboard motor (200/mo)
+[BLOG-BACKLOG] NEW:/blog/who-makes-outboard-motors/ | who makes outboard motors | who makes mercury/tohatsu/force outboard engines (~200/mo — VERIFY brand-ownership facts before publishing)
+[BLOG-BACKLOG] NEW:/blog/clean-outboard-carburetor/ | how to clean outboard carburetor | (180/mo, FAQ-mined)
+[BLOG-BACKLOG] NEW:/blog/outboard-motor-speed-performance/ | how fast is an outboard motor | (100/mo)
+[BLOG-BACKLOG] NEW:/blog/outboard-motor-parts-overview/ | outboard motor parts | outboard boat motor parts; outboard motor spares (250/mo — overlaps /shop/parts/, only build if category page alone underperforms)
+[BLOG-BACKLOG] kayak/canoe micro-split | kayak outboard motor | split out from Best-Outboard-for-Dinghy pillar only if that post grows too long
 
-[EXCLUDED-COMPETITOR-NAV] boats and outboards; boatsandoutboards; cambridge outboards — named competitor dealers, never target
+[LOCAL] NEW:/shop/parts/#solent-delivery | mercury outboard spare parts uk | mercury outboard spare parts hamble; hythe; lymington; portsmouth; swanwick (genuine, business is Cowes-based)
+
+[FAQ-THEME] serial-number-age-id | 26 kws | 520/mo
+[FAQ-THEME] oil-servicing | 23 kws | 500/mo
+[FAQ-THEME] how-it-works-mechanics | 9 kws | 260/mo
+[FAQ-THEME] reliability-quality | 9 kws | 200/mo
+[FAQ-THEME] winterizing | 11 kws | 220/mo
+[FAQ-THEME] starting-procedure | 11 kws | 220/mo
+[FAQ-THEME] flushing | 9 kws | 180/mo
+[FAQ-THEME] carburetor-cleaning | 9 kws | 180/mo
+[FAQ-THEME] buying-guidance | 5 kws | 150/mo
+[FAQ-THEME] shaft-length | 6 kws | 120/mo
+[FAQ-THEME] cost-value | 6 kws | 120/mo
+[FAQ-THEME] storage-transport | 5 kws | 100/mo
+[FAQ-THEME] speed-performance | 5 kws | 100/mo
+[FAQ-THEME] brand-manufacturer-facts | ~15 kws | ~200/mo — VERIFY before publishing, real fabrication risk
+
+[EXCLUDED-COMPETITOR-NAV] boats and outboards; boatsandoutboards; boats & outboards; boats outboards uk; cambridge outboards; cambridge rebores ltd — named competitor dealers, never target
 [EXCLUDED-USED] 45 keywords — "used"/"second hand" outboards — not applicable, new-stock-only business model
 [EXCLUDED-LOCAL-SERVICE] 24 keywords — "near me"/servicing/repair — no walk-in service bay to point a Local Pack listing at
 [EXCLUDED-COMPETITOR-BRAND] mariner; parsun; selva; evinrude; yanmar; nissan marine; highfield; mercruiser; hangkai — brands not stocked, comparison-content only

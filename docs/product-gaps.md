@@ -4,14 +4,16 @@
 
 **The single biggest opportunity in this keyword set.** No `/shop/[brand]/` pages exist — the site's category structure is entirely HP-tier-based (portable/mid-range/high-horsepower/electric/parts). But a huge volume of search demand is brand-first, not HP-first: someone searching "yamaha outboards" wants to browse everything Yamaha, not pick an HP band first.
 
-| Proposed URL | Primary keyword | Combined cluster volume/mo | Keywords in cluster |
+| Proposed URL | Primary keyword (Transactional/Commercial only) | Combined cluster volume/mo | Keywords in cluster |
 |---|---|---|---|
-| `/shop/yamaha/` | yamaha outboards (880/28) | **13,730** | 70 |
-| `/shop/mercury/` | mercury motors (590/22) | **10,510** | 77 |
-| `/shop/honda/` | honda outboards (590/25) | **6,230** | 27 |
-| `/shop/suzuki/` | suzuki outboards (590/18) | **6,040** | 39 |
-| `/shop/tohatsu/` | — | 70 | 1 |
-| `/shop/epropulsion/` | epropulsion (480/16) | 140 | 1 |
+| `/shop/yamaha/` | yamaha outboards (880, Transactional) | **13,730** | 70 |
+| `/shop/mercury/` | mercury outboards (390, Informational+Transactional) | **10,510** | 77 |
+| `/shop/honda/` | honda outboards (590, Informational+Transactional) | **6,230** | 27 |
+| `/shop/suzuki/` | suzuki outboard engine (Commercial) | **6,040** | 39 |
+| `/shop/tohatsu/` | — no qualifying T/C keyword ≥Vol50 | 70 | 1 |
+| `/shop/epropulsion/` | e propulsion (140, Navigational only) | 140 | 1 |
+
+*(Corrected from v1, which had picked "mercury motors" and "yamaha outboards" without checking whether a cleaner Transactional/Commercial phrase existed — see `keyword-map.md` v2 for the full secondary-keyword lists per brand.)*
 
 **Combined: ~36,720/mo across 4 real brand-hub candidates — more than double the volume of any single HP-tier category.**
 
@@ -27,7 +29,7 @@
 
 ## Gap 2 — No blog exists
 
-Every keyword in `blog-plan.md` (220 keywords, 10 post topics) is currently unaddressable because there's no `/blog/` route. This isn't a content gap so much as a structural one — see `blog-plan.md` for the full build note (mirrors the existing `/product/[slug]/` pattern with a new `src/data/posts.ts`).
+**26 distinct content clusters** (20 prioritised to build first, 6 backlogged) are currently unaddressable because there's no `/blog/` route — see `blog-plan.md` v2 for the full list, including a rich vein of how-to/support content (winterizing, flushing, starting procedure, serial-number identification — 520/mo alone, mostly KD 0/uncompeted) that only surfaced once the full 11,149-keyword dataset was mined rather than just the Vol 50+ page-building pool. This isn't a content gap so much as a structural one — see `blog-plan.md` for the full build note (mirrors the existing `/product/[slug]/` pattern with a new `src/data/posts.ts`).
 
 ---
 
