@@ -41,8 +41,7 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
     } finally {
       setIsLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getAuthHeaders]);
 
   useEffect(() => {
     if (isUnlocked) {

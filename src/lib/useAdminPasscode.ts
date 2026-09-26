@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const SESSION_KEY = 'solent_marine_admin_passcode';
 
@@ -71,11 +71,11 @@ export function useAdminPasscode() {
     }
   };
 
-  const getAuthHeaders = (): Record<string, string> => {
+  const getAuthHeaders = useCallback((): Record<string, string> => {
     return {
       'X-Admin-Passcode': passcode
     };
-  };
+  }, [passcode]);
 
   return {
     passcode,
