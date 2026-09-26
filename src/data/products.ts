@@ -250,7 +250,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-travel-xp-s.webp',
     description: 'Torqeedo Travel XP S electric outboard motor — 5HP Eq., 1600W Motor, 1425Wh Direct-Click Battery. Recommended application: Heavy Tenders & Daysailers. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['5HP Eq.', '1600W Motor', '1425Wh Direct-Click Battery'],
     applications: ['Heavy Tenders & Daysailers'],
@@ -277,7 +277,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/suzuki-df20as.webp',
     description: 'Suzuki DF20AS petrol 4-stroke outboard motor — 20HP, Battery-less Electronic Fuel Injection (EFI). Recommended application: Aluminium Craft & Large RIBs. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['20HP', 'Battery-less Electronic Fuel Injection (EFI)'],
     applications: ['Aluminium Craft & Large RIBs'],
@@ -304,7 +304,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-f20gwhl.webp',
     description: 'Yamaha F20GWHL petrol 4-stroke outboard motor — 20HP, Power Tilt, EFI, Multi-Function Tiller. Recommended application: Workboats & Commercial RIBs. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['20HP', 'Power Tilt', 'EFI', 'Multi-Function Tiller'],
     applications: ['Workboats & Commercial RIBs'],
@@ -331,7 +331,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/tohatsu-mfs50a.webp',
     description: 'Tohatsu MFS50A petrol 4-stroke outboard motor — 50HP, Multi-Function Tiller, ECO Offset. Recommended application: Fast Speedboats & RIBs. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['50HP', 'Multi-Function Tiller', 'ECO Offset'],
     applications: ['Fast Speedboats & RIBs'],
@@ -385,7 +385,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/suzuki-df140bg.webp',
     description: 'Suzuki DF140BG petrol 4-stroke outboard motor — 140HP, Drive-by-Wire Control, Lean Burn Tech. Recommended application: Offshore Fishing & RIBs. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['140HP', 'Drive-by-Wire Control', 'Lean Burn Tech'],
     applications: ['Offshore Fishing & RIBs'],
@@ -412,7 +412,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/yamaha-f300ncb.webp',
     description: 'Yamaha F300NCB petrol 4-stroke outboard motor — 300HP, V6, Digital Electric Steering (DES). Recommended application: Offshore Powerboats. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['300HP', 'V6', 'Digital Electric Steering (DES)'],
     applications: ['Offshore Powerboats'],
@@ -439,7 +439,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-elite-500w.webp',
     description: 'ePropulsion eLite 500W zero-emission electric outboard motor (1.5HP Eq. equivalent) — 500W, Integrated 378Wh Li-ion, 6.7kg.',
     features: ['500W', 'Integrated 378Wh Li-ion', '6.7kg'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -466,7 +466,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-spirit-1-0-evo.webp',
     description: 'ePropulsion Spirit 1.0 EVO zero-emission electric outboard motor (3HP Eq. equivalent) — 1KW, Hydrogeneration, 1276Wh Battery.',
     features: ['1KW', 'Hydrogeneration', '1276Wh Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -520,7 +520,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-navy-3-0-evo.webp',
     description: 'ePropulsion Navy 3.0 EVO zero-emission electric outboard motor (6HP Eq. equivalent) — 3KW, Direct Drive, 48V External Battery.',
     features: ['3KW', 'Direct Drive', '48V External Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -547,7 +547,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-navy-6-0-evo.webp',
     description: 'ePropulsion Navy 6.0 EVO zero-emission electric outboard motor (9.9HP Eq. equivalent) — 6KW, Hydrogeneration, Remote Control.',
     features: ['6KW', 'Hydrogeneration', 'Remote Control'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -601,7 +601,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-x20-pod-drive.webp',
     description: 'ePropulsion X20 Pod Drive zero-emission electric outboard motor (40HP Eq. equivalent) — 20KW, Integrated Electric Steering.',
     features: ['20KW', 'Integrated Electric Steering'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -628,7 +628,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-ultralight-1103-ac.webp',
     description: 'Torqeedo Ultralight 1103 AC zero-emission electric outboard motor (3HP Eq. equivalent) — 1100W, 915Wh Battery, Kayak Mounting System.',
     features: ['1100W', '915Wh Battery', 'Kayak Mounting System'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -655,7 +655,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-travel-903.webp',
     description: 'Torqeedo Travel 903 zero-emission electric outboard motor (2.5HP Eq. equivalent) — 900W, 915Wh Integrated Battery.',
     features: ['900W', '915Wh Integrated Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -682,7 +682,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-travel-1103-c.webp',
     description: 'Torqeedo Travel 1103 C zero-emission electric outboard motor (3HP Eq. equivalent) — 1100W, Direct Drive, 915Wh Battery.',
     features: ['1100W', 'Direct Drive', '915Wh Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -709,7 +709,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-cruise-3-0-t.webp',
     description: 'Torqeedo Cruise 3.0 T zero-emission electric outboard motor (6HP Eq. equivalent) — 3KW, 24V Tiller Control Outboard.',
     features: ['3KW', '24V Tiller Control Outboard'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -736,7 +736,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-cruise-6-0-r.webp',
     description: 'Torqeedo Cruise 6.0 R zero-emission electric outboard motor (9.9HP Eq. equivalent) — 6KW, 48V Remote Throttle Unit.',
     features: ['6KW', '48V Remote Throttle Unit'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -763,7 +763,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-cruise-12-0-r.webp',
     description: 'Torqeedo Cruise 12.0 R zero-emission electric outboard motor (25HP Eq. equivalent) — 12KW, Power Tilt, 48V System.',
     features: ['12KW', 'Power Tilt', '48V System'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -790,7 +790,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/torqeedo-deep-blue-25i.webp',
     description: 'Torqeedo Deep Blue 25i zero-emission electric outboard motor (40HP Eq. equivalent) — 25KW, 360V High-Voltage Drive.',
     features: ['25KW', '360V High-Voltage Drive'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -817,7 +817,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/temo-france-temo-450-longtail.webp',
     description: 'TEMO France TEMO 450 Longtail zero-emission electric outboard motor (1.5HP Eq. equivalent) — 450W, Telescopic Handle, 4.9kg.',
     features: ['450W', 'Telescopic Handle', '4.9kg'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -844,7 +844,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/temo-france-temo-1000-outboard.webp',
     description: 'TEMO France TEMO 1000 Outboard zero-emission electric outboard motor (3HP Eq. equivalent) — 1000W, Rotary Pod, Cassette Battery.',
     features: ['1000W', 'Rotary Pod', 'Cassette Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -871,7 +871,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-w20-kayak-pro.webp',
     description: 'Haswing W20 Kayak Pro zero-emission electric trolling motor (0.5HP Eq. equivalent) — 200W (20lbs Thrust), 12V, 3-Speed.',
     features: ['200W (20lbs Thrust)', '12V', '3-Speed'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -898,7 +898,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-osapian-30lbs.webp',
     description: 'Haswing Osapian 30lbs zero-emission electric trolling motor (0.8HP Eq. equivalent) — 360W (30lbs Thrust), 12V, LED Indicator.',
     features: ['360W (30lbs Thrust)', '12V', 'LED Indicator'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -925,7 +925,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-protruar-1-0-hp.webp',
     description: 'Haswing Protruar 1.0 HP zero-emission electric trolling motor (2HP Eq. equivalent) — 600W, Digimax Stepless Speed.',
     features: ['600W', 'Digimax Stepless Speed'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -952,7 +952,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-protruar-2-0-hp.webp',
     description: 'Haswing Protruar 2.0 HP zero-emission electric trolling motor (3HP Eq. equivalent) — 1200W, 24V System, Brushless Motor.',
     features: ['1200W', '24V System', 'Brushless Motor'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -979,7 +979,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-protruar-3-0-hp.webp',
     description: 'Haswing Protruar 3.0 HP zero-emission electric outboard motor (5HP Eq. equivalent) — 1440W, 24V System, Transom Mount.',
     features: ['1440W', '24V System', 'Transom Mount'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -1006,7 +1006,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/haswing-armada-10-0.webp',
     description: 'Haswing Armada 10.0 zero-emission electric outboard motor (20HP Eq. equivalent) — 10KW, 48V External Battery.',
     features: ['10KW', '48V External Battery'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -1033,7 +1033,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/minn-kota-endura-c2-30.webp',
     description: 'Minn Kota Endura C2 30 zero-emission electric trolling motor (0.5HP Eq. equivalent) — 30lbs Thrust, 12V, Lever Lock Bracket.',
     features: ['30lbs Thrust', '12V', 'Lever Lock Bracket'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -1060,7 +1060,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/minn-kota-endura-c2-40.webp',
     description: 'Minn Kota Endura C2 40 zero-emission electric trolling motor (0.8HP Eq. equivalent) — 40lbs Thrust, 12V, 36-inch Shaft.',
     features: ['40lbs Thrust', '12V', '36-inch Shaft'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -1087,7 +1087,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/minn-kota-endura-max-55.webp',
     description: 'Minn Kota Endura Max 55 zero-emission electric trolling motor (1.2HP Eq. equivalent) — 55lbs Thrust, Digital Maximizer.',
     features: ['55lbs Thrust', 'Digital Maximizer'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -1114,7 +1114,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/minn-kota-riptide-transom-55.webp',
     description: 'Minn Kota Riptide Transom 55 zero-emission electric trolling motor (1.2HP Eq. equivalent) — 55lbs Saltwater Thrust, Advanced Protection.',
     features: ['55lbs Saltwater Thrust', 'Advanced Protection'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -1141,7 +1141,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/minn-kota-traxxis-70.webp',
     description: 'Minn Kota Traxxis 70 zero-emission electric trolling motor (1.8HP Eq. equivalent) — 70lbs Thrust, 24V, One-Hand Stow System.',
     features: ['70lbs Thrust', '24V', 'One-Hand Stow System'],
     applications: ['Kayaks', 'Small dinghies', 'Inland fishing boats'],
@@ -1168,7 +1168,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/blade-electric-halo-3-0.webp',
     description: 'Blade Electric Halo 3.0 zero-emission electric outboard motor (6HP Eq. equivalent) — 3KW, 48V Direct Drive.',
     features: ['3KW', '48V Direct Drive'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -1195,7 +1195,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/blade-electric-halo-6-0.webp',
     description: 'Blade Electric Halo 6.0 zero-emission electric outboard motor (9.9HP Eq. equivalent) — 6KW, 48V Water Cooled.',
     features: ['6KW', '48V Water Cooled'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -1222,7 +1222,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/yamaha-f4bmhs.webp',
     description: 'Yamaha F4BMHS petrol 4-stroke outboard motor — 4HP, Single Cylinder, Integrated Tank. UK RCD II compliant, PDI checked before dispatch.',
     features: ['4HP', 'Single Cylinder', 'Integrated Tank'],
     applications: ['Tenders & small inflatables'],
@@ -1249,7 +1249,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/yamaha-f5amhs.webp',
     description: 'Yamaha F5AMHS petrol 4-stroke outboard motor — 5HP, Manual Start, External Tank Connection. UK RCD II compliant, PDI checked before dispatch.',
     features: ['5HP', 'Manual Start', 'External Tank Connection'],
     applications: ['Tenders & small inflatables'],
@@ -1492,7 +1492,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/suzuki-df4a.webp',
     description: 'Suzuki DF4A petrol 4-stroke outboard motor — 4HP, Overhead Valve, Integrated Tank. UK RCD II compliant, PDI checked before dispatch.',
     features: ['4HP', 'Overhead Valve', 'Integrated Tank'],
     applications: ['Tenders & small inflatables'],
@@ -1519,7 +1519,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/suzuki-df5a.webp',
     description: 'Suzuki DF5A petrol 4-stroke outboard motor — 5HP, Low Vibration Mounts, Manual Start. UK RCD II compliant, PDI checked before dispatch.',
     features: ['5HP', 'Low Vibration Mounts', 'Manual Start'],
     applications: ['Tenders & small inflatables'],
@@ -1762,7 +1762,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/mercury-5hp-fourstroke.webp',
     description: 'Mercury 5HP FourStroke petrol 4-stroke outboard motor — 5HP, External Tank Option, Tiller. UK RCD II compliant, PDI checked before dispatch.',
     features: ['5HP', 'External Tank Option', 'Tiller'],
     applications: ['Tenders & small inflatables'],
@@ -2032,7 +2032,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/honda-bf5ak3.webp',
     description: 'Honda BF5AK3 petrol 4-stroke outboard motor — 5HP, Internal Tank, Charging Coil. UK RCD II compliant, PDI checked before dispatch.',
     features: ['5HP', 'Internal Tank', 'Charging Coil'],
     applications: ['Tenders & small inflatables'],
@@ -2167,7 +2167,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/tohatsu-mfs3-5c.webp',
     description: 'Tohatsu MFS3.5C petrol 4-stroke outboard motor — 3.5HP, 4-Stroke, 18.4kg Ultra-Light. UK RCD II compliant, PDI checked before dispatch.',
     features: ['3.5HP', '4-Stroke', '18.4kg Ultra-Light'],
     applications: ['Tenders & small inflatables'],
@@ -2302,7 +2302,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/epropulsion-e-series-48v-100ah-lifepo4-battery.webp',
     description: 'E-Series 48V 100Ah LiFePO4 Battery — 4096Wh Capacity, Navy/X Series Outboards.',
     features: ['4096Wh Capacity, Navy/X Series Outboards'],
     applications: ['Batteries & Power'],
@@ -2329,7 +2329,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/epropulsion-spirit-spare-battery-1276wh.webp',
     description: 'Spirit Spare Battery 1276Wh — Replacement Pack for Spirit 1.0 Plus/EVO.',
     features: ['Replacement Pack for Spirit 1.0 Plus/EVO'],
     applications: ['Batteries & Power'],
@@ -2356,7 +2356,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/epropulsion-spirit-solar-charge-controller.webp',
     description: 'Spirit Solar Charge Controller — Supports up to 180W Solar Panel Input.',
     features: ['Supports up to 180W Solar Panel Input'],
     applications: ['Chargers & Solar'],
@@ -2410,7 +2410,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/epropulsion-evo-remote-control-throttle.webp',
     description: 'EVO Remote Control Throttle — Wireless/Wired Throttle with Digital Display.',
     features: ['Wireless/Wired Throttle with Digital Display'],
     applications: ['Controls & Harnesses'],
@@ -2437,7 +2437,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/torqeedo-travel-battery-915wh.webp',
     description: 'Travel Battery 915Wh — High-performance Li-Ion Battery for Travel Series.',
     features: ['High-performance Li-Ion Battery for Travel Series'],
     applications: ['Batteries & Power'],
@@ -2491,7 +2491,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/torqeedo-travel-2-piece-bag-set.webp',
     description: 'Travel 2-Piece Bag Set — Padded Protective Storage Bags.',
     features: ['Padded Protective Storage Bags'],
     applications: ['Bags & Covers'],
@@ -2518,7 +2518,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/torqeedo-spare-propeller-v9p1000.webp',
     description: 'Spare Propeller v9/p1000 — For Travel 1003 / 1103 / XP.',
     features: ['For Travel 1003 / 1103 / XP'],
     applications: ['Propellers & Hardware'],
@@ -2545,7 +2545,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/torqeedo-torqtrac-smartphone-bluetooth-adapter.webp',
     description: 'TorqTrac Smartphone Bluetooth Adapter — Displays Range, Speed & Map Telemetry.',
     features: ['Displays Range, Speed & Map Telemetry'],
     applications: ['Controls & Extension'],
@@ -2572,7 +2572,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/temo-france-temo-450-oarlock-fitting-guard.webp',
     description: 'TEMO 450 Oarlock Fitting Guard — Secures TEMO longtail to dinghy rowlocks.',
     features: ['Secures TEMO longtail to dinghy rowlocks'],
     applications: ['Mounting & Brackets'],
@@ -2599,7 +2599,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/temo-france-temo-450-carrying-bag.webp',
     description: 'TEMO 450 Carrying Bag — Waterproof Transport Sleeve.',
     features: ['Waterproof Transport Sleeve'],
     applications: ['Bags & Covers'],
@@ -2626,7 +2626,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/haswing-quick-release-kayakboat-bracket.webp',
     description: 'Quick Release Kayak/Boat Bracket — For Haswing Protruar & Osapian Motors.',
     features: ['For Haswing Protruar & Osapian Motors'],
     applications: ['Mounting & Hardware'],
@@ -2653,7 +2653,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/minn-kota-60a-marine-circuit-breaker.webp',
     description: '60A Marine Circuit Breaker — Waterproof Manual Reset Circuit Protection.',
     features: ['Waterproof Manual Reset Circuit Protection'],
     applications: ['Electrical & Wiring'],
@@ -2680,7 +2680,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/minn-kota-weedless-wedge-2-propeller.webp',
     description: 'Weedless Wedge 2 Propeller — Pushes weeds away without battery drain.',
     features: ['Pushes weeds away without battery drain'],
     applications: ['Propellers & Hardware'],
@@ -2707,7 +2707,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/yamaha-yamalube-4m-10w-30-fc-w-1-litre.webp',
     description: 'Yamalube 4M 10W-30 FC-W (1 Litre) — All 4-Stroke Yamaha Outboards.',
     features: ['All 4-Stroke Yamaha Outboards'],
     applications: ['Engine Oil'],
@@ -2734,7 +2734,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/suzuki-suzuki-ecstar-4-stroke-10w-40-5-litres.webp',
     description: 'Suzuki ECSTAR 4-Stroke 10W-40 (5 Litres) — Suzuki Outboards (FC-W Certified).',
     features: ['Suzuki Outboards (FC-W Certified)'],
     applications: ['Engine Oil'],
@@ -2761,7 +2761,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/mercury-quicksilver-25w-40-synthetic-blend-4l.webp',
     description: 'Quicksilver 25W-40 Synthetic Blend (4L) — Mercury Outboards & Sterndrives.',
     features: ['Mercury Outboards & Sterndrives'],
     applications: ['Engine Oil'],
@@ -2842,7 +2842,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/suzuki-suzuki-df2-5-service-maintenance-kit.webp',
     description: 'Suzuki DF2.5 Service Maintenance Kit — Spark Plug, Impeller, Anodes, Filters.',
     features: ['Spark Plug, Impeller, Anodes, Filters'],
     applications: ['Service Kits'],
@@ -2869,7 +2869,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/yamaha-yamaha-f6-f8-f9-9-service-kit.webp',
     description: 'Yamaha F6 / F8 / F9.9 Service Kit — Impeller, Gaskets, O-Rings, Filter.',
     features: ['Impeller, Gaskets, O-Rings, Filter'],
     applications: ['Service Kits'],
@@ -2896,7 +2896,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/mercury-mercury-mariner-water-pump-impeller.webp',
     description: 'Mercury Mariner Water Pump Impeller — 4HP, 5HP, 6HP FourStroke Models.',
     features: ['4HP, 5HP, 6HP FourStroke Models'],
     applications: ['Impellers'],
@@ -2923,7 +2923,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/universal-ngk-dpr6ea-9-marine-spark-plug.webp',
     description: 'NGK DPR6EA-9 Marine Spark Plug — Standard Marine Engines.',
     features: ['Standard Marine Engines'],
     applications: ['Spark Plugs'],
@@ -3031,7 +3031,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/solas-solas-amita-3-aluminium-propeller.webp',
     description: 'Solas Amita 3 Aluminium Propeller — Fits Yamaha/Suzuki 20HP-30HP.',
     features: ['Fits Yamaha/Suzuki 20HP-30HP'],
     applications: ['Propellers'],

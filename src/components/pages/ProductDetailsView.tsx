@@ -110,7 +110,7 @@ export default function ProductDetailsView({
           <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm relative">
             <img
               src={product.imageUrl}
-              alt={`Placeholder image — ${product.name} — real product photo coming soon`}
+              alt={product.imageUrl.includes('/placeholders/') ? `Placeholder image — ${product.name} — real product photo coming soon` : product.name}
               loading="eager"
               className="w-full h-[350px] sm:h-[450px] object-contain bg-slate-50 rounded-xl border border-slate-100"
               referrerPolicy="no-referrer"

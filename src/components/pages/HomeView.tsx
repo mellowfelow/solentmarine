@@ -293,7 +293,7 @@ export default function HomeView({
                 <div className="relative">
                   <img
                     src={prod.imageUrl}
-                    alt={`Placeholder image — ${prod.name} — real product photo coming soon`}
+                    alt={prod.imageUrl.includes('/placeholders/') ? `Placeholder image — ${prod.name} — real product photo coming soon` : prod.name}
                     className="w-full h-44 object-contain bg-slate-50 rounded-xl border border-slate-100 mb-3"
                     loading="lazy"
                     referrerPolicy="no-referrer"

@@ -276,7 +276,7 @@ export default function ShopView({
                       <div className="relative overflow-hidden rounded-lg mb-3">
                         <img
                           src={prod.imageUrl}
-                          alt={`Placeholder image — ${prod.name} — real product photo coming soon`}
+                          alt={prod.imageUrl.includes('/placeholders/') ? `Placeholder image — ${prod.name} — real product photo coming soon` : prod.name}
                           loading="lazy"
                           className="w-full h-44 object-contain bg-slate-50 group-hover:scale-105 transition duration-300 border border-slate-100"
                           referrerPolicy="no-referrer"
