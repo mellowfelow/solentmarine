@@ -7,8 +7,8 @@
  * never Informational/Navigational, per the skill's page-mapping intent-priority rule.
  */
 
-[HOME] / | outboard | outboard boat; buy outboard motor
-[SHOP] /shop/ | outboard motors for sale | marine motors for sale; outboard engines for sale; boat motors for sale; outboard engine for sale
+[HOME] / | outboard motors for sale | outboard boat; buy outboard motor
+[SHOP] /shop/ | marine motors for sale | outboard engines for sale; boat motors for sale; outboard engine for sale; boat engines for sale; outboard motor for sale
 [CATEGORY] /shop/portable/ | 5hp outboard engine | 6hp outboard for sale; 2.5 hp outboard motor; outboard engine 5hp; outboard engine 6hp; honda outboard motor 5 hp
 [CATEGORY] /shop/mid-range/ | boat motor 10hp | 15hp outboard motor; honda 8hp outboard engine; 25 hp outboard for sale; 15 hp outboard for sale; 30 hp outboard for sale
 [CATEGORY] /shop/high-horsepower/ | yamaha outboard motor 60hp | 150 hp outboard for sale; 60 hp outboard for sale; 60hp outboard for sale; 50 hp outboard; 50hp outboard

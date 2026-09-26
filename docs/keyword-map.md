@@ -26,19 +26,21 @@ v1 picked category-page primary keywords by raw volume, which let **Informationa
 
 | Keyword | Volume | KD | Intent |
 |---|---|---|---|
-| outboard | 720 | 31 | Commercial |
+| outboard motors for sale | 1,000 | 13 | Transactional |
 | outboard boat | 720 | 29 | Commercial |
 | buy outboard motor | 170 | 9 | Transactional |
 
 (Max 3 primary-tier keywords on homepage, per the skill's homepage cap — no separate secondary tier here.)
 
-"Outboard motor(s)" as phrases still appear naturally in the H1/title/body since they're literally the business's name and category — that's unavoidable and fine as incidental on-page language — but they are not the *targeted* ranking keywords driving homepage optimisation decisions. "Outboard dealer" (170, KD 42, Commercial) is a strong 4th-choice alternate if the site wants to lean harder on authorized-dealer positioning instead of the generic "buy" CTA term.
+**Cannibalisation note:** "outboard motors for sale" was originally `/shop/`'s primary keyword too — assigning it to both pages would violate the one-cluster-one-URL rule. Reassigned: homepage now owns "outboard motors for sale" (highest-authority page, top-of-funnel entry point), and `/shop/` takes a different Vol-1,000 keyword from its own secondary list instead — see the `/shop/` section below, now updated.
+
+"Outboard motor(s)" as phrases still appear naturally in the H1/title/body since they're literally the business's name and category — that's fine as incidental on-page language, just not the targeted ranking keyword.
 
 ---
 
 ## `/shop/` — Stock Directory Hub
-**Primary:** outboard motors for sale (Vol 1,000, KD 13, **Transactional**)
-**Secondary:** marine motors for sale (1000/9/T) · outboard engines for sale (1000/16/T) · boat motors for sale (720/16/T) · outboard engine for sale (590/16/T) · boat engines for sale (480/11/T)
+**Primary:** marine motors for sale (Vol 1,000, KD 9, **Transactional**) — *reassigned from "outboard motors for sale," now the homepage primary; this is actually a KD improvement (9 vs 13) at the same volume*
+**Secondary:** outboard engines for sale (1000/16/T) · boat motors for sale (720/16/T) · outboard engine for sale (590/16/T) · boat engines for sale (480/11/T) · outboard motor for sale (480/17/T)
 **Cluster volume:** ~15,990/mo
 
 ---
