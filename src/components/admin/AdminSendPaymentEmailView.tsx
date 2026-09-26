@@ -15,15 +15,22 @@ import {
 } from 'lucide-react';
 import type { StoredOrder } from '../../lib/orderStore';
 import { REPLY, SITE } from '../../config/site';
-import { paymentMethodParts, instructionsParts, paymentTermsLines, paymentTermsHtml } from '../../lib/order';
+import { paymentMethodParts, instructionsParts, paymentTermsHtml, parsePaymentDetail, ParsedPaymentField } from '../../lib/order';
 import { buildEmailHtml } from '../../lib/emailTemplate';
 import { WhatsAppSendPanel } from './WhatsAppSendPanel';
 import { waPaymentDetailsMessage } from '../../lib/whatsapp';
 
+export interface SentPaymentDetails {
+  methodId: string;
+  fields: ParsedPaymentField[];
+  opening: string;
+  closing: string;
+}
+
 interface AdminSendPaymentEmailViewProps {
   order: StoredOrder;
   onBack: () => void;
-  onPaymentSent: (orderId: string, emailHtml: string) => Promise<void>;
+  onPaymentSent: (orderId: string, emailHtml: string, paymentDetails: SentPaymentDetails) => Promise<void>;
 }
 
 export function AdminSendPaymentEmailView({
@@ -46,7 +53,11 @@ export function AdminSendPaymentEmailView({
   const selectedMethod = REPLY.paymentMethods.find((m) => m.id === selectedMethodId) || REPLY.paymentMethods[0];
   const parts = paymentMethodParts(selectedMethodId, order.total, order.id);
 
-  // Composed payment instructions body
+  // Parsed, individually-copyable fields from the admin's pasted blob — empty in template
+  // mode, since there's no real account/wallet detail to parse there yet.
+  const parsedFields: ParsedPaymentField[] = mode === 'paste' ? parsePaymentDetail(customPasteDetails) : [];
+
+  // Composed payment instructions body (used for the email's plain "Transfer Instructions" block)
   const instructionsBody = mode === 'template'
     ? `${parts.opening}\n\n${parts.closing}`
     : instructionsParts(parts.opening, customPasteDetails, parts.closing);
@@ -77,8 +88,8 @@ export function AdminSendPaymentEmailView({
       </div>
     `,
     cta: {
-      label: 'View Order Status Online',
-      url: `https://${SITE.domain}/thank-you-order/?ref=${order.id}`,
+      label: 'View & Copy Payment Details',
+      url: `https://${SITE.domain}/order/payment-details/?id=${encodeURIComponent(order.id)}`,
     },
     secondaryCta: {
       label: 'Contact Workshop Desk',
@@ -87,24 +98,24 @@ export function AdminSendPaymentEmailView({
     footer: 'Solent Marine Outboards UK Ltd · Cowes Yacht Haven, Isle of Wight, PO31 7BD',
   });
 
-  // Generate WhatsApp Message text
-  const waMessageText = waPaymentDetailsMessage(
-    {
-      id: order.id,
-      customerName: order.customerName,
-      items: order.items,
-      total: order.total,
-      phone: order.customerPhone,
-      deliveryMethod: order.deliveryMethod,
-    },
-    instructionsBody,
-    selectedMethodId
-  );
+  // WhatsApp message body — mirrors the email using the same parsed fields (content parity rule)
+  const waBodyLines = waPaymentDetailsMessage({
+    orderRef: order.id,
+    amountDue: order.total,
+    opening: parts.opening,
+    fields: parsedFields,
+    closing: parts.closing
+  });
 
   const handleSendEmail = async () => {
     setIsSending(true);
     try {
-      await onPaymentSent(order.id, generatedEmailHtml);
+      await onPaymentSent(order.id, generatedEmailHtml, {
+        methodId: selectedMethodId,
+        fields: parsedFields,
+        opening: parts.opening,
+        closing: parts.closing
+      });
       setSendSuccess(true);
       setTimeout(() => {
         onBack();
@@ -227,8 +238,22 @@ export function AdminSendPaymentEmailView({
                     rows={4}
                     value={customPasteDetails}
                     onChange={(e) => setCustomPasteDetails(e.target.value)}
+                    placeholder={'Account name: ...\nSort code: ...\nAccount number: ...\nReference: ' + order.id}
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white font-mono focus:outline-none focus:border-sky-500"
                   />
+                  {parsedFields.length > 0 && (
+                    <div className="rounded-xl border border-emerald-900/50 bg-emerald-950/20 p-3 space-y-1">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">
+                        Parsed into {parsedFields.length} copyable field{parsedFields.length === 1 ? '' : 's'}
+                      </span>
+                      {parsedFields.map((f, i) => (
+                        <div key={i} className="flex justify-between text-[11px] font-mono">
+                          <span className="text-slate-400">{f.label}</span>
+                          <span className="text-slate-100">{f.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -270,8 +295,15 @@ export function AdminSendPaymentEmailView({
               <WhatsAppSendPanel
                 recipientName={order.customerName}
                 recipientPhone={order.customerPhone || REPLY.channels.whatsapp}
-                messageText={waMessageText}
-                onSent={() => onPaymentSent(order.id, generatedEmailHtml)}
+                bodyLines={waBodyLines}
+                onSent={() =>
+                  onPaymentSent(order.id, generatedEmailHtml, {
+                    methodId: selectedMethodId,
+                    fields: parsedFields,
+                    opening: parts.opening,
+                    closing: parts.closing
+                  })
+                }
               />
             </div>
 

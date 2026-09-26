@@ -9,6 +9,12 @@
  */
 import nodemailer from 'nodemailer';
 
+export interface MailAttachment {
+  filename: string;
+  content: Buffer | string;
+  contentType?: string;
+}
+
 export interface MailOptions {
   to: string;
   subject: string;
@@ -16,6 +22,7 @@ export interface MailOptions {
   text?: string;
   replyTo?: string;
   from?: string;
+  attachments?: MailAttachment[];
 }
 
 export type MailResult = 
@@ -65,6 +72,7 @@ export async function sendMail(opts: MailOptions): Promise<MailResult> {
         subject: opts.subject,
         html: opts.html,
         text: opts.text || 'Please view this message in an HTML-compatible email viewer.',
+        ...(opts.attachments ? { attachments: opts.attachments } : {}),
       });
 
       return { sent: true, messageId: info.messageId };

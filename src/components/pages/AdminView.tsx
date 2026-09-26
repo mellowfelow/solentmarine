@@ -5,7 +5,7 @@ import { AdminLayout } from '../admin/AdminLayout';
 import { AdminDashboardOverview } from '../admin/AdminDashboardOverview';
 import { AdminOrdersView } from '../admin/AdminOrdersView';
 import { AdminEnquiriesView } from '../admin/AdminEnquiriesView';
-import { AdminSendPaymentEmailView } from '../admin/AdminSendPaymentEmailView';
+import { AdminSendPaymentEmailView, SentPaymentDetails } from '../admin/AdminSendPaymentEmailView';
 import { AdminReplyEnquiryView } from '../admin/AdminReplyEnquiryView';
 import type { StoredOrder, OrderStatus } from '../../lib/orderStore';
 import type { StoredEnquiry } from '../../lib/enquiryStore';
@@ -72,11 +72,11 @@ export function AdminView({ onNavigateHome }: AdminViewProps) {
     await refreshData();
   };
 
-  const handleSendPaymentEmail = async (orderId: string, emailHtml: string) => {
+  const handleSendPaymentEmail = async (orderId: string, emailHtml: string, paymentDetails: SentPaymentDetails) => {
     await fetch('/api/admin/send-payment-email/', {
       method: 'POST',
       headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId, emailHtml })
+      body: JSON.stringify({ orderId, emailHtml, paymentDetails })
     });
     await refreshData();
   };

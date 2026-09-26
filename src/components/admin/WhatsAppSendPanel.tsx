@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { MessageSquare, ExternalLink, Copy, Check, Send, PhoneCall } from 'lucide-react';
-import { waLink } from '../../lib/whatsapp';
+import { waLinkTo, waMessageText as buildWaMessageText } from '../../lib/whatsapp';
 
 interface WhatsAppSendPanelProps {
   recipientPhone: string;
   recipientName: string;
-  messageText: string;
+  bodyLines: string[];
   onSent?: () => void;
 }
 
 export function WhatsAppSendPanel({
   recipientPhone,
   recipientName,
-  messageText,
+  bodyLines,
   onSent,
 }: WhatsAppSendPanelProps) {
   const [copied, setCopied] = useState(false);
 
-  const directWaUrl = waLink(recipientPhone, messageText);
+  const messageText = buildWaMessageText(bodyLines);
+  const directWaUrl = waLinkTo(recipientPhone, bodyLines);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(messageText);

@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { MessageCircle, Phone, Mail, X, ChevronUp, Anchor } from 'lucide-react';
 import { CONTACT } from '../config/site';
+import { waLink } from '../lib/whatsapp';
 
 export default function ChatHub() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function ChatHub() {
 
             {/* WhatsApp Link */}
             <a
-              href={`https://wa.me/${CONTACT.whatsapp.replace('+', '')}?text=${encodeURIComponent('Hello Solent Marine UK, I would like advice on an outboard motor.')}`}
+              href={waLink('I would like advice on an outboard motor.')}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 hover:bg-emerald-100 transition group"

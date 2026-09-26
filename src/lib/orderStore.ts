@@ -35,6 +35,16 @@ export interface StoredOrder {
   currency: string;
   notes?: string;
   paymentSentAt?: string;
+  /** Parsed fields from the admin's pasted payment blob — re-rendered on the customer's
+   * live /order/payment-details/ page so it still shows the same details if they return. */
+  paymentDetails?: {
+    methodId: string;
+    fields: { label: string; value: string }[];
+    opening: string;
+    closing: string;
+    sentAt: string;
+  };
+  paymentConfirmedAt?: string;
 }
 
 const LOCAL_STORAGE_KEY = 'solent_marine_reply_orders';

@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, Truck, CheckCircle, MessageCircle, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { CartItem } from '../types';
 import { CONTACT, SHOP, REPLY } from '../config/site';
+import { generateOrderNumber } from '../lib/order';
+import { waOrderLink } from '../lib/whatsapp';
 import CopyField from './CopyField';
 
 interface BasketDrawerProps {
@@ -60,15 +62,9 @@ export default function BasketDrawer({
   const grandTotal = itemsSubtotal + shippingCost;
   const vatAmount = parseFloat((grandTotal * (20 / 120)).toFixed(2)); // UK 20% VAT breakdown
 
-  const generateOrderReference = () => {
-    const randomNum = Math.floor(10000 + Math.random() * 90000);
-    return `${REPLY.orderPrefix}-${randomNum}`;
-  };
-
   const handleStartCheckout = (channel: 'whatsapp' | 'email') => {
     setCheckoutChannel(channel);
-    const newRef = generateOrderReference();
-    setOrderRef(newRef);
+    setOrderRef(generateOrderNumber());
     setCheckoutStep('details');
   };
 
@@ -77,12 +73,19 @@ export default function BasketDrawer({
     setOrderError(null);
 
     if (checkoutChannel === 'whatsapp') {
-      const itemsList = cart.map(item => `• ${item.quantity}x ${item.product.name} (${item.selectedShaft}) - £${(item.product.priceGbp * item.quantity).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`).join('\n');
-      const text = `*SOLENT MARINE OUTBOARDS ORDER RESERVATION*\n\n*Order Ref:* ${orderRef}\n*Customer:* ${fullname}\n*Phone:* ${phone}\n*Email:* ${email}\n*Delivery Address:* ${address}, ${city}, ${postcode}\n*Logistics Method:* ${shippingOption.toUpperCase()}\n\n*Selected Engines & Accessories:*\n${itemsList}\n\n*Subtotal:* £${itemsSubtotal.toLocaleString()}\n*Shipping:* £${shippingCost.toLocaleString()}\n*Grand Total (inc. 20% UK VAT):* £${grandTotal.toLocaleString()}\n\n*Notes:* ${notes || 'None'}\n\nPlease confirm stock reservation, PDI timetable, and send BACS/Bank payment details.`;
-
-      const waUrl = `https://wa.me/${CONTACT.whatsapp.replace('+', '')}?text=${encodeURIComponent(text)}`;
-      // Window open synchronously (must happen before the await below, or popup blockers kill it)
-      window.open(waUrl, '_blank');
+      // Window open synchronously — must happen before the await below, or popup blockers kill it.
+      window.open(
+        waOrderLink({
+          id: orderRef,
+          customerName: fullname,
+          customerEmail: email,
+          customerPhone: phone,
+          items: cart.map((item) => ({ name: item.product.name, quantity: item.quantity, shaft: item.selectedShaft, price: item.product.priceGbp })),
+          total: grandTotal,
+          deliveryMethod: shippingOption
+        }),
+        '_blank'
+      );
     }
 
     setIsPlacingOrder(true);
