@@ -6,10 +6,9 @@
 import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, Truck, CheckCircle, MessageCircle, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { CartItem } from '../types';
-import { CONTACT, SHOP, REPLY } from '../config/site';
+import { SHOP } from '../config/site';
 import { generateOrderNumber } from '../lib/order';
 import { waOrderLink } from '../lib/whatsapp';
-import CopyField from './CopyField';
 
 interface BasketDrawerProps {
   isOpen: boolean;
@@ -506,7 +505,9 @@ export default function BasketDrawer({
           </form>
         )}
 
-        {/* Step: Checkout Success / Payment Details Receipt */}
+        {/* Step: Simple Thank You — real bank details are never shown here. They're sent
+            separately by our team once stock and shaft length are confirmed, to a real
+            payment-details email the customer can reply to or confirm from directly. */}
         {checkoutStep === 'success' && (
           <div className="flex-1 flex flex-col items-center justify-between text-center py-6 space-y-4 overflow-y-auto">
             <div className="space-y-3 w-full">
@@ -514,7 +515,7 @@ export default function BasketDrawer({
                 <CheckCircle className="w-7 h-7" />
               </div>
               <div>
-                <h3 className="font-sans font-bold text-slate-900 text-lg">Order Reserved Successfully</h3>
+                <h3 className="font-sans font-bold text-slate-900 text-lg">Thank You — Order Reserved</h3>
                 <p className="text-slate-500 text-xs">
                   Reference: <span className="font-mono font-bold text-slate-900">{orderRef}</span>
                 </p>
@@ -523,28 +524,9 @@ export default function BasketDrawer({
                 )}
               </div>
 
-              {/* BACS / Bank Transfer Details with Click-To-Copy Fields */}
-              <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-left space-y-3 w-full">
-                <div className="border-b border-slate-200 pb-2 flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Official BACS Bank Transfer</span>
-                  <span className="text-xs font-bold text-emerald-600 font-mono">£{grandTotal.toLocaleString()}</span>
-                </div>
-
-                <div className="space-y-2">
-                  <CopyField label="Account Name" value="Solent Marine Outboards Ltd" mono={false} />
-                  <CopyField label="Sort Code" value="20-45-45" />
-                  <CopyField label="Account Number" value="83920194" />
-                  <CopyField label="Payment Reference" value={orderRef} />
-                </div>
-
-                <p className="text-[11px] text-slate-500 leading-relaxed pt-1">
-                  Please quote <strong>{orderRef}</strong> on your bank transfer so our Cowes yard can immediately match your payment and release your outboard for courier collection.
-                </p>
-              </div>
-
-              <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-left text-[11px] text-emerald-900 space-y-1">
-                <span className="font-bold block">Need immediate proof or technical assistance?</span>
-                <p>Send a screenshot of your BACS transfer to our WhatsApp desk at <strong>{CONTACT.whatsappDisplay}</strong>.</p>
+              <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-left text-xs text-slate-600 leading-relaxed space-y-2">
+                <p>Our Cowes yard will confirm stock and shaft length, then email you our official UK bank transfer details for <strong className="text-slate-900">£{grandTotal.toLocaleString()}</strong>.</p>
+                <p>Once you've paid, that email lets you confirm your payment directly — no need to reply separately.</p>
               </div>
             </div>
 

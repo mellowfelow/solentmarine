@@ -33,9 +33,9 @@ export function AdminSendPaymentEmailView({
 }: AdminSendPaymentEmailViewProps) {
   const [selectedMethodId, setSelectedMethodId] = useState<string>(order.paymentMethodId || 'bacs');
   const [mode, setMode] = useState<'template' | 'paste'>('template');
-  const [customPasteDetails, setCustomPasteDetails] = useState<string>(
-    `Account Name: Solent Marine Outboards UK Ltd\nBank: Barclays UK Commercial\nSort Code: 20-45-45\nAccount Number: 83920194\nReference: ${order.id}`
-  );
+  // Deliberately empty — real account details must be entered by hand each time so a
+  // placeholder can never be sent to a customer as if it were the genuine account.
+  const [customPasteDetails, setCustomPasteDetails] = useState<string>('');
   const [isSending, setIsSending] = useState<boolean>(false);
   const [sendSuccess, setSendSuccess] = useState<boolean>(false);
 

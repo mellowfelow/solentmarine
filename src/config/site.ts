@@ -76,7 +76,7 @@ export const REPLY = {
       id: 'bacs',
       label: 'UK Faster Payments / BACS Transfer',
       opening: 'Please transfer {amount} using reference {ref} to our official UK marine dealership account:',
-      closing: 'Account details: Solent Marine Outboards UK Ltd, Sort Code: 20-45-45, Account: 83920194.',
+      closing: 'Once sent, tap "I\'ve Paid" below or reply to this email with your confirmation so we can release your order.',
       instantRailNote: 'Faster Payments usually arrive within 10 minutes.',
     },
   ],

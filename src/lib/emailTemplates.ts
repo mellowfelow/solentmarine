@@ -350,6 +350,9 @@ export function paymentDetailsEmail(i: PaymentDetailsEmailInput): { subject: str
     `<strong style="font-family:${SANS};">Before your order ships</strong>
      <ul style="margin:10px 0 0;padding-left:18px;">${paymentTermsHtml(i.orderNumber)}</ul>`
   )}
+  <p style="font-family:${SANS};font-size:14px;line-height:1.6;color:${C.ink};margin:0 0 14px;">
+    Once you've sent the transfer, please send us a screenshot of your confirmed payment using one of the buttons below so we can release your order.
+  </p>
   <div>${button(
     `https://${SITE.domain}/order/confirm-payment/?id=${encodeURIComponent(i.orderNumber)}`,
     "I've Paid — Upload Confirmation"
@@ -366,7 +369,8 @@ export function paymentDetailsEmail(i: PaymentDetailsEmailInput): { subject: str
     paymentTermsLines(i.orderNumber)
       .map((l) => `- ${l}`)
       .join('\n') +
-    `\nPaid already? Upload a screenshot: https://${SITE.domain}/order/confirm-payment/?id=${i.orderNumber}\n` +
+    `\nOnce you've sent the transfer, please send us a screenshot of your confirmed payment:\n` +
+    `Upload it: https://${SITE.domain}/order/confirm-payment/?id=${i.orderNumber}\n` +
     `Or confirm on WhatsApp: ${waPaymentConfirmationLink(i.orderNumber)}\n`;
 
   return {
