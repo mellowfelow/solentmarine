@@ -325,7 +325,7 @@ export default function ShopView({
                       <div className="flex justify-between items-baseline mb-3">
                         <span className="text-[10px] text-slate-400 font-semibold">UK Retail Price</span>
                         <div className="text-right">
-                          <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB')}</span>
+                          <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           <span className="block text-[9px] text-slate-400 leading-none">VAT Included (20%)</span>
                         </div>
                       </div>

@@ -18,7 +18,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['battery outboard motor', 'battery powered outboard motor', 'electric outboard motor uk'],
     funnelPosition: 'Middle',
     contentType: 'Explainer',
-    publishDate: '2026-10-06',
+    publishDate: '2026-07-12',
     relatedCategorySlugs: ['electric'],
     bodyHtml: `
       <p>An electric outboard replaces the fuel tank, carburettor and exhaust of a petrol engine with a battery pack and an electric motor. There's no combustion, no fuel to store, and far fewer moving parts — which is why electric outboards are quieter, need less maintenance, and start instantly at the twist of a throttle.</p>
@@ -44,7 +44,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['10 horsepower outboard motor', '20 horsepower outboard motor', '60 horsepower outboard motor'],
     funnelPosition: 'Top',
     contentType: 'Guide/Pillar',
-    publishDate: '2026-10-13',
+    publishDate: '2026-07-16',
     relatedCategorySlugs: ['portable', 'mid-range', 'high-horsepower', 'electric'],
     bodyHtml: `
       <p>Outboard horsepower ranges from 2.5HP for tenders to 300HP+ for offshore boats — the right size depends on your hull weight and intended use, not just boat length. Buying too little HP leaves a boat sluggish and struggling to plane; buying too much adds unnecessary weight, cost, and strain on a transom that isn't rated for it.</p>
@@ -75,7 +75,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['inflatable dinghy motor', 'motor for rubber boat', 'kayak outboard motor', 'dinghy motor'],
     funnelPosition: 'Middle',
     contentType: 'Guide/Pillar',
-    publishDate: '2026-10-20',
+    publishDate: '2026-07-20',
     relatedCategorySlugs: ['portable', 'electric'],
     bodyHtml: `
       <p>A 2.5HP–6HP outboard suits most dinghies, tenders and inflatables; kayaks and canoes are usually better matched to a lightweight electric trolling motor rather than a petrol engine.</p>
@@ -104,7 +104,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['small boat engine', 'small outboard engines', 'small marine motors'],
     funnelPosition: 'Top',
     contentType: 'Guide',
-    publishDate: '2026-10-27',
+    publishDate: '2026-07-24',
     relatedCategorySlugs: ['portable'],
     relatedPostSlugs: ['outboard-horsepower-guide', 'best-outboard-for-dinghy-tender-kayak'],
     bodyHtml: `
@@ -127,7 +127,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard motor stand', 'motor stand for outboard'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-11-03',
+    publishDate: '2026-07-28',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>An outboard motor stand holds your engine upright and stable when it's off the boat — for winter storage, servicing, or simply moving it between a vehicle and a workbench.</p>
@@ -148,7 +148,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['diesel outboard engine', 'marine diesel motor'],
     funnelPosition: 'Top',
     contentType: 'Explainer',
-    publishDate: '2026-11-10',
+    publishDate: '2026-08-01',
     relatedCategorySlugs: ['high-horsepower', 'electric'],
     bodyHtml: `
       <p>Diesel outboard motors do exist, but they're a small, specialist niche rather than a mainstream recreational option — most "diesel outboard" searches are actually better served by a petrol or electric outboard, or a diesel inboard for larger vessels.</p>
@@ -168,7 +168,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['2 stroke outboard engine', '4 stroke outboard engine', 'two stroke outboard motors'],
     funnelPosition: 'Middle',
     contentType: 'Comparison',
-    publishDate: '2026-11-17',
+    publishDate: '2026-08-05',
     relatedCategorySlugs: ['portable', 'mid-range'],
     bodyHtml: `
       <p>4-stroke outboards are quieter, more fuel-efficient, and meet current UK RCD II emissions standards for new recreational sales — which is why our full range is 4-stroke or electric.</p>
@@ -197,7 +197,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['seagull outboard engine', 'seagull outboard motor'],
     funnelPosition: 'Top',
     contentType: 'Explainer',
-    publishDate: '2026-11-24',
+    publishDate: '2026-08-09',
     relatedCategorySlugs: ['portable'],
     bodyHtml: `
       <p>British Seagull outboards were manufactured in Poole, England, from the 1930s through to the early 1990s, and remain a familiar sight on classic dinghies and tenders across the UK today.</p>
@@ -217,7 +217,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard motor fuel tank', 'fuel hose outboard motor'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-12-01',
+    publishDate: '2026-08-13',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>Most portable outboards under 6HP use a small integrated fuel tank (around 1L), while mid-range and larger engines typically run from an external tank connected via a fuel line and primer bulb.</p>
@@ -238,7 +238,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard engine lock', 'outboard boat motor lock'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-12-08',
+    publishDate: '2026-08-17',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>Outboard motors are a genuine theft target — they're valuable, portable, and often left on a boat or trailer unattended for hours or days.</p>
@@ -259,7 +259,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard engine cover', 'boat outboard motor covers'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-12-15',
+    publishDate: '2026-08-21',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>A well-fitted cover protects an outboard's cowling and controls from UV degradation, salt spray, and dust during storage or trailering — the two biggest causes of premature cosmetic wear on an otherwise mechanically sound engine.</p>
@@ -280,7 +280,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['auxiliary outboard motor bracket', 'boat motor bracket outboard'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-12-22',
+    publishDate: '2026-08-25',
     relatedCategorySlugs: ['portable', 'parts'],
     bodyHtml: `
       <p>An outboard mounting bracket lets you fit an auxiliary engine to a boat that doesn't have a built-in transom mount — most commonly seen on sailing yachts running a portable outboard for auxiliary power.</p>
@@ -301,7 +301,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard motor trolley', 'trolley for outboard motor'],
     funnelPosition: 'Middle',
     contentType: 'Guide',
-    publishDate: '2026-12-29',
+    publishDate: '2026-08-29',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>An outboard motor trolley is a wheeled base for moving an engine around a workshop, garage or slipway without lifting its full weight each time.</p>
@@ -322,7 +322,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['inboard motor vs outboard', 'outboard vs inboard boat motors'],
     funnelPosition: 'Top',
     contentType: 'Comparison',
-    publishDate: '2027-01-05',
+    publishDate: '2026-09-02',
     relatedCategorySlugs: ['high-horsepower'],
     bodyHtml: `
       <p>Outboards are easier to service (the whole engine tilts clear of the water), cheaper to maintain, and simpler to replace. Inboards suit larger vessels needing centred weight distribution and typically run quieter cabin noise.</p>
@@ -348,7 +348,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['cheap outboard motors', 'budget outboard motors', 'cheapest outboard boat motors'],
     funnelPosition: 'Bottom',
     contentType: 'Listicle/Commercial',
-    publishDate: '2026-09-29',
+    publishDate: '2026-09-06',
     relatedCategorySlugs: ['portable', 'mid-range'],
     bodyHtml: `
       <p>An affordable outboard doesn't have to mean a compromise on warranty or build quality — it means picking the right HP for your actual needs rather than over-buying.</p>
@@ -374,7 +374,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['outboard motor servicing', 'maintenance on outboard motor'],
     funnelPosition: 'Bottom',
     contentType: 'How-to guide',
-    publishDate: '2026-10-03',
+    publishDate: '2026-09-10',
     relatedCategorySlugs: ['parts'],
     relatedPostSlugs: ['winterize-outboard-motor', 'flush-outboard-motor'],
     bodyHtml: `
@@ -402,7 +402,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['winterize outboard engine', 'outboard motor winter storage'],
     funnelPosition: 'Bottom',
     contentType: 'How-to guide',
-    publishDate: '2026-10-10',
+    publishDate: '2026-09-14',
     relatedCategorySlugs: ['parts'],
     relatedPostSlugs: ['outboard-motor-maintenance-guide', 'flush-outboard-motor'],
     bodyHtml: `
@@ -426,7 +426,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['flush outboard engine', 'flush outboard after saltwater'],
     funnelPosition: 'Bottom',
     contentType: 'How-to guide',
-    publishDate: '2026-10-17',
+    publishDate: '2026-09-18',
     relatedCategorySlugs: ['parts'],
     relatedPostSlugs: ['outboard-motor-maintenance-guide'],
     bodyHtml: `
@@ -448,7 +448,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['starting an outboard motor', 'outboard motor wont start'],
     funnelPosition: 'Bottom',
     contentType: 'How-to guide',
-    publishDate: '2026-10-24',
+    publishDate: '2026-09-22',
     relatedCategorySlugs: ['portable', 'mid-range'],
     bodyHtml: `
       <p>Starting an outboard reliably comes down to a short pre-start check, correct choke/primer use, and knowing the difference between a cold and warm start.</p>
@@ -471,7 +471,7 @@ export const BLOG_POSTS: BlogPost[] = [
     secondaryKeywords: ['mercury outboard serial number', 'yamaha outboard serial number'],
     funnelPosition: 'Top',
     contentType: 'Guide',
-    publishDate: '2026-10-08',
+    publishDate: '2026-09-26',
     relatedCategorySlugs: ['parts'],
     bodyHtml: `
       <p>An outboard's serial number identifies its exact model year, which matters for ordering the correct genuine parts and confirming warranty status.</p>

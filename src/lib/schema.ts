@@ -65,6 +65,27 @@ export function getShopCollectionSchema(category: { slug: string; name: string; 
   };
 }
 
+export function getBlogIndexSchema(postCount: number) {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${ORIGIN}/blog/` }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Outboard Motor Guides & Advice',
+      description: 'Sizing guides, maintenance how-tos, and buying advice for outboard motors.',
+      url: `${ORIGIN}/blog/`,
+      numberOfItems: postCount
+    }
+  ];
+}
+
 export function getBlogPostSchema(post: BlogPost) {
   const postUrl = `${ORIGIN}/blog/${post.slug}/`;
   const schema: object[] = [

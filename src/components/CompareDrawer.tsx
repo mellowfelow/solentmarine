@@ -117,7 +117,7 @@ export default function CompareDrawer({
                     {/* Price */}
                     <div className="h-14 border-b border-slate-100 flex flex-col justify-center">
                       <span className="md:hidden font-bold text-slate-400 uppercase tracking-wider text-[10px]">Retail Price:</span>
-                      <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB')}</span>
+                      <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       <span className="text-[10px] text-slate-400">Includes 20% UK VAT</span>
                     </div>
 

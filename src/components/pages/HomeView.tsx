@@ -251,7 +251,7 @@ export default function HomeView({
                           />
                           <div>
                             <p className="font-semibold text-white truncate max-w-[120px] text-xs leading-none">{eng.name}</p>
-                            <span className="text-[10px] font-mono text-slate-400">£{eng.priceGbp.toLocaleString('en-GB')}</span>
+                            <span className="text-[10px] font-mono text-slate-400">£{eng.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           </div>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-sky-450 shrink-0" />
@@ -320,7 +320,7 @@ export default function HomeView({
                 <div className="flex justify-between items-baseline mb-2">
                   <span className="text-xs text-slate-400">Retail Price</span>
                   <div className="text-right">
-                    <span className="text-base font-extrabold text-slate-905 text-slate-900">£{prod.priceGbp.toLocaleString('en-GB')}</span>
+                    <span className="text-base font-extrabold text-slate-905 text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     <p className="text-[9px] text-slate-400 leading-none">inc. 20% UK VAT</p>
                   </div>
                 </div>

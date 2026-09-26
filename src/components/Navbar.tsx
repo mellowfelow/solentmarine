@@ -5,6 +5,7 @@
 
 import { Menu, X, ShoppingCart, Scale, Phone, Mail, MapPin, Compass } from 'lucide-react';
 import { Product, CartItem } from '../types';
+import { CONTACT } from '../config/site';
 
 interface NavbarProps {
   currentView: string;
@@ -51,7 +52,7 @@ export default function Navbar({
             </span>
             <span className="flex items-center gap-1.5 hover:text-white transition">
               <Mail className="w-3.5 h-3.5 text-sky-400" />
-              <span>sales@outboardmotorsnet.co.uk</span>
+              <span>{CONTACT.email}</span>
             </span>
           </div>
           <div className="flex items-center gap-5 font-mono">
@@ -187,7 +188,7 @@ export default function Navbar({
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-sky-500 shrink-0" />
-              <span>sales@outboardmotorsnet.co.uk</span>
+              <span>{CONTACT.email}</span>
             </div>
           </div>
         </div>

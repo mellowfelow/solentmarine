@@ -74,7 +74,7 @@ export default function BasketDrawer({
     e.preventDefault();
 
     if (checkoutChannel === 'whatsapp') {
-      const itemsList = cart.map(item => `• ${item.quantity}x ${item.product.name} (${item.selectedShaft}) - £${(item.product.priceGbp * item.quantity).toLocaleString()}`).join('\n');
+      const itemsList = cart.map(item => `• ${item.quantity}x ${item.product.name} (${item.selectedShaft}) - £${(item.product.priceGbp * item.quantity).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`).join('\n');
       const text = `*SOLENT MARINE OUTBOARDS ORDER RESERVATION*\n\n*Order Ref:* ${orderRef}\n*Customer:* ${fullname}\n*Phone:* ${phone}\n*Email:* ${email}\n*Delivery Address:* ${address}, ${city}, ${postcode}\n*Logistics Method:* ${shippingOption.toUpperCase()}\n\n*Selected Engines & Accessories:*\n${itemsList}\n\n*Subtotal:* £${itemsSubtotal.toLocaleString()}\n*Shipping:* £${shippingCost.toLocaleString()}\n*Grand Total (inc. 20% UK VAT):* £${grandTotal.toLocaleString()}\n\n*Notes:* ${notes || 'None'}\n\nPlease confirm stock reservation, PDI timetable, and send BACS/Bank payment details.`;
       
       const waUrl = `https://wa.me/${CONTACT.whatsapp.replace('+', '')}?text=${encodeURIComponent(text)}`;
@@ -167,7 +167,7 @@ export default function BasketDrawer({
                           </div>
                           <div className="flex items-center gap-3">
                             <span className="font-bold text-slate-900 text-sm">
-                              £{(item.product.priceGbp * item.quantity).toLocaleString()}
+                              £{(item.product.priceGbp * item.quantity).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                             <button
                               type="button"

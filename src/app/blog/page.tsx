@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { BlogIndexClient } from '../../components/routes/BlogClient';
+import { BLOG_POSTS } from '../../data/posts';
+import { getBlogIndexSchema } from '../../lib/schema';
 
 export const metadata: Metadata = {
   title: 'Outboard Motor Guides & Advice | Solent Marine UK',
@@ -8,5 +10,13 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <BlogIndexClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getBlogIndexSchema(BLOG_POSTS.length)) }}
+      />
+      <BlogIndexClient />
+    </>
+  );
 }
