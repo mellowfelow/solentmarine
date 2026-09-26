@@ -4,9 +4,9 @@ import { OUTBOARD_PRODUCTS } from '../data/products';
 import { getHomeSchema } from '../lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Premium Boat Engines Shop & Rigging | Solent Marine UK',
+  title: 'Outboard Motors For Sale UK | Solent Marine Outboards',
   description:
-    "UK's premier marine outboard engines provider. Explore Yamaha, Suzuki, Honda, Mercury, Tohatsu petrol outboards and ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota electric propulsion. In-house PDI diagnostics, competitive finance rates, and UK-wide secure pallet delivery.",
+    "Outboard motors for sale from our Cowes, Isle of Wight dealership — buy outboard boat motors from Yamaha, Suzuki, Honda, Mercury, Tohatsu and electric propulsion from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota. PDI checked, UK-wide delivery.",
   alternates: { canonical: '/' },
   openGraph: { type: 'website', url: '/' }
 };

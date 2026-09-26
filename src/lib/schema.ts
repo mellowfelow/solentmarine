@@ -5,7 +5,7 @@
  */
 import { SITE, CONTACT, BRAND } from '../config/site';
 import { TRUSTPILOT_STATS } from '../data/reviewsData';
-import { Product } from '../types';
+import { Product, BlogPost } from '../types';
 
 const ORIGIN = `https://${SITE.domain}`;
 
@@ -63,6 +63,43 @@ export function getShopCollectionSchema(category: { slug: string; name: string; 
     url: category ? `${ORIGIN}/shop/${category.slug}/` : `${ORIGIN}/shop/`,
     numberOfItems: itemCount
   };
+}
+
+export function getBlogPostSchema(post: BlogPost) {
+  const postUrl = `${ORIGIN}/blog/${post.slug}/`;
+  const schema: object[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.metaDescription,
+      datePublished: post.publishDate,
+      url: postUrl,
+      author: { '@type': 'Organization', name: SITE.name },
+      publisher: { '@type': 'Organization', name: SITE.name }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${ORIGIN}/blog/` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: postUrl }
+      ]
+    }
+  ];
+  if (post.faq && post.faq.length > 0) {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: post.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer }
+      }))
+    });
+  }
+  return schema;
 }
 
 export function getProductSchema(product: Product, reviewCount: number, avgRating: string | null) {

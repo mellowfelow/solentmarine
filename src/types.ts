@@ -75,6 +75,21 @@ export interface Review {
   helpfulCount?: number;
 }
 
+export interface BlogPost {
+  slug: string;
+  title: string;
+  metaDescription: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  funnelPosition: 'Top' | 'Middle' | 'Bottom';
+  contentType: string;
+  publishDate: string;
+  bodyHtml: string;
+  relatedCategorySlugs: string[];
+  relatedPostSlugs?: string[];
+  faq?: { question: string; answer: string }[];
+}
+
 export interface CartItem {
   product: Product;
   quantity: number;

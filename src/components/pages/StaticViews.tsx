@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, HelpCircle, Truck, Ship, Fuel, CheckCircle } from 'lucide-react';
 
 import { CONTACT } from '../../config/site';
+import { FAQ_ITEMS } from '../../data/faq';
 
 interface NavProp {
   onNavigate?: (view: string, params?: Record<string, string>) => void;
@@ -14,32 +15,7 @@ interface NavProp {
 
 // =============== FAQ VIEW ===============
 export function FAQView({ onNavigate }: NavProp) {
-  const faqs = [
-    {
-      q: 'Which shaft length do I need for my boat?',
-      a: 'The shaft length is determined by measuring your boat’s transom height (from the top of the transom to the bottom of the hull keel). Commonly, Short Shaft (15"/38cm) is for inflatables and small tenders. Long Shaft (20"/51cm) is for speedboats, RIBs, and sailing aux. Extra Long Shaft (25"/63cm) is for high-freeboard seaworthy ships or twin-engine installs.'
-    },
-    {
-      q: 'Can under-18s operate outboard motors in the UK?',
-      a: 'In the UK, there is no formal statutory licensing for operating small leisure vessels of low horsepower, but safety frameworks strongly recommend teenager adult supervision. For engines exceeding 10hp, yacht clubs and maritime organizations recommend completing the RYA Powerboat Level 1 or 2 qualification.'
-    },
-    {
-      q: 'Are 2-stroke outboards illegal to purchase or use in the UK?',
-      a: 'Under RCD II (Recreational Craft Directive) emissions guidelines implemented in the UK, carburetted 2-stroke outboards can no longer be sold for brand-new "recreational" use. However, they remain legal to use if owned prior, and new direct-injection/commercial 2-strokes can be purchased for commercial registrations (such as fishing, fleet patrol, or registered racing setups).'
-    },
-    {
-      q: 'What is PDI (Pre-Delivery Inspection)?',
-      a: 'PDI is a mandatory mechanical safety procedure. Our engineering team unboxes your engine, mounts it, fills it with oil, runs the block, tests cooling impeller water flow (piddle-stream), sets timing, and inspects gear shifting. We then drain the sump (to meet UK dangerous cargo carriage rules) and crate it. PDI ensures your motor is ready without dead-on-arrival issues.'
-    },
-    {
-      q: 'How does marine financing operate on Solent Marine?',
-      a: 'We work with FCA regulated asset lenders to offer Hire Purchase (HP) options at a 9.9% representative APR. You can select terms from 12 to 60 months with a minimum 10% cash deposit. Approval decisions are generally returned in 2 to 4 hours.'
-    },
-    {
-      q: 'How do electric outboard runtimes compare to petrol?',
-      a: 'Electric motors (like Torqeedo or ePropulsion Spirit) offer immediate digital torque. Run-time is dictated by battery size: a standard 1276Wh float battery on a 3hp equivalent engine delivers up to 5-6 hours of tooling at half-throttle (4 knots), or 75 minutes at wide-open full throttle.'
-    }
-  ];
+  const faqs = FAQ_ITEMS;
 
   return (
     <div id="faq-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6">

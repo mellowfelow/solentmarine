@@ -166,6 +166,43 @@ export const CATEGORIES = [
   }
 ];
 
+// Brand hub pages — see docs/product-gaps.md Gap 1. Demand-validated: Yamaha (13,730/mo), Mercury
+// (10,510/mo), Honda (6,230/mo) and Suzuki (6,040/mo) brand-only searches carry no dedicated landing
+// page under the HP-tier category structure alone. Tohatsu and ePropulsion have thinner brand-specific
+// search volume but are included for catalog completeness and internal linking.
+export const BRANDS = [
+  {
+    slug: 'yamaha',
+    name: 'Yamaha',
+    description: 'Solent Marine has been an authorized Yamaha Marine dealer since 2016, stocking the full range from the 2.5HP F2.5BMHS tender engine to the 300HP F300NCB offshore V6.',
+  },
+  {
+    slug: 'mercury',
+    name: 'Mercury',
+    description: 'Mercury outboards from 3.5HP FourStroke portable engines through to the 400HP Verado V10 — official UK manufacturer warranty on every engine, PDI checked before dispatch.',
+  },
+  {
+    slug: 'honda',
+    name: 'Honda',
+    description: 'Honda Marine outboards including the ultra-light BF2.3 and reliable BF100 XRU, backed by Honda’s official UK dealer warranty.',
+  },
+  {
+    slug: 'suzuki',
+    name: 'Suzuki',
+    description: 'Solent Marine has been an authorized Suzuki Outboards UK dealer since 2016, stocking the DF range from lightweight portables to the 350HP DF350A twin-prop flagship.',
+  },
+  {
+    slug: 'tohatsu',
+    name: 'Tohatsu',
+    description: 'Tohatsu outboards, known for class-leading power-to-weight ratios, from the 3.5HP MFS3.5C to the 115HP MFS115A.',
+  },
+  {
+    slug: 'epropulsion',
+    name: 'ePropulsion',
+    description: 'ePropulsion electric outboards and pod drives, from the 0.5kW eLite for tenders to the 20kW X20 pod drive for larger craft.',
+  },
+];
+
 export const FAQ = [
   {
     question: 'What is included in the Pre-Delivery Inspection (PDI)?',

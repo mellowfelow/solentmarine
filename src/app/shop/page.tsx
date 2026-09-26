@@ -4,9 +4,9 @@ import { OUTBOARD_PRODUCTS } from '../../data/products';
 import { getShopBreadcrumbSchema, getShopCollectionSchema } from '../../lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Shop Outboard Motors | Comprehensive UK Stock Directory | Solent Marine UK',
+  title: 'Marine Motors For Sale | Full UK Stock Directory | Solent Marine UK',
   description:
-    'Filter and search physical stock of Suzuki, Yamaha, Tohatsu, Mercury, Torqeedo, ePropulsion and more. Buy portable 4-stroke or electric propulsion packages today.',
+    'Marine motors for sale — filter and search our full stock of Suzuki, Yamaha, Tohatsu, Mercury, Torqeedo, ePropulsion and more. Buy portable 4-stroke or electric propulsion packages today.',
   alternates: { canonical: '/shop/' }
 };
 

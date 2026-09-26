@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
-import { SITE, CATEGORIES } from '../config/site';
+import { SITE, CATEGORIES, BRANDS } from '../config/site';
 import { OUTBOARD_PRODUCTS } from '../data/products';
+import { BLOG_POSTS } from '../data/posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = `https://${SITE.domain}`;
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${origin}/`, lastModified: today, changeFrequency: 'daily', priority: 1.0 },
     { url: `${origin}/shop/`, lastModified: today, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${origin}/blog/`, lastModified: today, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${origin}/about/`, lastModified: today, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${origin}/faq/`, lastModified: today, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${origin}/shipping/`, lastModified: today, changeFrequency: 'weekly', priority: 0.6 },
@@ -24,6 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8
   }));
 
+  const brandPages: MetadataRoute.Sitemap = BRANDS.map((b) => ({
+    url: `${origin}/shop/${b.slug}/`,
+    lastModified: today,
+    changeFrequency: 'weekly',
+    priority: 0.8
+  }));
+
   const productPages: MetadataRoute.Sitemap = OUTBOARD_PRODUCTS.map((p) => ({
     url: `${origin}/product/${p.slug}/`,
     lastModified: today,
@@ -31,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.isFeatured ? 0.85 : 0.6
   }));
 
-  return [...staticPages, ...categoryPages, ...productPages];
+  const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
+    url: `${origin}/blog/${p.slug}/`,
+    lastModified: p.publishDate,
+    changeFrequency: 'monthly',
+    priority: 0.7
+  }));
+
+  return [...staticPages, ...categoryPages, ...brandPages, ...productPages, ...blogPages];
 }

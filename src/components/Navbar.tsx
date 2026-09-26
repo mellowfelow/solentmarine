@@ -32,6 +32,7 @@ export default function Navbar({
   const navItems = [
     { label: 'Home', view: 'home' },
     { label: 'Shop Motors', view: 'shop' },
+    { label: 'Guides', view: 'blog' },
     { label: 'About Us', view: 'about' },
     { label: 'Technical FAQ', view: 'faq' },
     { label: 'Shipping & Delivery', view: 'shipping' },

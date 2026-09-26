@@ -7,7 +7,7 @@ import React, { useState, useMemo } from 'react';
 import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
 import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight } from 'lucide-react';
-import { CATEGORIES } from '../../config/site';
+import { CATEGORIES, BRANDS } from '../../config/site';
 
 interface ShopViewProps {
   products: Product[];
@@ -16,6 +16,7 @@ interface ShopViewProps {
   compareList: Product[];
   onAddToBasket: (product: Product, shaft: string) => void;
   categorySlug?: string;
+  brandSlug?: string;
 }
 
 export default function ShopView({
@@ -24,15 +25,18 @@ export default function ShopView({
   onAddToCompare,
   compareList,
   onAddToBasket,
-  categorySlug
+  categorySlug,
+  brandSlug
 }: ShopViewProps) {
   const activeCategory = categorySlug ? CATEGORIES.find(c => c.slug === categorySlug) : undefined;
-  // Scope the catalog to the category route (if any) before facet filtering — this is what makes
-  // /shop/[category]/ a real, distinct, crawlable page rather than a client-side-only filter.
-  const scopedProducts = useMemo(
-    () => (activeCategory ? products.filter(p => p.category.includes(activeCategory.slug as any)) : products),
-    [products, activeCategory]
-  );
+  const activeBrand = brandSlug ? BRANDS.find(b => b.slug === brandSlug) : undefined;
+  // Scope the catalog to the category/brand route (if any) before facet filtering — this is what makes
+  // /shop/[category]/ and /shop/[brand]/ real, distinct, crawlable pages rather than client-side filters.
+  const scopedProducts = useMemo(() => {
+    if (activeCategory) return products.filter(p => p.category.includes(activeCategory.slug as any));
+    if (activeBrand) return products.filter(p => p.brand.toLowerCase() === activeBrand.name.toLowerCase());
+    return products;
+  }, [products, activeCategory, activeBrand]);
 
   // Max ranges in database
   const maxPriceDb = useMemo(() => Math.max(...scopedProducts.map(p => p.priceGbp)), [scopedProducts]);
@@ -129,10 +133,10 @@ export default function ShopView({
         <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
         <ChevronRight className="w-3 h-3" />
         <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-700 cursor-pointer">Shop</button>
-        {activeCategory && (
+        {(activeCategory || activeBrand) && (
           <>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-slate-800 font-semibold">{activeCategory.name}</span>
+            <span className="text-slate-800 font-semibold">{activeCategory ? activeCategory.name : activeBrand!.name}</span>
           </>
         )}
       </nav>
@@ -140,10 +144,17 @@ export default function ShopView({
       {/* Hero Banner */}
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight leading-none">{activeCategory ? activeCategory.name : 'UK Marine Engine Stock Inventory'}</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight leading-none">
+            {activeCategory ? activeCategory.name : activeBrand ? `${activeBrand.name} Outboards` : 'Marine Motors For Sale — UK Outboard Stock Inventory'}
+          </h1>
           <p className="text-slate-350 text-sm">
-            {activeCategory ? activeCategory.description : 'Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.'}
+            {activeCategory ? activeCategory.description : activeBrand ? activeBrand.description : 'Configure technical parameters to match your hull. We conduct a full Pre-Delivery Inspection (PDI) on all outboards and offer dynamic monthly financing models.'}
           </p>
+          {activeCategory?.slug === 'parts' && (
+            <p className="text-sky-300 text-xs pt-1">
+              We regularly deliver genuine parts across the Solent — Hamble, Hythe, Lymington, Portsmouth, Swanwick and the Isle of Wight — alongside standard UK mainland delivery.
+            </p>
+          )}
         </div>
         <div className="absolute top-0 right-0 h-full w-1/3 opacity-10 pointer-events-none hidden md:block">
           <LayoutGrid className="w-full h-full text-white" />
@@ -151,11 +162,11 @@ export default function ShopView({
       </div>
 
       {/* Category quick-links — real crawlable /shop/[category]/ pages, internal linking hub */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex flex-wrap gap-2 mb-3">
         <button
           type="button"
           onClick={() => onNavigate('shop')}
-          className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${!activeCategory ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
+          className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${!activeCategory && !activeBrand ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
         >
           All Stock
         </button>
@@ -167,6 +178,21 @@ export default function ShopView({
             className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${activeCategory?.slug === cat.slug ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
           >
             {cat.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Brand quick-links — real crawlable /shop/[brand]/ pages */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 self-center mr-1">Shop by brand:</span>
+        {BRANDS.map(brand => (
+          <button
+            key={brand.slug}
+            type="button"
+            onClick={() => onNavigate('shop-category', { slug: brand.slug })}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${activeBrand?.slug === brand.slug ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'}`}
+          >
+            {brand.name}
           </button>
         ))}
       </div>
