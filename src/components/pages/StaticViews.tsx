@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, HelpCircle, Truck, Ship, Fuel, CheckCircle } from 'lucide-react';
-import SEOHead from '../SEOHead';
+
 import { CONTACT } from '../../config/site';
 
 interface NavProp {
@@ -43,12 +43,6 @@ export function FAQView({ onNavigate }: NavProp) {
 
   return (
     <div id="faq-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6">
-      <SEOHead 
-        title="Technical Marine Outboards FAQ"
-        description="Frequently Asked Questions about UK outboard shaft lengths, PDI rigging, 2-stroke legislation, electric motor runtimes, and Solent marine finance definitions."
-        path="/faq/"
-        ogType="website"
-      />
       <div className="text-center space-y-3 mb-12">
         <HelpCircle className="w-12 h-12 text-sky-800 mx-auto" />
         <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Technical Outboards FAQ</h1>
@@ -96,12 +90,6 @@ export function ContactView({ onNavigate }: NavProp) {
 
   return (
     <div id="contact-page" className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
-      <SEOHead 
-        title="Contact Solent Marine Outboards Cowes"
-        description="Get in touch with UK marine mechanics and sales advisors based in Cowes, Isle of Wight. Phone call line: 01983 294400 or submit an outboard rigging inquiry."
-        path="/contact/"
-        ogType="website"
-      />
       <div className="text-center space-y-3 mb-12">
         <Mail className="w-12 h-12 text-sky-800 mx-auto" />
         <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Connect with Boating Experts</h1>
@@ -262,12 +250,6 @@ export function ContactView({ onNavigate }: NavProp) {
 export function AboutView({ onNavigate }: NavProp) {
   return (
     <div id="about-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6 space-y-12">
-      <SEOHead 
-        title="About Solent Outboards UK - Our Rigging Team"
-        description="Learn the history of Solent Marine Outboards, the UK's leading independent boating catalog and rigging center based in Cowes, Isle of Wight."
-        path="/about/"
-        ogType="website"
-      />
       {/* Hero */}
       <div className="text-center space-y-4">
         <Ship className="w-12 h-12 text-sky-800 mx-auto" />
@@ -340,12 +322,6 @@ export function AboutView({ onNavigate }: NavProp) {
 export function ShippingView({ onNavigate }: NavProp) {
   return (
     <div id="shipping-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6 space-y-8">
-      <SEOHead 
-        title="Outboard Engine Delivery & Returns UK Policies"
-        description="Official Solent Marine UK transport policies. Learn how outboards are safely crated, shipped dry of engine oil, and the 14-day UK distance return guidelines."
-        path="/shipping/"
-        ogType="website"
-      />
       <div className="text-center space-y-3 mb-8">
         <Truck className="w-12 h-12 text-sky-800 mx-auto" />
         <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Delivery Infrastructure & Returns</h1>
@@ -395,12 +371,6 @@ export function ShippingView({ onNavigate }: NavProp) {
 export function PrivacyView() {
   return (
     <div id="privacy-page" className="max-w-3xl mx-auto py-10 px-4 sm:px-6 prose prose-slate">
-      <SEOHead 
-        title="Privacy Regulation & Cookies - Solent Marine"
-        description="Solent Marine Outboards UK GDPR notice. How your transaction logs, cookie tracking, and finance calculator calculations are handled securely."
-        path="/privacy/"
-        ogType="website"
-      />
       <h1 className="font-sans font-extrabold text-slate-900 text-3xl mb-4">Privacy Framework & GDPR Compliance</h1>
       <p className="text-xs text-slate-400 font-mono mb-6">Last Revised: 2026-09-22 • ICO Registered Operator</p>
       
@@ -432,12 +402,6 @@ export function PrivacyView() {
 export function TermsView() {
   return (
     <div id="terms-page" className="max-w-3xl mx-auto py-10 px-4 sm:px-6 prose prose-slate">
-      <SEOHead 
-        title="Terms of Service & UK Warranties - Solent Marine"
-        description="Review Solent Marine terms and conditions. Covers boat motor sales laws, UK CE markings, fuel line safety guidelines, and warranty activations."
-        path="/terms/"
-        ogType="website"
-      />
       <h1 className="font-sans font-extrabold text-slate-900 text-3xl mb-4">Terms and Conditions of Supply</h1>
       <p className="text-xs text-slate-400 font-mono mb-6">Current active draft: Official Code Version PO31-7DL</p>
 

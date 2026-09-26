@@ -6,11 +6,8 @@
 import React, { useState } from 'react';
 import { Ship, ArrowRight, Compass } from 'lucide-react';
 import { Product } from '../../types';
-import SEOHead from '../SEOHead';
 import { ReviewsShowcase } from '../ReviewsShowcase';
 import HeroSlider, { HeroSlide } from '../HeroSlider';
-import { SITE, CONTACT, BRAND } from '../../config/site';
-import { TRUSTPILOT_STATS } from '../../data/reviewsData';
 
 interface HomeViewProps {
   products: Product[];
@@ -109,41 +106,6 @@ export default function HomeView({
 
   return (
     <div id="home-view-container" className="space-y-16 pb-16 font-sans">
-      <SEOHead 
-        title="Premium Boat Engines Shop & Rigging"
-        description="UK's premier marine outboard engines provider. Explore Yamaha, Suzuki, Honda, Mercury, Tohatsu petrol outboards and ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota electric propulsion. In-house PDI diagnostics, competitive finance rates, and UK-wide secure pallet delivery."
-        path="/"
-        ogType="website"
-        schemaMarkup={{
-          "@context": "https://schema.org",
-          "@type": ["Store", "Organization"],
-          "name": SITE.name,
-          "description": BRAND.description,
-          "url": `https://${SITE.domain}/`,
-          "telephone": CONTACT.phoneInternational,
-          "email": CONTACT.email,
-          "foundingDate": BRAND.foundingYear,
-          "areaServed": "GB",
-          "priceRange": `£${Math.min(...products.map(p => p.priceGbp)).toLocaleString('en-GB')} - £${Math.max(...products.map(p => p.priceGbp)).toLocaleString('en-GB')}`,
-          "numberOfItems": products.length,
-          "sameAs": BRAND.sameAs,
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Cowes Yacht Haven, High Street",
-            "addressLocality": "Cowes, Isle of Wight",
-            "postalCode": "PO31 7BD",
-            "addressCountry": "GB"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": String(TRUSTPILOT_STATS.averageRating),
-            "bestRating": "5",
-            "worstRating": "1",
-            "ratingCount": String(TRUSTPILOT_STATS.totalReviews)
-          }
-        }}
-      />
-
       {/* Hero Banner Section — auto-rotating slider revolution of real customer/product photography */}
       <section className="relative bg-slate-950 text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
         <HeroSlider slides={heroSlides} />

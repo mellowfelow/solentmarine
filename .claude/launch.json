@@ -4,7 +4,7 @@
     {
       "name": "solent-preview",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["vite", "preview", "--port", "4173", "--host", "0.0.0.0"],
+      "runtimeArgs": ["next", "start", "-p", "4173"],
       "port": 4173
     }
   ]

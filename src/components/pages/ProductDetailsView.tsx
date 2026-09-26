@@ -7,8 +7,6 @@ import React, { useState } from 'react';
 import { Product, Review } from '../../types';
 import FinanceCalculator from '../FinanceCalculator';
 import { Star, ShieldAlert, BadgeInfo, Scale, ChevronLeft, MapPin, CheckCircle, Ship, AlertCircle } from 'lucide-react';
-import SEOHead from '../SEOHead';
-import { SITE } from '../../config/site';
 
 interface ProductDetailsViewProps {
   slug: string;
@@ -90,56 +88,8 @@ export default function ProductDetailsView({
     ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
     : null; // No fabricated default rating — a product with zero reviews shows "No reviews yet", not a fake 5.0.
 
-  const productUrl = `https://${SITE.domain}/product/${product.slug}/`;
-  const productSchema = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: product.name,
-      sku: product.sku,
-      brand: { '@type': 'Brand', name: product.brand },
-      description: product.description,
-      image: `https://${SITE.domain}${product.imageUrl}`,
-      url: productUrl,
-      category: product.subcategories?.[0] || product.category[0],
-      ...(reviews.length > 0 ? {
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: avgRating,
-          reviewCount: reviews.length
-        }
-      } : {}),
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: SITE.currency,
-        price: product.priceGbp,
-        availability: product.stockStatus === 'In Stock' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
-        url: productUrl,
-        seller: { '@type': 'Organization', name: SITE.name }
-      }
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `https://${SITE.domain}/` },
-        { '@type': 'ListItem', position: 2, name: 'Shop', item: `https://${SITE.domain}/shop/` },
-        { '@type': 'ListItem', position: 3, name: product.name, item: productUrl }
-      ]
-    }
-  ];
-
   return (
     <div id="pdp-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-10">
-      <SEOHead
-        title={`${product.name} — Specs, Price & Finance`}
-        description={`${product.brand} ${product.name}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. Fully PDI checked at Solent Marine, Isle of Wight.`}
-        path={`/product/${product.slug}/`}
-        ogType="product"
-        ogImage={`https://${SITE.domain}${product.imageUrl}`}
-        schemaMarkup={productSchema}
-      />
-
       {/* Back to inventory */}
       <div>
         <button

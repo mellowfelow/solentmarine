@@ -40,7 +40,11 @@ export async function sendMail(opts: MailOptions): Promise<MailResult> {
   try {
     // In Node.js / Vercel Serverless environment, nodemailer can be loaded dynamically if present
     if (typeof window === 'undefined' && typeof require !== 'undefined') {
-      const nodemailer = require('nodemailer');
+      // Dynamic module name keeps this out of the client bundle and out of webpack's static
+      // dependency graph — nodemailer isn't installed yet (no live SMTP wiring), so a literal
+      // require('nodemailer') would surface as a build-time "module not found" warning.
+      const moduleName = 'nodemailer';
+      const nodemailer = require(moduleName);
       const secure = port === '465' || process.env.EMAIL_SERVER_SECURE === 'true';
 
       const transporter = nodemailer.createTransport({

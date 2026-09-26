@@ -7,8 +7,7 @@ import React, { useState, useMemo } from 'react';
 import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
 import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight } from 'lucide-react';
-import SEOHead from '../SEOHead';
-import { CATEGORIES, SITE } from '../../config/site';
+import { CATEGORIES } from '../../config/site';
 
 interface ShopViewProps {
   products: Product[];
@@ -125,32 +124,6 @@ export default function ShopView({
 
   return (
     <div id="shop-view-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
-      <SEOHead
-        title={activeCategory ? `${activeCategory.name} | Shop UK Stock` : 'Shop Outboard Motors | Comprehensive UK Stock Directory'}
-        description={activeCategory ? `${activeCategory.description} Browse ${scopedProducts.length} in-stock ${activeCategory.name.toLowerCase()} with UK-wide delivery and PDI inspection.` : 'Filter and search physical stock of Suzuki, Yamaha, Tohatsu, Mercury, Torqeedo, ePropulsion and more. Buy portable 4-stroke or electric propulsion packages today.'}
-        path={activeCategory ? `/shop/${activeCategory.slug}/` : '/shop/'}
-        ogType="website"
-        schemaMarkup={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: `https://${SITE.domain}/` },
-              { '@type': 'ListItem', position: 2, name: 'Shop', item: `https://${SITE.domain}/shop/` },
-              ...(activeCategory ? [{ '@type': 'ListItem', position: 3, name: activeCategory.name, item: `https://${SITE.domain}/shop/${activeCategory.slug}/` }] : [])
-            ]
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'CollectionPage',
-            name: activeCategory ? activeCategory.name : 'Outboard Motor Shop',
-            description: activeCategory ? activeCategory.description : 'Full UK outboard motor stock directory.',
-            url: activeCategory ? `https://${SITE.domain}/shop/${activeCategory.slug}/` : `https://${SITE.domain}/shop/`,
-            numberOfItems: scopedProducts.length
-          }
-        ]}
-      />
-
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
         <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
