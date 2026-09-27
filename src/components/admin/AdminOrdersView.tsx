@@ -1,20 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { 
-  ShoppingBag, 
-  Search, 
-  Filter, 
-  MessageSquare, 
-  Mail, 
-  Clock, 
-  CheckCircle2, 
-  Trash2, 
-  Send, 
-  ExternalLink,
-  ChevronDown,
-  ChevronUp,
-  Package,
-  MapPin,
-  FileText
+import React, { useState } from 'react';
+import {
+  ShoppingBag,
+  Search,
+  MessageSquare,
+  Mail,
+  Clock,
+  CheckCircle2,
+  Trash2,
+  Send,
+  Eye,
+  Package
 } from 'lucide-react';
 import type { StoredOrder, OrderStatus, OrderChannel } from '../../lib/orderStore';
 import { REPLY } from '../../config/site';
@@ -22,37 +17,19 @@ import { REPLY } from '../../config/site';
 interface AdminOrdersViewProps {
   orders: StoredOrder[];
   onSelectOrderForPayment: (order: StoredOrder) => void;
-  onUpdateStatus: (orderId: string, status: OrderStatus) => void;
+  onViewDetails: (order: StoredOrder) => void;
   onDeleteOrder: (orderId: string) => void;
-  highlightOrderId?: string;
 }
 
 export function AdminOrdersView({
   orders,
   onSelectOrderForPayment,
-  onUpdateStatus,
+  onViewDetails,
   onDeleteOrder,
-  highlightOrderId,
 }: AdminOrdersViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [channelFilter, setChannelFilter] = useState<string>('all');
-  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(highlightOrderId || null);
-  const highlightedRef = useRef<HTMLDivElement | null>(null);
-  const hasScrolledToHighlight = useRef(false);
-
-  useEffect(() => {
-    if (highlightOrderId && orders.some((o) => o.id === highlightOrderId)) {
-      setExpandedOrderId(highlightOrderId);
-    }
-  }, [highlightOrderId, orders]);
-
-  useEffect(() => {
-    if (highlightOrderId && !hasScrolledToHighlight.current && highlightedRef.current) {
-      highlightedRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      hasScrolledToHighlight.current = true;
-    }
-  }, [highlightOrderId, orders]);
 
   const filteredOrders = orders.filter((ord) => {
     const matchesSearch =
@@ -126,10 +103,10 @@ export function AdminOrdersView({
 
   return (
     <div className="space-y-6">
-      
+
       {/* Header & Controls Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-4">
-        
+
         {/* Search */}
         <div className="relative flex-1">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -180,169 +157,83 @@ export function AdminOrdersView({
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredOrders.map((order) => {
-            const isExpanded = expandedOrderId === order.id;
-            const isHighlighted = highlightOrderId === order.id;
+          {filteredOrders.map((order) => (
+            <div
+              key={order.id}
+              className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition"
+            >
+              <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
 
-            return (
-              <div
-                key={order.id}
-                ref={isHighlighted ? highlightedRef : undefined}
-                className={`bg-slate-900 border rounded-2xl overflow-hidden transition ${
-                  isHighlighted
-                    ? 'border-sky-500 ring-2 ring-sky-500/40 shadow-lg shadow-sky-950/40'
-                    : 'border-slate-800 hover:border-slate-700'
-                }`}
-              >
-                {/* Main Row summary */}
-                <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                  
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-sky-400">
-                        {order.id}
-                      </span>
-                      {getChannelBadge(order.channel)}
-                      {getStatusBadge(order.status)}
-                      <span className="text-[11px] text-slate-500 font-mono">
-                        {new Date(order.createdAt).toLocaleString()}
-                      </span>
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold text-white text-base">
-                        {order.customerName}
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        {order.customerEmail} {order.customerPhone ? `· ${order.customerPhone}` : ''}
-                      </p>
-                    </div>
+                <button
+                  type="button"
+                  onClick={() => onViewDetails(order)}
+                  className="space-y-2 text-left cursor-pointer"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-mono font-bold text-sm text-sky-400">
+                      {order.id}
+                    </span>
+                    {getChannelBadge(order.channel)}
+                    {getStatusBadge(order.status)}
+                    <span className="text-[11px] text-slate-500 font-mono">
+                      {new Date(order.createdAt).toLocaleString()}
+                    </span>
                   </div>
 
-                  {/* Pricing and Action Buttons */}
-                  <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
-                    <div className="text-right pr-2">
-                      <span className="text-xs text-slate-400 block">Total Due</span>
-                      <span className="text-lg font-black text-white font-mono">
-                        {REPLY.currency.symbol}{order.total.toLocaleString()} {order.currency}
-                      </span>
-                    </div>
+                  <div>
+                    <h4 className="font-bold text-white text-base">
+                      {order.customerName}
+                    </h4>
+                    <p className="text-xs text-slate-400">
+                      {order.customerEmail} {order.customerPhone ? `· ${order.customerPhone}` : ''}
+                    </p>
+                  </div>
+                </button>
 
-                    {/* Send Payment Details Button */}
-                    <button
-                      type="button"
-                      onClick={() => onSelectOrderForPayment(order)}
-                      className="px-3.5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-sky-950/40 cursor-pointer"
-                    >
-                      <Send className="w-3.5 h-3.5" />
-                      <span>Send Payment Details</span>
-                    </button>
-
-                    {/* Expand Details button */}
-                    <button
-                      type="button"
-                      onClick={() => setExpandedOrderId(isExpanded ? null : order.id)}
-                      className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition cursor-pointer"
-                      title="View order breakdown"
-                    >
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
-
-                    {/* Delete Order button */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (window.confirm(`Delete order ${order.id}?`)) {
-                          onDeleteOrder(order.id);
-                        }
-                      }}
-                      className="p-2 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
-                      title="Delete order"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                {/* Pricing and Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
+                  <div className="text-right pr-2">
+                    <span className="text-xs text-slate-400 block">Total Due</span>
+                    <span className="text-lg font-black text-white font-mono">
+                      {REPLY.currency.symbol}{order.total.toLocaleString()} {order.currency}
+                    </span>
                   </div>
 
+                  <button
+                    type="button"
+                    onClick={() => onSelectOrderForPayment(order)}
+                    className="px-3.5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-sky-950/40 cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Send Payment Details</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onViewDetails(order)}
+                    className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition cursor-pointer"
+                    title="View order details"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm(`Delete order ${order.id}?`)) {
+                        onDeleteOrder(order.id);
+                      }
+                    }}
+                    className="p-2 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
+                    title="Delete order"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
 
-                {/* Expanded Details Drawer */}
-                {isExpanded && (
-                  <div className="px-5 pb-5 pt-3 border-t border-slate-800/80 bg-slate-950/60 space-y-4 text-xs animate-fade-in">
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {/* Items Ordered */}
-                      <div className="space-y-2">
-                        <span className="font-semibold text-slate-400 text-[11px] uppercase tracking-wider block">
-                          Purchased Outboards & Rigging
-                        </span>
-                        <div className="space-y-1.5">
-                          {order.items.map((it, idx) => (
-                            <div
-                              key={idx}
-                              className="p-2.5 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between"
-                            >
-                              <div>
-                                <span className="font-bold text-white block">{it.quantity}x {it.name}</span>
-                                {it.shaft && <span className="text-[11px] text-slate-400">Shaft: {it.shaft}</span>}
-                              </div>
-                              <span className="font-mono font-bold text-slate-200">
-                                {REPLY.currency.symbol}{(it.price * it.quantity).toLocaleString()}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Delivery and Status Controls */}
-                      <div className="space-y-3">
-                        <div>
-                          <span className="font-semibold text-slate-400 text-[11px] uppercase tracking-wider block">
-                            Delivery & Yard Logistics
-                          </span>
-                          <p className="text-slate-300 mt-1">
-                            {order.deliveryMethod || 'UK Mainland Pallet Express with PDI'}
-                          </p>
-                          {order.deliveryAddress && (
-                            <p className="text-slate-400 text-[11px] flex items-center gap-1 mt-0.5">
-                              <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
-                              {order.deliveryAddress}
-                            </p>
-                          )}
-                        </div>
-
-                        {order.notes && (
-                          <div className="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] text-slate-300">
-                            <span className="font-semibold text-sky-400 block mb-0.5">Customer Notes:</span>
-                            {order.notes}
-                          </div>
-                        )}
-
-                        <div className="pt-2 border-t border-slate-800 flex items-center gap-2">
-                          <span className="text-[11px] text-slate-400">Update Status:</span>
-                          <button
-                            type="button"
-                            onClick={() => onUpdateStatus(order.id, 'paid')}
-                            className="px-2.5 py-1 rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-800/80 hover:bg-emerald-900 text-xs font-medium transition cursor-pointer"
-                          >
-                            Mark Paid
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => onUpdateStatus(order.id, 'dispatched')}
-                            className="px-2.5 py-1 rounded-lg bg-indigo-950 text-indigo-400 border border-indigo-800/80 hover:bg-indigo-900 text-xs font-medium transition cursor-pointer"
-                          >
-                            Mark Dispatched (PDI Complete)
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       )}
 

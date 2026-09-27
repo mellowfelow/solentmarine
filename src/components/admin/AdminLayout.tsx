@@ -1,41 +1,29 @@
+'use client';
+
 import React from 'react';
-import { 
-  ShoppingBag, 
-  MessageSquareText, 
-  Lock, 
-  LogOut, 
-  LayoutDashboard, 
-  Sparkles, 
-  ShieldCheck, 
-  ExternalLink,
-  ArrowLeft,
-  CircleDollarSign,
-  Send
-} from 'lucide-react';
-import { SITE, REPLY } from '../../config/site';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ShoppingBag, MessageSquareText, LogOut, LayoutDashboard, ArrowLeft } from 'lucide-react';
+import { SITE } from '../../config/site';
+
+const LINKS = [
+  { href: '/admin/', label: 'Overview', icon: LayoutDashboard, match: (p: string) => p === '/admin' || p === '/admin/' },
+  { href: '/admin/orders/', label: 'Orders', icon: ShoppingBag, match: (p: string) => p.startsWith('/admin/orders') || p.startsWith('/admin/send-payment-email') },
+  { href: '/admin/enquiries/', label: 'Enquiries', icon: MessageSquareText, match: (p: string) => p.startsWith('/admin/enquiries') || p.startsWith('/admin/reply-enquiry') },
+];
 
 interface AdminLayoutProps {
-  activeTab: 'dashboard' | 'orders' | 'enquiries' | 'send-payment-email' | 'reply-enquiry';
-  onTabChange: (tab: 'dashboard' | 'orders' | 'enquiries') => void;
   onLock: () => void;
-  orderCount?: number;
-  enquiryCount?: number;
   children: React.ReactNode;
   onNavigateHome?: () => void;
 }
 
-export function AdminLayout({
-  activeTab,
-  onTabChange,
-  onLock,
-  orderCount = 0,
-  enquiryCount = 0,
-  children,
-  onNavigateHome,
-}: AdminLayoutProps) {
+export function AdminLayout({ onLock, children, onNavigateHome }: AdminLayoutProps) {
+  const pathname = usePathname() || '/admin/';
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans pb-16">
-      
+
       {/* Top Admin Navigation Header */}
       <header className="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-30 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -52,7 +40,7 @@ export function AdminLayout({
                     {SITE.shortName}
                   </h1>
                   <span className="hidden lg:inline text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800/80 font-semibold shrink-0">
-                    Reply Portal v10
+                    Reply Portal v11
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-400 hidden lg:block">
@@ -88,56 +76,27 @@ export function AdminLayout({
 
           </div>
 
-          {/* Main Navigation Tabs — own row, scrolls horizontally if it ever overflows */}
+          {/* Main Navigation — real links, real URLs, browser back/forward and bookmarking
+              all just work since these are genuine Next.js routes, not tab state. */}
           <nav className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs overflow-x-auto no-scrollbar mb-3">
-            <button
-              type="button"
-              onClick={() => onTabChange('dashboard')}
-              className={`shrink-0 px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1.5 ${
-                activeTab === 'dashboard'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-950'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-              }`}
-            >
-              <LayoutDashboard className="w-3.5 h-3.5" />
-              <span>Overview</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onTabChange('orders')}
-              className={`shrink-0 px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1.5 ${
-                activeTab === 'orders' || activeTab === 'send-payment-email'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-950'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-              }`}
-            >
-              <ShoppingBag className="w-3.5 h-3.5" />
-              <span>Orders</span>
-              {orderCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-sky-950 text-sky-300 font-mono font-bold border border-sky-800">
-                  {orderCount}
-                </span>
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onTabChange('enquiries')}
-              className={`shrink-0 px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1.5 ${
-                activeTab === 'enquiries' || activeTab === 'reply-enquiry'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-950'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-              }`}
-            >
-              <MessageSquareText className="w-3.5 h-3.5" />
-              <span>Enquiries</span>
-              {enquiryCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-950 text-amber-300 font-mono font-bold border border-amber-800">
-                  {enquiryCount}
-                </span>
-              )}
-            </button>
+            {LINKS.map((l) => {
+              const Icon = l.icon;
+              const active = l.match(pathname);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`shrink-0 px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1.5 ${
+                    active
+                      ? 'bg-sky-600 text-white shadow-md shadow-sky-950'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span>{l.label}</span>
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </header>

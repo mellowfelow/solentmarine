@@ -1,53 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { 
-  MessageSquareText, 
-  Search, 
-  Mail, 
-  Send, 
-  Clock, 
-  CheckCircle2, 
-  Trash2, 
-  ChevronDown, 
-  ChevronUp,
+import React, { useState } from 'react';
+import {
+  MessageSquareText,
+  Search,
+  Mail,
+  Send,
+  Clock,
+  CheckCircle2,
+  Trash2,
+  Eye,
   Building,
-  Anchor,
-  Compass,
-  CornerDownRight
+  Anchor
 } from 'lucide-react';
 import type { StoredEnquiry, EnquiryType, EnquiryStatus } from '../../lib/enquiryStore';
 
 interface AdminEnquiriesViewProps {
   enquiries: StoredEnquiry[];
   onSelectEnquiryForReply: (enquiry: StoredEnquiry) => void;
+  onViewDetails: (enquiry: StoredEnquiry) => void;
   onDeleteEnquiry: (enquiryId: string) => void;
-  highlightEnquiryId?: string;
 }
 
 export function AdminEnquiriesView({
   enquiries,
   onSelectEnquiryForReply,
+  onViewDetails,
   onDeleteEnquiry,
-  highlightEnquiryId,
 }: AdminEnquiriesViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [expandedId, setExpandedId] = useState<string | null>(highlightEnquiryId || null);
-  const highlightedRef = useRef<HTMLDivElement | null>(null);
-  const hasScrolledToHighlight = useRef(false);
-
-  useEffect(() => {
-    if (highlightEnquiryId && enquiries.some((e) => e.id === highlightEnquiryId)) {
-      setExpandedId(highlightEnquiryId);
-    }
-  }, [highlightEnquiryId, enquiries]);
-
-  useEffect(() => {
-    if (highlightEnquiryId && !hasScrolledToHighlight.current && highlightedRef.current) {
-      highlightedRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      hasScrolledToHighlight.current = true;
-    }
-  }, [highlightEnquiryId, enquiries]);
 
   const filtered = enquiries.filter((enq) => {
     const matchesSearch =
@@ -107,10 +88,10 @@ export function AdminEnquiriesView({
 
   return (
     <div className="space-y-6">
-      
+
       {/* Header & Controls Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-4">
-        
+
         {/* Search */}
         <div className="relative flex-1">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -160,137 +141,87 @@ export function AdminEnquiriesView({
         </div>
       ) : (
         <div className="space-y-4">
-          {filtered.map((enquiry) => {
-            const isExpanded = expandedId === enquiry.id;
-            const isHighlighted = highlightEnquiryId === enquiry.id;
+          {filtered.map((enquiry) => (
+            <div
+              key={enquiry.id}
+              className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition"
+            >
+              <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
 
-            return (
-              <div
-                key={enquiry.id}
-                ref={isHighlighted ? highlightedRef : undefined}
-                className={`bg-slate-900 border rounded-2xl overflow-hidden transition ${
-                  isHighlighted
-                    ? 'border-emerald-500 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-950/40'
-                    : 'border-slate-800 hover:border-slate-700'
-                }`}
-              >
-                <div className="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                  
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono font-bold text-xs text-sky-400">
-                        {enquiry.id}
-                      </span>
-                      {getTypeBadge(enquiry.type)}
-                      {getStatusBadge(enquiry.status)}
-                      <span className="text-[11px] text-slate-500 font-mono">
-                        {new Date(enquiry.createdAt).toLocaleString()}
-                      </span>
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold text-white text-base flex items-center gap-2">
-                        <span>{enquiry.name}</span>
-                        {enquiry.company && (
-                          <span className="text-xs text-purple-300 font-normal">
-                            ({enquiry.company})
-                          </span>
-                        )}
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        {enquiry.email} {enquiry.phone ? `· ${enquiry.phone}` : ''}
-                      </p>
-                    </div>
-
-                    {enquiry.subject && (
-                      <p className="text-xs font-semibold text-slate-300">
-                        Subject: "{enquiry.subject}"
-                      </p>
-                    )}
+                <button
+                  type="button"
+                  onClick={() => onViewDetails(enquiry)}
+                  className="space-y-2 text-left cursor-pointer"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-mono font-bold text-xs text-sky-400">
+                      {enquiry.id}
+                    </span>
+                    {getTypeBadge(enquiry.type)}
+                    {getStatusBadge(enquiry.status)}
+                    <span className="text-[11px] text-slate-500 font-mono">
+                      {new Date(enquiry.createdAt).toLocaleString()}
+                    </span>
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex items-center gap-3 self-start lg:self-center">
-                    <button
-                      type="button"
-                      onClick={() => onSelectEnquiryForReply(enquiry)}
-                      className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-emerald-950/40 cursor-pointer"
-                    >
-                      <Send className="w-3.5 h-3.5" />
-                      <span>{enquiry.status === 'replied' ? 'Send Follow-up' : 'Compose Reply'}</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setExpandedId(isExpanded ? null : enquiry.id)}
-                      className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition cursor-pointer"
-                      title="View full enquiry content"
-                    >
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (window.confirm(`Delete enquiry ${enquiry.id}?`)) {
-                          onDeleteEnquiry(enquiry.id);
-                        }
-                      }}
-                      className="p-2 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
-                      title="Delete enquiry"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                  <div>
+                    <h4 className="font-bold text-white text-base flex items-center gap-2">
+                      <span>{enquiry.name}</span>
+                      {enquiry.company && (
+                        <span className="text-xs text-purple-300 font-normal">
+                          ({enquiry.company})
+                        </span>
+                      )}
+                    </h4>
+                    <p className="text-xs text-slate-400">
+                      {enquiry.email} {enquiry.phone ? `· ${enquiry.phone}` : ''}
+                    </p>
                   </div>
 
+                  {enquiry.subject && (
+                    <p className="text-xs font-semibold text-slate-300">
+                      Subject: "{enquiry.subject}"
+                    </p>
+                  )}
+                </button>
+
+                {/* Actions */}
+                <div className="flex items-center gap-3 self-start lg:self-center">
+                  <button
+                    type="button"
+                    onClick={() => onSelectEnquiryForReply(enquiry)}
+                    className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-emerald-950/40 cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{enquiry.status === 'replied' ? 'Send Follow-up' : 'Compose Reply'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onViewDetails(enquiry)}
+                    className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition cursor-pointer"
+                    title="View full enquiry"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm(`Delete enquiry ${enquiry.id}?`)) {
+                        onDeleteEnquiry(enquiry.id);
+                      }
+                    }}
+                    className="p-2 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
+                    title="Delete enquiry"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
 
-                {/* Expanded Message content and past replies */}
-                {isExpanded && (
-                  <div className="px-5 pb-5 pt-3 border-t border-slate-800/80 bg-slate-950/60 space-y-4 text-xs animate-fade-in">
-                    <div className="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
-                      <span className="font-semibold text-slate-400 text-[11px] uppercase tracking-wider block">
-                        Original Message:
-                      </span>
-                      <p className="text-slate-200 leading-relaxed whitespace-pre-wrap">
-                        {enquiry.message}
-                      </p>
-                      {(enquiry.vesselModel || enquiry.engineInterest) && (
-                        <div className="pt-2 mt-2 border-t border-slate-800 flex flex-wrap gap-4 text-[11px] text-slate-400">
-                          {enquiry.vesselModel && <span>Vessel: <strong className="text-white">{enquiry.vesselModel}</strong></span>}
-                          {enquiry.engineInterest && <span>Engine Interest: <strong className="text-white">{enquiry.engineInterest}</strong></span>}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Past reply thread */}
-                    {enquiry.replies && enquiry.replies.length > 0 && (
-                      <div className="space-y-2">
-                        <span className="font-semibold text-emerald-400 text-[11px] uppercase tracking-wider block">
-                          Official Reply History ({enquiry.replies.length})
-                        </span>
-                        {enquiry.replies.map((rep, idx) => (
-                          <div key={idx} className="p-3 bg-emerald-950/20 border border-emerald-900/40 rounded-xl space-y-1">
-                            <div className="flex items-center gap-1 text-emerald-400 font-bold text-[11px]">
-                              <CornerDownRight className="w-3.5 h-3.5" />
-                              <span>Sent by {rep.sender}</span>
-                              <span className="text-slate-500 text-[10px] ml-auto font-normal">
-                                {new Date(rep.date).toLocaleString()}
-                              </span>
-                            </div>
-                            <p className="text-slate-300 text-xs whitespace-pre-wrap pl-4">
-                              {rep.message}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       )}
 

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import AdminDashboardPageClient from '../../components/routes/AdminDashboardPageClient';
+import AdminOrdersPageClient from '../../../components/routes/AdminOrdersPageClient';
 
 export const metadata: Metadata = {
-  title: 'Admin',
+  title: 'Orders — Admin',
   robots: { index: false, follow: false }
 };
 
 export default function Page() {
-  return <AdminDashboardPageClient />;
+  return <AdminOrdersPageClient />;
 }
