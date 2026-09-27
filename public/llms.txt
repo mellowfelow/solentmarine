@@ -6,10 +6,10 @@
 - **Brand:** Solent Marine Outboards UK
 - **Headquarters:** Cowes Yacht Haven, High Street, Cowes, Isle of Wight, PO31 7BD, United Kingdom
 - **Contact:** sales@solentmarineoutboards.co.uk | +44 1983 294400 | WhatsApp: +44 7700 900888
-- **Minimum Order:** £50.00
+- **Minimum Order:** £150.00
 - **Free UK Delivery:** On all orders over £500.00 (includes pallet tail-lift for outboard motors)
 - **Warranty:** Official UK manufacturer warranty (up to 5 years on Yamaha, Suzuki, Honda, Mercury and Tohatsu)
-- **Payment Methods:** UK Bank Transfer (BACS/Faster Payments), Visa, Mastercard, Marine Proforma Invoice, Marine Hire Purchase Finance (12-60 months)
+- **Payment Methods:** UK Bank Transfer (BACS/Faster Payments) only
 
 ## Product Categories
 - [Portable Outboards (2.5HP - 6HP)](https://solentmarineoutboards.co.uk/shop/portable/): Lightweight petrol auxiliary and tender engines from £711.
@@ -34,8 +34,6 @@
 - [Technical FAQ & Shaft Guide](https://solentmarineoutboards.co.uk/faq/): Transom height measurements, PDI inspection information, and maintenance basics.
 - [UK Shipping & Pallet Dispatch Policy](https://solentmarineoutboards.co.uk/shipping/): Details on courier and tail-lift freight delivery across the UK mainland and islands, and regular delivery across the Solent (Hamble, Hythe, Lymington, Portsmouth, Swanwick).
 - [Contact Rigging Engineers](https://solentmarineoutboards.co.uk/contact/): Get in touch with our certified engineers in Cowes.
-
-Each product page includes a monthly marine finance estimate tool inline — there is no separate finance page.
 
 ## Optional Machine-Readable Resources
 - [API Catalog](https://solentmarineoutboards.co.uk/.well-known/api-catalog): RFC 9727 linkset of discovery endpoints.

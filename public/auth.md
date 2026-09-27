@@ -28,5 +28,5 @@ No authentication required. All catalog specifications, technical comparisons, a
 ```
 
 ## Ordering
-Human-in-the-loop required. Agents may browse technical specifications, compute finance calculations, and prepare order drafts.
+Human-in-the-loop required. Agents may browse technical specifications and prepare order drafts. Minimum order value is £150; payment is by UK bank transfer (BACS / Faster Payments) only.
 Orders and rigging consultations are completed by a human buyer via WhatsApp or the direct dealer checkout form.

@@ -56,9 +56,9 @@
     ],
     "commerce": {
       "ordering": "human-assisted-whatsapp-or-form",
-      "payment": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
+      "payment": ["bacs-transfer"],
       "currency": "GBP",
-      "minimumOrder": "50.00",
+      "minimumOrder": "150.00",
       "freeShipping": "500.00"
     }
   },

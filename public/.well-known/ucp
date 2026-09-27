@@ -20,8 +20,8 @@
     "llms_txt": "https://solentmarineoutboards.co.uk/llms.txt"
   },
   "currency": "GBP",
-  "minimum_order_gbp": "50.00",
-  "payment_methods": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
+  "minimum_order_gbp": "150.00",
+  "payment_methods": ["bacs-transfer"],
   "legal": {
     "age_restriction": "none",
     "product_type": "marine-outboard-motors",

@@ -8,9 +8,9 @@
   "capabilities": {
     "services": ["product-catalog", "faq"],
     "ordering": "human-assisted",
-    "payment_methods": ["bacs-transfer", "debit-credit-card", "proforma-invoice", "marine-finance"],
+    "payment_methods": ["bacs-transfer"],
     "currency": "GBP",
-    "minimum_order_gbp": "50.00",
+    "minimum_order_gbp": "150.00",
     "free_shipping_threshold_gbp": "500.00"
   },
   "contact": {
