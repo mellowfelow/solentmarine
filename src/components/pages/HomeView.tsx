@@ -253,6 +253,7 @@ export default function HomeView({
                             src={eng.imageUrl}
                             alt={eng.name}
                             className="w-10 h-10 object-cover rounded border border-slate-850"
+                            loading="lazy"
                             referrerPolicy="no-referrer"
                           />
                           <div>

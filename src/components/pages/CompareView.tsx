@@ -201,6 +201,7 @@ export default function CompareView({ compareList, onRemove, onClear, onNavigate
                           src={p.imageUrl}
                           alt={p.imageUrl.includes('/placeholders/') ? `Placeholder image — ${p.name}` : p.name}
                           className="w-full h-28 object-contain bg-slate-50 rounded-lg border border-slate-100 mb-2"
+                          loading="lazy"
                           referrerPolicy="no-referrer"
                         />
                         <span className="text-[9px] font-bold uppercase tracking-wider text-sky-800 bg-sky-50 px-2 py-0.5 rounded">

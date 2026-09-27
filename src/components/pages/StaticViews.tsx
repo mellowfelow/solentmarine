@@ -308,6 +308,7 @@ export function AboutView({ onNavigate }: NavProp) {
             src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800"
             alt="Cowes Marina engineering"
             className="rounded-xl border border-slate-200 shadow-md object-cover h-64 w-full"
+            loading="lazy"
             referrerPolicy="no-referrer"
           />
         </div>
