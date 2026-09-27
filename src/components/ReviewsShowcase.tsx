@@ -91,7 +91,7 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
   // Renders Trustpilot solid green rating stars
   const renderTrustStars = (rating: number) => {
     return (
-      <div className="flex items-center gap-1" aria-label={`${rating} out of 5 stars`}>
+      <div className="flex items-center gap-1" role="img" aria-label={`${rating} out of 5 stars`}>
         {[1, 2, 3, 4, 5].map((star) => {
           const isFilled = star <= rating;
           return (
@@ -170,7 +170,7 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
             <button
               type="button"
               onClick={() => setShowFeedbackModal(true)}
-              className="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 shrink-0"
+              className="w-full sm:w-auto px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 shrink-0"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Leave a Review</span>
@@ -248,7 +248,7 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
                   }}
                   className={`px-3.5 py-2 rounded-xl text-xs font-semibold border transition flex items-center gap-1.5 ${
                     selectedCategory === cat.id
-                      ? 'bg-sky-600 text-white border-sky-500 shadow-md shadow-sky-950'
+                      ? 'bg-sky-700 text-white border-sky-500 shadow-md shadow-sky-950'
                       : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700 hover:text-slate-200'
                   }`}
                 >

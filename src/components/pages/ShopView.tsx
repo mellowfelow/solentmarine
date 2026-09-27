@@ -391,10 +391,10 @@ export default function ShopView({
                     {/* Bottom Pricing & Trigger Area */}
                     <div className="pt-3 border-t border-slate-100">
                       <div className="flex justify-between items-baseline mb-3">
-                        <span className="text-[10px] text-slate-400 font-semibold">UK Retail Price</span>
+                        <span className="text-[10px] text-slate-600 font-semibold">UK Retail Price</span>
                         <div className="text-right">
                           <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                          <span className="block text-[9px] text-slate-400 leading-none">VAT Included (20%)</span>
+                          <span className="block text-[9px] text-slate-500 leading-none">VAT Included (20%)</span>
                         </div>
                       </div>
 

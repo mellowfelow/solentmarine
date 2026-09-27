@@ -134,7 +134,7 @@ export default function HomeView({
                 type="button"
                 id="hero-shop-btn"
                 onClick={() => onNavigate('shop')}
-                className="px-6 py-3.5 bg-sky-600 hover:bg-sky-500 rounded-xl text-sm font-bold text-white transition shadow-lg flex items-center gap-2 group cursor-pointer"
+                className="px-6 py-3.5 bg-sky-700 hover:bg-sky-600 rounded-xl text-sm font-bold text-white transition shadow-lg flex items-center gap-2 group cursor-pointer"
               >
                 <span>Browse Outboard Inventory</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -173,7 +173,7 @@ export default function HomeView({
                 {brand.name[0]}
               </div>
               <span className="font-semibold text-slate-900 text-sm mt-2">{brand.name}</span>
-              <span className="text-[10px] text-slate-400 font-mono mt-0.5">Approved Seller</span>
+              <span className="text-[10px] text-slate-600 font-mono mt-0.5">Approved Seller</span>
             </button>
           ))}
         </div>
@@ -311,7 +311,7 @@ export default function HomeView({
                     </span>
                   )}
                 </div>
-                <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 tracking-wider uppercase mb-1">
+                <div className="flex justify-between items-center text-[10px] font-bold text-slate-600 tracking-wider uppercase mb-1">
                   <span>{prod.brand}</span>
                   <span className="bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded">
                     {prod.stockStatus}
@@ -325,10 +325,10 @@ export default function HomeView({
 
               <div className="pt-3 border-t border-slate-100">
                 <div className="flex justify-between items-baseline mb-2">
-                  <span className="text-xs text-slate-400">Retail Price</span>
+                  <span className="text-xs text-slate-600">Retail Price</span>
                   <div className="text-right">
-                    <span className="text-base font-extrabold text-slate-905 text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                    <p className="text-[9px] text-slate-400 leading-none">inc. 20% UK VAT</p>
+                    <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <p className="text-[9px] text-slate-500 leading-none">inc. 20% UK VAT</p>
                   </div>
                 </div>
 
