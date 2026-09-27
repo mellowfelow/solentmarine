@@ -108,40 +108,43 @@ export function paymentMethodParts(
  * Returns payment terms as bullet lines for WhatsApp, Plaintext, and UI components
  */
 export function paymentTermsLines(ref: string, methodId?: string): string[] {
-  const method = methodId 
-    ? REPLY.paymentMethods.find((m) => m.id === methodId) 
+  const method = methodId
+    ? REPLY.paymentMethods.find((m) => m.id === methodId)
     : undefined;
 
+  // Unnumbered here — numbering is applied at render time (numbered list markup, or a
+  // computed index) so a skipped conditional line never leaves a gap like "1, 2, 4, 5".
   const lines: string[] = [
-    `1. Complete payment within ${REPLY.deadlineHours} hours to confirm your allocation.`,
-    `2. Use your order reference — ${ref} — on the transfer so our workshop can match funds instantly.`,
+    `Complete payment within ${REPLY.deadlineHours} hours to confirm your allocation.`,
+    `Use your order reference — ${ref} — on the transfer so our workshop can match funds instantly.`,
   ];
 
   if (method?.instantRailNote) {
-    lines.push(`3. ${method.instantRailNote}`);
+    lines.push(method.instantRailNote);
   }
 
   if (REPLY.dispatchLine) {
-    lines.push(`4. ${REPLY.dispatchLine}`);
+    lines.push(REPLY.dispatchLine);
   }
 
-  const waClause = REPLY.channels.whatsapp 
-    ? ` or WhatsApp ${REPLY.channels.whatsapp}` 
+  const waClause = REPLY.channels.whatsapp
+    ? ` or WhatsApp ${REPLY.channels.whatsapp}`
     : '';
-  lines.push(`5. Once transferred, email receipt to ${REPLY.channels.email}${waClause} for immediate PDI priority booking.`);
+  lines.push(`Once transferred, send us a screenshot of your payment${waClause ? waClause : ` to ${REPLY.channels.email}`} for immediate PDI priority booking.`);
 
   return lines;
 }
 
 /**
- * Formats payment terms as HTML <ul> for light-theme email bodies
+ * Formats payment terms as an HTML <ol> for light-theme email bodies — a real ordered
+ * list numbers itself correctly regardless of how many conditional lines are present.
  */
 export function paymentTermsHtml(ref: string, methodId?: string): string {
   const lines = paymentTermsLines(ref, methodId);
   const listItems = lines
     .map((line) => `<li style="margin-bottom:8px; line-height:1.5; color:#475569;">${line}</li>`)
     .join('');
-  return `<ul style="margin:16px 0; padding-left:20px; font-size:13px; color:#334155;">${listItems}</ul>`;
+  return `<ol style="margin:16px 0; padding-left:20px; font-size:13px; color:#334155;">${listItems}</ol>`;
 }
 
 /**

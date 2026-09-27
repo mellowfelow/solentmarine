@@ -57,7 +57,8 @@ export function AdminSendPaymentEmailView({
     orderNumber: order.id,
     amountDue: order.total,
     customerName: order.customerName,
-    instructionsHtml
+    instructionsHtml,
+    methodId: selectedMethodId
   }).html;
 
   // WhatsApp message body — mirrors the email using the same parsed fields (content parity rule)

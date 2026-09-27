@@ -14,19 +14,19 @@ const ROTATE_MS = 4500;
 export default function AnnouncementBar() {
   const announcements = [
     {
-      icon: <Truck className="w-3.5 h-3.5 text-sky-400 shrink-0" />,
+      icon: <Truck className="w-4 h-4 text-sky-400 shrink-0" />,
       text: 'Free UK Mainland Pallet Delivery on Outboards over £500',
     },
     {
-      icon: <Wrench className="w-3.5 h-3.5 text-amber-400 shrink-0" />,
+      icon: <Wrench className="w-4 h-4 text-amber-400 shrink-0" />,
       text: 'Every Engine Includes Full Pre-Delivery Inspection (PDI) & Oil Fill',
     },
     {
-      icon: <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />,
+      icon: <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />,
       text: 'Official UK Manufacturer Warranties (Up to 5–6 Years Backed)',
     },
     {
-      icon: <MessageCircle className="w-3.5 h-3.5 text-sky-400 shrink-0" />,
+      icon: <MessageCircle className="w-4 h-4 text-sky-400 shrink-0" />,
       text: `Live Marine Rigging Consultation on WhatsApp: ${CONTACT.whatsappDisplay}`,
     }
   ];
@@ -41,33 +41,22 @@ export default function AnnouncementBar() {
   }, [announcements.length]);
 
   return (
-    <div className="bg-slate-950 text-slate-200 border-b border-slate-800/80 py-2 px-4 text-xs font-medium tracking-wide">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Sliding track — each message is a fixed-height row; the whole track translates
-            vertically so the next message genuinely slides up into place rather than
-            snapping in, with reduced-motion users getting an instant swap instead. */}
-        <div
-          className="relative h-4 overflow-hidden mx-auto sm:mx-0 w-full sm:w-auto motion-reduce:h-auto motion-reduce:overflow-visible"
-          aria-live="polite"
-        >
+    <div className="relative bg-slate-950 text-slate-200 border-b border-slate-800/80 py-2.5 px-4 text-xs font-medium tracking-wide overflow-hidden">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        {/* Each slide is keyed by index so it remounts and replays its entrance
+            animation on every rotation — a real slide-in, not an instant text swap. */}
+        <div className="flex-1 min-w-0 overflow-hidden">
           <div
-            className="transition-transform duration-500 ease-in-out motion-reduce:transition-none"
-            style={{ transform: `translateY(-${currentIndex * 1}rem)` }}
+            key={currentIndex}
+            className="flex items-center gap-2 justify-center sm:justify-start animate-slide-in-right"
+            aria-live="polite"
           >
-            {announcements.map((a, i) => (
-              <div
-                key={i}
-                className="h-4 flex items-center gap-2 justify-center sm:justify-start whitespace-nowrap"
-                aria-hidden={i !== currentIndex}
-              >
-                {a.icon}
-                <span className="truncate">{a.text}</span>
-              </div>
-            ))}
+            {announcements[currentIndex].icon}
+            <span className="truncate text-[13px] font-semibold">{announcements[currentIndex].text}</span>
           </div>
         </div>
 
-        <div className="hidden sm:flex items-center gap-4 text-[11px] text-slate-400 shrink-0 pl-4">
+        <div className="hidden sm:flex items-center gap-4 text-[11px] text-slate-400 shrink-0">
           <a
             href={`https://wa.me/${CONTACT.whatsapp.replace('+', '')}`}
             target="_blank"
@@ -78,6 +67,16 @@ export default function AnnouncementBar() {
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
+      </div>
+
+      {/* Progress rail — fills over the slide's dwell time, resets on every rotation, so the
+          rotation reads as a deliberate slider rather than a passive periodic content swap. */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-slate-900">
+        <div
+          key={currentIndex}
+          className="h-full bg-sky-500 animate-announcement-progress"
+          style={{ animationDuration: `${ROTATE_MS}ms` }}
+        />
       </div>
     </div>
   );

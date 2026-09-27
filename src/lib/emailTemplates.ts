@@ -262,7 +262,7 @@ export function orderConfirmationEmail(o: OrderEmailInput): { subject: string; t
 
   ${callout(
     `<strong style="font-family:${SANS};">Before delivery</strong>
-     <ul style="margin:10px 0 0;padding-left:18px;">${paymentTermsHtml(o.orderNumber)}</ul>`
+     ${paymentTermsHtml(o.orderNumber)}`
   )}
 
   <div>${button(`mailto:${CONTACT.email}?subject=${encodeURIComponent(`Question about order ${o.orderNumber}`)}`, 'Contact Us')}</div>
@@ -336,6 +336,7 @@ export interface PaymentDetailsEmailInput {
   amountDue: number;
   customerName: string;
   instructionsHtml: string; // admin-composed, pre-escaped HTML
+  methodId?: string; // which REPLY.paymentMethods entry was used, for the instant-rail note
 }
 
 export function paymentDetailsEmail(i: PaymentDetailsEmailInput): { subject: string; text: string; html: string } {
@@ -348,7 +349,7 @@ export function paymentDetailsEmail(i: PaymentDetailsEmailInput): { subject: str
   <div style="font-family:${SANS};font-size:14px;line-height:1.7;color:${C.ink};margin-bottom:20px;">${i.instructionsHtml}</div>
   ${callout(
     `<strong style="font-family:${SANS};">Before your order ships</strong>
-     <ul style="margin:10px 0 0;padding-left:18px;">${paymentTermsHtml(i.orderNumber)}</ul>`
+     ${paymentTermsHtml(i.orderNumber, i.methodId)}`
   )}
   <p style="font-family:${SANS};font-size:14px;line-height:1.6;color:${C.ink};margin:0 0 14px;">
     Once you've sent the transfer, please send us a screenshot of your confirmed payment using one of the buttons below so we can release your order.

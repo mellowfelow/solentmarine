@@ -35,7 +35,8 @@ export async function POST(request: Request) {
     orderNumber: order.id,
     amountDue: order.total,
     customerName: order.customerName,
-    instructionsHtml
+    instructionsHtml,
+    methodId
   });
 
   const result = await sendMail({
