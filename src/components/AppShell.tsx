@@ -18,6 +18,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ChatHub from './ChatHub';
 import BasketDrawer from './BasketDrawer';
+import NavLink from './NavLink';
 import { useStore } from '../context/store';
 import { pathForView, viewForPath } from '../lib/navigate';
 
@@ -59,7 +60,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       <Navbar
         currentView={currentView}
-        onNavigate={onNavigate}
         cart={cart}
         compareList={compareList}
         onToggleCart={() => setIsCartOpen(!isCartOpen)}
@@ -74,13 +74,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="text-xs font-sans pr-2">
             <p className="font-bold text-white">Compare {compareList.length}/4 items</p>
-            <button
-              type="button"
-              onClick={() => router.push('/compare/')}
+            <NavLink
+              view="compare"
               className="text-[10px] text-sky-400 font-semibold hover:underline block leading-tight text-left cursor-pointer"
             >
               Open comparison page &rarr;
-            </button>
+            </NavLink>
           </div>
           <button
             type="button"
@@ -98,7 +97,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <Footer onNavigate={onNavigate} />
+      <Footer />
 
       <ChatHub />
 

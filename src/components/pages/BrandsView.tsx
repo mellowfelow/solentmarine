@@ -4,6 +4,7 @@
  */
 
 import { ChevronRight, ShieldCheck } from 'lucide-react';
+import NavLink from '../NavLink';
 
 export interface BrandCardData {
   slug: string;
@@ -23,7 +24,7 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
     <div id="brands-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 font-sans">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-6">
-        <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
+        <NavLink view="home" className="hover:text-sky-700 cursor-pointer">Home</NavLink>
         <ChevronRight className="w-3 h-3" />
         <span className="text-slate-800 font-semibold">Brands</span>
       </nav>
@@ -43,10 +44,10 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
       {/* Brand Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {brands.map((brand) => (
-          <button
+          <NavLink
             key={brand.slug}
-            type="button"
-            onClick={() => onNavigate('shop-category', { slug: brand.slug })}
+            view="shop-category"
+            params={{ slug: brand.slug }}
             className="group text-left bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col justify-between"
           >
             <div>
@@ -72,7 +73,7 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
                 <ChevronRight className="w-4 h-4" />
               </span>
             </div>
-          </button>
+          </NavLink>
         ))}
       </div>
 

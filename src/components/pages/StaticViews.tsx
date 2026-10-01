@@ -8,6 +8,7 @@ import { Mail, Phone, MapPin, HelpCircle, Truck, Ship, Fuel, CheckCircle } from 
 
 import { CONTACT } from '../../config/site';
 import { FAQ_ITEMS } from '../../data/faq';
+import NavLink from '../NavLink';
 
 interface NavProp {
   onNavigate?: (view: string, params?: Record<string, string>) => void;
@@ -44,13 +45,12 @@ export function FAQView({ onNavigate }: NavProp) {
         <p className="text-xs text-slate-600 max-w-md mx-auto">
           Our team in Cowes can provide tailored shaft matching, propeller pitch guidance, and rigging specs.
         </p>
-        <button
-          type="button"
-          onClick={() => onNavigate && onNavigate('contact')}
+        <NavLink
+          view="contact"
           className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition cursor-pointer"
         >
           Contact Rigging Engineers &rarr;
-        </button>
+        </NavLink>
       </div>
     </div>
   );
@@ -293,15 +293,12 @@ export function AboutView({ onNavigate }: NavProp) {
           <p className="text-slate-600 text-sm leading-relaxed">
             Based at Shepard's Wharf Marina in Cowes, Isle of Wight, our facility incorporates clean workshops, diagnostic bays, and a full team of factory-trained maritime engineers specializing in petrol fuel injections and high-density marine lithium grids.
           </p>
-          {onNavigate && (
-            <button
-              type="button"
-              onClick={() => onNavigate('shop')}
-              className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition cursor-pointer"
-            >
-              Browse 2026 Engine Catalog &rarr;
-            </button>
-          )}
+          <NavLink
+            view="shop"
+            className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition cursor-pointer"
+          >
+            Browse 2026 Engine Catalog &rarr;
+          </NavLink>
         </div>
         <div>
           <img

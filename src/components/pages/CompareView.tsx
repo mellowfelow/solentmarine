@@ -5,6 +5,7 @@
 
 import { Scale, X, Anchor, ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
+import NavLink from '../NavLink';
 
 interface CompareViewProps {
   compareList: Product[];
@@ -167,13 +168,12 @@ export default function CompareView({ compareList, onRemove, onClear, onNavigate
               Add up to 4 engines, batteries, chargers or accessories from the shop to compare their specs side by side.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => onNavigate('shop')}
+          <NavLink
+            view="shop"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-bold transition"
           >
             Browse the Shop &rarr;
-          </button>
+          </NavLink>
         </div>
       ) : (
         <div className="border border-slate-200 rounded-2xl shadow-sm overflow-hidden bg-white">
@@ -207,13 +207,13 @@ export default function CompareView({ compareList, onRemove, onClear, onNavigate
                         <span className="text-[9px] font-bold uppercase tracking-wider text-sky-800 bg-sky-50 px-2 py-0.5 rounded">
                           {p.brand}
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => onNavigate('product-details', { slug: p.slug })}
+                        <NavLink
+                          view="product-details"
+                          params={{ slug: p.slug }}
                           className="block font-bold text-slate-900 text-sm mt-1.5 leading-snug line-clamp-2 min-h-[2.5rem] hover:text-sky-700 text-left transition"
                         >
                           {p.name}
-                        </button>
+                        </NavLink>
                         <button
                           type="button"
                           onClick={() => onAddToBasket(p, p.shaftLengths[0] || 'Universal Fit')}

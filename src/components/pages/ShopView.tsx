@@ -8,6 +8,7 @@ import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
 import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft, Minus, Plus } from 'lucide-react';
 import { CATEGORIES, BRANDS } from '../../config/site';
+import NavLink from '../NavLink';
 
 const PAGE_SIZE = 12;
 
@@ -157,9 +158,9 @@ export default function ShopView({
     <div id="shop-view-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
-        <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
+        <NavLink view="home" className="hover:text-sky-700 cursor-pointer">Home</NavLink>
         <ChevronRight className="w-3 h-3" />
-        <button type="button" onClick={() => onNavigate('shop')} className="hover:text-sky-700 cursor-pointer">Shop</button>
+        <NavLink view="shop" className="hover:text-sky-700 cursor-pointer">Shop</NavLink>
         {(activeCategory || activeBrand) && (
           <>
             <ChevronRight className="w-3 h-3" />
@@ -190,22 +191,21 @@ export default function ShopView({
 
       {/* Category quick-links — real crawlable /shop/[category]/ pages, internal linking hub */}
       <div className="flex flex-wrap gap-2 mb-3">
-        <button
-          type="button"
-          onClick={() => onNavigate('shop')}
+        <NavLink
+          view="shop"
           className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${!activeCategory && !activeBrand ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
         >
           All Stock
-        </button>
+        </NavLink>
         {CATEGORIES.map(cat => (
-          <button
+          <NavLink
             key={cat.slug}
-            type="button"
-            onClick={() => onNavigate('shop-category', { slug: cat.slug })}
+            view="shop-category"
+            params={{ slug: cat.slug }}
             className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${activeCategory?.slug === cat.slug ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300'}`}
           >
             {cat.name}
-          </button>
+          </NavLink>
         ))}
       </div>
 
@@ -213,14 +213,14 @@ export default function ShopView({
       <div className="flex flex-wrap gap-2 mb-8">
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 self-center mr-1">Shop by brand:</span>
         {BRANDS.map(brand => (
-          <button
+          <NavLink
             key={brand.slug}
-            type="button"
-            onClick={() => onNavigate('shop-category', { slug: brand.slug })}
+            view="shop-category"
+            params={{ slug: brand.slug }}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${activeBrand?.slug === brand.slug ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'}`}
           >
             {brand.name}
-          </button>
+          </NavLink>
         ))}
       </div>
 
@@ -339,7 +339,7 @@ export default function ShopView({
                     key={prod.id}
                     className="bg-white border border-slate-205 rounded-xl p-4 shadow-sm group flex flex-col justify-between hover:shadow-md transition"
                   >
-                    <div>
+                    <NavLink view="product-details" params={{ slug: prod.slug }} className="block">
                       {/* Product Image */}
                       <div className="relative overflow-hidden rounded-lg mb-3">
                         <img
@@ -366,10 +366,7 @@ export default function ShopView({
                       </div>
 
                       {/* Title */}
-                      <h4
-                        onClick={() => onNavigate('product-details', { slug: prod.slug })}
-                        className="font-sans font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 transition cursor-pointer"
-                      >
+                      <h4 className="font-sans font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 transition">
                         {prod.name}
                       </h4>
                       <p className="text-xs text-slate-500 mt-1 line-clamp-2 mb-3">{prod.description}</p>
@@ -386,7 +383,7 @@ export default function ShopView({
                           {prod.specs.warrantyYears} Yr Warranty
                         </span>
                       </div>
-                    </div>
+                    </NavLink>
 
                     {/* Bottom Pricing & Trigger Area */}
                     <div className="pt-3 border-t border-slate-100">
@@ -406,13 +403,13 @@ export default function ShopView({
 
                       {/* Control buttons */}
                       <div className="grid grid-cols-2 gap-2">
-                        <button
-                          type="button"
-                          onClick={() => onNavigate('product-details', { slug: prod.slug })}
+                        <NavLink
+                          view="product-details"
+                          params={{ slug: prod.slug }}
                           className="bg-slate-900 hover:bg-slate-800 text-white rounded-lg py-2.5 text-xs font-semibold transition text-center"
                         >
                           View Details
-                        </button>
+                        </NavLink>
                         <button
                           type="button"
                           id={`add-to-compare-${prod.id}`}

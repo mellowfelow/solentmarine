@@ -5,12 +5,9 @@
 
 import { ShieldCheck, Truck, LifeBuoy, CheckCircle2 } from 'lucide-react';
 import { CATEGORIES } from '../config/site';
+import NavLink from './NavLink';
 
-interface FooterProps {
-  onNavigate: (view: string, params?: Record<string, string>) => void;
-}
-
-export default function Footer({ onNavigate }: FooterProps) {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -67,13 +64,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           <ul className="space-y-2 text-xs">
             {CATEGORIES.map((cat) => (
               <li key={cat.slug}>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('shop-category', { slug: cat.slug })}
+                <NavLink
+                  view="shop-category"
+                  params={{ slug: cat.slug }}
                   className="hover:text-sky-400 transition cursor-pointer"
                 >
                   {cat.name}
-                </button>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -84,29 +81,29 @@ export default function Footer({ onNavigate }: FooterProps) {
           <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Customer Support</h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <button type="button" onClick={() => onNavigate('faq')} className="hover:text-sky-400 transition cursor-pointer">
+              <NavLink view="faq" className="hover:text-sky-400 transition cursor-pointer">
                 Technical FAQ Helpdesks
-              </button>
+              </NavLink>
             </li>
             <li>
-              <button type="button" onClick={() => onNavigate('shipping')} className="hover:text-sky-400 transition cursor-pointer">
+              <NavLink view="shipping" className="hover:text-sky-400 transition cursor-pointer">
                 Delivery Guidelines & PDI
-              </button>
+              </NavLink>
             </li>
             <li>
-              <button type="button" onClick={() => onNavigate('contact')} className="hover:text-sky-400 transition cursor-pointer">
+              <NavLink view="contact" className="hover:text-sky-400 transition cursor-pointer">
                 Become a Listing Dealer
-              </button>
+              </NavLink>
             </li>
             <li>
-              <button type="button" onClick={() => onNavigate('about')} className="hover:text-sky-400 transition cursor-pointer">
+              <NavLink view="about" className="hover:text-sky-400 transition cursor-pointer">
                 Fleet Sales & Commercial
-              </button>
+              </NavLink>
             </li>
             <li>
-              <button type="button" onClick={() => onNavigate('shipping')} className="hover:text-sky-400 transition cursor-pointer">
+              <NavLink view="shipping" className="hover:text-sky-400 transition cursor-pointer">
                 Returns Policy (14 Day)
-              </button>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -135,9 +132,9 @@ export default function Footer({ onNavigate }: FooterProps) {
       {/* Bottom bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 gap-4">
         <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
-          <button type="button" onClick={() => onNavigate('privacy')} className="hover:text-slate-300 transition cursor-pointer">Privacy Policy</button>
+          <NavLink view="privacy" className="hover:text-slate-300 transition cursor-pointer">Privacy Policy</NavLink>
           <span>•</span>
-          <button type="button" onClick={() => onNavigate('terms')} className="hover:text-slate-300 transition cursor-pointer">Terms & Conditions</button>
+          <NavLink view="terms" className="hover:text-slate-300 transition cursor-pointer">Terms & Conditions</NavLink>
         </div>
         <div className="flex items-center gap-1">
           <CheckCircle2 className="w-4 h-4 text-emerald-500" />

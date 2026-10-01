@@ -7,10 +7,10 @@ import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ShoppingCart, Scale, Phone, Mail, MapPin, Compass, ChevronDown } from 'lucide-react';
 import { Product, CartItem } from '../types';
 import { CONTACT, CATEGORIES, BRANDS } from '../config/site';
+import NavLink from './NavLink';
 
 interface NavbarProps {
   currentView: string;
-  onNavigate: (view: string, params?: Record<string, string>) => void;
   cart: CartItem[];
   compareList: Product[];
   onToggleCart: () => void;
@@ -20,7 +20,6 @@ interface NavbarProps {
 
 export default function Navbar({
   currentView,
-  onNavigate,
   cart,
   compareList,
   onToggleCart,
@@ -68,11 +67,18 @@ export default function Navbar({
     shopCloseTimer.current = setTimeout(() => setIsShopOpen(false), 150);
   }
 
-  function goToShop(slug?: string) {
+  function closeShopMenus() {
     setIsShopOpen(false);
     setIsMobileShopOpen(false);
-    if (slug) onNavigate('shop-category', { slug });
-    else onNavigate('shop');
+  }
+
+  function closeMobileMenu() {
+    if (isMobileMenuOpen) onOpenMobileMenu();
+  }
+
+  function closeAllMobileMenus() {
+    closeShopMenus();
+    closeMobileMenu();
   }
 
   return (
@@ -103,9 +109,8 @@ export default function Navbar({
       {/* Main Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
         {/* Brand Logo */}
-        <button
-          type="button"
-          onClick={() => onNavigate('home')}
+        <NavLink
+          view="home"
           className="flex items-center gap-3 cursor-pointer group text-left focus:outline-none"
         >
           <div className="bg-sky-600 p-2.5 rounded-xl text-white group-hover:bg-sky-500 transition shadow-inner">
@@ -119,18 +124,17 @@ export default function Navbar({
               Outboards UK Ltd
             </div>
           </div>
-        </button>
+        </NavLink>
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
           {navItems.map((item) => {
             const isActive = currentView === item.view;
             return (
-              <button
+              <NavLink
                 key={item.view}
-                type="button"
+                view={item.view}
                 id={`nav-${item.view}`}
-                onClick={() => onNavigate(item.view)}
                 className={`transition-colors py-2 border-b-2 hover:text-white cursor-pointer ${
                   isActive
                     ? 'text-sky-400 border-sky-400 font-semibold'
@@ -138,7 +142,7 @@ export default function Navbar({
                 }`}
               >
                 {item.label}
-              </button>
+              </NavLink>
             );
           })}
 
@@ -149,10 +153,10 @@ export default function Navbar({
             onMouseEnter={openShopMenu}
             onMouseLeave={scheduleCloseShopMenu}
           >
-            <button
-              type="button"
+            <NavLink
+              view="shop"
               id="nav-shop"
-              onClick={() => goToShop()}
+              onClick={closeShopMenus}
               onFocus={openShopMenu}
               aria-expanded={isShopOpen}
               aria-haspopup="true"
@@ -164,7 +168,7 @@ export default function Navbar({
             >
               Shop Motors
               <ChevronDown className={`w-4 h-4 transition-transform ${isShopOpen ? 'rotate-180' : ''}`} />
-            </button>
+            </NavLink>
 
             {isShopOpen && (
               <div
@@ -175,23 +179,24 @@ export default function Navbar({
                   <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2">
                     Shop by Category
                   </p>
-                  <button
-                    type="button"
-                    onClick={() => goToShop()}
+                  <NavLink
+                    view="shop"
+                    onClick={closeShopMenus}
                     className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm font-semibold text-sky-600 hover:bg-sky-50 transition mb-1"
                   >
                     All Stock →
-                  </button>
+                  </NavLink>
                   <ul className="space-y-0.5">
                     {CATEGORIES.map((cat) => (
                       <li key={cat.slug}>
-                        <button
-                          type="button"
-                          onClick={() => goToShop(cat.slug)}
+                        <NavLink
+                          view="shop-category"
+                          params={{ slug: cat.slug }}
+                          onClick={closeShopMenus}
                           className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition"
                         >
                           {cat.name}
-                        </button>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
@@ -204,26 +209,24 @@ export default function Navbar({
                   <ul className="space-y-0.5">
                     {BRANDS.map((brand) => (
                       <li key={brand.slug}>
-                        <button
-                          type="button"
-                          onClick={() => goToShop(brand.slug)}
+                        <NavLink
+                          view="shop-category"
+                          params={{ slug: brand.slug }}
+                          onClick={closeShopMenus}
                           className="block w-full text-left px-2.5 py-1.5 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition"
                         >
                           {brand.name}
-                        </button>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsShopOpen(false);
-                      onNavigate('brands');
-                    }}
+                  <NavLink
+                    view="brands"
+                    onClick={closeShopMenus}
                     className="block w-full text-left px-2.5 py-1.5 mt-1 rounded-md text-sm font-semibold text-sky-600 hover:bg-sky-50 transition"
                   >
                     All Brands →
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             )}
@@ -232,11 +235,10 @@ export default function Navbar({
           {navItemsAfterShop.map((item) => {
             const isActive = currentView === item.view;
             return (
-              <button
+              <NavLink
                 key={item.view}
-                type="button"
+                view={item.view}
                 id={`nav-${item.view}`}
-                onClick={() => onNavigate(item.view)}
                 className={`transition-colors py-2 border-b-2 hover:text-white cursor-pointer ${
                   isActive
                     ? 'text-sky-400 border-sky-400 font-semibold'
@@ -244,7 +246,7 @@ export default function Navbar({
                 }`}
               >
                 {item.label}
-              </button>
+              </NavLink>
             );
           })}
         </nav>
@@ -252,10 +254,9 @@ export default function Navbar({
         {/* Buttons / Tools */}
         <div className="flex items-center gap-4">
           {/* Compare Trigger button */}
-          <button
-            type="button"
+          <NavLink
+            view="compare"
             id="nav-compare-btn"
-            onClick={() => onNavigate('compare')}
             title="Open Product Comparison Page"
             className={`relative p-2 rounded-lg transition flex items-center gap-1 ${
               currentView === 'compare' ? 'text-white bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -268,7 +269,7 @@ export default function Navbar({
               </span>
             )}
             <span className="hidden xl:inline text-xs font-semibold">Compare</span>
-          </button>
+          </NavLink>
 
           {/* Cart Trigger button */}
           <button
@@ -305,11 +306,11 @@ export default function Navbar({
             {navItems.map((item) => {
               const isActive = currentView === item.view;
               return (
-                <button
+                <NavLink
                   key={item.view}
-                  type="button"
+                  view={item.view}
                   id={`nav-mob-${item.view}`}
-                  onClick={() => onNavigate(item.view)}
+                  onClick={closeMobileMenu}
                   className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold transition ${
                     isActive
                       ? 'bg-sky-900 text-white'
@@ -317,7 +318,7 @@ export default function Navbar({
                   }`}
                 >
                   {item.label}
-                </button>
+                </NavLink>
               );
             })}
 
@@ -341,25 +342,26 @@ export default function Navbar({
               {isMobileShopOpen && (
                 <div id="nav-mob-shop-menu" className="mt-1 pl-3 border-l-2 border-slate-800 space-y-3 py-2">
                   <div>
-                    <button
-                      type="button"
-                      onClick={() => goToShop()}
+                    <NavLink
+                      view="shop"
+                      onClick={closeAllMobileMenus}
                       className="block w-full text-left px-3 py-1.5 rounded-md text-sm font-semibold text-sky-400 hover:bg-slate-800 transition"
                     >
                       All Stock →
-                    </button>
+                    </NavLink>
                     <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">
                       Categories
                     </p>
                     {CATEGORIES.map((cat) => (
-                      <button
+                      <NavLink
                         key={cat.slug}
-                        type="button"
-                        onClick={() => goToShop(cat.slug)}
+                        view="shop-category"
+                        params={{ slug: cat.slug }}
+                        onClick={closeAllMobileMenus}
                         className="block w-full text-left px-3 py-1.5 rounded-md text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
                       >
                         {cat.name}
-                      </button>
+                      </NavLink>
                     ))}
                   </div>
                   <div>
@@ -367,25 +369,23 @@ export default function Navbar({
                       Brands
                     </p>
                     {BRANDS.map((brand) => (
-                      <button
+                      <NavLink
                         key={brand.slug}
-                        type="button"
-                        onClick={() => goToShop(brand.slug)}
+                        view="shop-category"
+                        params={{ slug: brand.slug }}
+                        onClick={closeAllMobileMenus}
                         className="block w-full text-left px-3 py-1.5 rounded-md text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
                       >
                         {brand.name}
-                      </button>
+                      </NavLink>
                     ))}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsMobileShopOpen(false);
-                        onNavigate('brands');
-                      }}
+                    <NavLink
+                      view="brands"
+                      onClick={closeAllMobileMenus}
                       className="block w-full text-left px-3 py-1.5 rounded-md text-sm font-semibold text-sky-400 hover:bg-slate-800 transition"
                     >
                       All Brands →
-                    </button>
+                    </NavLink>
                   </div>
                 </div>
               )}
@@ -394,11 +394,11 @@ export default function Navbar({
             {navItemsAfterShop.map((item) => {
               const isActive = currentView === item.view;
               return (
-                <button
+                <NavLink
                   key={item.view}
-                  type="button"
+                  view={item.view}
                   id={`nav-mob-${item.view}`}
-                  onClick={() => onNavigate(item.view)}
+                  onClick={closeMobileMenu}
                   className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold transition ${
                     isActive
                       ? 'bg-sky-900 text-white'
@@ -406,7 +406,7 @@ export default function Navbar({
                   }`}
                 >
                   {item.label}
-                </button>
+                </NavLink>
               );
             })}
           </div>

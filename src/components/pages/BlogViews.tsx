@@ -6,6 +6,7 @@
 import { BookOpen, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { BlogPost } from '../../types';
 import { CATEGORIES } from '../../config/site';
+import NavLink from '../NavLink';
 
 interface NavProp {
   onNavigate: (view: string, params?: Record<string, string>) => void;
@@ -15,7 +16,7 @@ export function BlogIndexView({ posts, onNavigate }: { posts: BlogPost[] } & Nav
   return (
     <div id="blog-index-page" className="max-w-6xl mx-auto py-10 px-4 sm:px-6">
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-6">
-        <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
+        <NavLink view="home" className="hover:text-sky-700 cursor-pointer">Home</NavLink>
         <ChevronRight className="w-3 h-3" />
         <span className="text-slate-800 font-semibold">Blog</span>
       </nav>
@@ -30,24 +31,26 @@ export function BlogIndexView({ posts, onNavigate }: { posts: BlogPost[] } & Nav
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
-          <article
-            key={post.slug}
-            onClick={() => onNavigate('blog-post', { slug: post.slug })}
-            className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
-          >
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2 py-1 rounded">
-                {post.contentType}
-              </span>
-              <h2 className="font-sans font-bold text-slate-900 text-base leading-snug mt-2.5 hover:text-sky-800 transition">
-                {post.title}
-              </h2>
-              <p className="text-xs text-slate-500 mt-2 line-clamp-3">{post.metaDescription}</p>
-            </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono mt-4 pt-3 border-t border-slate-100">
-              <Calendar className="w-3 h-3" />
-              <time dateTime={post.publishDate}>{new Date(post.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
-            </div>
+          <article key={post.slug} className="h-full">
+            <NavLink
+              view="blog-post"
+              params={{ slug: post.slug }}
+              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between h-full"
+            >
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2 py-1 rounded">
+                  {post.contentType}
+                </span>
+                <h2 className="font-sans font-bold text-slate-900 text-base leading-snug mt-2.5 hover:text-sky-800 transition">
+                  {post.title}
+                </h2>
+                <p className="text-xs text-slate-500 mt-2 line-clamp-3">{post.metaDescription}</p>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono mt-4 pt-3 border-t border-slate-100">
+                <Calendar className="w-3 h-3" />
+                <time dateTime={post.publishDate}>{new Date(post.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+              </div>
+            </NavLink>
           </article>
         ))}
       </div>
@@ -59,21 +62,20 @@ export function BlogPostView({ post, related, onNavigate }: { post: BlogPost; re
   return (
     <div id="blog-post-page" className="max-w-3xl mx-auto py-10 px-4 sm:px-6">
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 mb-6 flex-wrap">
-        <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-700 cursor-pointer">Home</button>
+        <NavLink view="home" className="hover:text-sky-700 cursor-pointer">Home</NavLink>
         <ChevronRight className="w-3 h-3" />
-        <button type="button" onClick={() => onNavigate('blog')} className="hover:text-sky-700 cursor-pointer">Blog</button>
+        <NavLink view="blog" className="hover:text-sky-700 cursor-pointer">Blog</NavLink>
         <ChevronRight className="w-3 h-3" />
         <span className="text-slate-800 font-semibold line-clamp-1">{post.title}</span>
       </nav>
 
-      <button
-        type="button"
-        onClick={() => onNavigate('blog')}
+      <NavLink
+        view="blog"
         className="text-slate-600 hover:text-slate-900 font-semibold text-xs flex items-center gap-1 cursor-pointer transition mb-6"
       >
         <ChevronLeft className="w-4 h-4" />
         <span>Back to all guides</span>
-      </button>
+      </NavLink>
 
       <article className="prose prose-slate max-w-none">
         <h1 className="font-sans font-extrabold text-slate-900 text-2xl sm:text-3xl tracking-tight leading-tight mb-2">{post.title}</h1>
@@ -107,14 +109,14 @@ export function BlogPostView({ post, related, onNavigate }: { post: BlogPost; re
           const cat = CATEGORIES.find((c) => c.slug === slug);
           if (!cat) return null;
           return (
-            <button
+            <NavLink
               key={slug}
-              type="button"
-              onClick={() => onNavigate('shop-category', { slug })}
+              view="shop-category"
+              params={{ slug }}
               className="px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white text-slate-600 border-slate-200 hover:border-sky-400 hover:text-sky-800 transition"
             >
               {cat.name}
-            </button>
+            </NavLink>
           );
         })}
       </div>
@@ -125,14 +127,14 @@ export function BlogPostView({ post, related, onNavigate }: { post: BlogPost; re
           <h3 className="font-bold text-slate-900 text-sm mb-3">Related guides</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {related.map((r) => (
-              <button
+              <NavLink
                 key={r.slug}
-                type="button"
-                onClick={() => onNavigate('blog-post', { slug: r.slug })}
+                view="blog-post"
+                params={{ slug: r.slug }}
                 className="text-left p-3 bg-white border border-slate-200 rounded-lg hover:border-sky-300 transition text-xs font-semibold text-slate-700 hover:text-sky-800"
               >
                 {r.title}
-              </button>
+              </NavLink>
             ))}
           </div>
         </div>

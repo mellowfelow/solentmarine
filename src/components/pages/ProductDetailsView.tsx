@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Product, Review } from '../../types';
 import { Star, ShieldAlert, BadgeInfo, Scale, ChevronLeft, MapPin, CheckCircle, Ship, AlertCircle } from 'lucide-react';
+import NavLink from '../NavLink';
 
 interface ProductDetailsViewProps {
   slug: string;
@@ -32,13 +33,12 @@ export default function ProductDetailsView({
         <AlertCircle className="w-12 h-12 text-red-500 mx-auto" />
         <h2 className="font-sans font-bold text-slate-900 text-lg">Product Not Located</h2>
         <p className="text-sm text-slate-550">We could not identify the outboard motor specifications matching that web slug.</p>
-        <button
-          type="button"
-          onClick={() => onNavigate('shop')}
+        <NavLink
+          view="shop"
           className="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold"
         >
           Return to Stock Center
-        </button>
+        </NavLink>
       </div>
     );
   }
@@ -91,14 +91,13 @@ export default function ProductDetailsView({
     <div id="pdp-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-10">
       {/* Back to inventory */}
       <div>
-        <button
-          type="button"
-          onClick={() => onNavigate('shop')}
+        <NavLink
+          view="shop"
           className="text-slate-600 hover:text-slate-900 font-semibold text-xs flex items-center gap-1 cursor-pointer transition"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Back to Outboard catalog inventory</span>
-        </button>
+        </NavLink>
       </div>
 
       {/* Layout Grid */}
@@ -375,7 +374,7 @@ export default function ProductDetailsView({
                 ))}
               </select>
               <p className="text-[10px] text-slate-400 select-none leading-relaxed">
-                * If unsure of transom measurements, check our <span className="underline cursor-pointer" onClick={() => onNavigate('faq')}>FAQ Sizing Guides</span> first.
+                * If unsure of transom measurements, check our <NavLink view="faq" className="underline">FAQ Sizing Guides</NavLink> first.
               </p>
             </div>
 

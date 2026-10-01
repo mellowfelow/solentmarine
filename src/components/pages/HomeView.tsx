@@ -9,6 +9,7 @@ import { Product } from '../../types';
 import { BRANDS } from '../../config/site';
 import { ReviewsShowcase } from '../ReviewsShowcase';
 import HeroSlider, { HeroSlide } from '../HeroSlider';
+import NavLink from '../NavLink';
 
 interface HomeViewProps {
   products: Product[];
@@ -130,15 +131,14 @@ export default function HomeView({
               Every engine is checked and tested in our Isle of Wight workshop before it's carefully packed and delivered to you. Backed by an official dealer warranty.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
-                type="button"
+              <NavLink
+                view="shop"
                 id="hero-shop-btn"
-                onClick={() => onNavigate('shop')}
                 className="px-6 py-3.5 bg-sky-700 hover:bg-sky-600 rounded-xl text-sm font-bold text-white transition shadow-lg flex items-center gap-2 group cursor-pointer"
               >
                 <span>Browse Outboard Inventory</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </NavLink>
               <button
                 type="button"
                 id="hero-sizing-btn"
@@ -163,10 +163,10 @@ export default function HomeView({
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {BRANDS.map((brand) => (
-            <button
+            <NavLink
               key={brand.slug}
-              onClick={() => onNavigate('shop-category', { slug: brand.slug })}
-              type="button"
+              view="shop-category"
+              params={{ slug: brand.slug }}
               className="bg-slate-50 hover:bg-sky-50 border border-slate-205 rounded-xl p-5 text-center flex flex-col items-center justify-center transition hover:border-sky-300 group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-800 font-bold text-base group-hover:bg-sky-900 group-hover:text-white transition">
@@ -174,7 +174,7 @@ export default function HomeView({
               </div>
               <span className="font-semibold text-slate-900 text-sm mt-2">{brand.name}</span>
               <span className="text-[10px] text-slate-600 font-mono mt-0.5">Approved Seller</span>
-            </button>
+            </NavLink>
           ))}
         </div>
       </section>
@@ -241,11 +241,11 @@ export default function HomeView({
                   <span className="text-slate-450 text-[10px] uppercase font-bold tracking-widest">Matches In Our Catalog:</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {recommendations.engines.map((eng) => (
-                      <button
+                      <NavLink
                         key={eng.id}
-                        type="button"
+                        view="product-details"
+                        params={{ slug: eng.slug }}
                         id={`sizer-nav-to-${eng.id}`}
-                        onClick={() => onNavigate('product-details', { slug: eng.slug })}
                         className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-left flex items-center justify-between hover:border-slate-600 transition"
                       >
                         <div className="flex items-center gap-2">
@@ -262,7 +262,7 @@ export default function HomeView({
                           </div>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-sky-450 shrink-0" />
-                      </button>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -279,15 +279,14 @@ export default function HomeView({
             <p className="text-xs font-bold text-sky-800 uppercase tracking-widest font-mono">UK's Top Selling Outboards</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Best Sellers</h2>
           </div>
-          <button
-            type="button"
+          <NavLink
+            view="shop"
             id="see-all-mid-btn"
-            onClick={() => onNavigate('shop')}
             className="text-sm font-semibold text-sky-700 hover:text-sky-900 flex items-center gap-1 transition"
           >
             <span>See entire stock list</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </NavLink>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -296,7 +295,7 @@ export default function HomeView({
               key={prod.id}
               className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col justify-between hover:shadow-md transition"
             >
-              <div>
+              <NavLink view="product-details" params={{ slug: prod.slug }} className="block">
                 <div className="relative">
                   <img
                     src={prod.imageUrl}
@@ -317,11 +316,11 @@ export default function HomeView({
                     {prod.stockStatus}
                   </span>
                 </div>
-                <h3 className="font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 cursor-pointer" onClick={() => onNavigate('product-details', { slug: prod.slug })}>
+                <h3 className="font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800">
                   {prod.name}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 line-clamp-2 mb-3">{prod.description}</p>
-              </div>
+              </NavLink>
 
               <div className="pt-3 border-t border-slate-100">
                 <div className="flex justify-between items-baseline mb-2">
@@ -333,13 +332,13 @@ export default function HomeView({
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => onNavigate('product-details', { slug: prod.slug })}
+                  <NavLink
+                    view="product-details"
+                    params={{ slug: prod.slug }}
                     className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-lg py-2 text-xs font-semibold transition text-center"
                   >
                     View Specs
-                  </button>
+                  </NavLink>
                   <button
                     type="button"
                     onClick={() => onAddToCompare(prod)}
@@ -414,9 +413,9 @@ export default function HomeView({
             <h3 className="font-bold text-slate-900 text-base">Safe UK-Wide Delivery</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               We build a custom wooden crate around every engine before it ships, including to the Scottish Highlands, the Solent and Belfast. Engine oil is drained before shipping, as required by delivery rules —{' '}
-              <button type="button" onClick={() => onNavigate('shipping')} className="text-sky-700 underline font-semibold">
+              <NavLink view="shipping" className="text-sky-700 underline font-semibold">
                 see our delivery guide
-              </button>.
+              </NavLink>.
             </p>
           </div>
         </div>
