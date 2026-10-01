@@ -377,9 +377,9 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
                             </span>
                           )}
                         </div>
-                        <h4 className="font-bold text-white text-base leading-snug tracking-tight">
+                        <h3 className="font-bold text-white text-base leading-snug tracking-tight">
                           "{review.title}"
-                        </h4>
+                        </h3>
                       </div>
 
                       {/* Review Body */}
@@ -439,18 +439,22 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
               })}
             </div>
 
-            {/* Slider Dots Pagination */}
-            <div className="flex items-center justify-center gap-2 mt-8">
+            {/* Slider Dots Pagination — padded touch target around each small visible dot */}
+            <div className="flex items-center justify-center mt-8">
               {displayReviews.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to review slide ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    currentIndex === idx ? 'w-8 bg-[#00b67a]' : 'w-2 bg-slate-800 hover:bg-slate-700'
-                  }`}
-                />
+                  className="p-2.5 flex items-center justify-center cursor-pointer"
+                >
+                  <span
+                    className={`block h-2 rounded-full transition-all duration-300 ${
+                      currentIndex === idx ? 'w-8 bg-[#00b67a]' : 'w-2 bg-slate-800 hover:bg-slate-700'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>
@@ -486,9 +490,9 @@ export function ReviewsShowcase({ onNavigateProduct, onNavigate }: ReviewsShowca
                           </span>
                         )}
                       </div>
-                      <h4 className="font-bold text-white text-base leading-snug">
+                      <h3 className="font-bold text-white text-base leading-snug">
                         "{review.title}"
-                      </h4>
+                      </h3>
                     </div>
 
                     <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">

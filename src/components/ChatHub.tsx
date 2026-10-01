@@ -98,7 +98,7 @@ export default function ChatHub() {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-4 py-3 bg-slate-900 text-white hover:bg-slate-800 rounded-full shadow-2xl border border-slate-700 transition cursor-pointer group focus:outline-none"
-        aria-label="Open Marine Support Hub"
+        aria-label="Need Advice? Open Marine Support Hub"
       >
         <div className="relative">
           <MessageCircle className="w-5 h-5 text-sky-400 group-hover:scale-110 transition-transform" />

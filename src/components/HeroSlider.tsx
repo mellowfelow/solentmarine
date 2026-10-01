@@ -123,8 +123,9 @@ export default function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProp
             <ChevronRight className="w-4 h-4" />
           </button>
 
-          {/* Dots */}
-          <div className="absolute bottom-6 right-4 sm:right-6 lg:right-8 z-10 flex gap-2" role="tablist" aria-label="Hero slides">
+          {/* Dots — each button keeps a >=24px touch target via padding, independent of
+              the small visible dot inside it (WCAG 2.2 target-size). */}
+          <div className="absolute bottom-6 right-4 sm:right-6 lg:right-8 z-10 flex gap-0.5" role="tablist" aria-label="Hero slides">
             {slides.map((slide, i) => (
               <button
                 key={slide.webp}
@@ -133,8 +134,10 @@ export default function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProp
                 aria-selected={i === active}
                 aria-label={`Show slide ${i + 1}: ${slide.caption}`}
                 onClick={() => goTo(i)}
-                className={`w-2.5 h-2.5 rounded-full transition cursor-pointer ${i === active ? 'bg-sky-400 w-6' : 'bg-white/40 hover:bg-white/70'}`}
-              />
+                className="p-2.5 flex items-center justify-center cursor-pointer"
+              >
+                <span className={`block h-2.5 rounded-full transition ${i === active ? 'bg-sky-400 w-6' : 'bg-white/40 hover:bg-white/70 w-2.5'}`} />
+              </button>
             ))}
           </div>
         </>
