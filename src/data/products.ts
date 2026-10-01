@@ -34,7 +34,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/yamaha-f2-5bmhs.webp',
     description: 'Yamaha F2.5BMHS petrol 4-stroke outboard motor — 2.5HP, Tiller Control, Manual Pull. Recommended application: Inflatables & Tender Boats. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['2.5HP', 'Tiller Control', 'Manual Pull'],
     applications: ['Inflatables & Tender Boats'],
@@ -61,7 +61,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/suzuki-df2-5s.webp',
     description: 'Suzuki DF2.5S petrol 4-stroke outboard motor — 2.5HP, 13kg Ultra-light, Tiller. Recommended application: Small Dinghies & Tenders. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['2.5HP', '13kg Ultra-light', 'Tiller'],
     applications: ['Small Dinghies & Tenders'],
@@ -88,7 +88,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/mercury-3-5hp-fourstroke.webp',
     description: 'Mercury 3.5HP FourStroke petrol 4-stroke outboard motor — 3.5HP, Internal Fuel Tank. Recommended application: Small Leisure Craft. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['3.5HP', 'Internal Fuel Tank'],
     applications: ['Small Leisure Craft'],
@@ -142,7 +142,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/tohatsu-mfs6sp.webp',
     description: 'Tohatsu MFS6SP petrol 4-stroke outboard motor — 6HP, Sail Pro, High-Thrust Gearcase, 12V Charger. Recommended application: Sailboats & Small Yachts. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['6HP', 'Sail Pro', 'High-Thrust Gearcase', '12V Charger'],
     applications: ['Sailboats & Small Yachts'],
@@ -169,7 +169,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/suzuki-df6a.webp',
     description: 'Suzuki DF6A petrol 4-stroke outboard motor — 6HP, Single Cylinder, 3-Way Storage. Recommended application: Portable RIBs & Fishing Craft. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['6HP', 'Single Cylinder', '3-Way Storage'],
     applications: ['Portable RIBs & Fishing Craft'],
@@ -196,7 +196,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/portable.svg',
+    imageUrl: '/images/products/yamaha-f6cmhs.webp',
     description: 'Yamaha F6CMHS petrol 4-stroke outboard motor — 6HP, Built-in Fuel Tank, Ergonomic Carry. Recommended application: Small Powerboats. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['6HP', 'Built-in Fuel Tank', 'Ergonomic Carry'],
     applications: ['Small Powerboats'],
@@ -223,7 +223,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: true,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-spirit-1-0-plus.webp',
     description: 'ePropulsion Spirit 1.0 Plus electric outboard motor — 3HP Eq., 1KW Motor, 1276Wh Integrated LiFePO4. Recommended application: Tenders & Inflatables. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['3HP Eq.', '1KW Motor', '1276Wh Integrated LiFePO4'],
     applications: ['Tenders & Inflatables'],
@@ -358,7 +358,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     badge: 'Top Seller',
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-60hp-command-thrust.webp',
     description: 'Mercury 60HP Command Thrust petrol 4-stroke outboard motor — 60HP, High-Thrust Lower Unit, SmartCraft Capable. Recommended application: Heavy Commercial Boats. One of our top 15 best-selling UK outboards, fully checked before dispatch.',
     features: ['60HP', 'High-Thrust Lower Unit', 'SmartCraft Capable'],
     applications: ['Heavy Commercial Boats'],
@@ -493,7 +493,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-spirit-2.webp',
     description: 'ePropulsion Spirit 2 zero-emission electric outboard motor (3.5HP Eq. equivalent) — 1.2KW, Next-Gen Display, Integrated 1400Wh LiFePO4.',
     features: ['1.2KW', 'Next-Gen Display', 'Integrated 1400Wh LiFePO4'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -574,7 +574,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/electric.svg',
+    imageUrl: '/images/products/epropulsion-x12-pod-drive.webp',
     description: 'ePropulsion X12 Pod Drive zero-emission electric outboard motor (20HP Eq. equivalent) — 12KW, 88% Efficiency, Remote Throttle.',
     features: ['12KW', '88% Efficiency', 'Remote Throttle'],
     applications: ['Tenders', 'Sailing auxiliary', 'Inland waterways'],
@@ -1276,7 +1276,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-ft8fmhx.webp',
     description: 'Yamaha FT8FMHX petrol 4-stroke outboard motor — 8HP, High-Thrust Gear Ratio, Long Shaft. UK RCD II compliant, PDI checked before dispatch.',
     features: ['8HP', 'High-Thrust Gear Ratio', 'Long Shaft'],
     applications: ['RIBs & dayboats'],
@@ -1303,7 +1303,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-f9-9jmhs.webp',
     description: 'Yamaha F9.9JMHS petrol 4-stroke outboard motor — 9.9HP, Twin Cylinder 212cc, Manual. UK RCD II compliant, PDI checked before dispatch.',
     features: ['9.9HP', 'Twin Cylinder 212cc', 'Manual'],
     applications: ['RIBs & dayboats'],
@@ -1330,7 +1330,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-f15cehs.webp',
     description: 'Yamaha F15CEHS petrol 4-stroke outboard motor — 15HP, Electric Start, Tiller Control. UK RCD II compliant, PDI checked before dispatch.',
     features: ['15HP', 'Electric Start', 'Tiller Control'],
     applications: ['RIBs & dayboats'],
@@ -1357,7 +1357,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-f25gets.webp',
     description: 'Yamaha F25GETS petrol 4-stroke outboard motor — 25HP, Power Trim & Tilt, EFI. UK RCD II compliant, PDI checked before dispatch.',
     features: ['25HP', 'Power Trim & Tilt', 'EFI'],
     applications: ['RIBs & dayboats'],
@@ -1384,7 +1384,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-f40fets.webp',
     description: 'Yamaha F40FETS petrol 4-stroke outboard motor — 40HP, DOHC EFI, PrimeStart System. UK RCD II compliant, PDI checked before dispatch.',
     features: ['40HP', 'DOHC EFI', 'PrimeStart System'],
     applications: ['RIBs & dayboats'],
@@ -1411,7 +1411,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/yamaha-ft50jetl.webp',
     description: 'Yamaha FT50JETL petrol 4-stroke outboard motor — 50HP, High-Thrust Gearcase, Power Trim. UK RCD II compliant, PDI checked before dispatch.',
     features: ['50HP', 'High-Thrust Gearcase', 'Power Trim'],
     applications: ['RIBs & dayboats'],
@@ -1438,7 +1438,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/yamaha-f70aetl.webp',
     description: 'Yamaha F70AETL petrol 4-stroke outboard motor — 70HP, 16-Valve SOHC, Ultra-Lightweight. UK RCD II compliant, PDI checked before dispatch.',
     features: ['70HP', '16-Valve SOHC', 'Ultra-Lightweight'],
     applications: ['Offshore & commercial craft'],
@@ -1465,7 +1465,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/yamaha-f115betl.webp',
     description: 'Yamaha F115BETL petrol 4-stroke outboard motor — 115HP, 1.8L Four Cylinder, DOHC. UK RCD II compliant, PDI checked before dispatch.',
     features: ['115HP', '1.8L Four Cylinder', 'DOHC'],
     applications: ['Offshore & commercial craft'],
@@ -1546,7 +1546,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/suzuki-df9-9b.webp',
     description: 'Suzuki DF9.9B petrol 4-stroke outboard motor — 9.9HP, Battery-less EFI, Lean Burn. UK RCD II compliant, PDI checked before dispatch.',
     features: ['9.9HP', 'Battery-less EFI', 'Lean Burn'],
     applications: ['RIBs & dayboats'],
@@ -1573,7 +1573,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/suzuki-df15a.webp',
     description: 'Suzuki DF15A petrol 4-stroke outboard motor — 15HP, Twin Cylinder, Manual Shaft. UK RCD II compliant, PDI checked before dispatch.',
     features: ['15HP', 'Twin Cylinder', 'Manual Shaft'],
     applications: ['RIBs & dayboats'],
@@ -1600,7 +1600,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/suzuki-df30atl.webp',
     description: 'Suzuki DF30ATL petrol 4-stroke outboard motor — 30HP, Remote Control, Power Trim & Tilt. UK RCD II compliant, PDI checked before dispatch.',
     features: ['30HP', 'Remote Control', 'Power Trim & Tilt'],
     applications: ['RIBs & dayboats'],
@@ -1627,7 +1627,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/suzuki-df50atl.webp',
     description: 'Suzuki DF50ATL petrol 4-stroke outboard motor — 50HP, DOHC 12-Valve, Timing Chain Drive. UK RCD II compliant, PDI checked before dispatch.',
     features: ['50HP', 'DOHC 12-Valve', 'Timing Chain Drive'],
     applications: ['RIBs & dayboats'],
@@ -1654,7 +1654,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/suzuki-df80atl.webp',
     description: 'Suzuki DF80ATL petrol 4-stroke outboard motor — 80HP, 1.5L Inline 4 Cylinder. UK RCD II compliant, PDI checked before dispatch.',
     features: ['80HP', '1.5L Inline 4 Cylinder'],
     applications: ['Offshore & commercial craft'],
@@ -1681,7 +1681,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/suzuki-df115bg.webp',
     description: 'Suzuki DF115BG petrol 4-stroke outboard motor — 115HP, Drive-By-Wire Electronic Control. UK RCD II compliant, PDI checked before dispatch.',
     features: ['115HP', 'Drive-By-Wire Electronic Control'],
     applications: ['Offshore & commercial craft'],
@@ -1708,7 +1708,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/suzuki-df200ap.webp',
     description: 'Suzuki DF200AP petrol 4-stroke outboard motor — 200HP, 2.9L Inline 4, Selective Rotation. UK RCD II compliant, PDI checked before dispatch.',
     features: ['200HP', '2.9L Inline 4', 'Selective Rotation'],
     applications: ['Offshore & commercial craft'],
@@ -1735,7 +1735,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/suzuki-df350a.webp',
     description: 'Suzuki DF350A petrol 4-stroke outboard motor — 350HP, V6, Dual Propeller System. UK RCD II compliant, PDI checked before dispatch.',
     features: ['350HP', 'V6', 'Dual Propeller System'],
     applications: ['Offshore & commercial craft'],
@@ -1816,7 +1816,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/mercury-15hp-efi.webp',
     description: 'Mercury 15HP EFI petrol 4-stroke outboard motor — 15HP, Ambidextrous Tiller Control, EFI. UK RCD II compliant, PDI checked before dispatch.',
     features: ['15HP', 'Ambidextrous Tiller Control', 'EFI'],
     applications: ['RIBs & dayboats'],
@@ -1843,7 +1843,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/mercury-25hp-efi.webp',
     description: 'Mercury 25HP EFI petrol 4-stroke outboard motor — 25HP, 3-Cylinder 500cc, Manual/Electric. UK RCD II compliant, PDI checked before dispatch.',
     features: ['25HP', '3-Cylinder 500cc', 'Manual/Electric'],
     applications: ['RIBs & dayboats'],
@@ -1870,7 +1870,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/mercury-40hp-fourstroke.webp',
     description: 'Mercury 40HP FourStroke petrol 4-stroke outboard motor — 40HP, SmartCraft Compatible, PTT. UK RCD II compliant, PDI checked before dispatch.',
     features: ['40HP', 'SmartCraft Compatible', 'PTT'],
     applications: ['RIBs & dayboats'],
@@ -1897,7 +1897,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-pro-xs-115.webp',
     description: 'Mercury Pro XS 115 petrol 4-stroke outboard motor — 115HP, 2.1L Performance Tuned. UK RCD II compliant, PDI checked before dispatch.',
     features: ['115HP', '2.1L Performance Tuned'],
     applications: ['Offshore & commercial craft'],
@@ -1924,7 +1924,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-pro-xs-175.webp',
     description: 'Mercury Pro XS 175 petrol 4-stroke outboard motor — 175HP, 3.4L V6 High-Output Engine. UK RCD II compliant, PDI checked before dispatch.',
     features: ['175HP', '3.4L V6 High-Output Engine'],
     applications: ['Offshore & commercial craft'],
@@ -1951,7 +1951,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-verado-250.webp',
     description: 'Mercury Verado 250 petrol 4-stroke outboard motor — 250HP, 4.6L V8, AMS Noise Reduction. UK RCD II compliant, PDI checked before dispatch.',
     features: ['250HP', '4.6L V8', 'AMS Noise Reduction'],
     applications: ['Offshore & commercial craft'],
@@ -1978,7 +1978,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-verado-300.webp',
     description: 'Mercury Verado 300 petrol 4-stroke outboard motor — 300HP, 4.6L V8, Digital Throttle & Shift. UK RCD II compliant, PDI checked before dispatch.',
     features: ['300HP', '4.6L V8', 'Digital Throttle & Shift'],
     applications: ['Offshore & commercial craft'],
@@ -2005,7 +2005,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/mercury-verado-400.webp',
     description: 'Mercury Verado 400 petrol 4-stroke outboard motor — 400HP, 5.7L V10, Dual Overhead Cam. UK RCD II compliant, PDI checked before dispatch.',
     features: ['400HP', '5.7L V10', 'Dual Overhead Cam'],
     applications: ['Offshore & commercial craft'],
@@ -2113,7 +2113,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/honda-bf50-lrtu.webp',
     description: 'Honda BF50 LRTU petrol 4-stroke outboard motor — 50HP, BLAST Acceleration Control. UK RCD II compliant, PDI checked before dispatch.',
     features: ['50HP', 'BLAST Acceleration Control'],
     applications: ['Offshore & commercial craft'],
@@ -2140,7 +2140,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/honda-bf100-xru.webp',
     description: 'Honda BF100 XRU petrol 4-stroke outboard motor — 100HP, VTEC Variable Valve Control. UK RCD II compliant, PDI checked before dispatch.',
     features: ['100HP', 'VTEC Variable Valve Control'],
     applications: ['Offshore & commercial craft'],
@@ -2194,7 +2194,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/tohatsu-mfs9-9e.webp',
     description: 'Tohatsu MFS9.9E petrol 4-stroke outboard motor — 9.9HP, Battery-less EFI System. UK RCD II compliant, PDI checked before dispatch.',
     features: ['9.9HP', 'Battery-less EFI System'],
     applications: ['RIBs & dayboats'],
@@ -2221,7 +2221,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/tohatsu-mfs20e.webp',
     description: 'Tohatsu MFS20E petrol 4-stroke outboard motor — 20HP, Lightest Twin-Cylinder EFI. UK RCD II compliant, PDI checked before dispatch.',
     features: ['20HP', 'Lightest Twin-Cylinder EFI'],
     applications: ['RIBs & dayboats'],
@@ -2248,7 +2248,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/mid-range.svg',
+    imageUrl: '/images/products/tohatsu-mfs30c.webp',
     description: 'Tohatsu MFS30C petrol 4-stroke outboard motor — 30HP, Variable Idle Speed Control. UK RCD II compliant, PDI checked before dispatch.',
     features: ['30HP', 'Variable Idle Speed Control'],
     applications: ['RIBs & dayboats'],
@@ -2275,7 +2275,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/high-horsepower.svg',
+    imageUrl: '/images/products/tohatsu-mfs115a.webp',
     description: 'Tohatsu MFS115A petrol 4-stroke outboard motor — 115HP, Dynamic 4-2-1 Exhaust System. UK RCD II compliant, PDI checked before dispatch.',
     features: ['115HP', 'Dynamic 4-2-1 Exhaust System'],
     applications: ['Offshore & commercial craft'],
@@ -2977,7 +2977,7 @@ export const OUTBOARD_PRODUCTS: Product[] = [
     stockStatus: 'In Stock',
     isFeatured: false,
     
-    imageUrl: '/images/placeholders/parts.svg',
+    imageUrl: '/images/products/universal-12-litre-portable-fuel-tank-gauge.webp',
     description: '12 Litre Portable Fuel Tank + Gauge — Anti-UV Polyethylene (Mercury/Yamaha Fit).',
     features: ['Anti-UV Polyethylene (Mercury/Yamaha Fit)'],
     applications: ['Fuel Systems'],

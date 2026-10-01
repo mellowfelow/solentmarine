@@ -5,11 +5,8 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
 import { Truck, ShieldCheck, Wrench, MessageCircle } from 'lucide-react';
 import { CONTACT } from '../config/site';
-
-const ROTATE_MS = 4500;
 
 export default function AnnouncementBar() {
   const announcements = [
@@ -31,28 +28,28 @@ export default function AnnouncementBar() {
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % announcements.length);
-    }, ROTATE_MS);
-    return () => clearInterval(timer);
-  }, [announcements.length]);
+  // One continuous row, rendered twice back-to-back, translated by exactly -50% — that's
+  // the whole trick for a seamless infinite marquee: the moment the first copy has fully
+  // scrolled past, the second copy is in the exact position the first one started in, so
+  // the loop point is invisible. Always a single line (whitespace-nowrap), never reflows.
+  const track = (keyPrefix: string) => (
+    <div className="flex items-center shrink-0" aria-hidden={keyPrefix === 'b'}>
+      {announcements.map((a, i) => (
+        <div key={`${keyPrefix}-${i}`} className="flex items-center gap-2 whitespace-nowrap px-8">
+          {a.icon}
+          <span className="text-[13px] font-semibold">{a.text}</span>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
-    <div className="relative bg-slate-950 text-slate-200 border-b border-slate-800/80 py-2.5 px-4 text-xs font-medium tracking-wide overflow-hidden">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        {/* Each slide is keyed by index so it remounts and replays its entrance
-            animation on every rotation — a real slide-in, not an instant text swap. */}
+    <div className="bg-slate-950 text-slate-200 border-b border-slate-800/80 py-2.5 text-xs font-medium tracking-wide overflow-hidden">
+      <div className="max-w-7xl mx-auto flex items-center gap-4 px-4">
         <div className="flex-1 min-w-0 overflow-hidden">
-          <div
-            key={currentIndex}
-            className="flex items-center gap-2 justify-center sm:justify-start animate-slide-in-right"
-            aria-live="polite"
-          >
-            {announcements[currentIndex].icon}
-            <span className="truncate text-[13px] font-semibold">{announcements[currentIndex].text}</span>
+          <div className="flex w-max animate-announcement-marquee motion-reduce:animate-none">
+            {track('a')}
+            {track('b')}
           </div>
         </div>
 
@@ -67,16 +64,6 @@ export default function AnnouncementBar() {
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
-      </div>
-
-      {/* Progress rail — fills over the slide's dwell time, resets on every rotation, so the
-          rotation reads as a deliberate slider rather than a passive periodic content swap. */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-slate-900">
-        <div
-          key={currentIndex}
-          className="h-full bg-sky-500 animate-announcement-progress"
-          style={{ animationDuration: `${ROTATE_MS}ms` }}
-        />
       </div>
     </div>
   );
