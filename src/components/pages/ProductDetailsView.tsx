@@ -191,7 +191,6 @@ export default function ProductDetailsView({
             <div className="flex justify-between items-center border-b border-slate-100 pb-3">
               <h3 className="font-sans font-extrabold text-slate-900 text-lg flex items-center gap-2">
                 <span>Buyer Reviews & Ratings</span>
-                <span className="text-sm font-normal text-slate-500">({reviews.length} total)</span>
               </h3>
               {avgRating && (
                 <div className="flex items-center gap-1 bg-yellow-50 text-yellow-800 font-bold text-sm px-2.5 py-1 rounded-md border border-yellow-100">
