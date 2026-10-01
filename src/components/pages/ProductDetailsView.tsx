@@ -203,9 +203,6 @@ export default function ProductDetailsView({
 
             {/* Individual Reviews */}
             <div className="space-y-4">
-              {reviews.length === 0 && (
-                <p className="text-sm text-slate-500 italic">No reviews yet for this engine — check back soon, or be the first to leave one below.</p>
-              )}
               {reviews.map((r) => (
                 <div key={r.id} className="p-4 bg-slate-50 rounded-xl border border-slate-200/50 space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between items-start">
@@ -325,7 +322,7 @@ export default function ProductDetailsView({
                 {product.name}
               </h1>
               <div className="flex gap-2.5 items-center mt-2.5 text-xs text-slate-500">
-                {avgRating ? (
+                {avgRating && (
                   <>
                     <div className="flex">
                       {Array.from({ length: Math.round(parseFloat(avgRating)) }).map((_, i) => (
@@ -334,8 +331,6 @@ export default function ProductDetailsView({
                     </div>
                     <span>({reviews.length} reviews verified)</span>
                   </>
-                ) : (
-                  <span>No reviews yet — be the first to review this engine</span>
                 )}
               </div>
             </div>
