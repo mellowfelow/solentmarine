@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   description:
     "UK's premier outboard motors catalog and dealer directory. Featuring Yamaha, Suzuki, Honda, Mercury, Tohatsu, and Torqeedo engines with detailed specs, comparisons, and UK-wide delivery guides.",
   verification: {
-    google: 'google-site-verification-solent-marine-uk-2026'
+    other: {
+      'msvalidate.01': '1E4E659BFCC8CE6853AFC74B2AD6D954'
+    }
   },
   other: {
     'indexnow-key': 'om-indexnow-solent-marine-key'
