@@ -5,6 +5,7 @@
 
 import { Scale, X, Anchor, ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
+import { thumbUrl } from '../../lib/seo';
 import NavLink from '../NavLink';
 
 interface CompareViewProps {
@@ -198,7 +199,9 @@ export default function CompareView({ compareList, onRemove, onClear, onNavigate
                           <X className="w-3.5 h-3.5" />
                         </button>
                         <img
-                          src={p.imageUrl}
+                          src={thumbUrl(p.imageUrl)}
+                          width={480}
+                          height={480}
                           alt={p.imageUrl.includes('/placeholders/') ? `Placeholder image — ${p.name}` : p.name}
                           className="w-full h-28 object-contain bg-slate-50 rounded-lg border border-slate-100 mb-2"
                           loading="lazy"

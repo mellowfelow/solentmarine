@@ -89,7 +89,7 @@ export default function Navbar({
           <div className="flex items-center gap-5">
             <span className="flex items-center gap-1.5 hover:text-white transition">
               <Phone className="w-3.5 h-3.5 text-sky-400" />
-              <span>UK Head Office: 01983 294400 (Isle of Wight Boating Hub)</span>
+              <span>UK Head Office: 07577 298720 (Isle of Wight Boating Hub)</span>
             </span>
             <span className="flex items-center gap-1.5 hover:text-white transition">
               <Mail className="w-3.5 h-3.5 text-sky-400" />
@@ -416,7 +416,7 @@ export default function Navbar({
             <p className="font-bold text-sky-400 uppercase tracking-widest text-[10px]">Customer Help lines</p>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-sky-500 shrink-0" />
-              <span>01983 294400 (Cowes Office)</span>
+              <span>07577 298720 (Cowes Office)</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-sky-500 shrink-0" />

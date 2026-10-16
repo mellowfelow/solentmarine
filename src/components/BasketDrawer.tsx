@@ -8,6 +8,7 @@ import { X, Trash2, ShoppingBag, Truck, CheckCircle, MessageCircle, Mail, ArrowR
 import { CartItem } from '../types';
 import { SHOP } from '../config/site';
 import { generateOrderNumber } from '../lib/order';
+import { thumbUrl } from '../lib/seo';
 import { waOrderLink } from '../lib/whatsapp';
 
 interface BasketDrawerProps {
@@ -173,7 +174,9 @@ export default function BasketDrawer({
                     <div key={`${item.product.id}-${item.selectedShaft}`} className="pt-3 flex gap-3.5 items-start">
                       <div className="w-16 h-16 rounded-lg bg-white border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center p-1">
                         <img
-                          src={item.product.imageUrl || item.product.images?.[0] || ''}
+                          src={thumbUrl(item.product.imageUrl || item.product.images?.[0] || '')}
+                          width={64}
+                          height={64}
                           alt={item.product.name}
                           className="max-h-full max-w-full object-contain"
                           loading="lazy"

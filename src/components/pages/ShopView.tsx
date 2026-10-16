@@ -8,6 +8,7 @@ import { SearchFilters, Product } from '../../types';
 import SearchAndFilters from '../SearchAndFilters';
 import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft, Minus, Plus } from 'lucide-react';
 import { CATEGORIES, BRANDS } from '../../config/site';
+import { thumbUrl } from '../../lib/seo';
 import NavLink from '../NavLink';
 
 const PAGE_SIZE = 12;
@@ -343,7 +344,7 @@ export default function ShopView({
                       {/* Product Image */}
                       <div className="relative overflow-hidden rounded-lg mb-3">
                         <img
-                          src={prod.imageUrl}
+                          src={thumbUrl(prod.imageUrl)} width={480} height={480}
                           alt={prod.imageUrl.includes('/placeholders/') ? `Placeholder image — ${prod.name} — real product photo coming soon` : prod.name}
                           loading="lazy"
                           className="w-full h-44 object-contain bg-slate-50 group-hover:scale-105 transition duration-300 border border-slate-100"

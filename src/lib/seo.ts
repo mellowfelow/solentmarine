@@ -22,3 +22,8 @@ export function fitDesc(text: string, max = 158): string {
 export function nameWithBrand(name: string, brand: string): string {
   return name.toLowerCase().startsWith(brand.toLowerCase()) ? name : `${brand} ${name}`;
 }
+
+/** Card-sized (480px) variant of a product photo; falls back to the original for placeholders. */
+export function thumbUrl(url: string): string {
+  return url.startsWith('/images/products/') && url.endsWith('.webp') ? url.replace('/images/products/', '/images/products/thumbs/') : url;
+}

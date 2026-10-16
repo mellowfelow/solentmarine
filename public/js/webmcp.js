@@ -34,7 +34,7 @@
         },
         execute: async ({ message }) => {
           const greeting = "Hi Solent Marine Outboards UK, ";
-          const url = `https://wa.me/447700900888?text=${encodeURIComponent(message || greeting)}`;
+          const url = `https://wa.me/447577298720?text=${encodeURIComponent(message || greeting)}`;
           window.open(url, '_blank');
           return { url };
         }

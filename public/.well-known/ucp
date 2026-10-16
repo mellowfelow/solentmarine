@@ -8,7 +8,7 @@
   "description": "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
   "services": [
     { "id": "product-catalog", "type": "catalog", "url": "https://solentmarineoutboards.co.uk/shop/", "description": "Full outboard motors catalog with detailed specifications" },
-    { "id": "order", "type": "commerce", "url": "https://wa.me/447700900888", "description": "Direct human-assisted WhatsApp ordering and rigging consultation" }
+    { "id": "order", "type": "commerce", "url": "https://wa.me/447577298720", "description": "Direct human-assisted WhatsApp ordering and rigging consultation" }
   ],
   "capabilities": ["browse", "inquiry"],
   "endpoints": {

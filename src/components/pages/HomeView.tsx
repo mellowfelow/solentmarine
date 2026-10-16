@@ -9,6 +9,7 @@ import { Product } from '../../types';
 import { BRANDS } from '../../config/site';
 import { ReviewsShowcase } from '../ReviewsShowcase';
 import HeroSlider, { HeroSlide } from '../HeroSlider';
+import { thumbUrl } from '../../lib/seo';
 import NavLink from '../NavLink';
 
 interface HomeViewProps {
@@ -250,7 +251,7 @@ export default function HomeView({
                       >
                         <div className="flex items-center gap-2">
                           <img
-                            src={eng.imageUrl}
+                            src={thumbUrl(eng.imageUrl)} width={40} height={40}
                             alt={eng.name}
                             className="w-10 h-10 object-cover rounded border border-slate-850"
                             loading="lazy"
@@ -298,7 +299,7 @@ export default function HomeView({
               <NavLink view="product-details" params={{ slug: prod.slug }} className="block">
                 <div className="relative">
                   <img
-                    src={prod.imageUrl}
+                    src={thumbUrl(prod.imageUrl)} width={480} height={480}
                     alt={prod.imageUrl.includes('/placeholders/') ? `Placeholder image — ${prod.name} — real product photo coming soon` : prod.name}
                     className="w-full h-44 object-contain bg-slate-50 rounded-xl border border-slate-100 mb-3"
                     loading="lazy"

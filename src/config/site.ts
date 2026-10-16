@@ -23,10 +23,10 @@ export const SITE = {
 
 export const CONTACT = {
   email: 'sales@solentmarineoutboards.co.uk',
-  phone: '01983 294400',
-  phoneInternational: '+441983294400',
-  whatsapp: '+447700900888',
-  whatsappDisplay: '07700 900888',
+  phone: '07577 298720',
+  phoneInternational: '+447577298720',
+  whatsapp: '+447577298720',
+  whatsappDisplay: '07577 298720',
   address: 'Cowes Yacht Haven, High Street, Cowes, Isle of Wight, PO31 7BD, United Kingdom',
   hq: 'Cowes, Isle of Wight, United Kingdom',
   country: 'United Kingdom',
@@ -68,7 +68,7 @@ export const REPLY = {
   },
   channels: {
     email: 'sales@solentmarineoutboards.co.uk',
-    whatsapp: '+447700900888',
+    whatsapp: '+447577298720',
     whatsappCountryCode: '44',
   },
   deadlineHours: 48,
@@ -85,8 +85,8 @@ export const REPLY = {
 
 export const CHAT = {
   channels: [
-    { type: 'whatsapp', value: '+447700900888', label: 'WhatsApp Marine Helpline' },
-    { type: 'phone', value: '01983 294400', label: 'Cowes Yard Desk' },
+    { type: 'whatsapp', value: '+447577298720', label: 'WhatsApp Marine Helpline' },
+    { type: 'phone', value: '07577 298720', label: 'Cowes Yard Desk' },
     { type: 'email', value: 'sales@solentmarineoutboards.co.uk', label: 'Sales & Rigging Desk' }
   ],
 };
