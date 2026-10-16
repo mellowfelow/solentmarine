@@ -419,7 +419,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'flush-outboard-motor',
     title: 'How to Flush Your Outboard Motor After Every Use',
-    metaDescription: 'Why flushing your outboard after saltwater use matters, and the two common methods.',
+    metaDescription: 'How to flush an outboard motor after saltwater use: why it matters, the two common methods (hose muffs or a flush tank) and how long to run the engine.',
     primaryKeyword: 'how to flush an outboard motor',
     secondaryKeywords: ['flush outboard engine', 'flush outboard after saltwater'],
     funnelPosition: 'Bottom',

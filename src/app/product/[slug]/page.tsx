@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import ProductClient from '../../../components/routes/ProductClient';
 import { OUTBOARD_PRODUCTS } from '../../../data/products';
 import { getProductSchema } from '../../../lib/schema';
+import { fitDesc, fitTitle, nameWithBrand } from '../../../lib/seo';
 
 export function generateStaticParams() {
   return OUTBOARD_PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -12,9 +13,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = OUTBOARD_PRODUCTS.find((p) => p.slug === slug);
   if (!product) return {};
+  const full = nameWithBrand(product.name, product.brand);
   return {
-    title: `${product.name} — Specs & Price | Solent Marine UK`,
-    description: `${product.brand} ${product.name}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. Fully PDI checked at Solent Marine, Isle of Wight.`,
+    title: fitTitle(`${full} Price & Specs | Solent Marine UK`),
+    description: fitDesc(`${full}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. PDI checked, UK delivery from Cowes.`),
     alternates: { canonical: `/product/${product.slug}/` },
     openGraph: { type: 'website', images: [product.imageUrl] }
   };

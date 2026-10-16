@@ -18,6 +18,7 @@ export const SITE = {
   gscVerification: 'google-site-verification-solent-marine-uk-2026',
   indexNowKey: 'om-indexnow-solent-marine-key',
   cartKey: 'solent-marine-cart-v1',
+  contentUpdated: '2026-10-16', // bump only when page content changes: drives sitemap <lastmod>
 };
 
 export const CONTACT = {

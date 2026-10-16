@@ -4,7 +4,6 @@
  * structured data now needs to be rendered server-side for it to be present in the initial HTML.
  */
 import { SITE, CONTACT, BRAND } from '../config/site';
-import { TRUSTPILOT_STATS } from '../data/reviewsData';
 import { Product, BlogPost } from '../types';
 
 const ORIGIN = `https://${SITE.domain}`;
@@ -30,13 +29,18 @@ export function getHomeSchema(products: Product[]) {
       postalCode: 'PO31 7BD',
       addressCountry: 'GB'
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: String(TRUSTPILOT_STATS.averageRating),
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: String(TRUSTPILOT_STATS.totalReviews)
-    }
+    logo: `${ORIGIN}/icon.svg`,
+    image: `${ORIGIN}/images/hero/hero-yamaha-200-rib.jpg`,
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        telephone: CONTACT.phoneInternational,
+        email: CONTACT.email,
+        areaServed: 'GB',
+        availableLanguage: 'en-GB'
+      }
+    ]
   };
 }
 
@@ -142,6 +146,7 @@ export function getProductSchema(product: Product, reviewCount: number, avgRatin
       offers: {
         '@type': 'Offer',
         priceCurrency: SITE.currency,
+        itemCondition: 'https://schema.org/NewCondition',
         price: product.priceGbp,
         availability: product.stockStatus === 'In Stock' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
         url: productUrl,

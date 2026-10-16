@@ -6,8 +6,8 @@ import { OUTBOARD_PRODUCTS } from '../../data/products';
 const ORIGIN = `https://${SITE.domain}`;
 
 export const metadata: Metadata = {
-  title: 'Outboard Motor Brands | Yamaha, Mercury, Honda, Suzuki, Tohatsu, ePropulsion | Solent Marine UK',
-  description: 'Browse every outboard motor brand Solent Marine UK stocks — Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion — with authorized dealer warranty on every engine.',
+  title: 'Outboard Motor Brands UK | Solent Marine UK',
+  description: 'Browse every outboard brand we stock: Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion, with official UK manufacturer warranty on every engine.',
   alternates: { canonical: '/brands/' }
 };
 

@@ -5,7 +5,7 @@ import { BLOG_POSTS } from '../data/posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = `https://${SITE.domain}`;
-  const today = new Date().toISOString().split('T')[0];
+  const today = SITE.contentUpdated;
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${origin}/`, lastModified: today, changeFrequency: 'daily', priority: 1.0 },

@@ -4,6 +4,7 @@ import ShopClient from '../../../components/routes/ShopClient';
 import { CATEGORIES, BRANDS } from '../../../config/site';
 import { OUTBOARD_PRODUCTS } from '../../../data/products';
 import { getShopBreadcrumbSchema, getShopCollectionSchema } from '../../../lib/schema';
+import { fitDesc, fitTitle } from '../../../lib/seo';
 
 // Real Transactional/Commercial primary keywords per docs/keyword-map.md — Tohatsu and ePropulsion
 // had no qualifying T/C keyword in the export (their brand-specific search volume is below the
@@ -70,12 +71,12 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const category = CATEGORIES.find((c) => c.slug === slug);
   if (category) {
     const seo = CATEGORY_SEO[category.slug];
-    return { ...seo, alternates: { canonical: `/shop/${category.slug}/` } };
+    return { title: fitTitle(seo.title), description: fitDesc(seo.description), alternates: { canonical: `/shop/${category.slug}/` } };
   }
   const brand = BRANDS.find((b) => b.slug === slug);
   if (brand) {
     const seo = BRAND_SEO[brand.slug];
-    return { ...seo, alternates: { canonical: `/shop/${brand.slug}/` } };
+    return { title: fitTitle(seo.title), description: fitDesc(seo.description), alternates: { canonical: `/shop/${brand.slug}/` } };
   }
   return {};
 }

@@ -6,7 +6,7 @@ import { getHomeSchema } from '../lib/schema';
 export const metadata: Metadata = {
   title: 'Outboard Motors For Sale UK | Solent Marine Outboards',
   description:
-    "Outboard motors for sale from our Cowes, Isle of Wight dealership — buy outboard boat motors from Yamaha, Suzuki, Honda, Mercury, Tohatsu and electric propulsion from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota. PDI checked, UK-wide delivery.",
+    'Outboard motors for sale from Yamaha, Suzuki, Honda, Mercury and Tohatsu, plus electric propulsion. PDI checked, UK-wide delivery from Cowes, Isle of Wight.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { BlogPostClient } from '../../../components/routes/BlogClient';
 import { BLOG_POSTS } from '../../../data/posts';
 import { getBlogPostSchema } from '../../../lib/schema';
+import { fitDesc, fitTitle } from '../../../lib/seo';
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
@@ -13,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title} | Solent Marine UK`,
-    description: post.metaDescription,
+    title: fitTitle(`${post.title} | Solent Marine UK`),
+    description: fitDesc(post.metaDescription),
     alternates: { canonical: `/blog/${post.slug}/` }
   };
 }
