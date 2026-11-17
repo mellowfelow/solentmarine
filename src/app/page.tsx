@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import HomeClient from '../components/routes/HomeClient';
 import { OUTBOARD_PRODUCTS } from '../data/products';
 import { getHomeSchema } from '../lib/schema';
+import { HOME_FAQS } from '../data/homeContent';
 
 export const metadata: Metadata = {
   title: 'Outboard Motors For Sale UK | Solent Marine Outboards',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/',
-    images: [{ url: '/images/hero/hero-yamaha-200-rib.jpg', width: 1200, height: 630 }]
+    images: [{ url: '/images/og-home.jpg', width: 1200, height: 630 }]
   }
 };
 
@@ -20,7 +21,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(getHomeSchema(OUTBOARD_PRODUCTS)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getHomeSchema(OUTBOARD_PRODUCTS, HOME_FAQS)) }}
       />
       <HomeClient />
     </>

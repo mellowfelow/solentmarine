@@ -23,8 +23,8 @@ export const FAQ_ITEMS = [
     a: 'PDI is a mandatory mechanical safety procedure. Our engineering team unboxes your engine, mounts it, fills it with oil, runs the block, tests cooling impeller water flow (piddle-stream), sets timing, and inspects gear shifting. We then drain the sump (to meet UK dangerous cargo carriage rules) and crate it. PDI ensures your motor is ready without dead-on-arrival issues.'
   },
   {
-    q: 'How does marine financing operate on Solent Marine?',
-    a: 'We work with FCA regulated asset lenders to offer Hire Purchase (HP) options at a 9.9% representative APR. You can select terms from 12 to 60 months with a minimum 10% cash deposit. Approval decisions are generally returned in 2 to 4 hours.'
+    q: 'How do I pay for an outboard motor?',
+    a: 'We accept UK bank transfer (BACS or Faster Payments). Place your order online or via WhatsApp and we email the payment details with your order reference. Your engine is dispatched once payment clears. The minimum order is £150, and orders over £500 ship free to the UK mainland.'
   },
   {
     q: 'How do electric outboard runtimes compare to petrol?',
@@ -52,6 +52,10 @@ export const FAQ_ITEMS = [
   },
   {
     q: "What's the smallest outboard motor you sell?",
-    a: 'Our smallest is the Yamaha F2.5BMHS at 2.5HP and 13kg — small enough for a dinghy or yacht tender, with an integrated fuel tank and 360° steering.'
+    a: 'Our smallest petrol outboards are 2.3HP to 2.5HP four-strokes from Honda, Yamaha and Suzuki, small enough for a dinghy or yacht tender. Electric options start with compact 0.45kW motors and low-cost trolling motors for kayaks.'
+  },
+  {
+    q: 'What size outboard do I need for my boat?',
+    a: 'Start with the maximum power on your boat\'s capacity plate and never exceed it. As a guide, 2.5HP to 6HP suits dinghies and tenders, 8HP to 40HP suits inflatables, RIBs and day boats, and 50HP and above suits offshore boats and larger RIBs. See our horsepower guide for detail, or ask us with your boat details.'
   }
 ];

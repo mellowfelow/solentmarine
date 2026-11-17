@@ -2,51 +2,53 @@ import type { MetadataRoute } from 'next';
 import { SITE, CATEGORIES, BRANDS } from '../config/site';
 import { OUTBOARD_PRODUCTS } from '../data/products';
 import { BLOG_POSTS } from '../data/posts';
+import { lastmodFor } from '../data/lastmod';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = `https://${SITE.domain}`;
-  const today = SITE.contentUpdated;
+  const entry = (
+    path: string,
+    changeFrequency: 'daily' | 'weekly' | 'monthly',
+    priority: number,
+    lastModified?: string,
+    images?: string[]
+  ) => ({
+    url: `${origin}${path}`,
+    lastModified: lastModified ?? lastmodFor(path),
+    changeFrequency,
+    priority,
+    ...(images && images.length ? { images } : {})
+  });
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: `${origin}/`, lastModified: today, changeFrequency: 'daily', priority: 1.0 },
-    { url: `${origin}/shop/`, lastModified: today, changeFrequency: 'daily', priority: 0.9 },
-    { url: `${origin}/brands/`, lastModified: today, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${origin}/blog/`, lastModified: today, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${origin}/about/`, lastModified: today, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${origin}/faq/`, lastModified: today, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${origin}/shipping/`, lastModified: today, changeFrequency: 'weekly', priority: 0.6 },
-    { url: `${origin}/contact/`, lastModified: today, changeFrequency: 'weekly', priority: 0.6 },
-    { url: `${origin}/privacy/`, lastModified: today, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${origin}/terms/`, lastModified: today, changeFrequency: 'monthly', priority: 0.3 }
+    entry('/', 'daily', 1.0, undefined, [`${origin}/images/hero/hero-yamaha-200-rib.jpg`]),
+    entry('/shop/', 'daily', 0.9),
+    entry('/brands/', 'weekly', 0.8),
+    entry('/blog/', 'weekly', 0.8),
+    entry('/about/', 'monthly', 0.6),
+    entry('/faq/', 'monthly', 0.7),
+    entry('/shipping/', 'monthly', 0.6),
+    entry('/contact/', 'monthly', 0.6),
+    entry('/privacy/', 'monthly', 0.3),
+    entry('/terms/', 'monthly', 0.3)
   ];
 
-  const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map((c) => ({
-    url: `${origin}/shop/${c.slug}/`,
-    lastModified: today,
-    changeFrequency: 'weekly',
-    priority: 0.8
-  }));
+  const categoryPages = CATEGORIES.map((c) => entry(`/shop/${c.slug}/`, 'weekly', 0.8));
+  const brandPages = BRANDS.map((b) => entry(`/shop/${b.slug}/`, 'weekly', 0.8));
 
-  const brandPages: MetadataRoute.Sitemap = BRANDS.map((b) => ({
-    url: `${origin}/shop/${b.slug}/`,
-    lastModified: today,
-    changeFrequency: 'weekly',
-    priority: 0.8
-  }));
+  const productPages = OUTBOARD_PRODUCTS.map((p) =>
+    entry(
+      `/product/${p.slug}/`,
+      'weekly',
+      p.isFeatured ? 0.85 : 0.6,
+      undefined,
+      (p.images && p.images.length ? p.images : [p.imageUrl])
+        .filter((u) => u.startsWith('/images/products/'))
+        .map((u) => `${origin}${u}`)
+    )
+  );
 
-  const productPages: MetadataRoute.Sitemap = OUTBOARD_PRODUCTS.map((p) => ({
-    url: `${origin}/product/${p.slug}/`,
-    lastModified: today,
-    changeFrequency: 'weekly',
-    priority: p.isFeatured ? 0.85 : 0.6
-  }));
-
-  const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
-    url: `${origin}/blog/${p.slug}/`,
-    lastModified: p.publishDate,
-    changeFrequency: 'monthly',
-    priority: 0.7
-  }));
+  const blogPages = BLOG_POSTS.map((p) => entry(`/blog/${p.slug}/`, 'monthly', 0.7, p.modifiedDate ?? p.publishDate));
 
   return [...staticPages, ...categoryPages, ...brandPages, ...productPages, ...blogPages];
 }

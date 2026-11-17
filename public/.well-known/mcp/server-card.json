@@ -3,7 +3,7 @@
   "serverInfo": {
     "name": "Solent Marine Outboards UK",
     "version": "1.0.0",
-    "description": "UK's Premier Outboard Motors & Marine Engines Specialist",
+    "description": "UK outboard motor dealer in Cowes, Isle of Wight",
     "homepage": "https://solentmarineoutboards.co.uk",
     "contact": {
       "email": "sales@solentmarineoutboards.co.uk",
@@ -13,7 +13,7 @@
   },
   "transport": {
     "type": "none",
-    "note": "Static site on Vercel with no server API routes deployed. No live MCP endpoint exists yet — this card describes the catalog for human-in-the-loop browsing only."
+    "note": "No live MCP endpoint exists. This card describes public catalogue resources for human-in-the-loop browsing. Pages return markdown when requested with Accept: text/markdown."
   },
   "capabilities": {
     "tools": [],
@@ -52,11 +52,38 @@
         "name": "technical-faq",
         "description": "Shaft measurement and PDI guide",
         "uri": "https://solentmarineoutboards.co.uk/faq/"
+      },
+      {
+        "name": "brands",
+        "description": "Outboard brands",
+        "uri": "https://solentmarineoutboards.co.uk/brands/"
+      },
+      {
+        "name": "buying-guides",
+        "description": "Outboard motor guides and advice",
+        "uri": "https://solentmarineoutboards.co.uk/blog/"
+      },
+      {
+        "name": "delivery-and-returns",
+        "description": "UK delivery and returns policy",
+        "uri": "https://solentmarineoutboards.co.uk/shipping/"
+      },
+      {
+        "name": "llms-full",
+        "description": "Full product and guide text for LLMs",
+        "uri": "https://solentmarineoutboards.co.uk/llms-full.txt"
+      },
+      {
+        "name": "sitemap",
+        "description": "XML sitemap of every page",
+        "uri": "https://solentmarineoutboards.co.uk/sitemap.xml"
       }
     ],
     "commerce": {
       "ordering": "human-assisted-whatsapp-or-form",
-      "payment": ["bacs-transfer"],
+      "payment": [
+        "bacs-transfer"
+      ],
       "currency": "GBP",
       "minimumOrder": "150.00",
       "freeShipping": "500.00"

@@ -94,11 +94,6 @@ const ROWS: SpecRow[] = [
     render: (p) => (isEngine(p) ? <span>{p.specs.propellerIncluded ? 'Yes' : 'Not Included'}</span> : DASH)
   },
   {
-    label: 'Weight',
-    show: () => true,
-    render: (p) => <span className="font-medium">{p.weightKg} kg</span>
-  },
-  {
     label: 'Category',
     show: () => true,
     render: (p) => <span>{p.subcategories?.join(', ') || p.category.join(', ')}</span>

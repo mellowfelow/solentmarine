@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { BRAND } from '../../config/site';
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, HelpCircle, Truck, Ship, Fuel, CheckCircle } from 'lucide-react';
 
@@ -22,9 +23,9 @@ export function FAQView({ onNavigate }: NavProp) {
     <div id="faq-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6">
       <div className="text-center space-y-3 mb-12">
         <HelpCircle className="w-12 h-12 text-sky-800 mx-auto" />
-        <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Technical Outboards FAQ</h1>
+        <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Outboard Motor FAQ: Shaft Length, Engine Size, PDI &amp; Delivery</h1>
         <p className="text-base text-slate-500 max-w-xl mx-auto">
-          Need assistance mapping out the correct engine dimensions or financing packages? Browse our comprehensive marine directory answers below.
+          Need help choosing a shaft length, engine size or delivery option? Browse our answers to the most common outboard motor questions below.
         </p>
       </div>
 
@@ -119,9 +120,9 @@ export function ContactView({ onNavigate }: NavProp) {
               <MapPin className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-slate-200">Solent Marine Outboards</p>
-                <p className="text-xs text-slate-400">Unit 12, Shepard's Wharf Marina</p>
-                <p className="text-xs text-slate-400">Medina Road, Cowes</p>
-                <p className="text-xs text-slate-400">Isle of Wight, PO31 7DL</p>
+                <p className="text-xs text-slate-400">Cowes Yacht Haven, High Street</p>
+                <p className="text-xs text-slate-400">Cowes, Isle of Wight</p>
+                <p className="text-xs text-slate-400">PO31 7BD</p>
               </div>
             </div>
 
@@ -275,68 +276,69 @@ export function ContactView({ onNavigate }: NavProp) {
 export function AboutView({ onNavigate }: NavProp) {
   return (
     <div id="about-page" className="max-w-4xl mx-auto py-10 px-4 sm:px-6 space-y-12">
-      {/* Hero */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500">
+        <NavLink view="home" className="hover:text-sky-700">Home</NavLink>
+        <span aria-hidden="true">/</span>
+        <span className="text-slate-800 font-semibold">About</span>
+      </nav>
+
       <div className="text-center space-y-4">
         <Ship className="w-12 h-12 text-sky-800 mx-auto" />
-        <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">Our Marine Heritage & Roots</h1>
-        <p className="text-base text-slate-500 max-w-xl mx-auto">
-          Founded in the epicentre of British yacht racing and boat building on the Solent estuary.
+        <h1 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">About Solent Marine Outboards UK</h1>
+        <p className="text-base text-slate-500 max-w-2xl mx-auto">
+          Solent Marine Outboards UK is a Cowes-based outboard motor dealer, supplying new Yamaha, Suzuki, Honda, Mercury and Tohatsu petrol engines and electric propulsion to boaters across the UK.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="space-y-4">
-          <h2 className="font-sans font-bold text-slate-900 text-xl">The Cowes Marine Standard</h2>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            At Solent Marine UK, we believe an outboard engine is not merely a piece of metal—it is the life safety line of your vessel. Whether battling severe channels in a search-and-rescue RIB, trolling shallow riverbeds, or enjoying silent cruising in electric launches, reliable power is absolute.
-          </p>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            Based at Shepard's Wharf Marina in Cowes, Isle of Wight, our facility incorporates clean workshops, diagnostic bays, and a full team of factory-trained maritime engineers specializing in petrol fuel injections and high-density marine lithium grids.
-          </p>
-          <NavLink
-            view="shop"
-            className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition cursor-pointer"
-          >
-            Browse 2026 Engine Catalog &rarr;
-          </NavLink>
-        </div>
-        <div>
-          <img
-            src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800"
-            alt="Cowes Marina engineering"
-            className="rounded-xl border border-slate-200 shadow-md object-cover h-64 w-full"
-            loading="lazy"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      </div>
+      <section className="space-y-4" aria-labelledby="about-story">
+        <h2 id="about-story" className="font-sans font-bold text-slate-900 text-xl">Who we are</h2>
+        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+          Solent Marine was established in 2011 in Cowes on the Isle of Wight, at the heart of British yacht racing and boat building on the Solent. We started by servicing yacht tenders and safety craft, and we know how much depends on an outboard that starts first time and keeps running.
+        </p>
+        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+          We are an authorised Yamaha Marine and Suzuki Outboards UK dealer (appointed in 2016) and also supply Honda, Mercury and Tohatsu outboards, along with electric propulsion from ePropulsion, Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric. In 2020 we introduced tracked UK-wide pallet delivery with a certified Pre-Delivery Inspection, and in 2024 we expanded our electric outboard range.
+        </p>
+        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+          Our registered address is Cowes Yacht Haven, High Street, Cowes, Isle of Wight, PO31 7BD. You can reach us on WhatsApp or phone at 07577 298720 or by email at sales@solentmarineoutboards.co.uk.
+        </p>
+      </section>
 
-      {/* PDI Pipeline */}
-      <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-        <h3 className="font-sans font-bold text-slate-900 text-lg mb-4 text-center">Every Outboard Passes Through Our 4-Stage UK PDI</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center">
-          <div className="p-3 space-y-1">
-            <span className="text-lg font-extrabold text-sky-800 font-mono">01.</span>
-            <p className="font-semibold text-slate-900 text-sm">Unboxing & Inspection</p>
-            <p className="text-xs text-slate-500 leading-snug">Visual verification of paint, brackets, tiller arms, and cylinder plugs.</p>
-          </div>
-          <div className="p-3 space-y-1">
-            <span className="text-lg font-extrabold text-sky-800 font-mono">02.</span>
-            <p className="font-semibold text-slate-900 text-sm">Wet Running & Tuning</p>
-            <p className="text-xs text-slate-500 leading-snug">Tanked running at variable RPMs to align timing and cooling tell-tale stream.</p>
-          </div>
-          <div className="p-3 space-y-1">
-            <span className="text-lg font-extrabold text-sky-800 font-mono">03.</span>
-            <p className="font-semibold text-slate-900 text-sm">Safe Sump Draining</p>
-            <p className="text-xs text-slate-500 leading-snug">Ensuring clean extraction of all internal liquids to comply with dry courier shipping regulations.</p>
-          </div>
-          <div className="p-3 space-y-1">
-            <span className="text-lg font-extrabold text-sky-800 font-mono">04.</span>
-            <p className="font-semibold text-slate-900 text-sm">Heavy Duty Crating</p>
-            <p className="text-xs text-slate-500 leading-snug">Secured in custom vertical frameworks to limit vibration during pallet hauling.</p>
-          </div>
-        </div>
-      </div>
+      <section className="space-y-4" aria-labelledby="about-difference">
+        <h2 id="about-difference" className="font-sans font-bold text-slate-900 text-xl">What makes us different</h2>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+          <li className="bg-slate-50 border border-slate-200 rounded-xl p-4"><strong>Pre-Delivery Inspection on every engine.</strong> Each outboard is unboxed, checked and tank-tested before dispatch.</li>
+          <li className="bg-slate-50 border border-slate-200 rounded-xl p-4"><strong>Authorised dealer warranties.</strong> New engines carry the UK manufacturer warranty, up to five years on many models.</li>
+          <li className="bg-slate-50 border border-slate-200 rounded-xl p-4"><strong>A dedicated electric range.</strong> Outboards, pod drives, batteries and accessories from six electric brands.</li>
+          <li className="bg-slate-50 border border-slate-200 rounded-xl p-4"><strong>Practical technical advice.</strong> Help with shaft length, power and rigging before you buy, by WhatsApp, phone or email.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="about-timeline">
+        <h2 id="about-timeline" className="font-sans font-bold text-slate-900 text-xl">Milestones</h2>
+        <ol className="space-y-3 border-l-2 border-sky-200 pl-5">
+          {BRAND.milestones.map((m) => (
+            <li key={m.year} className="text-sm text-slate-700"><span className="font-bold text-sky-800 mr-2">{m.year}</span>{m.event}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="about-coverage">
+        <h2 id="about-coverage" className="font-sans font-bold text-slate-900 text-xl">Where we deliver</h2>
+        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+          We deliver across the UK, including England, Wales, Scotland and the islands, with free UK mainland delivery on orders over £500. Around the Solent we regularly supply parts and engines to Hamble, Hythe, Lymington, Portsmouth and Swanwick. See the <NavLink view="shipping" className="text-sky-700 underline font-semibold">delivery and returns page</NavLink> for full details.
+        </p>
+      </section>
+
+      <section aria-labelledby="about-pdi" className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+        <h2 id="about-pdi" className="font-sans font-bold text-slate-900 text-lg mb-4 text-center">Our Pre-Delivery Inspection</h2>
+        <ol className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center">
+          <li className="p-3 space-y-1"><span className="text-lg font-extrabold text-sky-800 font-mono">01.</span><p className="font-semibold text-slate-900 text-sm">Unboxing and inspection</p><p className="text-xs text-slate-600 leading-snug">Visual check of the engine, brackets, controls and fittings.</p></li>
+          <li className="p-3 space-y-1"><span className="text-lg font-extrabold text-sky-800 font-mono">02.</span><p className="font-semibold text-slate-900 text-sm">Wet test run</p><p className="text-xs text-slate-600 leading-snug">Tank test at varying revs to confirm running and cooling flow.</p></li>
+          <li className="p-3 space-y-1"><span className="text-lg font-extrabold text-sky-800 font-mono">03.</span><p className="font-semibold text-slate-900 text-sm">Safe preparation for carriage</p><p className="text-xs text-slate-600 leading-snug">Engines are prepared for dry shipping in line with carriage rules.</p></li>
+          <li className="p-3 space-y-1"><span className="text-lg font-extrabold text-sky-800 font-mono">04.</span><p className="font-semibold text-slate-900 text-sm">Secure crating</p><p className="text-xs text-slate-600 leading-snug">Packed in a protective frame for courier or pallet delivery.</p></li>
+        </ol>
+        <p className="text-center mt-5"><NavLink view="shop" className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Browse outboard engines for sale &rarr;</NavLink></p>
+      </section>
     </div>
   );
 }
@@ -358,7 +360,7 @@ export function ShippingView({ onNavigate }: NavProp) {
         <div className="space-y-1">
           <p className="font-bold uppercase tracking-wider text-xs">CRITICAL COURIER SUMP SAFETY ADVISORY</p>
           <p className="text-amber-800 text-xs">
-            Due to strict UK Carriage of Dangerous Goods regulations, all petrol outboard motors are fully drained of oil during our PDI rigging process prior to shipping. <strong>Do NOT fire or pull-crank the starter cord before filling the crankcase sump oil!</strong> Doing so will seize the cylinders instantly. Use official Yamlube FC-W 4M oil included in our shipping packs.
+            Due to strict UK Carriage of Dangerous Goods regulations, all petrol outboard motors are fully drained of oil during our PDI rigging process prior to shipping. <strong>Do not start the engine or pull the starter cord before filling the crankcase with oil.</strong> Doing so will seize the cylinders instantly. Fill the crankcase with the manufacturer-approved four-stroke oil before first use.
           </p>
         </div>
       </div>
@@ -368,8 +370,8 @@ export function ShippingView({ onNavigate }: NavProp) {
           <h3 className="font-bold text-slate-900 text-base">Ground Freight Coverage</h3>
           <p className="text-slate-600">We offer three primary UK transport schemes:</p>
           <ul className="space-y-1.5 text-xs text-slate-500 font-mono">
-            <li>• UK Mainland Standard (Orders &gt; £1500) - FREE</li>
-            <li>• UK Mainland Standard (Orders &lt; £1500) - £45.00</li>
+            <li>• UK Mainland Standard (orders over £500) - FREE</li>
+            <li>• UK Mainland Standard (orders under £500) - £25.00</li>
             <li>• Scottish Highlands & Islands Courier Surcharge - £125.00</li>
             <li>• Isle of Wight Local Collection (hot testing) - FREE</li>
           </ul>

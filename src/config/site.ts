@@ -18,7 +18,7 @@ export const SITE = {
   gscVerification: 'google-site-verification-solent-marine-uk-2026',
   indexNowKey: 'om-indexnow-solent-marine-key',
   cartKey: 'solent-marine-cart-v1',
-  contentUpdated: '2026-10-16', // bump only when page content changes: drives sitemap <lastmod>
+  contentUpdated: '2026-11-17', // site-wide content refresh date; per-page <lastmod> overrides live in src/data/lastmod.ts
 };
 
 export const CONTACT = {
@@ -40,6 +40,17 @@ export const SHOP = {
   paymentMethods: [
     'Direct Bank Transfer (BACS / Faster Payments)',
   ],
+};
+
+// Returns & delivery facts used by Product/Organization schema (must match the /shipping/ page copy).
+export const POLICY = {
+  returnDays: 14,
+  returnCountry: 'GB',
+  handlingDaysMin: 1,
+  handlingDaysMax: 3,
+  transitDaysMin: 2,
+  transitDaysMax: 5,
+  priceValidUntil: '2027-03-31',
 };
 
 export const FORMS = {

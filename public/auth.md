@@ -9,7 +9,6 @@ No authentication required. All catalog specifications, technical comparisons, a
 | Resource | URL |
 |---|---|
 | Full Outboards Catalog | https://solentmarineoutboards.co.uk/shop/ |
-| Technical Comparisons | https://solentmarineoutboards.co.uk/compare/ |
 | Technical FAQ & Shaft Guide | https://solentmarineoutboards.co.uk/faq/ |
 | Shipping & PDI Policy | https://solentmarineoutboards.co.uk/shipping/ |
 | Contact & Marine Engineering | https://solentmarineoutboards.co.uk/contact/ |

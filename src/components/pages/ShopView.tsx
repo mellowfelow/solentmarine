@@ -9,6 +9,8 @@ import SearchAndFilters from '../SearchAndFilters';
 import { LayoutGrid, AlertCircle, ShoppingCart, ChevronRight, SlidersHorizontal, X, ChevronLeft, Minus, Plus } from 'lucide-react';
 import { CATEGORIES, BRANDS } from '../../config/site';
 import { thumbUrl } from '../../lib/seo';
+import { SHOP_CONTENT, CATEGORY_CONTENT, BRAND_CONTENT } from '../../data/listingContent';
+import { gbp } from '../../lib/productCopy';
 import NavLink from '../NavLink';
 
 const PAGE_SIZE = 12;
@@ -34,6 +36,7 @@ export default function ShopView({
 }: ShopViewProps) {
   const activeCategory = categorySlug ? CATEGORIES.find(c => c.slug === categorySlug) : undefined;
   const activeBrand = brandSlug ? BRANDS.find(b => b.slug === brandSlug) : undefined;
+  const content = activeCategory ? CATEGORY_CONTENT[activeCategory.slug] : activeBrand ? BRAND_CONTENT[activeBrand.slug] : SHOP_CONTENT;
   // Scope the catalog to the category/brand route (if any) before facet filtering — this is what makes
   // /shop/[category]/ and /shop/[brand]/ real, distinct, crawlable pages rather than client-side filters.
   const scopedProducts = useMemo(() => {
@@ -121,8 +124,6 @@ export default function ShopView({
       result.sort((a, b) => a.priceGbp - b.priceGbp);
     } else if (sortBy === 'price-desc') {
       result.sort((a, b) => b.priceGbp - a.priceGbp);
-    } else if (sortBy === 'weight-asc') {
-      result.sort((a, b) => a.weightKg - b.weightKg);
     } else if (sortBy === 'hp-desc') {
       result.sort((a, b) => b.powerHp - a.powerHp);
     }
@@ -173,11 +174,11 @@ export default function ShopView({
       {/* Hero Banner */}
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight leading-none">
-            {activeCategory ? activeCategory.name : activeBrand ? `${activeBrand.name} Outboards` : 'Marine Motors For Sale — UK Outboard Stock Inventory'}
+          <h1 className="text-3xl font-extrabold tracking-tight leading-tight">
+            {content.h1}
           </h1>
-          <p className="text-slate-350 text-sm">
-            {activeCategory ? activeCategory.description : activeBrand ? activeBrand.description : 'Use the filters below to find the right engine for your boat. Every outboard is fully PDI checked before it ships.'}
+          <p className="text-slate-300 text-sm">
+            {content.intro}
           </p>
           {activeCategory?.slug === 'parts' && (
             <p className="text-sky-300 text-xs pt-1">
@@ -256,9 +257,8 @@ export default function ShopView({
               className="bg-white border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 font-semibold text-slate-800"
             >
               <option value="featured">Featured Engine Listing</option>
-              <option value="price-asc">Price: Petrol (Low to High)</option>
-              <option value="price-desc">Price: Petrol (High to Low)</option>
-              <option value="weight-asc">Dry Weight: Lightest First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
               <option value="hp-desc">Horsepower: Strongest First</option>
             </select>
           </div>
@@ -376,9 +376,6 @@ export default function ShopView({
                       <div className="flex flex-wrap gap-1.5 mb-4 max-h-12 overflow-hidden select-none">
                         <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
                           {prod.powerHp} HP
-                        </span>
-                        <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
-                          {prod.weightKg} kg weight
                         </span>
                         <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
                           {prod.specs.warrantyYears} Yr Warranty
@@ -517,6 +514,62 @@ export default function ShopView({
             </div>
           )}
         </div>
+      </div>
+
+      {/* Buying advice, FAQs and a crawlable list of every product in this view */}
+      <div className="mt-16 space-y-10 max-w-4xl">
+        {content.sections.map((sec) => (
+          <section key={sec.h2} className="space-y-3">
+            <h2 className="font-sans font-extrabold text-slate-900 text-xl">{sec.h2}</h2>
+            {sec.paragraphs.map((para, i) => (
+              <p key={i} className="text-sm sm:text-base text-slate-700 leading-relaxed">{para}</p>
+            ))}
+            {sec.bullets && (
+              <ul className="list-disc pl-5 text-sm sm:text-base text-slate-700 space-y-1.5">
+                {sec.bullets.map((b, i) => (<li key={i}>{b}</li>))}
+              </ul>
+            )}
+          </section>
+        ))}
+
+        <section className="space-y-3">
+          <h2 className="font-sans font-extrabold text-slate-900 text-xl">Explore more outboards</h2>
+          <ul className="flex flex-wrap gap-2 text-sm">
+            {CATEGORIES.filter((c) => c.slug !== activeCategory?.slug).map((c) => (
+              <li key={c.slug}><NavLink view="shop-category" params={{ slug: c.slug }} className="inline-block px-3 py-1.5 rounded-lg border border-slate-200 text-sky-800 font-semibold hover:border-sky-400">{c.name}</NavLink></li>
+            ))}
+            {BRANDS.filter((b) => b.slug !== activeBrand?.slug).map((b) => (
+              <li key={b.slug}><NavLink view="shop-category" params={{ slug: b.slug }} className="inline-block px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:border-slate-400">{b.name} outboards</NavLink></li>
+            ))}
+            <li><NavLink view="blog" className="inline-block px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:border-slate-400">Outboard buying guides</NavLink></li>
+          </ul>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="font-sans font-extrabold text-slate-900 text-xl">Frequently asked questions</h2>
+          <div className="space-y-3">
+            {content.faqs.map((f, i) => (
+              <div key={i} className="bg-slate-50 rounded-xl p-4 border border-slate-200/60">
+                <h3 className="font-bold text-slate-900 text-sm mb-1">{f.q}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="all-products-heading" className="space-y-3">
+          <h2 id="all-products-heading" className="font-sans font-extrabold text-slate-900 text-xl">
+            All {activeCategory ? activeCategory.name.toLowerCase() : activeBrand ? `${activeBrand.name} products` : 'products in stock'} ({scopedProducts.length})
+          </h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+            {[...scopedProducts].sort((a, b) => a.brand.localeCompare(b.brand) || a.powerHp - b.powerHp || a.name.localeCompare(b.name)).map((p) => (
+              <li key={p.slug} className="flex justify-between gap-3 border-b border-slate-100 py-1">
+                <NavLink view="product-details" params={{ slug: p.slug }} className="text-sky-800 hover:underline">{p.name}</NavLink>
+                <span className="text-slate-600 shrink-0">{gbp(p.priceGbp)}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </div>
   );

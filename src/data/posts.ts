@@ -8,8 +8,12 @@
  * correct, non-fabricated content over word-count padding.
  */
 import { BlogPost } from '../types';
+import { POST_BODIES_A, type PostBody } from './postBodiesA';
+import { POST_BODIES_B } from './postBodiesB';
+import { POST_BODIES_C } from './postBodiesC';
+import { POST_BODIES_D } from './postBodiesD';
 
-export const BLOG_POSTS: BlogPost[] = [
+const BASE_POSTS: BlogPost[] = [
   {
     slug: 'electric-outboard-motors-explained',
     title: 'Electric Outboard Motors Explained: How They Work & What to Expect',
@@ -489,3 +493,22 @@ export const BLOG_POSTS: BlogPost[] = [
     ]
   }
 ];
+
+const BODIES: Record<string, PostBody> = { ...POST_BODIES_A, ...POST_BODIES_B, ...POST_BODIES_C, ...POST_BODIES_D };
+export const CONTENT_REFRESHED = '2026-11-17';
+
+/** Base metadata + full-length bodies, merged by slug. A post without a body entry would still render its original text. */
+export const BLOG_POSTS: BlogPost[] = BASE_POSTS.map((p) => {
+  const b = BODIES[p.slug];
+  if (!b) return p;
+  return {
+    ...p,
+    title: b.title ?? p.title,
+    metaDescription: b.metaDescription ?? p.metaDescription,
+    bodyHtml: b.bodyHtml,
+    faq: b.faq,
+    relatedPostSlugs: b.relatedPostSlugs,
+    relatedCategorySlugs: b.relatedCategorySlugs ?? p.relatedCategorySlugs,
+    modifiedDate: CONTENT_REFRESHED
+  };
+});

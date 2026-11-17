@@ -1,18 +1,118 @@
 {
   "linkset": [
-    { "anchor": "https://solentmarineoutboards.co.uk/", "https://www.iana.org/assignments/link-relations/service-doc": [{ "href": "https://solentmarineoutboards.co.uk/faq/" }], "title": "Solent Marine Outboards UK — Marine Engines & Rigging" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/", "type": "text/html", "title": "Solent Marine Outboard Motors Catalog" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/portable/", "type": "text/html", "title": "Portable Outboards (2.5HP-6HP)" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/mid-range/", "type": "text/html", "title": "Mid-Range Outboards (8HP-40HP)" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/high-horsepower/", "type": "text/html", "title": "High-Power Outboards (50HP-400HP+)" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/electric/", "type": "text/html", "title": "Electric & Eco Outboards" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/parts/", "type": "text/html", "title": "Genuine Oils, Rigging & Spares" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/yamaha/", "type": "text/html", "title": "Yamaha Outboards" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/mercury/", "type": "text/html", "title": "Mercury Outboards" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/honda/", "type": "text/html", "title": "Honda Outboards" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shop/suzuki/", "type": "text/html", "title": "Suzuki Outboards" },
-    { "anchor": "https://solentmarineoutboards.co.uk/blog/", "type": "text/html", "title": "Outboard Motor Guides & Advice" },
-    { "anchor": "https://solentmarineoutboards.co.uk/shipping/", "type": "text/html", "title": "UK Outboard Shipping & PDI" },
-    { "anchor": "https://solentmarineoutboards.co.uk/contact/", "type": "text/html", "title": "Contact Cowes Rigging Desk" }
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/",
+      "https://www.iana.org/assignments/link-relations/service-doc": [
+        {
+          "href": "https://solentmarineoutboards.co.uk/faq/"
+        }
+      ],
+      "title": "Solent Marine Outboards UK: outboard motors for sale"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/",
+      "type": "text/html",
+      "title": "Outboard engines for sale: full UK stock directory"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/portable/",
+      "type": "text/html",
+      "title": "Small outboard motors for sale (2.5HP-6HP)"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/mid-range/",
+      "type": "text/html",
+      "title": "10HP-40HP outboard motors for sale"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/high-horsepower/",
+      "type": "text/html",
+      "title": "High-power outboards for sale (50HP-400HP)"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/electric/",
+      "type": "text/html",
+      "title": "Electric outboard motors for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/parts/",
+      "type": "text/html",
+      "title": "Outboard spares, oils and accessories"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/yamaha/",
+      "type": "text/html",
+      "title": "Yamaha outboards for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/mercury/",
+      "type": "text/html",
+      "title": "Mercury outboard motors for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/honda/",
+      "type": "text/html",
+      "title": "Honda outboard motors for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/suzuki/",
+      "type": "text/html",
+      "title": "Suzuki outboards for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/tohatsu/",
+      "type": "text/html",
+      "title": "Tohatsu outboard motors for sale UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shop/epropulsion/",
+      "type": "text/html",
+      "title": "ePropulsion electric outboards UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/brands/",
+      "type": "text/html",
+      "title": "Outboard motor brands UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/blog/",
+      "type": "text/html",
+      "title": "Outboard motor guides and advice"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/faq/",
+      "type": "text/html",
+      "title": "Outboard motor FAQ"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/shipping/",
+      "type": "text/html",
+      "title": "UK delivery and returns"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/about/",
+      "type": "text/html",
+      "title": "About Solent Marine Outboards UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/contact/",
+      "type": "text/html",
+      "title": "Contact Solent Marine Outboards UK"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/llms.txt",
+      "type": "text/plain",
+      "title": "llms.txt: site summary for language models"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/llms-full.txt",
+      "type": "text/plain",
+      "title": "llms-full.txt: full product and guide text"
+    },
+    {
+      "anchor": "https://solentmarineoutboards.co.uk/sitemap.xml",
+      "type": "application/xml",
+      "title": "XML sitemap"
+    }
   ]
 }

@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import ShopClient from '../../components/routes/ShopClient';
 import { OUTBOARD_PRODUCTS } from '../../data/products';
-import { getShopBreadcrumbSchema, getShopCollectionSchema } from '../../lib/schema';
+import { getShopBreadcrumbSchema, getShopCollectionSchema, getListingFaqSchema } from '../../lib/schema';
+import { SHOP_CONTENT } from '../../data/listingContent';
+import { fitDesc, fitTitle } from '../../lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Marine Motors For Sale | Full UK Stock | Solent Marine',
-  description:
-    'Marine motors for sale: search our full stock of Suzuki, Yamaha, Tohatsu, Mercury, Torqeedo and ePropulsion outboards, portable petrol to electric.',
-  alternates: { canonical: '/shop/' }
+  title: fitTitle(SHOP_CONTENT.metaTitle),
+  description: fitDesc(SHOP_CONTENT.metaDescription),
+  alternates: { canonical: '/shop/' },
+  openGraph: { type: 'website', title: fitTitle(SHOP_CONTENT.metaTitle), description: fitDesc(SHOP_CONTENT.metaDescription), url: '/shop/' }
 };
 
 export default function Page() {
-  const schema = [getShopBreadcrumbSchema(), getShopCollectionSchema(undefined, OUTBOARD_PRODUCTS.length)];
+  const schema = [getShopBreadcrumbSchema(), getShopCollectionSchema({ slug: '', name: SHOP_CONTENT.h1, description: SHOP_CONTENT.metaDescription }, OUTBOARD_PRODUCTS.length), getListingFaqSchema(SHOP_CONTENT.faqs)];
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

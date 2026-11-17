@@ -3,9 +3,9 @@ import StaticPageClient from '../../components/routes/StaticPageClient';
 import { FAQ_ITEMS } from '../../data/faq';
 
 export const metadata: Metadata = {
-  title: 'Technical Marine Outboards FAQ | Solent Marine UK',
+  title: 'Outboard Motor FAQ: Shaft Length & Delivery | Solent Marine',
   description:
-    'Frequently Asked Questions about UK outboard shaft lengths, PDI rigging, 2-stroke legislation, electric motor runtimes, and bank transfer payment terms.',
+    'Answers to common outboard motor questions: shaft length, engine size, PDI, UK 2-stroke rules, servicing, electric range, delivery and bank transfer payment.',
   alternates: { canonical: '/faq/' }
 };
 

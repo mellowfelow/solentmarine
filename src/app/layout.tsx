@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     type: 'website',
     url: SITE_ORIGIN,
-    images: [{ url: '/images/hero/hero-yamaha-200-rib.jpg', width: 1200, height: 630 }]
+    images: [{ url: '/images/og-home.jpg', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/hero/hero-yamaha-200-rib.jpg']
+    images: ['/images/og-home.jpg']
   }
 };
 

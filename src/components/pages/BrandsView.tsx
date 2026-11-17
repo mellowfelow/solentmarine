@@ -5,6 +5,7 @@
 
 import { ChevronRight, ShieldCheck } from 'lucide-react';
 import NavLink from '../NavLink';
+import { CATEGORIES } from '../../config/site';
 
 export interface BrandCardData {
   slug: string;
@@ -33,10 +34,10 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 mb-10 border border-slate-800 shadow-xl">
         <div className="max-w-2xl space-y-3">
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-none">
-            Shop Outboard Motors by Brand
+            Outboard Motor Brands UK
           </h1>
           <p className="text-slate-350 text-sm">
-            Authorized UK dealer stock from Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion — every engine PDI checked and backed by official manufacturer warranty.
+            Browse new outboards from Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion. Every engine is PDI checked and supplied with the UK manufacturer warranty.
           </p>
         </div>
       </div>
@@ -52,9 +53,9 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="font-sans font-extrabold text-slate-900 text-xl tracking-tight group-hover:text-sky-700 transition">
+                <h2 className="font-sans font-extrabold text-slate-900 text-xl tracking-tight group-hover:text-sky-700 transition">
                   {brand.name}
-                </span>
+                </h2>
                 <span className="bg-sky-50 text-sky-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-sky-100">
                   {brand.productCount} models
                 </span>
@@ -76,6 +77,25 @@ export default function BrandsView({ brands, onNavigate }: BrandsViewProps) {
           </NavLink>
         ))}
       </div>
+
+
+      <section aria-labelledby="choose-brand-heading" className="mt-12 max-w-4xl space-y-4">
+        <h2 id="choose-brand-heading" className="font-sans font-extrabold text-slate-900 text-2xl">Which outboard brand should you choose?</h2>
+        <p className="text-slate-700 leading-relaxed">
+          Every brand we stock sells reliable four-stroke outboards, so the right choice usually comes down to power, shaft length, local servicing and price rather than the badge. Yamaha, Suzuki, Honda, Mercury and Tohatsu all cover the popular 2.5HP to 40HP range, while Yamaha, Suzuki and Mercury also offer high-power engines up to 300HP and above. For zero-emission propulsion, ePropulsion and other electric brands such as Torqeedo, TEMO, Haswing, Minn Kota and Blade Electric are listed in our <NavLink view="shop-category" params={{ slug: 'electric' }} className="text-sky-700 font-semibold underline">electric outboard range</NavLink>.
+        </p>
+        <p className="text-slate-700 leading-relaxed">
+          If you already own an engine and want to stay with the same brand, check our parts range for matching oils and service kits. If you are choosing by size first, start with the category that matches your boat:
+        </p>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+          {CATEGORIES.map((c) => (
+            <li key={c.slug}><NavLink view="shop-category" params={{ slug: c.slug }} className="text-sky-800 font-semibold underline">{c.name}</NavLink></li>
+          ))}
+        </ul>
+        <p className="text-slate-700 leading-relaxed">
+          Not sure? Read our <NavLink view="blog-post" params={{ slug: 'outboard-horsepower-guide' }} className="text-sky-700 font-semibold underline">horsepower guide</NavLink> or message us with your boat details and we will recommend an engine.
+        </p>
+      </section>
 
       {/* Trust strip */}
       <div className="mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">

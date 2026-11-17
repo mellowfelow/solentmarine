@@ -11,6 +11,7 @@ import { ReviewsShowcase } from '../ReviewsShowcase';
 import HeroSlider, { HeroSlide } from '../HeroSlider';
 import { thumbUrl } from '../../lib/seo';
 import NavLink from '../NavLink';
+import HomeContent from '../HomeContent';
 
 interface HomeViewProps {
   products: Product[];
@@ -85,7 +86,7 @@ export default function HomeView({
     if (type === 'dinghy') {
       hpClass = '2.5 HP - 6 HP';
       shaft = 'Short Shaft (S)';
-      advice = 'Ideal for lightweight yacht tenders or small inflatables. Look for engines with integrated fuel tanks and 360° steering to minimize structural weight on the transom plate.';
+      advice = 'Ideal for lightweight yacht tenders or small inflatables. Look for lightweight engines with integrated fuel tanks to minimize structural weight on the transom plate.';
       engineFilters = products.filter(p => p.powerHp >= 2 && p.powerHp <= 6 && p.engineType !== '2-Stroke');
     } else if (type === 'rib') {
       hpClass = '15 HP - 100 HP+';
@@ -125,11 +126,11 @@ export default function HomeView({
               <span>Based in Cowes, Isle of Wight • Rated by Our Customers</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-              UK’s Premier <br />
-              <span className="text-sky-400">Outboard Engine</span> Specialists
+              <span className="text-sky-400">Outboard Motors</span> <br />
+              for Sale in the UK
             </h1>
             <p className="text-base sm:text-lg text-slate-200 max-w-xl leading-relaxed">
-              Every engine is checked and tested in our Isle of Wight workshop before it's carefully packed and delivered to you. Backed by an official dealer warranty.
+              New Yamaha, Suzuki, Honda, Mercury, Tohatsu and electric outboards from Cowes, Isle of Wight. Every engine is PDI checked and tested before it is packed and delivered across the UK, with the UK manufacturer warranty.
             </p>
             <div className="flex flex-wrap gap-4">
               <NavLink
@@ -421,6 +422,8 @@ export default function HomeView({
           </div>
         </div>
       </section>
+
+      <HomeContent />
     </div>
   );
 }

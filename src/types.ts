@@ -84,6 +84,7 @@ export interface BlogPost {
   funnelPosition: 'Top' | 'Middle' | 'Bottom';
   contentType: string;
   publishDate: string;
+  modifiedDate?: string;
   bodyHtml: string;
   relatedCategorySlugs: string[];
   relatedPostSlugs?: string[];

@@ -7,6 +7,9 @@ import React, { useState } from 'react';
 import { Product, Review } from '../../types';
 import { Star, ShieldAlert, BadgeInfo, Scale, ChevronLeft, MapPin, CheckCircle, Ship, AlertCircle } from 'lucide-react';
 import NavLink from '../NavLink';
+import { CATEGORIES, BRANDS } from '../../config/site';
+import { getProductCopy, gbp, kindOf } from '../../lib/productCopy';
+import { thumbUrl } from '../../lib/seo';
 
 interface ProductDetailsViewProps {
   slug: string;
@@ -48,34 +51,7 @@ export default function ProductDetailsView({
   const [quantity, setQuantity] = useState<number>(1);
   const [addedNote, setAddedNote] = useState<boolean>(false);
 
-  // Review states
-  const [reviews, setReviews] = useState<Review[]>(product.reviews);
-  const [reviewAuthor, setReviewAuthor] = useState('');
-  const [reviewRating, setReviewRating] = useState(5);
-  const [reviewTitle, setReviewTitle] = useState('');
-  const [reviewComment, setReviewComment] = useState('');
-  const [reviewSubmitted, setReviewSubmitted] = useState(false);
-
-  const handleAddReview = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!reviewAuthor || !reviewComment) return;
-
-    const newRev: Review = {
-      id: `new-${Date.now()}`,
-      author: reviewAuthor,
-      rating: reviewRating,
-      date: new Date().toISOString().split('T')[0],
-      title: reviewTitle || `${reviewRating} Star Outboard Review`,
-      comment: reviewComment,
-      verified: true
-    };
-
-    setReviews([newRev, ...reviews]);
-    setReviewSubmitted(true);
-    setReviewAuthor('');
-    setReviewTitle('');
-    setReviewComment('');
-  };
+  const reviews: Review[] = product.reviews;
 
   const handleBasketSub = () => {
     onAddToBasket(product, selectedShaft, quantity);
@@ -87,257 +63,187 @@ export default function ProductDetailsView({
     ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
     : null; // No fabricated default rating — a product with zero reviews shows "No reviews yet", not a fake 5.0.
 
+  const copy = getProductCopy(product);
+  const kind = kindOf(product);
+  const primaryCat = CATEGORIES.find(c => product.category.includes(c.slug as any));
+  const brandPage = BRANDS.find(b => b.name.toLowerCase() === product.brand.toLowerCase());
+  const related = products
+    .filter(p => p.slug !== product.slug && kindOf(p) === kind && (primaryCat ? p.category.includes(primaryCat.slug as any) : true))
+    .sort((a, b) => (a.brand === product.brand ? -1 : 0) - (b.brand === product.brand ? -1 : 0) || Math.abs(a.powerHp - product.powerHp) - Math.abs(b.powerHp - product.powerHp))
+    .slice(0, 4);
+  const specRows: [string, string][] = [['Brand', product.brand]];
+  if (kind !== 'part') {
+    specRows.push(['Power', product.powerKw ? `${product.powerKw}kW (${product.powerHp}HP equivalent)` : `${product.powerHp}HP`]);
+    specRows.push(['Engine type', product.engineType === 'Electric' ? 'Electric' : `${product.engineType} petrol`]);
+    const sh = product.shaftLengths.filter(x => !/fixed|universal/i.test(x));
+    if (sh.length) specRows.push(['Shaft options', sh.join(' / ')]);
+    specRows.push(['Condition', 'New']);
+    specRows.push(['UK warranty', `${product.specs.warrantyYears} years`]);
+  }
+  if (product.sku) specRows.push(['SKU', product.sku]);
+
   return (
     <div id="pdp-container" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-10">
-      {/* Back to inventory */}
-      <div>
-        <NavLink
-          view="shop"
-          className="text-slate-600 hover:text-slate-900 font-semibold text-xs flex items-center gap-1 cursor-pointer transition"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back to Outboard catalog inventory</span>
-        </NavLink>
-      </div>
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500 flex-wrap">
+        <NavLink view="home" className="hover:text-sky-700">Home</NavLink>
+        <span aria-hidden="true">/</span>
+        <NavLink view="shop" className="hover:text-sky-700">Shop</NavLink>
+        {primaryCat && (<><span aria-hidden="true">/</span><NavLink view="shop-category" params={{ slug: primaryCat.slug }} className="hover:text-sky-700">{primaryCat.name}</NavLink></>)}
+        <span aria-hidden="true">/</span>
+        <span className="text-slate-800 font-semibold">{product.name}</span>
+      </nav>
+
+      <header className="space-y-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          {brandPage ? (
+            <NavLink view="shop-category" params={{ slug: brandPage.slug }} className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2.5 py-1 rounded hover:bg-sky-100">
+              {product.brand} outboards
+            </NavLink>
+          ) : (
+            <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2.5 py-1 rounded">{product.brand}</span>
+          )}
+          {product.badge && (
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-900 bg-amber-400 px-2.5 py-1 rounded">{product.badge}</span>
+          )}
+        </div>
+        <h1 className="font-sans font-extrabold text-slate-900 text-2xl sm:text-3xl tracking-tight">{copy.h1}</h1>
+        {avgRating && (
+          <div className="flex gap-2.5 items-center text-xs text-slate-500">
+            <div className="flex">
+              {Array.from({ length: Math.round(parseFloat(avgRating)) }).map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+              ))}
+            </div>
+            <span>({reviews.length} reviews)</span>
+          </div>
+        )}
+      </header>
 
       {/* Layout Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Side: Large Image, Spec Table & Reviews */}
         <div className="lg:col-span-7 space-y-8">
-          {/* Main Visual */}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm relative">
             <img
               src={product.imageUrl}
-              alt={product.imageUrl.includes('/placeholders/') ? `Placeholder image — ${product.name} — real product photo coming soon` : product.name}
+              alt={product.imageUrl.includes('/placeholders/') ? `${product.name} product image` : `${copy.h1} outboard motor`}
+              width={1200}
+              height={900}
               loading="eager"
+              fetchPriority="high"
               className="w-full h-[350px] sm:h-[450px] object-contain bg-slate-50 rounded-xl border border-slate-100"
               referrerPolicy="no-referrer"
             />
-            {product.isFeatured && (
-              <span className="absolute top-6 left-6 bg-amber-500 text-slate-950 font-bold text-xs uppercase px-3 py-1 rounded-full border border-amber-400">
-                ⭐ Featured Selection
-              </span>
-            )}
           </div>
 
-          {/* Oil-Fill Safety Warning */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 text-xs text-amber-900 space-y-2 leading-relaxed shadow-sm">
-            <div className="flex items-center gap-1.5 font-bold uppercase tracking-wide">
-              <ShieldAlert className="w-5 h-5 text-amber-600" />
-              <span>Important: Add Oil Before First Use</span>
+          <section aria-labelledby="about-heading" className="space-y-3">
+            <h2 id="about-heading" className="font-sans font-extrabold text-slate-900 text-xl">About the {product.name}</h2>
+            {copy.paragraphs.map((para, i) => (
+              <p key={i} className="text-sm sm:text-base text-slate-700 leading-relaxed">{para}</p>
+            ))}
+          </section>
+
+          {kind === 'petrol' && (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 text-xs text-amber-900 space-y-2 leading-relaxed shadow-sm">
+              <div className="flex items-center gap-1.5 font-bold uppercase tracking-wide">
+                <ShieldAlert className="w-5 h-5 text-amber-600" />
+                <span>Important: add oil before first use</span>
+              </div>
+              <p>
+                For safe delivery this engine ships <strong>without engine oil</strong>. <strong>Do not start or run the engine until you have filled the crankcase</strong> with the manufacturer-approved four-stroke oil specified in the owner&apos;s manual.
+              </p>
             </div>
-            <p>
-              For safe delivery, this engine ships <strong>without engine oil</strong>. <strong>Do not start or run the engine until you've added oil</strong> — fill it with the correct amount of Yamalube 4M oil before you start it for the first time.
-            </p>
-          </div>
+          )}
 
-          {/* Specs Table */}
-          <div className="bg-white border border-slate-205 rounded-xl p-6 shadow-sm space-y-4">
-            <h3 className="font-sans font-extrabold text-slate-900 text-lg border-b border-slate-105 pb-3">Technical Specifications Block</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-xs sm:text-sm font-sans">
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Official Brand:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.brand}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Horsepower Out:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.powerHp} HP</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Dry Sump Weight:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.weightKg} kg</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Engine Cycle:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.engineType}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Starter Setup:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.starter}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Command Steering:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.control}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Fuel Setup:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.fuelSystem}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Cylinder volume:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.specs.displacementHex || 'N/A'}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Cylinder Matrix:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.specs.cylinders || 'N/A'}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Throttle RPM Range:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.specs.fullThrottleRange || 'N/A'}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">Charging Alternator:</span>
-                <span className="font-semibold text-slate-905 text-slate-900">{product.specs.alternatorOutput || 'N/A'}</span>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-100">
-                <span className="text-slate-500">UK Warranty Duration:</span>
-                <span className="font-bold text-emerald-800 bg-emerald-50 px-2 rounded">{product.specs.warrantyYears} Years</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Customer Reviews View */}
-          <div className="bg-white border border-slate-205 rounded-xl p-6 shadow-sm space-y-6">
-            <div className="flex justify-between items-center border-b border-slate-100 pb-3">
-              <h3 className="font-sans font-extrabold text-slate-900 text-lg flex items-center gap-2">
-                <span>Buyer Reviews & Ratings</span>
-              </h3>
-              {avgRating && (
-                <div className="flex items-center gap-1 bg-yellow-50 text-yellow-800 font-bold text-sm px-2.5 py-1 rounded-md border border-yellow-100">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
-                  <span>{avgRating} / 5.0</span>
+          <section aria-labelledby="specs-heading" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4">
+            <h2 id="specs-heading" className="font-sans font-extrabold text-slate-900 text-lg border-b border-slate-100 pb-3">{kind === 'part' ? 'Product details' : 'Key specifications'}</h2>
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 text-xs sm:text-sm font-sans">
+              {specRows.map(([k, v]) => (
+                <div key={k} className="flex justify-between py-1.5 border-b border-slate-100 gap-3">
+                  <dt className="text-slate-500">{k}</dt>
+                  <dd className="font-semibold text-slate-900 text-right">{v}</dd>
                 </div>
-              )}
-            </div>
+              ))}
+            </dl>
+            {product.features.length > 0 && (
+              <ul className="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                {product.features.map((f, i) => (<li key={i}>{f}</li>))}
+              </ul>
+            )}
+            <p className="text-[11px] text-slate-500">Check the manufacturer data sheet for full technical data (dimensions, weight and fuel consumption). Contact us and we will confirm anything before you order.</p>
+          </section>
 
-            {/* Individual Reviews */}
-            <div className="space-y-4">
-              {reviews.map((r) => (
-                <div key={r.id} className="p-4 bg-slate-50 rounded-xl border border-slate-200/50 space-y-2 text-xs sm:text-sm">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className="font-bold text-slate-900 block">{r.author}</span>
-                      <span className="text-[10px] text-slate-400 font-mono mt-0.5">{r.date}</span>
-                    </div>
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: r.rating }).map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                      ))}
-                    </div>
-                  </div>
-                  <h5 className="font-bold text-slate-800 mt-1">{r.title}</h5>
-                  <p className="text-slate-600 leading-normal">{r.comment}</p>
+          <section aria-labelledby="choose-heading" className="space-y-3">
+            <h2 id="choose-heading" className="font-sans font-extrabold text-slate-900 text-xl">{copy.chooseHeading}</h2>
+            <ul className="list-disc pl-5 text-sm sm:text-base text-slate-700 space-y-2 leading-relaxed">
+              {copy.chooseBullets.map((b, i) => (<li key={i}>{b}</li>))}
+            </ul>
+            <p className="text-sm text-slate-600">
+              Read our <NavLink view="blog-post" params={{ slug: copy.guideSlug }} className="text-sky-700 font-semibold underline">{copy.guideLabel}</NavLink>
+              {primaryCat && <> or browse all <NavLink view="shop-category" params={{ slug: primaryCat.slug }} className="text-sky-700 font-semibold underline">{primaryCat.name}</NavLink></>}
+              {brandPage && <>, or see every <NavLink view="shop-category" params={{ slug: brandPage.slug }} className="text-sky-700 font-semibold underline">{product.brand} outboard</NavLink> we stock</>}.
+            </p>
+          </section>
+
+          <section aria-labelledby="included-heading" className="space-y-2">
+            <h2 id="included-heading" className="font-sans font-extrabold text-slate-900 text-xl">What you get when you buy from Solent Marine UK</h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
+              {copy.included.map((x, i) => (
+                <li key={i} className="flex gap-2 items-start"><CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" /><span>{x}</span></li>
+              ))}
+            </ul>
+          </section>
+
+          <section aria-labelledby="faq-heading" className="space-y-3">
+            <h2 id="faq-heading" className="font-sans font-extrabold text-slate-900 text-xl">{product.name} FAQs</h2>
+            <div className="space-y-3">
+              {copy.faqs.map((f, i) => (
+                <div key={i} className="bg-slate-50 rounded-xl p-4 border border-slate-200/60">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">{f.q}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{f.a}</p>
                 </div>
               ))}
             </div>
+          </section>
 
-            {/* Review form submissions */}
-            <div className="pt-6 border-t border-slate-150">
-              {reviewSubmitted ? (
-                <div className="bg-emerald-55 bg-emerald-50 text-emerald-900 p-4 rounded-xl text-center leading-normal border border-emerald-200 text-xs sm:text-sm shadow-inner">
-                  <p className="font-bold">Review Dispatched for Authorisation</p>
-                  <p className="text-slate-500 text-xs mt-0.5">This comment is certified as unique and scheduled to enter the live UK product index stream.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleAddReview} className="space-y-4 text-xs sm:text-sm">
-                  <h4 className="font-sans font-bold text-slate-900">Write an Outboard Review</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div>
-                      <label htmlFor="review-author" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Your Name</label>
-                      <input
-                        type="text"
-                        id="review-author"
-                        required
-                        value={reviewAuthor}
-                        onChange={(e) => setReviewAuthor(e.target.value)}
-                        className="block w-full border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 bg-white"
-                        placeholder="e.g. skipper Bill"
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      <label htmlFor="review-title" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Title</label>
-                      <input
-                        type="text"
-                        id="review-title"
-                        value={reviewTitle}
-                        onChange={(e) => setReviewTitle(e.target.value)}
-                        className="block w-full border border-slate-300 rounded-md p-1.5 focus:ring-sky-500 bg-white"
-                        placeholder="e.g. Excellent auxiliary power"
-                      />
-                    </div>
+          {reviews.length > 0 && (
+            <section aria-labelledby="reviews-heading" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4">
+              <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h2 id="reviews-heading" className="font-sans font-extrabold text-slate-900 text-lg">Customer reviews</h2>
+                {avgRating && (
+                  <div className="flex items-center gap-1 bg-yellow-50 text-yellow-800 font-bold text-sm px-2.5 py-1 rounded-md border border-yellow-100">
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
+                    <span>{avgRating} / 5.0</span>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-                    <div>
-                      <label htmlFor="review-rating" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Star rating (1-5)</label>
-                      <select
-                        id="review-rating"
-                        value={reviewRating}
-                        onChange={(e) => setReviewRating(parseInt(e.target.value))}
-                        className="bg-white border border-slate-300 rounded-md p-1.5 w-full font-sans"
-                      >
-                        <option value={5}>⭐⭐⭐⭐⭐ (5/5)</option>
-                        <option value={4}>⭐⭐⭐⭐ (4/5)</option>
-                        <option value={3}>⭐⭐⭐ (3/5)</option>
-                        <option value={2}>⭐⭐ (2/5)</option>
-                        <option value={1}>⭐ (1/5)</option>
-                      </select>
+                )}
+              </div>
+              <div className="space-y-4">
+                {reviews.map((r) => (
+                  <div key={r.id} className="p-4 bg-slate-50 rounded-xl border border-slate-200/50 space-y-2 text-xs sm:text-sm">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <span className="font-bold text-slate-900 block">{r.author}</span>
+                        <span className="text-[10px] text-slate-500 font-mono mt-0.5">{r.date}</span>
+                      </div>
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: r.rating }).map((_, i) => (<Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />))}
+                      </div>
                     </div>
+                    <h3 className="font-bold text-slate-800 mt-1">{r.title}</h3>
+                    <p className="text-slate-600 leading-normal">{r.comment}</p>
                   </div>
-
-                  <div>
-                    <label htmlFor="review-comment" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Detailed Review Comment</label>
-                    <textarea
-                      id="review-comment"
-                      rows={3}
-                      required
-                      value={reviewComment}
-                      onChange={(e) => setReviewComment(e.target.value)}
-                      className="block w-full border border-slate-300 rounded-md p-2 bg-white"
-                      placeholder="Comment on fuel burn, starting simplicity, weight parameters..."
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="bg-slate-900 hover:bg-slate-800 text-white rounded-lg py-1.5 px-4 font-semibold transition"
-                  >
-                    Submit Verifiable Review
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Right Side: Buying Controls, Shaft Chooser, Compare Tray Integration */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
           <div className="bg-white border border-slate-205 rounded-2xl p-6 shadow-sm space-y-6">
-            <div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-2.5 py-1 rounded">
-                  Official {product.brand} Catalog
-                </span>
-                {product.badge && (
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-900 bg-amber-400 px-2.5 py-1 rounded">
-                    {product.badge}
-                  </span>
-                )}
-                {product.sku && (
-                  <span className="text-[10px] font-mono text-slate-400">SKU: {product.sku}</span>
-                )}
-              </div>
-              <h1 className="font-sans font-extrabold text-slate-900 text-xl sm:text-2xl tracking-tight mt-2.5">
-                {product.name}
-              </h1>
-              <div className="flex gap-2.5 items-center mt-2.5 text-xs text-slate-500">
-                {avgRating && (
-                  <>
-                    <div className="flex">
-                      {Array.from({ length: Math.round(parseFloat(avgRating)) }).map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                      ))}
-                    </div>
-                    <span>({reviews.length} reviews verified)</span>
-                  </>
-                )}
-              </div>
-            </div>
-
             <div className="py-4 border-y border-slate-100 flex justify-between items-baseline">
               <span className="text-xs uppercase font-bold tracking-widest text-slate-500">Retail Price (inc. VAT):</span>
               <div className="text-right">
-                <span className="text-2xl sm:text-3xl font-extrabold text-slate-900">£{product.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2 })}</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-slate-900">{gbp(product.priceGbp)}</span>
                 <span className="block text-[10px] text-slate-400">Includes 20% UK VAT • Shipping Calculated at Basket</span>
               </div>
             </div>
@@ -427,6 +333,22 @@ export default function ProductDetailsView({
           </div>
         </div>
       </div>
+      {related.length > 0 && (
+        <section aria-labelledby="related-heading" className="space-y-4">
+          <h2 id="related-heading" className="font-sans font-extrabold text-slate-900 text-xl">Related {primaryCat ? primaryCat.name.toLowerCase() : 'products'}</h2>
+          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {related.map((r) => (
+              <li key={r.slug} className="bg-white border border-slate-200 rounded-xl p-3 hover:border-sky-300 transition">
+                <NavLink view="product-details" params={{ slug: r.slug }} className="block space-y-2">
+                  <img src={thumbUrl(r.imageUrl)} alt={r.name} width={480} height={360} loading="lazy" className="w-full h-28 object-contain bg-slate-50 rounded-lg" />
+                  <span className="block text-xs font-bold text-slate-900 leading-snug">{r.name}</span>
+                  <span className="block text-xs text-slate-600">{gbp(r.priceGbp)} inc. VAT</span>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

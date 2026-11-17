@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import ProductClient from '../../../components/routes/ProductClient';
 import { OUTBOARD_PRODUCTS } from '../../../data/products';
 import { getProductSchema } from '../../../lib/schema';
-import { fitDesc, fitTitle, nameWithBrand } from '../../../lib/seo';
+import { getProductCopy } from '../../../lib/productCopy';
 
 export function generateStaticParams() {
   return OUTBOARD_PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -13,12 +13,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = OUTBOARD_PRODUCTS.find((p) => p.slug === slug);
   if (!product) return {};
-  const full = nameWithBrand(product.name, product.brand);
+  const copy = getProductCopy(product);
   return {
-    title: fitTitle(`${full} Price & Specs | Solent Marine UK`),
-    description: fitDesc(`${full}: £${product.priceGbp.toLocaleString('en-GB')} inc. VAT. Fuel system: ${product.fuelSystem}, ${product.powerHp > 0 ? `${product.powerHp}HP, ` : ''}dry weight ${product.weightKg}kg. PDI checked, UK delivery from Cowes.`),
+    title: copy.title,
+    description: copy.metaDescription,
     alternates: { canonical: `/product/${product.slug}/` },
-    openGraph: { type: 'website', images: [product.imageUrl] }
+    openGraph: { type: 'website', title: copy.title, description: copy.metaDescription, url: `/product/${product.slug}/`, images: [{ url: product.imageUrl, width: 1200, height: 900, alt: copy.h1 }] },
+    twitter: { card: 'summary_large_image', title: copy.title, description: copy.metaDescription, images: [product.imageUrl] }
   };
 }
 

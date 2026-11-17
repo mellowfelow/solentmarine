@@ -2,11 +2,56 @@
   "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
   "name": "Solent Marine Outboards UK",
   "url": "https://solentmarineoutboards.co.uk",
-  "description": "UK's Premier Outboard Motors, Marine Engines & Rigging Specialists",
+  "description": "UK outboard motor dealer in Cowes, Isle of Wight",
   "skills": [
-    { "name": "browse-catalog", "type": "navigation", "description": "Browse the complete marine engine catalog across portable, mid-range, high-power, electric and parts categories", "url": "https://solentmarineoutboards.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "compare-specs-on-page", "type": "commerce", "description": "On the shop page, add up to 3 outboards to the built-in side-by-side specification comparison tray (client-side feature, not a separate API)", "url": "https://solentmarineoutboards.co.uk/shop/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "contact-rigging", "type": "support", "description": "Contact certified marine engineers in Cowes for transom installation advice or to place an order", "url": "https://solentmarineoutboards.co.uk/contact/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-    { "name": "shaft-and-pdi-guide", "type": "content", "description": "Transom height / shaft length measurement guide and Pre-Delivery Inspection explanation", "url": "https://solentmarineoutboards.co.uk/faq/", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+    {
+      "name": "browse-catalog",
+      "type": "navigation",
+      "description": "Browse the full outboard catalogue across small, mid-range, high-power, electric and parts categories",
+      "url": "https://solentmarineoutboards.co.uk/shop/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "browse-by-brand",
+      "type": "navigation",
+      "description": "Browse outboards by brand: Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion",
+      "url": "https://solentmarineoutboards.co.uk/brands/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compare-specs-on-page",
+      "type": "commerce",
+      "description": "On the shop page, add up to 3 outboards to the built-in side-by-side comparison tray (client-side feature, not a separate API)",
+      "url": "https://solentmarineoutboards.co.uk/shop/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "read-buying-guides",
+      "type": "content",
+      "description": "Outboard buying and maintenance guides: horsepower sizing, electric outboards, winterizing, servicing",
+      "url": "https://solentmarineoutboards.co.uk/blog/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "shaft-and-pdi-guide",
+      "type": "content",
+      "description": "Transom height and shaft length measurement guide, PDI explanation and delivery FAQ",
+      "url": "https://solentmarineoutboards.co.uk/faq/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "delivery-and-returns",
+      "type": "support",
+      "description": "UK delivery costs, pallet delivery and 14-day returns policy",
+      "url": "https://solentmarineoutboards.co.uk/shipping/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "contact-sales",
+      "type": "support",
+      "description": "Contact the Cowes team by WhatsApp, phone or email for sizing advice or to place an order",
+      "url": "https://solentmarineoutboards.co.uk/contact/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
   ]
 }

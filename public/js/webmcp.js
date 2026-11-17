@@ -25,7 +25,7 @@
       },
       {
         name: "order_via_whatsapp",
-        description: "Initiate direct marine rigging and engine consultation via WhatsApp. Minimum order £50. Human completes the order.",
+        description: "Initiate direct marine rigging and engine consultation via WhatsApp. Minimum order £150. Human completes the order.",
         inputSchema: {
           type: "object",
           properties: {

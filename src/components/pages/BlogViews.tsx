@@ -7,6 +7,9 @@ import { BookOpen, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { BlogPost } from '../../types';
 import { CATEGORIES } from '../../config/site';
 import NavLink from '../NavLink';
+import { OUTBOARD_PRODUCTS } from '../../data/products';
+import { thumbUrl } from '../../lib/seo';
+import { gbp } from '../../lib/productCopy';
 
 interface NavProp {
   onNavigate: (view: string, params?: Record<string, string>) => void;
@@ -79,13 +82,14 @@ export function BlogPostView({ post, related, onNavigate }: { post: BlogPost; re
 
       <article className="prose prose-slate max-w-none">
         <h1 className="font-sans font-extrabold text-slate-900 text-2xl sm:text-3xl tracking-tight leading-tight mb-2">{post.title}</h1>
-        <div className="flex items-center gap-3 text-xs text-slate-400 font-mono mb-8">
-          <time dateTime={post.publishDate}>{new Date(post.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
-          <span>&middot;</span>
-          <span>{post.contentType}</span>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 mb-8">
+          <span>By the Solent Marine UK team</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Published <time dateTime={post.publishDate}>{new Date(post.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time></span>
+          {post.modifiedDate && (<><span aria-hidden="true">&middot;</span><span>Updated <time dateTime={post.modifiedDate}>{new Date(post.modifiedDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time></span></>)}
         </div>
 
-        <div className="text-sm sm:text-base text-slate-700 leading-relaxed space-y-4 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-2 [&_a]:text-sky-700 [&_a]:font-semibold [&_a]:underline" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
+        <div className="text-sm sm:text-base text-slate-700 leading-relaxed space-y-4 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-2 [&_a]:text-sky-700 [&_a]:font-semibold [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_table]:w-full [&_table]:text-sm [&_table]:border-collapse [&_th]:text-left [&_th]:bg-slate-100 [&_th]:p-2 [&_td]:p-2 [&_td]:border-t [&_td]:border-slate-200 [&_table]:block [&_table]:overflow-x-auto" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
 
         {post.faq && post.faq.length > 0 && (
           <div className="mt-10 pt-8 border-t border-slate-200">
@@ -120,6 +124,32 @@ export function BlogPostView({ post, related, onNavigate }: { post: BlogPost; re
           );
         })}
       </div>
+
+      {/* Products related to this guide: crawlable internal links to the shop */}
+      {(() => {
+        const slugs = post.relatedCategorySlugs;
+        const picks = OUTBOARD_PRODUCTS
+          .filter((p) => slugs.some((c) => p.category.includes(c as any)))
+          .sort((a, b) => Number(Boolean(b.badge)) - Number(Boolean(a.badge)) || Number(b.isFeatured) - Number(a.isFeatured))
+          .slice(0, 4);
+        if (picks.length === 0) return null;
+        return (
+          <section aria-labelledby="blog-products-heading" className="mt-10">
+            <h2 id="blog-products-heading" className="font-sans font-bold text-slate-900 text-lg mb-3">Popular outboards from this range</h2>
+            <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              {picks.map((p) => (
+                <li key={p.slug} className="bg-white border border-slate-200 rounded-xl p-3 hover:border-sky-300 transition">
+                  <NavLink view="product-details" params={{ slug: p.slug }} className="block space-y-1.5">
+                    <img src={thumbUrl(p.imageUrl)} alt={p.name} width={480} height={360} loading="lazy" className="w-full h-24 object-contain bg-slate-50 rounded-lg" />
+                    <span className="block text-xs font-bold text-slate-900 leading-snug">{p.name}</span>
+                    <span className="block text-xs text-slate-600">{gbp(p.priceGbp)} inc. VAT</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })()}
 
       {/* Related posts */}
       {related.length > 0 && (

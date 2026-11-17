@@ -51,9 +51,9 @@ export default function Footer() {
           </p>
           <div className="space-y-1.5 text-xs text-slate-400 font-mono">
             <p className="font-semibold text-slate-400">Headquarters Office:</p>
-            <p>Unit 12, Shepard's Wharf Marina</p>
-            <p>Medina Road, Cowes</p>
-            <p>Isle of Wight, PO31 7DL</p>
+            <p>Cowes Yacht Haven, High Street</p>
+            <p>Cowes, Isle of Wight</p>
+            <p>PO31 7BD</p>
             <p>VAT Reg: GB 294 4001 98</p>
           </div>
         </div>
@@ -121,9 +121,6 @@ export default function Footer() {
             </span>
             <span className="text-[10px] font-bold text-slate-300 bg-slate-850 px-2 py-1 rounded border border-slate-800">
               UKCE COMPLIANT
-            </span>
-            <span className="text-[10px] font-bold text-slate-300 bg-slate-850 px-2 py-1 rounded border border-slate-800">
-              FCA FCA958223
             </span>
           </div>
         </div>
