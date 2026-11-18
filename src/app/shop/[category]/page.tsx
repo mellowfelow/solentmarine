@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     title,
     description,
     alternates: { canonical: `/shop/${slug}/` },
-    openGraph: { type: 'website', title, description, url: `/shop/${slug}/` },
-    twitter: { card: 'summary_large_image', title, description }
+    openGraph: { type: 'website', title, description, url: `/shop/${slug}/`, images: ['/images/og-home.jpg'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/images/og-home.jpg'] }
   };
 }
 

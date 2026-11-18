@@ -18,21 +18,21 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-xl border border-slate-900/40 bg-slate-900/20">
             <Truck className="w-10 h-10 text-sky-400 shrink-0" />
             <div>
-              <h4 className="font-semibold text-white text-sm">Secure UK Mainland Transport</h4>
+              <p className="font-semibold text-white text-sm">Secure UK Mainland Transport</p>
               <p className="text-xs text-slate-400 mt-0.5">Custom-crated vertical freight ensuring all fuel lines remain air-tight during shipping.</p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-xl border border-slate-900/40 bg-slate-900/20">
             <ShieldCheck className="w-10 h-10 text-emerald-400 shrink-0" />
             <div>
-              <h4 className="font-semibold text-white text-sm">Secure UK Bank Transfer</h4>
+              <p className="font-semibold text-white text-sm">Secure UK Bank Transfer</p>
               <p className="text-xs text-slate-400 mt-0.5">Every order settled by direct BACS / Faster Payments transfer to our official UK dealership account.</p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-xl border border-slate-900/40 bg-slate-900/20">
             <LifeBuoy className="w-10 h-10 text-amber-400 shrink-0" />
             <div>
-              <h4 className="font-semibold text-white text-sm">UK Approved PDI & Rigging</h4>
+              <p className="font-semibold text-white text-sm">UK Approved PDI & Rigging</p>
               <p className="text-xs text-slate-400 mt-0.5">Pre-Delivery Inspections conducted in-house by factory-certified marine mechanics before shipping.</p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Footer() {
 
         {/* Col 2: Category Hubs */}
         <div className="space-y-4">
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Shop by Category</h4>
+          <h2 className="text-white font-semibold text-xs uppercase tracking-wider">Shop by Category</h2>
           <ul className="space-y-2 text-xs">
             {CATEGORIES.map((cat) => (
               <li key={cat.slug}>
@@ -73,12 +73,17 @@ export default function Footer() {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <NavLink view="brands" className="hover:text-sky-400 transition cursor-pointer font-semibold">
+                All outboard brands
+              </NavLink>
+            </li>
           </ul>
         </div>
 
         {/* Col 3: Support Pages */}
         <div className="space-y-4">
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Customer Support</h4>
+          <h2 className="text-white font-semibold text-xs uppercase tracking-wider">Customer Support</h2>
           <ul className="space-y-2 text-xs">
             <li>
               <NavLink view="faq" className="hover:text-sky-400 transition cursor-pointer">
@@ -110,7 +115,7 @@ export default function Footer() {
 
         {/* Col 4: Compliance & Badges */}
         <div className="space-y-4">
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider">UK Regulatory Info</h4>
+          <h2 className="text-white font-semibold text-xs uppercase tracking-wider">UK Regulatory Info</h2>
           <p className="text-[11px] leading-relaxed text-slate-400">
             All recreational outboards supplied are fully compliant with UK RCD II (Recreational Craft Directive) and CE certifications. Special restrictions apply to carburetted 2-stroke models which require commercial registry validation.
           </p>

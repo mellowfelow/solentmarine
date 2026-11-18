@@ -41,6 +41,7 @@ export default function HomeContent() {
             </li>
           ))}
         </ul>
+        <p><NavLink view="brands" className="text-sky-700 font-semibold underline">See all outboard motor brands</NavLink></p>
       </section>
 
       <section aria-labelledby="home-guides-heading" className="space-y-4">

@@ -330,6 +330,8 @@ export default function ShopView({
               </button>
             </div>
           ) : (
+            <>
+            <h2 className="sr-only">Outboard motors in stock</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {paginatedProducts.map((prod) => {
                 const isTwoStroke = prod.category.includes('two-stroke');
@@ -367,9 +369,9 @@ export default function ShopView({
                       </div>
 
                       {/* Title */}
-                      <h4 className="font-sans font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 transition">
+                      <h3 className="font-sans font-bold text-slate-900 text-sm leading-snug line-clamp-2 min-h-10 hover:text-sky-800 transition">
                         {prod.name}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-slate-500 mt-1 line-clamp-2 mb-3">{prod.description}</p>
 
                       {/* Technical Quick Badges */}
@@ -460,6 +462,7 @@ export default function ShopView({
                 );
               })}
             </div>
+            </>
           )}
 
           {/* Pagination */}

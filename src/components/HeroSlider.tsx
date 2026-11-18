@@ -84,6 +84,8 @@ export default function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProp
             <img
               src={slide.jpg}
               alt={slide.alt}
+              width={1920}
+              height={1080}
               className="w-full h-full object-cover"
               style={slide.focalPoint ? { objectPosition: slide.focalPoint } : undefined}
               loading={i === 0 ? 'eager' : 'lazy'}

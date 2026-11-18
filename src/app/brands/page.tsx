@@ -8,7 +8,9 @@ const ORIGIN = `https://${SITE.domain}`;
 export const metadata: Metadata = {
   title: 'Outboard Motor Brands UK | Solent Marine UK',
   description: 'Browse every outboard brand we stock: Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion, with official UK manufacturer warranty on every engine.',
-  alternates: { canonical: '/brands/' }
+  alternates: { canonical: '/brands/' },
+  openGraph: { type: 'website', title: 'Outboard Motor Brands UK | Solent Marine UK', description: 'Browse every outboard brand we stock: Yamaha, Mercury, Honda, Suzuki, Tohatsu and ePropulsion, with official UK manufacturer warranty on every engine.', url: '/brands/', images: ['/images/og-home.jpg'] },
+  twitter: { card: 'summary_large_image', title: 'Outboard Motor Brands UK | Solent Marine UK', description: 'Browse every outboard brand we stock, with official UK manufacturer warranty on every engine.', images: ['/images/og-home.jpg'] }
 };
 
 export default function Page() {

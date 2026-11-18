@@ -32,17 +32,17 @@ export function FAQView({ onNavigate }: NavProp) {
       <div className="space-y-6">
         {faqs.map((f, i) => (
           <div key={i} className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-2 hover:border-slate-300 transition">
-            <h3 className="font-sans font-bold text-slate-900 text-base flex gap-2.5 items-start">
+            <h2 className="font-sans font-bold text-slate-900 text-base flex gap-2.5 items-start">
               <span className="text-sky-800 font-mono text-xs mt-1">Q{i+1}.</span>
               <span>{f.q}</span>
-            </h3>
+            </h2>
             <p className="text-sm leading-relaxed text-slate-600 pl-7">{f.a}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
-        <h3 className="font-bold text-slate-900 text-base">Have a specific vessel inquiry?</h3>
+        <h2 className="font-bold text-slate-900 text-base">Have a specific vessel inquiry?</h2>
         <p className="text-xs text-slate-600 max-w-md mx-auto">
           Our team in Cowes can provide tailored shaft matching, propeller pitch guidance, and rigging specs.
         </p>
@@ -111,7 +111,7 @@ export function ContactView({ onNavigate }: NavProp) {
         {/* Contact Info Card */}
         <div className="bg-slate-900 text-white rounded-2xl p-6 space-y-6 shadow-xl lg:col-span-1">
           <div className="space-y-2">
-            <h3 className="text-lg font-bold">Cowes Head Office</h3>
+            <h2 className="text-lg font-bold">Cowes Head Office</h2>
             <p className="text-xs text-slate-400">Located at the world-famous yachting focal point on the Medina River.</p>
           </div>
 
@@ -170,7 +170,7 @@ export function ContactView({ onNavigate }: NavProp) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <h3 className="font-sans font-bold text-slate-900 text-lg mb-1">Send a Message / Inquire</h3>
+              <h2 className="font-sans font-bold text-slate-900 text-lg mb-1">Send a Message / Inquire</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Your Full Name</label>
@@ -367,7 +367,7 @@ export function ShippingView({ onNavigate }: NavProp) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 text-sm font-sans leading-relaxed">
         <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-3">
-          <h3 className="font-bold text-slate-900 text-base">Ground Freight Coverage</h3>
+          <h2 className="font-bold text-slate-900 text-base">Ground Freight Coverage</h2>
           <p className="text-slate-600">We offer three primary UK transport schemes:</p>
           <ul className="space-y-1.5 text-xs text-slate-500 font-mono">
             <li>• UK Mainland Standard (orders over £500) - FREE</li>
@@ -379,7 +379,7 @@ export function ShippingView({ onNavigate }: NavProp) {
         </div>
 
         <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-3">
-          <h3 className="font-bold text-slate-900 text-base">Consumer distance selling & returns</h3>
+          <h2 className="font-bold text-slate-900 text-base">Consumer distance selling & returns</h2>
           <p className="text-slate-600">
             Under the UK Consumer Contracts Regulations (Distance Selling), you hold an absolute 14-day cooling-off right for engines purchased online.
           </p>
@@ -404,12 +404,12 @@ export function PrivacyView() {
           At Solent Marine Outboards, we take data custody with absolute seriousness under UK GDPR, the Data Protection Act 2018, and ICO frameworks.
         </p>
 
-        <h3 className="font-bold text-slate-900 text-md mt-6">1. Information Collection</h3>
+        <h2 className="font-bold text-slate-900 text-md mt-6">1. Information Collection</h2>
         <p>
           We capture only necessary, relevant credentials on our portals: name, billing/shipping address coordinates, contact telephone indicators (to communicate dry pallet delivery schedules), and boating parameters. We do not gather or store any underlying bank details on our servers.
         </p>
 
-        <h3 className="font-bold text-slate-900 text-md mt-6">2. Cookies Framework</h3>
+        <h2 className="font-bold text-slate-900 text-md mt-6">2. Cookies Framework</h2>
         <p>
           We employ cookies exclusively to keep track of engine shopping basket quantities, comparison tray selections, and analytical metrics to optimize our mobile design ratios across Google and Bing index engines.
         </p>
@@ -424,24 +424,24 @@ export function TermsView() {
   return (
     <div id="terms-page" className="max-w-3xl mx-auto py-10 px-4 sm:px-6 prose prose-slate">
       <h1 className="font-sans font-extrabold text-slate-900 text-3xl mb-4">Terms and Conditions of Supply</h1>
-      <p className="text-xs text-slate-400 font-mono mb-6">Current active draft: Official Code Version PO31-7DL</p>
+      <p className="text-xs text-slate-400 font-mono mb-6">Current active draft: Official Code Version PO31-7BD</p>
 
       <div className="space-y-4 text-slate-600 text-sm leading-relaxed">
         <p>
           These binding commercial terms apply to any purchase of outboard engines or marine parts supplied by Solent Marine Outboards.
         </p>
 
-        <h4 className="font-bold text-slate-900 text-sm mt-6">1. Purchasing Limitations & 2-Stroke Guidelines</h4>
+        <h2 className="font-bold text-slate-900 text-sm mt-6">1. Purchasing Limitations & 2-Stroke Guidelines</h2>
         <p>
           Under UK marine legislation, carburetted 2-stroke engines are strictly limited to commercial businesses, rescue fleets, clubs, and regulated racing organizations. Placing an order online for a 2-stroke model constitutes commercial warranty declaration; buyers must verify commercial hull registration in writing.
         </p>
 
-        <h4 className="font-bold text-slate-900 text-sm mt-6">2. Warranty Frameworks</h4>
+        <h2 className="font-bold text-slate-900 text-sm mt-6">2. Warranty Frameworks</h2>
         <p>
           All petrol outboards are accompanied by their official manufacturer warranties (e.g. Suzuki 6-Years, Yamaha 5-Years, Honda 6-Years), which are strictly valid only under authorized dealer Pre-Delivery Inspections (PDI) and annual servicing schedules at registered boatyards.
         </p>
 
-        <h4 className="font-bold text-slate-900 text-sm mt-6">3. Installation Safety Duty of Care</h4>
+        <h2 className="font-bold text-slate-900 text-sm mt-6">3. Installation Safety Duty of Care</h2>
         <p>
           Rigging outboards to vessels must comply with maximum transom rating guidelines (found on the hull builder plate). Overpowering a stern transom violates UK CE boating guidelines and invalidates yacht insurances.
         </p>

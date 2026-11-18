@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   title: fitTitle(SHOP_CONTENT.metaTitle),
   description: fitDesc(SHOP_CONTENT.metaDescription),
   alternates: { canonical: '/shop/' },
-  openGraph: { type: 'website', title: fitTitle(SHOP_CONTENT.metaTitle), description: fitDesc(SHOP_CONTENT.metaDescription), url: '/shop/' }
+  openGraph: { type: 'website', title: fitTitle(SHOP_CONTENT.metaTitle), description: fitDesc(SHOP_CONTENT.metaDescription), url: '/shop/', images: ['/images/og-home.jpg'] },
+  twitter: { card: 'summary_large_image', title: fitTitle(SHOP_CONTENT.metaTitle), description: fitDesc(SHOP_CONTENT.metaDescription), images: ['/images/og-home.jpg'] }
 };
 
 export default function Page() {
