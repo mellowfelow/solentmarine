@@ -10,14 +10,14 @@ import { HOME_FAQS } from '../data/homeContent';
  */
 export default function HomeContent() {
   const guides = BLOG_POSTS.filter((p) =>
-    ['outboard-horsepower-guide', 'electric-outboard-motors-explained', 'best-outboard-for-dinghy-tender-kayak', 'affordable-outboard-motors-uk', 'outboard-motor-maintenance-guide', 'outboard-serial-number-year-guide'].includes(p.slug)
+    ['outboard-horsepower-guide', 'electric-outboard-motors-explained', 'diesel-outboard-motors-explained', 'best-outboard-for-dinghy-tender-kayak', 'affordable-outboard-motors-uk', 'outboard-serial-number-year-guide'].includes(p.slug)
   );
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
       <section aria-labelledby="home-buy-heading" className="space-y-5">
         <h2 id="home-buy-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Buy outboard motors online from Solent Marine UK</h2>
         <p className="text-slate-700 leading-relaxed max-w-3xl">
-          Solent Marine Outboards UK supplies new outboard motors for sale across the UK, from 2.5HP tender engines to 400HP offshore power. Every engine is unboxed, inspected and test-run before dispatch, and supplied with the UK manufacturer warranty. Choose your size below, or browse the complete <NavLink view="shop" className="text-sky-700 font-semibold underline">outboard engines for sale directory</NavLink>.
+          Solent Marine Outboards UK supplies new outboard motors for sale across the UK. Our range of marine outboards for sale runs from 2.5HP tender engines to 400HP offshore power, and every engine is unboxed, inspected and test-run before dispatch, then supplied with the UK manufacturer warranty. Choose your size below, or browse the complete <NavLink view="shop" className="text-sky-700 font-semibold underline">outboard engines for sale directory</NavLink>.
         </p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {CATEGORIES.map((c) => (

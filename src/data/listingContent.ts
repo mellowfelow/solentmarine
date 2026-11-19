@@ -24,7 +24,7 @@ export const SHOP_CONTENT: ListingContent = {
   h1: 'Outboard Engines for Sale: Full UK Stock Directory',
   metaTitle: 'Outboard Engines for Sale UK',
   metaDescription: 'Outboard engines for sale in the UK: Yamaha, Suzuki, Honda, Mercury, Tohatsu and electric from Torqeedo and ePropulsion. PDI checked, delivered nationwide.',
-  intro: 'Browse every outboard engine, electric motor, oil and spare we stock. Filter by brand, power, shaft length and price, or jump straight to the right category below.',
+  intro: 'Browse every outboard engine, boat motor, electric motor, oil and spare we stock. Filter by brand, power, shaft length and price, or jump straight to the right category below.',
   sections: [
     {
       h2: 'How to choose an outboard engine',
@@ -97,13 +97,13 @@ export const CATEGORY_CONTENT: Record<string, ListingContent> = {
   'mid-range': {
     h1: '10HP–40HP Outboard Motors for Sale',
     metaTitle: '10-40HP Outboard Motors for Sale',
-    metaDescription: 'Outboard motors for sale from 8HP to 40HP: 10HP, 15HP, 20HP, 25HP and 30HP engines from Yamaha, Suzuki, Honda, Mercury and Tohatsu. PDI checked, UK delivery.',
+    metaDescription: 'Boat motors from 8HP to 40HP: 10HP, 15HP, 20HP, 25HP and 30HP outboard motors from Yamaha, Suzuki, Honda, Mercury and Tohatsu. PDI checked, UK delivery.',
     intro: 'Mid-range four-stroke outboards from 8HP to 40HP for larger inflatables, small RIBs, fishing boats and day boats. Every engine is new, PDI checked and warrantied.',
     sections: [
       {
         h2: 'Choosing between 10HP, 15HP, 20HP and 30HP',
         paragraphs: [
-          'The right power depends on hull weight, load and how you use the boat. A 10HP or 15HP outboard suits a larger inflatable or light fishing boat; 20HP to 30HP is the sweet spot for small RIBs and dayboats; 40HP gives a heavier boat the performance to plane quickly with passengers and gear.',
+          'The right power depends on hull weight, load and how you use the boat. A 10HP boat motor or 15HP outboard suits a larger inflatable or light fishing boat; 20HP to 30HP is the sweet spot for small RIBs and dayboats; 40HP gives a heavier boat the performance to plane quickly with passengers and gear.',
           'Fuel-injected models start easily and are efficient, while simpler engines are easier to service. Check the power limit on the boat before you buy.'
         ],
         bullets: [
@@ -199,22 +199,22 @@ export const CATEGORY_CONTENT: Record<string, ListingContent> = {
     ]
   },
   parts: {
-    h1: 'Outboard Spares, Oils & Accessories UK',
-    metaTitle: 'Outboard Spares, Oils & Accessories UK',
-    metaDescription: 'Outboard spares, oils and accessories: Yamaha, Suzuki and Mercury oils, service kits, impellers, spark plugs, propellers, fuel tanks, batteries and rigging parts.',
-    intro: 'Genuine engine oils, service kits, impellers, spark plugs, fuel tanks, propellers and electric propulsion accessories. UK delivery, including regular supply across the Solent.',
+    h1: 'Outboard Motor Spares, Oils & Accessories UK',
+    metaTitle: 'Outboard Motor Spares & Accessories UK',
+    metaDescription: 'Outboard motor spares and accessories: Mercury outboard motor spares, Yamaha outboard spares, oils, service kits, impellers, propellers and outboard motor fuel tanks.',
+    intro: 'Genuine engine oils, service kits, impellers, spark plugs, outboard motor fuel tanks, propellers and electric propulsion accessories, including Mercury outboard motor spares and Yamaha outboard spares. UK delivery, including regular supply across the Solent.',
     sections: [
       {
-        h2: 'Servicing and consumables',
+        h2: 'Outboard spares, servicing and consumables',
         paragraphs: [
           'Using the manufacturer-approved oil and service parts helps keep your engine reliable and your warranty intact. Our range covers Yamalube, Suzuki ECSTAR and Quicksilver oils, brand service kits, water pump impellers and spark plugs.',
-          'Not sure which part fits your engine? Send us the make, model and serial number and we will confirm.'
+          'We carry Mercury outboard motor spares, Yamaha outboard spares and Suzuki service parts, from impellers and thermostats to spark plugs. Not sure which part fits your engine? Send us the make, model and serial number and we will confirm.'
         ]
       },
       {
-        h2: 'Fuel tanks, lines and propellers',
+        h2: 'Outboard motor fuel tanks, lines and propellers',
         paragraphs: [
-          'A good portable tank with a gauge and a primer-bulb fuel line are the most common replacements on small outboards. We also stock aluminium propellers; confirm pitch and diameter against your owner\'s manual before ordering.'
+          'A good outboard motor fuel tank with a gauge and a primer-bulb fuel line are the most common replacements on small outboards. We also stock aluminium propellers; confirm pitch and diameter against your owner\'s manual before ordering.'
         ]
       },
       {
@@ -262,10 +262,10 @@ export const BRAND_CONTENT: Record<string, ListingContent> = {
     ]
   },
   mercury: {
-    h1: 'Mercury Outboard Motors for Sale UK',
-    metaTitle: 'Mercury Outboard Motors for Sale UK',
-    metaDescription: 'Mercury outboard motors for sale in the UK: FourStroke 3.5HP to Verado 400HP, plus Pro XS. PDI checked, UK manufacturer warranty, delivered nationwide.',
-    intro: 'Mercury Marine outboards from 3.5HP portable FourStroke engines to Pro XS performance units and Verado V10 flagships. Each engine is new, PDI checked and covered by the UK manufacturer warranty.',
+    h1: 'Mercury Outboards for Sale UK',
+    metaTitle: 'Mercury Outboards for Sale UK',
+    metaDescription: 'Mercury outboards for sale in the UK: FourStroke 3.5HP to Verado 400HP outboard motors, plus Pro XS. PDI checked, UK manufacturer warranty, delivered nationwide.',
+    intro: 'New Mercury outboards for sale, from 3.5HP portable FourStroke engines to Pro XS performance units and Verado V10 flagships. Each Mercury outboard motor is new, PDI checked and covered by the UK manufacturer warranty.',
     sections: [
       {
         h2: 'The Mercury outboard range',
@@ -285,10 +285,10 @@ export const BRAND_CONTENT: Record<string, ListingContent> = {
     ]
   },
   honda: {
-    h1: 'Honda Outboard Motors for Sale UK',
-    metaTitle: 'Honda Outboard Motors for Sale UK',
-    metaDescription: 'Honda outboard motors for sale in the UK: BF2.3 to BF100, backed by the UK manufacturer warranty. PDI checked before dispatch with UK delivery.',
-    intro: 'Honda Marine outboards from the ultra-light BF2.3 to the BF100, known for smooth, dependable running. Supplied new, PDI checked and warrantied.',
+    h1: 'Honda Outboards for Sale UK',
+    metaTitle: 'Honda Outboards for Sale UK',
+    metaDescription: 'Honda outboards for sale in the UK: BF2.3 to BF100 outboard engines, backed by the UK manufacturer warranty. PDI checked before dispatch with UK delivery.',
+    intro: 'New Honda outboards for sale, from the ultra-light BF2.3 to the BF100 outboard engines, known for smooth, dependable running. Supplied new, PDI checked and warrantied.',
     sections: [
       {
         h2: 'Choosing a Honda outboard',
@@ -327,39 +327,39 @@ export const BRAND_CONTENT: Record<string, ListingContent> = {
     ]
   },
   tohatsu: {
-    h1: 'Tohatsu Outboard Motors for Sale UK',
-    metaTitle: 'Tohatsu Outboard Motors for Sale UK',
-    metaDescription: 'Tohatsu outboard motors for sale in the UK: MFS3.5C to MFS115A four-strokes, lightweight and practical. PDI checked, UK warranty and delivery.',
-    intro: 'Tohatsu four-stroke outboards from the 3.5HP MFS3.5C to the 115HP MFS115A, known for good power-to-weight. Supplied new, PDI checked and warrantied.',
+    h1: 'Tohatsu Outboards for Sale UK',
+    metaTitle: 'Tohatsu Outboards for Sale UK',
+    metaDescription: 'Tohatsu outboards for sale in the UK: MFS3.5C to MFS115A four-stroke outboard motors, lightweight and practical. PDI checked, UK manufacturer warranty and delivery.',
+    intro: 'New Tohatsu outboards for sale, from the 3.5HP MFS3.5C to the 115HP MFS115A four-stroke, known for good power-to-weight. Every Tohatsu outboard is supplied new, PDI checked and warrantied.',
     sections: [
       {
-        h2: 'Why choose Tohatsu',
+        h2: 'Why choose a Tohatsu outboard',
         paragraphs: [
-          'Tohatsu builds practical, lightweight outboards that are popular with tender, RIB and workboat owners. Choose by power, shaft length and controls, and check your boat\'s power limit first.',
+          'Tohatsu builds practical, lightweight outboards that are popular with tender, RIB and workboat owners. Choose your Tohatsu outboard by power, shaft length and controls, and check your boat\'s power limit first.',
           'Compare with other brands in our small outboard motors and 10HP–40HP outboards categories.'
         ]
       }
     ],
     faqs: [
-      { q: 'Do Tohatsu outboards come with a warranty?', a: 'Yes. They are supplied new with the UK manufacturer warranty and a Pre-Delivery Inspection.' }
+      { q: 'Do Tohatsu outboards come with a warranty?', a: 'Yes. Every Tohatsu outboard is supplied new with the UK manufacturer warranty and a Pre-Delivery Inspection.' }
     ]
   },
   epropulsion: {
-    h1: 'ePropulsion Electric Outboards UK',
-    metaTitle: 'ePropulsion Electric Outboards UK',
-    metaDescription: 'ePropulsion electric outboards for sale in the UK: eLite, Spirit, Navy and X pod drives, plus batteries and accessories. Zero-emission power, UK delivery.',
-    intro: 'ePropulsion electric propulsion from the compact eLite 0.5kW to the X20 pod drive, with integrated batteries on the smaller models and spare batteries and accessories available.',
+    h1: 'ePropulsion Electric Outboards for Sale UK',
+    metaTitle: 'ePropulsion Outboards for Sale UK',
+    metaDescription: 'ePropulsion electric outboards for sale in the UK: eLite, Spirit 1.0, Navy and X pod drives, plus batteries and accessories. Zero-emission power, UK delivery.',
+    intro: 'ePropulsion electric outboards, from the compact eLite 0.5kW and Spirit 1.0 to the X20 pod drive, with integrated batteries on the smaller models and spare batteries and accessories available.',
     sections: [
       {
-        h2: 'Which ePropulsion motor suits my boat?',
+        h2: 'Which ePropulsion outboard suits my boat?',
         paragraphs: [
-          'The eLite and Spirit ranges suit tenders, dinghies and small sailing yachts, the Navy range suits heavier tenders and daysailers, and the X pod drives power larger boats. Pick by boat weight and the speed and range you want.',
+          'The ePropulsion eLite and Spirit 1.0 ranges suit tenders, dinghies and small sailing yachts, the Navy range suits heavier tenders and daysailers, and the X pod drives power larger boats. Pick by boat weight and the speed and range you want.',
           'Our parts category has spare batteries, bags, remote throttles and solar charge controllers. For a deeper explanation read how electric outboards work.'
         ]
       }
     ],
     faqs: [
-      { q: 'Does ePropulsion include a battery?', a: 'Smaller models use an integrated battery; larger systems use separate battery packs. Check each product page for details.' }
+      { q: 'Does an ePropulsion outboard include a battery?', a: 'Smaller models such as the eLite and Spirit 1.0 use an integrated battery; larger systems use separate battery packs. Check each product page for details.' }
     ]
   }
 };

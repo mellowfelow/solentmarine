@@ -7,6 +7,15 @@ export const LASTMOD_DEFAULT = '2026-11-17';
 export const LASTMOD_STATIC: Record<string, string> = {
   '/privacy/': '2026-10-16',
   '/terms/': '2026-10-16',
+  // v4 keyword map applied 19 Nov 2026 — only the pages whose on-page copy changed
+  '/': '2026-11-19',
+  '/shop/': '2026-11-19',
+  '/shop/mid-range/': '2026-11-19',
+  '/shop/parts/': '2026-11-19',
+  '/shop/tohatsu/': '2026-11-19',
+  '/shop/epropulsion/': '2026-11-19',
+  '/shop/mercury/': '2026-11-19',
+  '/shop/honda/': '2026-11-19',
 };
 
 export function lastmodFor(path: string): string {
