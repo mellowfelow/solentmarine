@@ -25,7 +25,8 @@ const CATEGORIES: { label: string; value: CategoryType }[] = [
   { label: '4-Stroke Petrol Motors', value: 'four-stroke' },
   { label: 'Electric & Eco Motors', value: 'electric' },
   { label: 'Trolling Motors', value: 'trolling' },
-  { label: 'Parts, Oils & Accessories', value: 'parts' }
+  { label: 'Parts, Oils & Accessories', value: 'parts' },
+  { label: 'Used outboards', value: 'used' }
 ];
 
 function FilterSection({

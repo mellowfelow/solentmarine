@@ -14,7 +14,7 @@
 2. Transactional/Commercial → shop/category/brand/product URLs. Informational/Question → blog/FAQ.
 3. H1, title, meta description, first 150 words and one H2 of each URL contain its primary.
 4. Tiering: **T1 KD 0–25 (optimise first)**, T2 KD 26–40, T3 KD 41–55 (LSI only, never a page's primary).
-5. Excluded: used/second-hand, "near me"/local-service, competitor dealer brands, AI-prompt strings, and "motor boat(s) for sale" (buying a *boat*, not an engine).
+5. Excluded: second-hand terms on new-stock pages (used stock lives only on `/shop/used/`), "near me"/local-service, competitor dealer brands, AI-prompt strings, and "motor boat(s) for sale" (buying a *boat*, not an engine).
 6. Mangled/ungrammatical queries ("out boat motor for sale", "boat motor outboard for sale") are covered by their grammatical tokens in natural copy, never pasted verbatim.
 
 ## Shop pages (every URL owns one primary + secondaries)
@@ -35,6 +35,7 @@ Intent key: T=Transactional, C=Commercial, I=Informational, N=Navigational.
 | `/shop/honda/` | honda outboards (480 / 30 / T) | honda outboard engines (480/26), honda outboards for sale (170/9 T1), honda outboard motors for sale (170/19) | Honda Outboards for Sale UK |
 | `/shop/tohatsu/` | **tohatsu outboards (480 / 14 / T)** ← upgraded from v3 "no term" | tohatsu outboard (480/20), tohatsu (260/26 N) | Tohatsu Outboards for Sale UK |
 | `/shop/epropulsion/` | **epropulsion (480 / 17 / T/N)** ← upgraded from v3 "navigational only" | epropulsion outboard (140/12), epropulsion elite (170/9), epropulsion spirit 1.0 (260/18) | ePropulsion Electric Outboards for Sale UK |
+| `/shop/used/` | used outboard motors for sale (volume/KD not yet pulled from Semrush) | used outboards uk, second hand outboard motors | Used Outboard Motors for Sale UK |
 | `/brands/` | outboard motor brands (informational/navigational) | — | Outboard Motor Brands UK |
 
 ## Product pages

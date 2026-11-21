@@ -16,7 +16,8 @@ export type CategoryType =
   | 'four-stroke'
   | 'electric'
   | 'trolling'
-  | 'parts';
+  | 'parts'
+  | 'used';
 
 export interface Product {
   id: string;
@@ -38,6 +39,8 @@ export interface Product {
   fuelSystem: 'Carburettor' | 'Electronic Fuel Injection (EFI)' | 'Battery Direct' | 'External Tank';
   stockStatus: 'In Stock' | '2-3 Days Delivery' | 'Special Order' | 'Out of Stock';
   isFeatured: boolean;
+  /** Defaults to new. Used listings carry no manufacturer warranty or PDI claims. */
+  condition?: 'new' | 'used';
   imageUrl: string;
   images?: string[];
   description: string;

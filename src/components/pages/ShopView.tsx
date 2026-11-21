@@ -380,7 +380,7 @@ export default function ShopView({
                           {prod.powerHp} HP
                         </span>
                         <span className="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
-                          {prod.specs.warrantyYears} Yr Warranty
+                          {prod.condition === 'used' ? 'Used' : `${prod.specs.warrantyYears} Yr Warranty`}
                         </span>
                       </div>
                     </NavLink>
@@ -388,10 +388,10 @@ export default function ShopView({
                     {/* Bottom Pricing & Trigger Area */}
                     <div className="pt-3 border-t border-slate-100">
                       <div className="flex justify-between items-baseline mb-3">
-                        <span className="text-[10px] text-slate-600 font-semibold">UK Retail Price</span>
+                        <span className="text-[10px] text-slate-600 font-semibold">{prod.condition === 'used' ? 'Used price' : 'UK Retail Price'}</span>
                         <div className="text-right">
                           <span className="text-base font-extrabold text-slate-900">£{prod.priceGbp.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                          <span className="block text-[9px] text-slate-500 leading-none">VAT Included (20%)</span>
+                          <span className="block text-[9px] text-slate-500 leading-none">{prod.condition === 'used' ? 'Ask about condition' : 'VAT Included (20%)'}</span>
                         </div>
                       </div>
 

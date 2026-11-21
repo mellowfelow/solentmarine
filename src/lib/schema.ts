@@ -205,7 +205,7 @@ export function getProductSchema(product: Product, reviewCount: number, avgRatin
       offers: {
         '@type': 'Offer',
         priceCurrency: SITE.currency,
-        itemCondition: 'https://schema.org/NewCondition',
+        itemCondition: product.condition === 'used' ? 'https://schema.org/UsedCondition' : 'https://schema.org/NewCondition',
         price: product.priceGbp.toFixed(2),
         priceValidUntil: POLICY.priceValidUntil,
         availability: product.stockStatus === 'In Stock' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',

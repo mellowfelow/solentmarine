@@ -117,7 +117,7 @@ const ROWS: SpecRow[] = [
     show: () => true,
     render: (p) => (
       <span className="font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md inline-block">
-        {p.specs.warrantyYears} Year{p.specs.warrantyYears === 1 ? '' : 's'}
+        {p.condition === 'used' ? 'Used, no new warranty' : `${p.specs.warrantyYears} Year${p.specs.warrantyYears === 1 ? '' : 's'}`}
       </span>
     )
   }

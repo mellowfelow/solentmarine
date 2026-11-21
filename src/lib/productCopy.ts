@@ -119,7 +119,52 @@ function contextParagraph(p: Product, kind: ProductKind): string {
   return bits.join(' ');
 }
 
+function usedCopy(p: Product): ProductCopy {
+  const hpTxt = `${p.powerHp}HP`;
+  const price = gbp(p.priceGbp);
+  const c = hpClass(p.powerHp);
+  const shafts = shaftText(p);
+  const apps = appLine(p);
+  const model = p.name.replace(/^Used\s+/i, '');
+  const shaftSentence = shafts
+    ? `It is listed in ${shafts} shaft length${shafts.includes(' or ') ? 's' : ''}; ask us which applies to this engine and check it against your transom height before ordering.`
+    : 'Confirm the shaft length against your transom height before ordering.';
+  return {
+    kind: 'petrol',
+    h1: p.name,
+    title: fitTitle(`${p.name} ${hpTxt} Outboard for Sale UK | Solent Marine UK`),
+    metaDescription: fitDesc(`${p.name} ${hpTxt} outboard motor for sale: ${price}. Used four-stroke, sized for ${c.boats}. Ask us for condition details. UK delivery from Cowes.`),
+    summary: `${p.name}, a ${hpTxt} used four-stroke petrol outboard motor listed at ${price}. ${apps ? `Suited to ${apps}. ` : ''}Condition, running hours and service history are available on request.`,
+    paragraphs: [
+      `This is a used ${p.brand} ${model}, a ${hpTxt} four-stroke petrol outboard in the ${c.band} class, a good match for ${c.boats}. It is listed at ${price}.`,
+      `${shaftSentence} Because it is a used engine, ask us for its condition, running hours and service history before you order, and we will confirm them.`,
+      `A used engine does not carry a new manufacturer warranty. If you want the full UK manufacturer warranty and a Pre-Delivery Inspection, see our new ${p.brand} outboards instead. ${deliveryLine}`
+    ],
+    chooseHeading: `Is the ${model} right for your boat?`,
+    chooseBullets: [
+      `Power: ${hpTxt} suits ${c.boats}. Check your boat's maximum rated power on its capacity plate and never exceed it.`,
+      shafts ? `Shaft: ${shafts}. Measure transom height from the top of the transom to the bottom of the hull.` : 'Shaft: confirm transom height before ordering.',
+      'Condition: ask us about running hours, service history and any known faults before you buy.',
+      'Fuel and oil: four-stroke engines run on unleaded petrol with no pre-mixing. Fill the crankcase with the correct four-stroke oil before first use.'
+    ],
+    included: [
+      'Individually priced single unit',
+      'Condition and service history confirmed on request',
+      'Secure packing for courier or pallet delivery',
+      'Technical shaft-length and rigging advice before you buy'
+    ],
+    faqs: [
+      { q: `Does the ${model} come with a warranty?`, a: 'It is a used engine, so it is not covered by a new manufacturer warranty. Ask us before you order and we will confirm exactly what is offered with this engine.' },
+      { q: `Can I see the running hours and service history?`, a: `Yes. Message us on WhatsApp or email at ${CONTACT.email} and we will confirm the condition, running hours and service history of this ${model}.` },
+      { q: `How much is delivery for the ${model}?`, a: deliveryLine }
+    ],
+    guideSlug: p.powerHp <= 6 ? 'small-outboard-motor-buying-guide' : 'outboard-horsepower-guide',
+    guideLabel: p.powerHp <= 6 ? 'Small outboard buying guide' : 'Outboard horsepower sizing guide'
+  };
+}
+
 export function getProductCopy(p: Product): ProductCopy {
+  if (p.condition === 'used') return usedCopy(p);
   const _ctx = contextParagraph(p, kindOf(p));
   const kind = kindOf(p);
   const seed = hash(p.slug);

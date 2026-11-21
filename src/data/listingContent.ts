@@ -130,6 +130,41 @@ export const CATEGORY_CONTENT: Record<string, ListingContent> = {
       { q: 'How much does delivery cost?', a: DELIVERY }
     ]
   },
+  used: {
+    h1: 'Used Outboard Motors for Sale UK',
+    metaTitle: 'Used Outboard Motors for Sale UK',
+    metaDescription: 'Used outboard motors for sale in the UK: Yamaha, Suzuki and Mercury four-strokes, each individually priced. Ask us for condition details. UK delivery.',
+    intro: 'Used four-stroke outboards from Yamaha, Suzuki and Mercury, each listed individually with its own price. Every engine is a single unit, so when it is sold it comes off the site.',
+    sections: [
+      {
+        h2: 'Buying a used outboard motor',
+        paragraphs: [
+          'A used outboard can be a sensible way to get on the water for less, particularly for a tender, a small fishing boat or a second engine. The things that matter most are the age and running hours, how it has been stored and serviced, and whether it starts, idles and revs cleanly under load.',
+          'Before you order, message us on WhatsApp or email and ask about the specific engine: condition, running hours and service history. We would rather answer every question up front than have you buy blind.'
+        ],
+        bullets: [
+          'Check the engine suits your boat: power rating on the capacity plate and shaft length for your transom.',
+          'Ask about running hours, service history and any known faults.',
+          'Remember a used engine will not carry a new manufacturer warranty.'
+        ]
+      },
+      {
+        h2: 'New or used?',
+        paragraphs: [
+          'If you want the full UK manufacturer warranty and a Pre-Delivery Inspection, choose from our new outboards. Used stock is individually priced, so the right engine at the right price goes quickly.'
+        ]
+      },
+      {
+        h2: 'Delivery',
+        paragraphs: ['Used engines are delivered like the rest of our range. Orders over £500 ship free to the UK mainland, with a flat £25 charge below that, and the minimum order is £150.']
+      }
+    ],
+    faqs: [
+      { q: 'Do used outboards come with a warranty?', a: 'Used engines are not covered by a new manufacturer warranty. Ask us before you order and we will tell you exactly what is offered with the engine you are looking at.' },
+      { q: 'Can I get the running hours and service history?', a: 'Yes. Message us on WhatsApp or email with the engine you are interested in and we will confirm its condition, running hours and service history before you pay.' },
+      { q: 'How is a used outboard delivered?', a: 'Used engines are delivered the same way as new ones. Orders over £500 ship free to the UK mainland, with a flat £25 charge below that.' }
+    ]
+  },
   'high-horsepower': {
     h1: 'High-Power Outboards for Sale (50HP–400HP)',
     metaTitle: 'High Power Outboards for Sale 50-400HP',

@@ -77,8 +77,12 @@ export default function ProductDetailsView({
     specRows.push(['Engine type', product.engineType === 'Electric' ? 'Electric' : `${product.engineType} petrol`]);
     const sh = product.shaftLengths.filter(x => !/fixed|universal/i.test(x));
     if (sh.length) specRows.push(['Shaft options', sh.join(' / ')]);
-    specRows.push(['Condition', 'New']);
-    specRows.push(['UK warranty', `${product.specs.warrantyYears} years`]);
+    if (product.condition === 'used') {
+      specRows.push(['Condition', 'Used']);
+    } else {
+      specRows.push(['Condition', 'New']);
+      specRows.push(['UK warranty', `${product.specs.warrantyYears} years`]);
+    }
   }
   if (product.sku) specRows.push(['SKU', product.sku]);
 
@@ -134,6 +138,10 @@ export default function ProductDetailsView({
               referrerPolicy="no-referrer"
             />
           </div>
+
+          {product.condition === 'used' && (
+            <p className="text-[11px] text-slate-500 -mt-4">Photo shows the model. The actual engine may differ in appearance, so ask us for photos of the unit before you order.</p>
+          )}
 
           <section aria-labelledby="about-heading" className="space-y-3">
             <h2 id="about-heading" className="font-sans font-extrabold text-slate-900 text-xl">About the {product.name}</h2>
@@ -241,10 +249,10 @@ export default function ProductDetailsView({
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
           <div className="bg-white border border-slate-205 rounded-2xl p-6 shadow-sm space-y-6">
             <div className="py-4 border-y border-slate-100 flex justify-between items-baseline">
-              <span className="text-xs uppercase font-bold tracking-widest text-slate-500">Retail Price (inc. VAT):</span>
+              <span className="text-xs uppercase font-bold tracking-widest text-slate-500">{product.condition === 'used' ? 'Used price:' : 'Retail Price (inc. VAT):'}</span>
               <div className="text-right">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-900">{gbp(product.priceGbp)}</span>
-                <span className="block text-[10px] text-slate-400">Includes 20% UK VAT • Shipping Calculated at Basket</span>
+                <span className="block text-[10px] text-slate-400">{product.condition === 'used' ? 'Shipping calculated at basket' : 'Includes 20% UK VAT • Shipping Calculated at Basket'}</span>
               </div>
             </div>
 

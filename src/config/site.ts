@@ -160,6 +160,12 @@ export const CATEGORIES = [
     name: 'Genuine Oils, Rigging & Spares',
     description: 'Manufacturer-approved engine oils, batteries, chargers, service kits, propellers and rigging hardware to maintain your warranty.',
     image: '/images/placeholders/parts.svg'
+  },
+  {
+    slug: 'used',
+    name: 'Used Outboards',
+    description: 'Used four-stroke outboards from Yamaha, Suzuki and Mercury, individually priced. Condition, running hours and service history confirmed before you order.',
+    image: '/images/products/yamaha-f15cehs.webp'
   }
 ];
 
