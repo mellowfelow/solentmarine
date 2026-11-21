@@ -133,8 +133,8 @@ export const CATEGORY_CONTENT: Record<string, ListingContent> = {
   used: {
     h1: 'Used Outboard Motors for Sale UK',
     metaTitle: 'Used Outboard Motors for Sale UK',
-    metaDescription: 'Used outboard motors for sale in the UK: Yamaha, Suzuki and Mercury four-strokes, each individually priced. Ask us for condition details. UK delivery.',
-    intro: 'Used four-stroke outboards from Yamaha, Suzuki and Mercury, each listed individually with its own price. Every engine is a single unit, so when it is sold it comes off the site.',
+    metaDescription: 'Used outboard motors for sale in the UK: Yamaha, Suzuki, Honda, Tohatsu and Mercury four-strokes, individually priced. Ask about condition. UK delivery.',
+    intro: 'Used four-stroke outboards from Yamaha, Suzuki, Honda, Tohatsu and Mercury, each listed individually with its own price. Every engine is a single unit, so when it is sold it comes off the site.',
     sections: [
       {
         h2: 'Buying a used outboard motor',

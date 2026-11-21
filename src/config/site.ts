@@ -164,7 +164,7 @@ export const CATEGORIES = [
   {
     slug: 'used',
     name: 'Used Outboards',
-    description: 'Used four-stroke outboards from Yamaha, Suzuki and Mercury, individually priced. Condition, running hours and service history confirmed before you order.',
+    description: 'Used four-stroke outboards from Yamaha, Suzuki, Honda, Tohatsu and Mercury, individually priced. Condition, running hours and service history confirmed before you order.',
     image: '/images/products/yamaha-f15cehs.webp'
   }
 ];
